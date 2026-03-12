@@ -4,20 +4,31 @@
   <meta charset="UTF-8">
   <title>{{ page.title | default: site.title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+  <style>
+    body { font-family: -apple-system, sans-serif; line-height: 1.6; color: #333; margin: 0; }
+    header { background: #f8f9fa; padding: 1rem; border-bottom: 1px solid #ddd; }
+    nav a { color: #007bff; text-decoration: none; margin-right: 15px; font-weight: 500; }
+    nav a:hover { text-decoration: underline; }
+    main { padding: 2rem; max-width: 900px; margin: auto; }
+    footer { text-align: center; padding: 2rem; color: #777; font-size: 0.9rem; border-top: 1px solid #eee; }
+  </style>
 </head>
 <body>
-  <header style="padding: 1rem; border-bottom: 1px solid #eee;">
+  <header>
     <nav>
-      <a href="{{ site.baseurl }}/">🏠 首页</a> | 
-      <a href="{{ site.baseurl }}/docs/about.html">📖 关于</a> |
-      <a href="{{ site.baseurl }}/docs/archaeology-basics.html">🏛️ 基础</a>
+      <a href="{{ site.baseurl }}/">🏠 首页</a>
+      {% assign sorted_pages = site.pages | sort: "path" %}
+      {% for p in sorted_pages %}
+        {% if p.path contains "docs/" and p.title %}
+          <a href="{{ p.url | relative_url }}">| {{ p.title }}</a>
+        {% endif %}
+      {% endfor %}
     </nav>
   </header>
-  <main style="padding: 2rem; max-width: 800px; margin: auto;">
+  <main>
     {{ content }}
   </main>
-  <footer style="padding: 2rem; text-align: center; border-top: 1px solid #eee; margin-top: 3rem;">
+  <footer>
     <p>© {{ site.time | date: "%Y" }} Hirarchealogy 知识库</p>
   </footer>
 </body>
