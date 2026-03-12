@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ page.title | default: site.title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+</head>
+<body>
+  <header style="padding: 1rem; border-bottom: 1px solid #eee;">
+    <nav>
+      <a href="{{ site.baseurl }}/">🏠 首页</a> | 
+      <a href="{{ site.baseurl }}/docs/about.html">📖 关于</a> |
+      <a href="{{ site.baseurl }}/docs/archaeology-basics.html">🏛️ 基础</a>
+    </nav>
+  </header>
+  <main style="padding: 2rem; max-width: 800px; margin: auto;">
+    {{ content }}
+  </main>
+  <footer style="padding: 2rem; text-align: center; border-top: 1px solid #eee; margin-top: 3rem;">
+    <p>© {{ site.time | date: "%Y" }} Hirarchealogy 知识库</p>
+  </footer>
+</body>
+</html>
