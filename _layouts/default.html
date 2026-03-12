@@ -2,34 +2,83 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>{{ page.title | default: site.title }}</title>
+  <title>{{ page.title }} | Hirarchealogy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body { font-family: -apple-system, sans-serif; line-height: 1.6; color: #333; margin: 0; }
-    header { background: #f8f9fa; padding: 1rem; border-bottom: 1px solid #ddd; }
-    nav a { color: #007bff; text-decoration: none; margin-right: 15px; font-weight: 500; }
-    nav a:hover { text-decoration: underline; }
-    main { padding: 2rem; max-width: 900px; margin: auto; }
-    footer { text-align: center; padding: 2rem; color: #777; font-size: 0.9rem; border-top: 1px solid #eee; }
+    :root {
+      --primary: #5d4037; /* 考古深啡 */
+      --accent: #8d6e63; /* 陶土色 */
+      --bg: #fdfaf6; /* 象牙纸张色 */
+      --text: #2c3e50;
+    }
+    body { 
+      font-family: \"PingFang SC\", \"Hiragino Sans GB\", \"Microsoft YaHei\", serif; 
+      line-height: 1.8; color: var(--text); background: var(--bg); margin: 0; 
+    }
+    header { 
+      background: white; padding: 1.5rem 0; 
+      box-shadow: 0 2px 15px rgba(0,0,0,0.05); 
+      position: sticky; top: 0; z-index: 100;
+    }
+    .container { max-width: 850px; margin: 0 auto; padding: 0 2rem; }
+    nav { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: center; }
+    nav a { 
+      color: var(--primary); text-decoration: none; font-weight: 600; 
+      padding: 0.5rem 1rem; border-radius: 5px; transition: 0.3s;
+      font-size: 0.95rem;
+    }
+    nav a:hover { background: var(--primary); color: white; }
+    .active { border-bottom: 2px solid var(--primary); }
+
+    main { padding: 4rem 0; min-height: 70vh; }
+    h1, h2, h3 { color: var(--primary); margin-top: 2.5rem; }
+    h1 { font-size: 2.4rem; border-left: 5px solid var(--primary); padding-left: 1rem; }
+    
+    /* 引用块美化 */
+    blockquote {
+      border-left: 4px solid var(--accent);
+      background: #f1ede8;
+      margin: 2rem 0; padding: 1rem 1.5rem;
+      font-style: italic; color: #5d4037;
+    }
+    
+    /* 文章内的列表 */
+    main ul li { margin-bottom: 0.8rem; }
+    
+    footer { 
+      text-align: center; padding: 3rem 0; 
+      background: #eee7de; color: #8b735b; font-size: 0.85rem; 
+    }
+    
+    /* 响应式 */
+    @media (max-width: 600px) {
+      h1 { font-size: 1.8rem; }
+      nav { justify-content: flex-start; }
+    }
   </style>
 </head>
 <body>
   <header>
-    <nav>
-      <a href="{{ site.baseurl }}/">🏠 首页</a>
-      {% assign sorted_pages = site.pages | sort: "path" %}
-      {% for p in sorted_pages %}
-        {% if p.path contains "docs/" and p.title %}
-          <a href="{{ p.url | relative_url }}">| {{ p.title }}</a>
-        {% endif %}
-      {% endfor %}
-    </nav>
+    <div class=\"container\">
+      <nav>
+        <a href=\"{{ site.baseurl }}/\">🏠 首页</a>
+        {% assign sorted_pages = site.pages | sort: \"path\" %}
+        {% for p in sorted_pages %}
+          {% if p.path contains \"docs/\" and p.title %}
+            <a href=\"{{ p.url | relative_url }}\" {% if page.url == p.url %}class=\"active\"{% endif %}>{{ p.title }}</a>
+          {% endif %}
+        {% endfor %}
+      </nav>
+    </div>
   </header>
-  <main>
+  <main class=\"container\">
     {{ content }}
   </main>
   <footer>
-    <p>© {{ site.time | date: "%Y" }} Hirarchealogy 知识库</p>
+    <div class=\"container\">
+      <p>Hirarchealogy 考古知识库 · 记录文明之光</p>
+      <p>© {{ site.time | date: \"%Y\" }} Built with GitHub Pages</p>
+    </div>
   </footer>
 </body>
 </html>

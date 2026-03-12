@@ -1,4 +1,5 @@
-title: Hirarchealogy 知识库
+title: Hirarchealogy
 description: 探索古文化与层次结构的奥秘
+baseurl: /hirarchealogy
+url: https://relHIGH.github.io
 theme: jekyll-theme-cayman
-layout: default
