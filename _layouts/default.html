@@ -12,16 +12,15 @@
     nav { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; }
     nav a { color: var(--primary); text-decoration: none; font-weight: 600; padding: 0.4rem 0.8rem; font-size: 0.9rem; border-radius: 4px; }
     nav a:hover { background: #eee; }
+    .active { color: var(--accent); border-bottom: 2px solid var(--accent); }
     
     main { padding: 3rem 0; min-height: 60vh; }
     h1 { font-size: 2.2rem; border-left: 6px solid var(--primary); padding-left: 1rem; margin-bottom: 2rem; }
     
-    /* 关系网络：底部关联样式 */
     .related-box { margin-top: 5rem; padding: 2rem; background: #f1ede8; border-radius: 8px; border: 1px solid #e0d7cd; }
     .related-box h3 { margin-top: 0; color: var(--primary); font-size: 1.1rem; border-bottom: 1px solid var(--accent); padding-bottom: 0.5rem; }
     .related-list { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .related-list li a { color: var(--accent); text-decoration: none; font-size: 0.95rem; }
-    .related-list li a:hover { text-decoration: underline; }
 
     footer { text-align: center; padding: 2rem 0; background: #f1ede8; color: #8b735b; font-size: 0.8rem; margin-top: 4rem; }
   </style>
@@ -29,11 +28,11 @@
 <body>
   <header><div class="container"><nav>
     <a href="{{ site.baseurl }}/">🏠 首页</a>
-    {% for p in site.pages %}{% if p.path contains "docs/" and p.title %}<a href="{{ p.url | relative_url }}">{{ p.title }}</a>{% endif %}{% endfor %}
+    <a href="{{ site.baseurl }}/docs/network.html">🕸️ 关系图谱</a>
+    {% for p in site.pages %}{% if p.path contains "docs/" and p.title and p.path != "docs/network.md" %}<a href="{{ p.url | relative_url }}">{{ p.title }}</a>{% endif %}{% endfor %}
   </nav></div></header>
   <main class="container">
     {{ content }}
-    
     {% if page.category %}
     <div class="related-box">
       <h3>🔍 同类专题推荐</h3>
@@ -48,6 +47,6 @@
     </div>
     {% endif %}
   </main>
-  <footer><div class="container"><p>Hirarchealogy 考古知识库 · 关系网络已激活</p></div></footer>
+  <footer><div class="container"><p>Hirarchealogy 考古知识库</p></div></footer>
 </body>
 </html>
