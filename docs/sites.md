@@ -1,4 +1,5 @@
 ---
+category: 专题研究
 title: 文明遗址
 layout: default
 ---

@@ -1,4 +1,5 @@
 ---
+category: 专题研究
 title: 器物研究
 layout: default
 ---

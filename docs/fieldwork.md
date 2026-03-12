@@ -1,4 +1,5 @@
 ---
+category: 考古技术
 title: 田野方法
 layout: default
 ---
