@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root { 
-      --sidebar-width: 310px; /* 调优宽度：平衡显示与空间 */
+      --sidebar-width: 310px; 
       --sidebar-peek: 55px; 
       --right-wave-width: 80px;
       --header-height: 60px;
@@ -19,6 +19,7 @@
     * { box-sizing: border-box; }
     body { font-family: "Georgia", "Times New Roman", serif; margin: 0; display: flex; flex-direction: column; height: 100vh; background: var(--bg-main); overflow: hidden; }
 
+    /* 开屏页 */
     #splash-screen {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       z-index: 9999; display: flex; align-items: center; justify-content: center;
@@ -41,6 +42,7 @@
 
     .main-wrapper { display: flex; flex-grow: 1; overflow: hidden; position: relative; }
 
+    /* Vase 侧栏形态保持 */
     #sidebar-container {
       position: absolute; top: 0; left: 0; height: 100%; z-index: 1500;
       width: var(--sidebar-width);
@@ -52,7 +54,7 @@
       -webkit-mask-size: 100% 100%;
     }
     #sidebar-container:hover { transform: translateX(0); background: rgba(30, 0, 5, 0.98); }
-    #sidebar { padding-top: 45vh; padding-left: 20px; padding-right: 40px; }
+    #sidebar { padding-top: 45vh; padding-left: 20px; padding-right: 40px; display: flex; flex-direction: column; align-items: flex-start; }
 
     #right-wave {
       position: fixed; top: var(--header-height); right: 0; height: calc(100% - var(--header-height)); 
@@ -63,14 +65,19 @@
     }
 
     #content-wrapper { flex-grow: 1; overflow-y: auto; padding: 0 var(--right-wave-width) 0 80px; scroll-behavior: smooth; }
-    .container { max-width: 800px; margin: 3rem auto; background: var(--card-bg); padding: 5rem 4rem; box-shadow: 0 20px 80px rgba(0,0,0,0.06); border-radius: 2px; }
+    .container { max-width: 850px; margin: 3rem auto; background: var(--card-bg); padding: 5rem 4rem; box-shadow: 0 20px 80px rgba(0,0,0,0.06); border-radius: 2px; }
     
     #markdown-body { font-size: 15px; color: #333; line-height: 1.8; }
     #markdown-body h1 { font-size: 1.8rem; color: var(--accent); margin-bottom: 2rem; text-align: center; }
     
-    .nav-item-wrapper { display: block; padding: 10px 20px; text-decoration: none; color: rgba(255,255,255,0.4); font-size: 13px; transition: 0.4s; }
-    .nav-item-wrapper:hover { color: white; font-size: 16px !important; padding-left: 30px; }
-    .nav-item-wrapper.active { color: white; font-weight: bold; border-left: 2px solid white; padding-left: 15px; }
+    /* 侧栏入口单字美化 */
+    .nav-item-wrapper { 
+      display: block; padding: 15px 25px; text-decoration: none; 
+      color: rgba(255,255,255,0.5); font-size: 18px; font-family: "Songti SC", serif; 
+      transition: 0.4s; letter-spacing: 2px;
+    }
+    .nav-item-wrapper:hover { color: white; transform: scale(1.2); padding-left: 35px; }
+    .nav-item-wrapper.active { color: white; font-weight: bold; border-left: 2px solid white; }
     
     footer { padding: 4rem 0; text-align: center; color: #aaa; font-size: 0.7rem; letter-spacing: 3px; }
   </style>
@@ -86,14 +93,25 @@
   </header>
   <div class="main-wrapper">
     <div id="right-wave"></div>
-    <div id="sidebar-container"><aside id="sidebar"><div id="tree-root"></div></aside></div>
+    <div id="sidebar-container">
+      <aside id="sidebar">
+        <!-- 固定的、极简的一级入口 -->
+        <a href="{{ site.baseurl }}/docs/about.html" class="nav-item-wrapper">About</a>
+        <a href="{{ site.baseurl }}/docs/古代旅行/" class="nav-item-wrapper" style="font-size: 28px;">旅</a>
+      </aside>
+    </div>
     <div id="content-wrapper">
       <main class="container">
         <div id="markdown-body">
           {% if page.url != "/" %}<h1>{{ page.name | remove: ".md" }}</h1>{% endif %}
           {{ content }}
         </div>
-        {% if page.url != "/" %}<div style="margin-top: 60px; padding: 30px; background: #fafafa; border: 1px solid #eee;"><div style="font-size: 0.8rem; color: #999; letter-spacing: 2px; margin-bottom: 20px;">CONTINUE DISCOVERY</div><div id="discovery-nodes" style="display:flex; gap:20px; flex-wrap:wrap;"></div></div>{% endif %}
+        {% if page.url != "/" %}
+        <div style="margin-top: 60px; padding: 30px; background: #fafafa; border: 1px solid #eee;">
+          <div style="font-size: 0.8rem; color: #999; letter-spacing: 2px; margin-bottom: 20px;">CONTINUE DISCOVERY</div>
+          <div id="discovery-nodes" style="display:flex; gap:20px; flex-wrap:wrap;"></div>
+        </div>
+        {% endif %}
       </main>
       <footer>HIRARCHEALOGY &copy; {{ site.time | date: "%Y" }}</footer>
     </div>
@@ -101,42 +119,9 @@
   <script>
     function clean(str) { return str ? str.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, "").trim() : ""; }
     const pages = [{% for p in site.pages %}{ "path": {{ p.path | jsonify }}, "url": {{ p.url | relative_url | jsonify }}, "name": clean({{ p.name | remove: ".md" | jsonify }}) },{% endfor %}];
-    const currentUrl = {{ page.url | relative_url | jsonify }};
     const splash = document.getElementById('splash-screen');
-    const isHome = (window.location.pathname === "{{ site.baseurl }}/" || window.location.pathname === "{{ site.baseurl }}");
-    if (!isHome) { splash.style.display = 'none'; }
+    if (window.location.pathname !== "{{ site.baseurl }}/" && window.location.pathname !== "{{ site.baseurl }}") { splash.style.display = 'none'; }
     splash.onclick = () => { splash.classList.add('hidden'); };
-
-    function renderTree() {
-      const root = {};
-      pages.forEach(p => {
-        if (!p.path.includes("docs/")) return;
-        const parts = p.path.split("/").slice(1);
-        let cur = root;
-        parts.forEach((part, i) => {
-          const name = clean(part);
-          if (i === parts.length - 1) cur[name] = p;
-          else { if (!cur[name]) cur[name] = {}; cur = cur[name]; }
-        });
-      });
-      const tr = document.getElementById('tree-root');
-      function build(obj, parent) {
-        Object.keys(obj).sort().forEach(key => {
-          const val = obj[key];
-          if (val.url) {
-            const a = document.createElement('a'); a.href = val.url;
-            a.className = 'nav-item-wrapper' + (val.url === currentUrl ? ' active' : '');
-            a.innerText = clean(val.name); parent.appendChild(a);
-          } else {
-            const label = document.createElement('div'); label.style = "padding: 20px 20px 5px; color:rgba(255,255,255,0.25); font-size:9px; font-weight:bold; text-transform:uppercase; letter-spacing:3px;";
-            label.innerText = clean(key); parent.appendChild(label);
-            const sub = document.createElement('div'); parent.appendChild(sub); build(val, sub);
-          }
-        });
-      }
-      build(root, tr);
-    }
-    renderTree();
 
     const md = document.getElementById('markdown-body');
     md.innerHTML = md.innerHTML.replace(/\[\[(.*?)\]\]/g, (m, c) => {
@@ -145,7 +130,7 @@
       return f ? `<a style="color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(128,0,32,0.2);" href="${f.url}">${l || target}</a>` : `<span style="color:#999">[[${c}]]</span>`;
     });
 
-    if (!isHome) {
+    if (window.location.pathname !== "{{ site.baseurl }}/") {
       fetch("{{ site.baseurl }}/assets/graph_data.json").then(res => res.json()).then(data => {
         const cn = clean("{{ page.name | remove: '.md' }}");
         const neighbors = data.links.filter(l => clean(l.source) === cn || clean(l.target) === cn).map(l => clean(l.source) === cn ? clean(l.target) : clean(l.source));
