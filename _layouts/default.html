@@ -20,19 +20,18 @@
     * { box-sizing: border-box; }
     body { font-family: "Georgia", "Times New Roman", serif; margin: 0; display: flex; flex-direction: column; height: 100vh; background: var(--bg-main); overflow: hidden; }
 
-    /* 开屏页：统一为深邃勃艮第渐变 */
     #splash-screen {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       z-index: 9999; display: flex; align-items: center; justify-content: center;
       cursor: pointer; transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-      background: linear-gradient(135deg, #800020, #1a1a1a); /* 固定配色 */
+      background: linear-gradient(135deg, #800020, #1a1a1a);
     }
     #splash-screen.hidden { transform: scale(1.1); opacity: 0; pointer-events: none; }
     .splash-hint { color: white; font-size: 0.9rem; letter-spacing: 4px; font-family: sans-serif; opacity: 0.7; }
 
     header {
       height: 60px; background: rgba(255,255,255,0.8); backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(0,0,0,0.03); display: flex; align-items: center; padding: 0 30px; z-index: 1000; flex-shrink: 0; justify-content: space-between;
+      border-bottom: 1px solid rgba(0,0,0,0.03); display: flex; align-items: center; padding: 0 30px; z-index: 2000; flex-shrink: 0; justify-content: space-between;
     }
     .header-logo { font-weight: 600; color: var(--primary); font-size: 0.9rem; letter-spacing: 1px; text-decoration: none; }
     .header-nav { display: flex; flex-direction: row !important; gap: 15px; align-items: center; }
@@ -41,18 +40,20 @@
 
     .main-wrapper { display: flex; flex-grow: 1; overflow: hidden; position: relative; }
 
+    /* 5.6 智能记忆侧栏 */
     #sidebar-container {
       position: absolute; top: 0; left: 0; height: 100%; z-index: 1500;
       width: var(--sidebar-width);
+      /* 初始状态由 JS 动态注入样式 */
       transform: translateX(calc(-1 * var(--sidebar-width) + var(--sidebar-peek)));
       transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.8s;
       background: var(--accent-deep);
       mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L15,0 L15,40 C15,55 100,50 100,75 C100,95 40,100 20,100 L0,100 Z" fill="black"/></svg>');
       -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L15,0 L15,40 C15,55 100,50 100,75 C100,95 40,100 20,100 L0,100 Z" fill="black"/></svg>');
-      mask-size: 100% 100%; -webkit-mask-size: 100% 100%;
-      box-shadow: 15px 0 40px rgba(0,0,0,0.2);
+      -webkit-mask-size: 100% 100%;
     }
-    #sidebar-container:hover { transform: translateX(0); background: var(--accent-active); }
+    /* 仅在非跳转即显时应用过渡 */
+    #sidebar-container.ready { transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.8s; }
 
     #sidebar { 
       width: 100%; height: 100%;
@@ -62,7 +63,7 @@
 
     #right-wave {
       position: fixed; top: var(--header-height); right: 0; height: calc(100% - var(--header-height)); 
-      width: var(--right-wave-width); background: rgba(128, 0, 32, 0.08); z-index: 100;
+      width: 80px; background: rgba(128, 0, 32, 0.08); z-index: 100;
       mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M100,0 L75,0 C65,5 95,10 90,20 C80,35 25,35 25,45 C25,55 65,55 60,65 C40,80 0,80 0,85 C0,95 50,100 70,100 L100,100 Z" fill="black"/></svg>');
       -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M100,0 L75,0 C65,5 95,10 90,20 C80,35 25,35 25,45 C25,55 65,55 60,65 C40,80 0,80 0,85 C0,95 50,100 70,100 L100,100 Z" fill="black"/></svg>');
       -webkit-mask-size: 100% 100%; pointer-events: none;
@@ -79,7 +80,6 @@
 
     #content-wrapper { flex-grow: 1; overflow-y: auto; padding: 0 var(--right-wave-width) 0 60px; }
     .container { max-width: 850px; margin: 3rem auto; background: var(--card-bg); padding: 5rem 4rem; box-shadow: 0 10px 40px rgba(0,0,0,0.03); border-radius: 2px; }
-    
     footer { padding: 4rem 0; text-align: center; color: #bbb; font-size: 0.7rem; letter-spacing: 2px; }
   </style>
 </head>
@@ -113,12 +113,35 @@
   <script>
     function clean(str) { return str ? str.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, "").trim() : ""; }
 
-    // 开屏逻辑：固定勃艮第红
+    const container = document.getElementById('sidebar-container');
+    
+    // 1. 侧栏智能状态管理
+    const isGraph = window.location.pathname.includes("graph");
+    
+    if (!isGraph) {
+      container.onmouseenter = () => {
+        container.style.transform = 'translateX(0)';
+        container.style.background = 'var(--accent-active)';
+        sessionStorage.setItem('sidebar_open', 'true');
+      };
+      container.onmouseleave = () => {
+        container.style.transform = 'translateX(calc(-1 * var(--sidebar-width) + var(--sidebar-peek)))';
+        container.style.background = 'var(--accent-deep)';
+        sessionStorage.setItem('sidebar_open', 'false');
+      };
+
+      // 恢复状态：如果之前是打开的，新页面直接显示打开，避免闪烁
+      if (sessionStorage.getItem('sidebar_open') === 'true') {
+        container.style.transition = 'none'; // 瞬间恢复
+        container.style.transform = 'translateX(0)';
+        container.style.background = 'var(--accent-active)';
+        setTimeout(() => { container.style.transition = ''; }, 100);
+      }
+    }
+
+    // 2. 开屏逻辑
     const splash = document.getElementById('splash-screen');
-    splash.onclick = () => {
-      splash.classList.add('hidden');
-      sessionStorage.setItem('hi_splashed', 'true');
-    };
+    splash.onclick = () => { splash.classList.add('hidden'); sessionStorage.setItem('hi_splashed', 'true'); };
     if(sessionStorage.getItem('hi_splashed') === 'true' && window.location.pathname !== "{{ site.baseurl }}/") {
       splash.style.display = 'none';
     }
@@ -137,38 +160,31 @@
           else { if (!cur[name]) cur[name] = {}; cur = cur[name]; }
         });
       });
-      const container = document.getElementById('tree-root');
+      const tr = document.getElementById('tree-root');
       function build(obj, parent) {
         Object.keys(obj).sort().forEach(key => {
           const val = obj[key];
           if (val.url) {
-            const a = document.createElement('a');
-            a.href = val.url;
+            const a = document.createElement('a'); a.href = val.url;
             a.className = 'nav-item-wrapper' + (val.url === currentUrl ? ' active' : '');
-            a.innerText = clean(val.name);
-            parent.appendChild(a);
+            a.innerText = clean(val.name); parent.appendChild(a);
           } else {
-            const label = document.createElement('div');
-            label.style = "padding: 25px 40px 5px; color:rgba(255,255,255,0.25); font-size:9px; font-weight:bold; text-transform:uppercase; letter-spacing:3px;";
-            label.innerText = clean(key);
-            parent.appendChild(label);
-            const sub = document.createElement('div');
-            parent.appendChild(sub);
-            build(val, sub);
+            const label = document.createElement('div'); label.style = "padding: 25px 40px 5px; color:rgba(255,255,255,0.25); font-size:9px; font-weight:bold; text-transform:uppercase; letter-spacing:3px;";
+            label.innerText = clean(key); parent.appendChild(label);
+            const sub = document.createElement('div'); parent.appendChild(sub); build(val, sub);
           }
         });
       }
-      build(root, container);
+      build(root, tr);
     }
     renderTree();
 
     const md = document.getElementById('markdown-body');
-    md.innerHTML = clean(md.innerHTML)
-      .replace(/\[\[(.*?)\]\]/g, (m, c) => {
-        let [t, l] = c.split('|'); let target = clean(t.split('#')[0]);
-        const f = pages.find(p => clean(p.name) === target);
-        return f ? `<a class="wikilink" href="${f.url}">${l || target}</a>` : `<span style="color:#999">[[${c}]]</span>`;
-      });
+    md.innerHTML = clean(md.innerHTML).replace(/\[\[(.*?)\]\]/g, (m, c) => {
+      let [t, l] = c.split('|'); let target = clean(t.split('#')[0]);
+      const f = pages.find(p => clean(p.name) === target);
+      return f ? `<a class="wikilink" href="${f.url}">${l || target}</a>` : `<span style="color:#999">[[${c}]]</span>`;
+    });
   </script>
 </body>
 </html>
