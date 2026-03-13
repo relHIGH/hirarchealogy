@@ -2,51 +2,186 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>{{ page.title }} | Hirarchealogy</title>
+  <title>{{ page.name | remove: ".md" }} | CHM</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    :root { --primary: #5d4037; --accent: #8d6e63; --bg: #fdfaf6; --text: #2c3e50; }
-    body { font-family: -apple-system, sans-serif; line-height: 1.8; color: var(--text); background: var(--bg); margin: 0; }
-    header { background: white; padding: 1rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
-    .container { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; }
-    nav { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; }
-    nav a { color: var(--primary); text-decoration: none; font-weight: 600; padding: 0.4rem 0.8rem; font-size: 0.9rem; border-radius: 4px; }
-    nav a:hover { background: #eee; }
-    .active { color: var(--accent); border-bottom: 2px solid var(--accent); }
+    :root { 
+      --sidebar-width: 260px; --header-height: 55px;
+      --primary: #4a5568; --accent: #818cf8; --bg: #fdfdfd; 
+      --sidebar-bg: #f9fafb; --border: #f0f0f0; --text: #4a5568;
+    }
     
-    main { padding: 3rem 0; min-height: 60vh; }
-    h1 { font-size: 2.2rem; border-left: 6px solid var(--primary); padding-left: 1rem; margin-bottom: 2rem; }
-    
-    .related-box { margin-top: 5rem; padding: 2rem; background: #f1ede8; border-radius: 8px; border: 1px solid #e0d7cd; }
-    .related-box h3 { margin-top: 0; color: var(--primary); font-size: 1.1rem; border-bottom: 1px solid var(--accent); padding-bottom: 0.5rem; }
-    .related-list { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .related-list li a { color: var(--accent); text-decoration: none; font-size: 0.95rem; }
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; margin: 0; display: flex; flex-direction: column; height: 100vh; font-size: 15px; color: var(--text); background: var(--bg); overflow: hidden; }
 
-    footer { text-align: center; padding: 2rem 0; background: #f1ede8; color: #8b735b; font-size: 0.8rem; margin-top: 4rem; }
+    /* 全屏随机渐变开屏页 */
+    #splash-screen {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 9999; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.5s;
+    }
+    #splash-screen.hidden { transform: translateY(-100%); opacity: 0; pointer-events: none; }
+    .splash-hint { color: rgba(255,255,255,0.8); font-size: 1rem; font-weight: 300; letter-spacing: 2px; animation: breathe 2s infinite ease-in-out; }
+    @keyframes breathe { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+    header {
+      height: var(--header-height); background: white; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; padding: 0 20px; z-index: 1000; flex-shrink: 0;
+      justify-content: space-between; box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+    .header-left { display: flex; align-items: center; }
+    .menu-toggle { cursor: pointer; color: #a0aec0; font-size: 1.4rem; margin-right: 20px; display: flex; align-items: center; }
+    
+    .header-nav { display: flex; gap: 15px; align-items: center; }
+    .header-icon { color: #94a3b8; text-decoration: none; display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; transition: 0.2s; }
+    .header-icon:hover { color: var(--accent); background: #f1f5f9; }
+    .header-icon.active { color: var(--accent); background: #eef2ff; }
+    .header-icon svg { width: 20px; height: 20px; fill: currentColor; }
+
+    .wrapper { display: flex; flex-grow: 1; overflow: hidden; }
+    #sidebar { width: var(--sidebar-width); background: var(--sidebar-bg); border-right: 1px solid var(--border); overflow-y: auto; padding: 1rem 0; flex-shrink: 0; transition: margin-left 0.3s ease; }
+    #sidebar.hidden { margin-left: calc(-1 * var(--sidebar-width)); }
+    
+    .folder-header { cursor: pointer; padding: 6px 15px; color: #64748b; font-weight: 500; display: flex; align-items: center; }
+    .folder-header::before { content: "›"; margin-right: 10px; transition: 0.2s; color: #ccc; font-weight: bold; }
+    .folder-header.open::before { transform: rotate(90deg); }
+    .folder-content { display: none; padding-left: 15px; border-left: 1px solid #f1f5f9; margin-left: 20px; }
+    .folder-content.show { display: block; }
+    .tree-item { display: block; padding: 4px 15px; color: #718096; text-decoration: none; border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .tree-item:hover { background: #f1f5f9; color: var(--accent); }
+    .tree-item.active { background: #e8f0fe; color: var(--accent); font-weight: 600; }
+
+    #content-wrapper { flex-grow: 1; overflow-y: auto; background: var(--bg); position: relative; }
+    .container { max-width: 800px; margin: 0 auto; padding: 3rem 2rem; }
+    #markdown-body p { margin-bottom: 1.5rem; text-align: justify; }
+    .content-tag { color: #718096; background: #f1f5f9; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; text-decoration: none; border: 1px solid #e2e8f0; }
+    .wikilink { color: var(--accent); text-decoration: none; border-bottom: 1px solid #e0e7ff; }
+
+    .floating-nav { position: fixed; right: 30px; bottom: 30px; display: flex; flex-direction: column; gap: 10px; }
+    .nav-btn { width: 40px; height: 40px; background: white; border: 1px solid #eee; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #cbd5e1; font-size: 0.8rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    footer { padding: 4rem 0; border-top: 1px solid #eee; text-align: center; }
+    .tag-link { background: #f8fafc; color: #64748b; padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; text-decoration: none; margin: 3px; display: inline-block; border: 1px solid #f1f5f9; }
   </style>
 </head>
 <body>
-  <header><div class="container"><nav>
-    <a href="{{ site.baseurl }}/">🏠 首页</a>
-    <a href="{{ site.baseurl }}/docs/network.html">🕸️ 关系图谱</a>
-    {% for p in site.pages %}{% if p.path contains "docs/" and p.title and p.path != "docs/network.md" %}<a href="{{ p.url | relative_url }}">{{ p.title }}</a>{% endif %}{% endfor %}
-  </nav></div></header>
-  <main class="container">
-    {{ content }}
-    {% if page.category %}
-    <div class="related-box">
-      <h3>🔍 同类专题推荐</h3>
-      <ul class="related-list">
-        {% assign related_pages = site.pages | where: "category", page.category %}
-        {% for p in related_pages %}
-          {% if p.url != page.url %}
-            <li><a href="{{ p.url | relative_url }}">📄 {{ p.title }}</a></li>
-          {% endif %}
-        {% endfor %}
-      </ul>
+  <!-- 开屏页结构 -->
+  <div id="splash-screen">
+    <div class="splash-hint">CLICK TO EXPLORE</div>
+  </div>
+
+  <header>
+    <div class="header-left">
+      <div class="menu-toggle" id="toggle-btn" title="Toggle Sidebar">☰</div>
     </div>
-    {% endif %}
-  </main>
-  <footer><div class="container"><p>Hirarchealogy 考古知识库</p></div></footer>
+    <nav class="header-nav">
+      <a href="{{ site.baseurl }}/" class="header-icon {% if page.url == '/' %}active{% endif %}" title="Home">
+        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      </a>
+      <a href="{{ site.baseurl }}/graph.html" class="header-icon {% if page.url contains 'graph' %}active{% endif %}" title="Graph View">
+        <svg viewBox="0 0 24 24"><path d="M17 11c.34 0 .66.08.95.22l2.64-2.64A3.962 3.962 0 0 0 21 5c0-2.21-1.79-4-4-4-2.21 0-4 1.79-4 4 0 .34.08.66.22.95L10.58 8.59a3.96 3.96 0 0 0-1.16-.59V5c0-2.21-1.79-4-4-4S1.42 2.79 1.42 5c0 2.21 1.79 4 4 4 .4 0 .78-.07 1.14-.2l2.66 2.66c-.14.28-.22.6-.22.94s.08.66.22.95l-2.66 2.66a3.96 3.96 0 0 0-1.14-.2c-2.21 0-4 1.79-4 4 0 2.21 1.79 4 4 4 2.21 0 4-1.79 4-4 0-.34-.08-.66-.22-.95l2.64-2.64c.29.14.61.22.95.22 2.21 0 4-1.79 4-4s-1.79-4-4-4zm-8-2c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm8-6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0-8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
+      </a>
+    </nav>
+  </header>
+
+  <div class="wrapper">
+    <aside id="sidebar"><div id="tree-root"></div></aside>
+    <div id="content-wrapper">
+      <main class="container"><div id="markdown-body">{{ content }}</div></main>
+      <footer><div class="container">
+        {% assign blacklist = "名词解释,论述,简答,文物学概论,中国考古通论" | split: "," %}
+        {% assign all_tags = "" %}
+        {% for p in site.pages %}{% if p.tags %}{% for t in p.tags %}
+          {% unless blacklist contains t %}{% unless all_tags contains t %}{% assign all_tags = all_tags | append: t | append: "," %}{% endunless %}{% endunless %}
+        {% endfor %}{% endif %}{% endfor %}
+        {% assign tag_list = all_tags | split: "," | sort %}
+        {% for t in tag_list %}{% if t != "" %}<a href="{{ site.baseurl }}/tags.html?tag={{ t }}" class="tag-link"># {{ t }}</a>{% endif %}{% endfor %}
+      </div></footer>
+    </div>
+  </div>
+
+  <script>
+    // 1. 开屏逻辑：随机渐变 + 点击淡出
+    function initSplash() {
+      const splash = document.getElementById('splash-screen');
+      // 检查是否是本次会话第一次进入
+      if (sessionStorage.getItem('splashed') === 'true' && window.location.pathname !== "{{ site.baseurl }}/") {
+        splash.style.display = 'none';
+        return;
+      }
+
+      // 生成随机渐变色 (莫兰迪色调)
+      const colors = [
+        ['#e2e8f0', '#818cf8'], ['#fef3c7', '#f59e0b'], ['#dcfce7', '#10b981'],
+        ['#f3e8ff', '#8b5cf6'], ['#fae8ff', '#d946ef'], ['#ffe4e6', '#fb7185']
+      ];
+      const rand = colors[Math.floor(Math.random() * colors.length)];
+      splash.style.background = `linear-gradient(135deg, ${rand[0]}, ${rand[1]})`;
+
+      splash.onclick = () => {
+        splash.classList.add('hidden');
+        sessionStorage.setItem('splashed', 'true');
+      };
+    }
+    initSplash();
+
+    function clean(str) { return str ? str.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, "").trim() : ""; }
+
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('toggle-btn');
+    window.toggleSidebar = (show) => {
+      if (show === undefined) sidebar.classList.toggle('hidden');
+      else show ? sidebar.classList.remove('hidden') : sidebar.classList.add('hidden');
+    };
+    toggleBtn.onclick = () => window.toggleSidebar();
+
+    if (window.location.pathname.includes("graph")) window.toggleSidebar(false);
+    else window.toggleSidebar(true);
+
+    const pages = [{% for p in site.pages %}{% if p.path contains "docs/" %}{ "path": {{ p.path | jsonify }}, "url": {{ p.url | relative_url | jsonify }}, "name": clean({{ p.name | remove: ".md" | jsonify }}) },{% endif %}{% endfor %}];
+    const currentUrl = {{ page.url | relative_url | jsonify }};
+
+    function renderTree() {
+      const root = {};
+      pages.forEach(p => {
+        const parts = p.path.split("/").slice(1);
+        let cur = root;
+        parts.forEach((part, i) => {
+          const name = clean(part);
+          if (i === parts.length - 1) cur[name] = p;
+          else { if (!cur[name]) cur[name] = {}; cur = cur[name]; }
+        });
+      });
+      const container = document.getElementById('tree-root');
+      function build(obj, parent) {
+        Object.keys(obj).sort().forEach(key => {
+          const val = obj[key];
+          if (val.url) {
+            const a = document.createElement('a');
+            a.href = val.url; a.className = 'tree-item' + (val.url === currentUrl ? ' active' : '');
+            a.innerText = clean(val.name); parent.appendChild(a);
+          } else {
+            const div = document.createElement('div');
+            const head = document.createElement('div'); head.className = 'folder-header'; head.innerText = clean(key);
+            const body = document.createElement('div'); body.className = 'folder-content';
+            head.onclick = () => { head.classList.toggle('open'); body.classList.toggle('show'); };
+            div.appendChild(head); div.appendChild(body); parent.appendChild(div);
+            build(val, body);
+            if (body.querySelector('.active')) { head.classList.add('open'); body.classList.add('show'); }
+          }
+        });
+      }
+      build(root, container);
+    }
+    renderTree();
+
+    const md = document.getElementById('markdown-body');
+    md.innerHTML = clean(md.innerHTML)
+      .replace(/(^|\s)#([\u4e00-\u9fa5\w\/]+)(?=\s|$)/g, '$1<a class="content-tag" href="{{ site.baseurl }}/tags.html?tag=$2">#$2</a>')
+      .replace(/\[\[(.*?)\]\]/g, (m, c) => {
+        let [t, l] = c.split('|'); let target = clean(t.split('#')[0]);
+        const f = pages.find(p => clean(p.name) === target);
+        return f ? `<a class="wikilink" href="${f.url}">${l || target}</a>` : `<span style="color:#ccc">[[${c}]]</span>`;
+      });
+  </script>
 </body>
 </html>

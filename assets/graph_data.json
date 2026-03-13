@@ -1,0 +1,33 @@
+{
+  "nodes": [
+    {
+      "id": "sites",
+      "group": 1
+    },
+    {
+      "id": "network",
+      "group": 1
+    },
+    {
+      "id": "archaeology-basics",
+      "group": 1
+    },
+    {
+      "id": "fieldwork",
+      "group": 1
+    },
+    {
+      "id": "artifacts",
+      "group": 1
+    },
+    {
+      "id": "dating",
+      "group": 1
+    },
+    {
+      "id": "about",
+      "group": 1
+    }
+  ],
+  "links": []
+}
