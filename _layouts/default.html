@@ -20,11 +20,12 @@
     * { box-sizing: border-box; }
     body { font-family: "Georgia", "Times New Roman", serif; margin: 0; display: flex; flex-direction: column; height: 100vh; background: var(--bg-main); overflow: hidden; }
 
-    /* 开屏页样式 - 保持原样 */
+    /* 开屏页：统一为深邃勃艮第渐变 */
     #splash-screen {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       z-index: 9999; display: flex; align-items: center; justify-content: center;
       cursor: pointer; transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+      background: linear-gradient(135deg, #800020, #1a1a1a); /* 固定配色 */
     }
     #splash-screen.hidden { transform: scale(1.1); opacity: 0; pointer-events: none; }
     .splash-hint { color: white; font-size: 0.9rem; letter-spacing: 4px; font-family: sans-serif; opacity: 0.7; }
@@ -83,7 +84,6 @@
   </style>
 </head>
 <body>
-  <!-- 开屏页 -->
   <div id="splash-screen"><div class="splash-hint">EXPLORE THE DEPTHS</div></div>
 
   <header>
@@ -113,12 +113,12 @@
   <script>
     function clean(str) { return str ? str.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, "").trim() : ""; }
 
-    // 开屏逻辑
+    // 开屏逻辑：固定勃艮第红
     const splash = document.getElementById('splash-screen');
-    const colors = [['#2f4f4f', '#1a1a1a'], ['#800020', '#2d0000'], ['#4a5568', '#1a202c']];
-    const rand = colors[Math.floor(Math.random() * colors.length)];
-    splash.style.background = `linear-gradient(135deg, ${rand[0]}, ${rand[1]})`;
-    splash.onclick = () => { splash.classList.add('hidden'); sessionStorage.setItem('hi_splashed', 'true'); };
+    splash.onclick = () => {
+      splash.classList.add('hidden');
+      sessionStorage.setItem('hi_splashed', 'true');
+    };
     if(sessionStorage.getItem('hi_splashed') === 'true' && window.location.pathname !== "{{ site.baseurl }}/") {
       splash.style.display = 'none';
     }
