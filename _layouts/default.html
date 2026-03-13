@@ -7,8 +7,8 @@
   <style>
     :root { 
       --sidebar-width: 380px;
-      --sidebar-visible-gap: 45px; 
-      --right-wave-width: 30px;
+      --sidebar-peek: 45px; /* 常态漏出的宽度 */
+      --right-wave-width: 60px; /* 加宽右侧 */
       --primary: #2f4f4f; 
       --accent: #800020;  
       --bg-main: #f4f1ea; 
@@ -29,13 +29,15 @@
 
     .main-wrapper { display: flex; flex-grow: 1; overflow: hidden; position: relative; }
 
-    /* 4.4 慢速左侧波浪 */
+    /* 4.5 强化左侧花瓶 (精准漏出与收回) */
     #sidebar-container {
       position: absolute; top: 0; left: 0; height: 100%; z-index: 1500;
       width: var(--sidebar-width);
-      transform: translateX(calc(-1 * var(--sidebar-width) + var(--sidebar-visible-gap)));
-      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); /* 极慢速且极其平滑 */
+      /* 精准控制：只漏出 peek 宽度 */
+      transform: translateX(calc(-1 * var(--sidebar-width) + var(--sidebar-peek)));
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
+    /* 鼠标移入容器立刻弹出，移出立刻收回 */
     #sidebar-container:hover { transform: translateX(0); }
 
     #sidebar { 
@@ -47,14 +49,14 @@
       display: flex; flex-direction: column; justify-content: flex-start;
     }
 
-    /* 右侧静止装饰波浪 */
+    /* 强化右侧装饰波浪 */
     #right-wave {
       position: absolute; top: 0; right: 0; height: 100%; width: var(--right-wave-width);
-      background: rgba(47, 79, 79, 0.05); /* 极淡的墨青色 */
+      background: rgba(47, 79, 79, 0.08); /* 加深一点 */
       z-index: 1400;
-      /* 镜像左侧曲线，但更细窄 */
-      mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M100,0 L85,0 C95,10 95,20 90,30 C80,40 55,45 55,65 C55,85 80,95 85,100 L100,100 Z" fill="black"/></svg>');
-      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M100,0 L85,0 C95,10 95,20 90,30 C80,40 55,45 55,65 C55,85 80,95 85,100 L100,100 Z" fill="black"/></svg>');
+      /* 镜像且起伏更大的曲线 */
+      mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M100,0 L85,0 C95,15 95,25 90,35 C80,45 55,50 55,70 C55,85 80,95 85,100 L100,100 Z" fill="black"/></svg>');
+      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M100,0 L85,0 C95,15 95,25 90,35 C80,45 55,50 55,70 C55,85 80,95 85,100 L100,100 Z" fill="black"/></svg>');
       -webkit-mask-size: 100% 100%;
     }
 
@@ -64,14 +66,12 @@
       transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       transform-origin: left center; white-space: nowrap;
     }
-    .nav-item-wrapper:hover {
-      color: white; font-size: 18px !important; padding-left: 40px;
-    }
+    .nav-item-wrapper:hover { color: white; font-size: 18px !important; padding-left: 40px; }
     .nav-item-wrapper.active { color: var(--accent); font-weight: bold; font-size: 15px; border-left: 3px solid var(--accent); padding-left: 15px; }
 
     .folder-label { padding: 30px 20px 5px; color: rgba(255,255,255,0.2); font-size: 9px; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; }
 
-    #content-wrapper { flex-grow: 1; overflow-y: auto; padding: 0 var(--right-wave-width) 0 50px; }
+    #content-wrapper { flex-grow: 1; overflow-y: auto; padding: 0 var(--right-wave-width) 0 calc(var(--sidebar-peek) + 20px); }
     .container { max-width: 850px; margin: 3rem auto; background: var(--card-bg); padding: 5rem 4rem; box-shadow: 0 10px 40px rgba(0,0,0,0.03); border-radius: 2px; }
     
     footer { padding: 4rem 0; text-align: center; color: #bbb; font-size: 0.7rem; letter-spacing: 2px; }
@@ -132,7 +132,7 @@
             parent.appendChild(a);
           } else {
             const label = document.createElement('div');
-            label.style = "padding: 25px 40px 5px; color:rgba(255,255,255,0.3); font-size:9px; font-weight:bold; text-transform:uppercase; letter-spacing:3px;";
+            label.className = 'folder-label';
             label.innerText = clean(key);
             parent.appendChild(label);
             const sub = document.createElement('div');
