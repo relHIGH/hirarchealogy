@@ -6,18 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root { 
-      --sidebar-width: 380px;
-      --sidebar-peek: 55px; /* 确保露出 55px */
-      --right-wave-width: 80px;
+      --sidebar-width: 400px;
+      --sidebar-peek: 65px; 
+      --right-wave-width: 85px;
       --primary: #2f4f4f; 
-      --accent-deep: rgba(45, 0, 8, 0.85); /* 静默时颜色 */
-      --accent-active: rgba(20, 0, 5, 0.98); /* 激活时颜色 */
+      --accent-deep: rgba(100, 0, 20, 0.55); /* 勃艮第红 55% */
+      --accent-active: rgba(30, 0, 5, 0.98); 
       --bg-main: #f4f1ea; 
       --card-bg: #ffffff;
     }
     
     * { box-sizing: border-box; }
-    body { font-family: "Georgia", serif; margin: 0; display: flex; flex-direction: column; height: 100vh; background: var(--bg-main); overflow: hidden; }
+    body { font-family: "Georgia", "Times New Roman", serif; margin: 0; display: flex; flex-direction: column; height: 100vh; background: var(--bg-main); overflow: hidden; }
 
     header {
       height: 60px; background: rgba(255,255,255,0.8); backdrop-filter: blur(8px);
@@ -30,11 +30,11 @@
 
     .main-wrapper { display: flex; flex-grow: 1; overflow: hidden; position: relative; }
 
-    /* 4.7 修复：绝对显示的左侧边缘 */
+    /* 4.8 精确花瓶结构侧栏 (口、颈、肩、身) */
     #sidebar-container {
       position: absolute; top: 0; left: 0; height: 100%; z-index: 1500;
       width: var(--sidebar-width);
-      /* 核心修正：确保即使在静默状态下，也有 55px 是显示在屏幕内的 */
+      /* 强制漏出 65px */
       transform: translateX(calc(-1 * var(--sidebar-width) + var(--sidebar-peek)));
       transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -43,36 +43,47 @@
     #sidebar { 
       width: 100%; height: 100%; background: var(--accent-deep);
       transition: background 0.8s;
-      /* 修正 SVG：路径从 0,0 开始，确保左侧没有空白 */
-      mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L5,0 C5,15 0,30 5,40 C15,55 45,65 45,80 C45,95 10,100 0,100 Z" fill="black"/></svg>');
-      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L5,0 C5,15 0,30 5,40 C15,55 45,65 45,80 C45,95 10,100 0,100 Z" fill="black"/></svg>');
+      /* 
+         SVG 路径详解：
+         M-5,0 (左溢出) L25,0 (瓶口撇口)
+         C15,5 12,15 12,25 (颈部收缩)
+         L12,35 (颈部垂直)
+         C12,45 55,50 55,70 (肩部扩张与瓶身饱满)
+         C55,90 20,100 20,100 (瓶足内敛)
+         L-5,100 Z 
+      */
+      mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M-5,0 L25,0 C15,5 12,15 12,25 L12,35 C12,45 55,50 55,70 C55,90 20,100 20,100 L-5,100 Z" fill="black"/></svg>');
+      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M-5,0 L25,0 C15,5 12,15 12,25 L12,35 C12,45 55,50 55,70 C55,90 20,100 20,100 L-5,100 Z" fill="black"/></svg>');
       mask-size: 100% 100%; -webkit-mask-size: 100% 100%;
-      padding-top: 45vh; padding-left: 20px; padding-right: 50px;
+      padding-top: 45vh; padding-left: 30px; padding-right: 60px;
       display: flex; flex-direction: column; justify-content: flex-start;
+      box-shadow: 10px 0 30px rgba(0,0,0,0.2);
     }
     #sidebar-container:hover #sidebar { background: var(--accent-active); }
 
-    /* 右侧装饰 */
+    /* 右侧镜像装饰 (同样强化结构) */
     #right-wave {
       position: fixed; top: 0; right: 0; height: 100%; width: var(--right-wave-width);
-      background: rgba(128, 0, 32, 0.06); 
+      background: rgba(128, 0, 32, 0.08); 
       z-index: 100;
-      mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M100,0 L95,0 C95,15 100,30 95,40 C85,55 55,65 55,80 C55,95 90,100 100,100 Z" fill="black"/></svg>');
-      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M100,0 L95,0 C95,15 100,30 95,40 C85,55 55,65 55,80 C55,95 90,100 100,100 Z" fill="black"/></svg>');
+      mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M105,0 L75,0 C85,5 88,15 88,25 L88,35 C88,45 45,50 45,70 C45,90 80,100 80,100 L105,100 Z" fill="black"/></svg>');
+      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M105,0 L75,0 C85,5 88,15 88,25 L88,35 C88,45 45,50 45,70 C45,90 80,100 80,100 L105,100 Z" fill="black"/></svg>');
       -webkit-mask-size: 100% 100%;
       pointer-events: none;
     }
 
     .nav-item-wrapper {
       display: block; padding: 10px 20px; text-decoration: none;
-      color: rgba(255,255,255,0.4); font-size: 14px;
+      color: rgba(255,255,255,0.45); font-size: 14px;
       transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       transform-origin: left center; white-space: nowrap;
     }
-    .nav-item-wrapper:hover { color: white; font-size: 18px !important; padding-left: 40px; }
+    .nav-item-wrapper:hover { color: white; font-size: 18px !important; padding-left: 45px; }
     .nav-item-wrapper.active { color: white; font-weight: bold; font-size: 15px; border-left: 3px solid white; padding-left: 15px; }
 
-    #content-wrapper { flex-grow: 1; overflow-y: auto; padding: 0 var(--right-wave-width) 0 60px; }
+    .folder-label { padding: 30px 20px 5px; color: rgba(255,255,255,0.25); font-size: 9px; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; }
+
+    #content-wrapper { flex-grow: 1; overflow-y: auto; padding: 0 var(--right-wave-width) 0 70px; }
     .container { max-width: 850px; margin: 3rem auto; background: var(--card-bg); padding: 5rem 4rem; box-shadow: 0 10px 40px rgba(0,0,0,0.03); border-radius: 2px; }
     
     footer { padding: 4rem 0; text-align: center; color: #bbb; font-size: 0.7rem; letter-spacing: 2px; }
@@ -133,7 +144,7 @@
             parent.appendChild(a);
           } else {
             const label = document.createElement('div');
-            label.style = "padding: 25px 40px 5px; color:rgba(255,255,255,0.2); font-size:9px; font-weight:bold; text-transform:uppercase; letter-spacing:3px;";
+            label.style = "padding: 25px 40px 5px; color:rgba(255,255,255,0.25); font-size:9px; font-weight:bold; text-transform:uppercase; letter-spacing:3px;";
             label.innerText = clean(key);
             parent.appendChild(label);
             const sub = document.createElement('div');
