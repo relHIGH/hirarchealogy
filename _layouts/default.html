@@ -18,6 +18,7 @@
     * { box-sizing: border-box; }
     body { font-family: "Georgia", "Times New Roman", serif; margin: 0; display: flex; flex-direction: column; height: 100vh; background: var(--bg-main); overflow: hidden; }
 
+    /* 开屏页 */
     #splash-screen {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       z-index: 9999; display: flex; align-items: center; justify-content: center;
@@ -40,7 +41,7 @@
 
     .main-wrapper { display: flex; flex-grow: 1; overflow: hidden; position: relative; }
 
-    /* 左侧 Vase 侧栏 */
+    /* 左侧 Vase 灵魂形态 */
     #sidebar-container {
       position: absolute; top: 0; left: 0; height: 100%; z-index: 1500;
       width: var(--sidebar-width);
@@ -68,15 +69,16 @@
     }
     #right-sidebar-trigger:hover { transform: translateX(0); background: rgba(128, 0, 32, 0.35); }
 
-    /* 侧栏文字中心化 */
-    aside { padding-top: 45vh; padding-left: 25px; padding-right: 40px; display: flex; flex-direction: column; align-items: flex-start; }
+    /* 侧栏文字垂直序列 */
+    aside { padding-top: 35vh; padding-left: 20px; padding-right: 40px; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
 
     .nav-item-wrapper { 
       text-decoration: none; 
       color: rgba(255,255,255,0.5); font-size: 32px; font-family: "Songti SC", serif; 
-      transition: 0.4s; letter-spacing: 2px;
+      transition: 0.4s; letter-spacing: 4px;
     }
-    #sidebar-container:hover .nav-item-wrapper { color: white; transform: scale(1.3); }
+    #sidebar-container:hover .nav-item-wrapper { color: white; }
+    .nav-item-wrapper:hover { transform: scale(1.3) translateX(10px); color: white !important; }
     
     .back-text { opacity: 0; transition: 0.8s; font-size: 28px; color: white; font-family: "Songti SC", serif; margin-bottom: 20px; }
     #right-sidebar-trigger:hover .back-text { opacity: 1; }
@@ -99,11 +101,16 @@
     </nav>
   </header>
   <div class="main-wrapper">
-    <!-- 左侧：旅 -->
+    <!-- 左侧：旅、戏、饮、感 -->
     <div id="sidebar-container">
-      <aside><a href="{{ site.baseurl }}/docs/古代旅行/" class="nav-item-wrapper">旅</a></aside>
+      <aside id="sidebar">
+        <a href="{{ site.baseurl }}/docs/古代旅行/" class="nav-item-wrapper">旅</a>
+        <a href="{{ site.baseurl }}/docs/戏/" class="nav-item-wrapper">戏</a>
+        <a href="{{ site.baseurl }}/docs/饮/" class="nav-item-wrapper">饮</a>
+        <a href="{{ site.baseurl }}/docs/感/" class="nav-item-wrapper">感</a>
+      </aside>
     </div>
-    <!-- 右侧：回 (底部定位) -->
+    <!-- 右侧：回 -->
     <div id="right-sidebar-trigger" onclick="window.history.back()">
       <div class="back-text">回</div>
     </div>
