@@ -6,100 +6,94 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root { 
-      --sidebar-min-width: 60px; /* 常态宽度 */
-      --sidebar-max-width: 280px; /* 伸展宽度 */
+      --sidebar-width: 240px;
       --header-height: 60px;
       --primary: #2f4f4f; 
       --accent: #800020;  
       --bg-main: #f4f1ea; 
       --card-bg: #ffffff;
-      --sidebar-bg: #1a1a1a; 
+      --sidebar-bg: transparent; /* 侧栏背景隐形 */
     }
     
     * { box-sizing: border-box; }
     body { font-family: "Georgia", serif; margin: 0; display: flex; flex-direction: column; height: 100vh; background: var(--bg-main); overflow: hidden; }
 
-    /* 顶栏 */
     header {
-      height: var(--header-height); background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; align-items: center; padding: 0 30px; z-index: 1000; flex-shrink: 0; justify-content: space-between;
+      height: var(--header-height); background: rgba(255,255,255,0.8); backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0,0,0,0.03); display: flex; align-items: center; padding: 0 30px; z-index: 1000; flex-shrink: 0; justify-content: space-between;
     }
-    .header-nav { display: flex; gap: 20px; align-items: center; }
-    .header-icon { color: var(--primary); text-decoration: none; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; transition: 0.3s; }
-    .header-icon:hover { background: var(--bg-main); transform: scale(1.1); }
+    .header-logo { font-weight: 600; color: var(--primary); font-size: 0.9rem; letter-spacing: 1px; text-decoration: none; }
+    .header-icon { color: var(--primary); text-decoration: none; display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; transition: 0.3s; }
+    .header-icon:hover { background: rgba(0,0,0,0.05); }
     .header-icon.active { background: var(--primary); color: white; }
-    .header-icon svg { width: 22px; height: 22px; fill: currentColor; }
+    .header-icon svg { width: 20px; height: 20px; fill: currentColor; }
 
     .main-wrapper { display: flex; flex-grow: 1; overflow: hidden; }
 
-    /* 音量条风格动态侧栏 */
+    /* 3.3 弧形隐形侧栏 */
     #sidebar { 
-      width: var(--sidebar-min-width); background: var(--sidebar-bg); 
+      width: var(--sidebar-width); background: var(--sidebar-bg); 
       overflow-y: auto; overflow-x: hidden; padding: 2rem 0; flex-shrink: 0;
-      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 500;
+      border-right: 1px solid rgba(0,0,0,0.03);
+      /* 右侧圆角弧形感 */
+      border-radius: 0 50px 50px 0;
+      height: fit-content; /* 高度随内容自适应 */
+      align-self: flex-start; /* 顶部对齐 */
+      margin-top: 2rem;
     }
-    /* 鼠标移入整个侧栏时，宽度稍增，但不全开 */
-    #sidebar:hover { width: var(--sidebar-min-width); } 
 
-    .tree-node { position: relative; margin: 8px 0; width: 100%; }
+    .tree-node { margin: 2px 0; width: 100%; }
     
-    /* 核心动效：模拟音量条 */
+    /* 侧栏条目：平时融于背景 */
     .nav-item-wrapper {
       display: flex; align-items: center; cursor: pointer;
-      height: 35px; margin: 2px 0; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      background: rgba(255,255,255,0.05);
-      border-radius: 0 20px 20px 0;
-      width: 30px; /* 初始只显示一个小条 */
-      overflow: hidden;
-      white-space: nowrap;
+      height: 40px; padding: 0 20px; text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      background: transparent;
+      border-radius: 0 25px 25px 0;
+      color: var(--text-soft);
+      transform-origin: left center;
     }
     
-    /* 悬停特定条目时伸长、变亮、放大 */
+    /* 悬停动效：放大并出现“音量条”质感 */
     .nav-item-wrapper:hover {
-      width: 90%; /* 像音量条一样弹出 */
-      background: var(--accent);
-      padding-left: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      background: var(--primary);
+      color: white;
+      transform: scale(1.05);
+      padding-left: 30px;
+      box-shadow: 10px 5px 25px rgba(0,0,0,0.1);
     }
     
-    /* 选中状态 */
     .nav-item-wrapper.active {
-      width: 85%;
-      background: var(--primary);
-      border-left: 4px solid var(--accent);
+      background: rgba(47, 79, 79, 0.1);
+      color: var(--primary);
+      font-weight: bold;
+      border-left: 4px solid var(--primary);
     }
 
     .node-text {
-      color: white; font-size: 0.85rem; font-weight: 500; opacity: 0;
-      transition: opacity 0.2s; padding-left: 10px;
+      font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
-    .nav-item-wrapper:hover .node-text, .nav-item-wrapper.active .node-text { opacity: 1; }
 
-    /* 文件夹标题样式 */
-    .folder-tag {
-      height: 4px; width: 15px; background: #444; margin: 15px 0 5px 15px;
-      transition: all 0.3s;
+    /* 文件夹标题：更精致 */
+    .folder-label {
+      padding: 15px 20px 5px; color: var(--primary); font-size: 0.7rem; font-weight: bold;
+      text-transform: uppercase; letter-spacing: 2px; opacity: 0.6;
     }
-    .tree-node:hover .folder-tag { background: var(--accent); width: 30px; }
 
     #content-wrapper { flex-grow: 1; overflow-y: auto; }
-    .container { max-width: 850px; margin: 3rem auto; background: var(--card-bg); padding: 4rem 3rem; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border-radius: 4px; }
-    #markdown-body h1 { font-size: 2.2rem; color: var(--primary); margin-bottom: 2rem; text-align: center; font-style: italic; }
+    .container { max-width: 850px; margin: 3rem auto; background: var(--card-bg); padding: 5rem 4rem; box-shadow: 0 10px 40px rgba(0,0,0,0.03); border-radius: 2px; }
+    #markdown-body h1 { font-size: 2.2rem; color: var(--primary); margin-bottom: 2rem; text-align: center; }
     
-    footer { padding: 4rem 0; text-align: center; color: #999; font-size: 0.7rem; letter-spacing: 2px; }
+    footer { padding: 4rem 0; text-align: center; color: #bbb; font-size: 0.7rem; letter-spacing: 2px; }
   </style>
 </head>
 <body>
   <header>
-    <div style="font-weight: 600; color: var(--primary); font-size: 0.9rem; letter-spacing: 1px;">HIRARCHEALOGY</div>
+    <a href="{{ site.baseurl }}/" class="header-logo">HIRARCHEALOGY</a>
     <nav class="header-nav">
-      <a href="{{ site.baseurl }}/" class="header-icon {% if page.url == '/' %}active{% endif %}" title="Index">
-        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-      </a>
-      <a href="{{ site.baseurl }}/graph.html" class="header-icon {% if page.url contains 'graph' %}active{% endif %}" title="Network">
-        <svg viewBox="0 0 24 24"><path d="M17 11c.34 0 .66.08.95.22l2.64-2.64A3.962 3.962 0 0 0 21 5c0-2.21-1.79-4-4-4-2.21 0-4 1.79-4 4 0 .34.08.66.22.95L10.58 8.59a3.96 3.96 0 0 0-1.16-.59V5c0-2.21-1.79-4-4-4S1.42 2.79 1.42 5c0 2.21 1.79 4 4 4 .4 0 .78-.07 1.14-.2l2.66 2.66c-.14.28-.22.6-.22.94s.08.66.22.95l-2.66 2.66a3.96 3.96 0 0 0-1.14-.2c-2.21 0-4 1.79-4 4 0 2.21 1.79 4 4 4 2.21 0 4-1.79 4-4 0-.34-.08-.66-.22-.95l2.64-2.64c.29.14.61.22.95.22 2.21 0 4-1.79 4-4s-1.79-4-4-4zm-8-2c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm8-6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0-8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
-      </a>
+      <a href="{{ site.baseurl }}/" class="header-icon {% if page.url == '/' %}active{% endif %}" title="Index"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></a>
+      <a href="{{ site.baseurl }}/graph.html" class="header-icon {% if page.url contains 'graph' %}active{% endif %}" title="Network"><svg viewBox="0 0 24 24"><path d="M17 11c.34 0 .66.08.95.22l2.64-2.64A3.962 3.962 0 0 0 21 5c0-2.21-1.79-4-4-4-2.21 0-4 1.79-4 4 0 .34.08.66.22.95L10.58 8.59a3.96 3.96 0 0 0-1.16-.59V5c0-2.21-1.79-4-4-4S1.42 2.79 1.42 5c0 2.21 1.79 4 4 4 .4 0 .78-.07 1.14-.2l2.66 2.66c-.14.28-.22.6-.22.94s.08.66.22.95l-2.66 2.66a3.96 3.96 0 0 0-1.14-.2c-2.21 0-4 1.79-4 4 0 2.21 1.79 4 4 4 2.21 0 4-1.79 4-4 0-.34-.08-.66-.22-.95l2.64-2.64c.29.14.61.22.95.22 2.21 0 4-1.79 4-4s-1.79-4-4-4zm-8-2c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm8-6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0-8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg></a>
     </nav>
   </header>
 
@@ -135,23 +129,23 @@
       });
 
       const container = document.getElementById('tree-root');
-      function build(obj, parent, depth = 0) {
+      function build(obj, parent) {
         Object.keys(obj).sort().forEach(key => {
           const val = obj[key];
-          const node = document.createElement('div');
-          node.className = 'tree-node';
-
           if (val.url) {
-            // 文件节点
-            node.innerHTML = `<a href="${val.url}" class="nav-item-wrapper ${val.url === currentUrl ? 'active' : ''}"><span class="node-text">${clean(val.name)}</span></a>`;
-            parent.appendChild(node);
+            const a = document.createElement('a');
+            a.href = val.url;
+            a.className = 'nav-item-wrapper' + (val.url === currentUrl ? ' active' : '');
+            a.innerHTML = `<span class="node-text">${clean(val.name)}</span>`;
+            parent.appendChild(a);
           } else {
-            // 文件夹节点
-            node.innerHTML = `<div class="folder-tag"></div><div style="padding-left:15px; color:#555; font-size:10px; text-transform:uppercase; letter-spacing:1px; margin-bottom:5px;">${clean(key)}</div>`;
-            const subContainer = document.createElement('div');
-            parent.appendChild(node);
-            parent.appendChild(subContainer);
-            build(val, subContainer, depth + 1);
+            const label = document.createElement('div');
+            label.className = 'folder-label';
+            label.innerText = clean(key);
+            parent.appendChild(label);
+            const sub = document.createElement('div');
+            parent.appendChild(sub);
+            build(val, sub);
           }
         });
       }
