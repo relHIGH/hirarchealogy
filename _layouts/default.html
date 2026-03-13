@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root { 
-      --sidebar-width: 260px; /* 物理瘦身：260px 宽度 */
-      --sidebar-peek: 50px; 
+      --sidebar-width: 310px; /* 调优宽度：平衡显示与空间 */
+      --sidebar-peek: 55px; 
       --right-wave-width: 80px;
       --header-height: 60px;
       --primary: #1a1a1a; 
@@ -19,7 +19,6 @@
     * { box-sizing: border-box; }
     body { font-family: "Georgia", "Times New Roman", serif; margin: 0; display: flex; flex-direction: column; height: 100vh; background: var(--bg-main); overflow: hidden; }
 
-    /* 开屏页 */
     #splash-screen {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       z-index: 9999; display: flex; align-items: center; justify-content: center;
@@ -42,7 +41,6 @@
 
     .main-wrapper { display: flex; flex-grow: 1; overflow: hidden; position: relative; }
 
-    /* 8ffd154 灵魂 Vase 路径 - 适配 260px 宽度 */
     #sidebar-container {
       position: absolute; top: 0; left: 0; height: 100%; z-index: 1500;
       width: var(--sidebar-width);
@@ -104,8 +102,6 @@
     function clean(str) { return str ? str.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, "").trim() : ""; }
     const pages = [{% for p in site.pages %}{ "path": {{ p.path | jsonify }}, "url": {{ p.url | relative_url | jsonify }}, "name": clean({{ p.name | remove: ".md" | jsonify }}) },{% endfor %}];
     const currentUrl = {{ page.url | relative_url | jsonify }};
-    
-    // 开屏控制
     const splash = document.getElementById('splash-screen');
     const isHome = (window.location.pathname === "{{ site.baseurl }}/" || window.location.pathname === "{{ site.baseurl }}");
     if (!isHome) { splash.style.display = 'none'; }
