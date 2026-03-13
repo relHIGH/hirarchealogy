@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root { 
-      --sidebar-width: 320px;
-      --sidebar-pre-width: 30px; /* 默认预留的宽度 */
+      --sidebar-width: 300px;
+      --sidebar-pre-width: 20px;
       --primary: #2f4f4f; 
       --accent: #800020;  
       --bg-main: #f4f1ea; 
@@ -15,7 +15,8 @@
     }
     
     * { box-sizing: border-box; }
-    body { font-family: "Georgia", serif; margin: 0; display: flex; flex-direction: column; height: 100vh; background: var(--bg-main); overflow: hidden; }
+    /* 恢复经典衬线字体 */
+    body { font-family: "Georgia", "Times New Roman", "PingFang SC", serif; margin: 0; display: flex; flex-direction: column; height: 100vh; background: var(--bg-main); overflow: hidden; }
 
     header {
       height: 60px; background: rgba(255,255,255,0.8); backdrop-filter: blur(8px);
@@ -28,55 +29,52 @@
 
     .main-wrapper { display: flex; flex-grow: 1; overflow: hidden; position: relative; }
 
-    /* 3.8 双层花瓶曲线侧栏 */
-    
-    /* 下层：常态预留波浪 (浅色) */
-    #sidebar-underlay {
-      position: absolute; top: 0; left: 0; width: var(--sidebar-width); height: 100%;
-      background: rgba(47, 79, 79, 0.05); /* 极淡的墨青色 */
-      z-index: 1400;
-      /* 花瓶半边曲线 (两个波浪) */
-      clip-path: polygon(0% 0%, 10% 0%, 15% 20%, 8% 40%, 12% 60%, 18% 80%, 10% 100%, 0% 100%);
-      pointer-events: none;
+    /* 3.9 矢量花瓶侧栏 (无锯齿、全自动收回) */
+    #sidebar-container {
+      position: absolute; top: 0; left: 0; height: 100%; z-index: 1500;
+      width: var(--sidebar-width);
+      transform: translateX(calc(-100% + var(--sidebar-pre-width)));
+      transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
     }
-
-    /* 上层：活跃波浪 (深色，鼠标移入滑出) */
-    #sidebar { 
-      position: absolute; top: 0; left: 0;
-      width: var(--sidebar-width); height: 100%;
-      transform: translateX(-100%);
-      background: rgba(26, 26, 26, 0.98);
-      /* 花瓶半边曲线 (两个波浪，略宽于底层) */
-      clip-path: polygon(0% 0%, 85% 0%, 95% 20%, 80% 40%, 90% 60%, 100% 80%, 85% 100%, 0% 100%);
-      transition: transform 0.9s cubic-bezier(0.23, 1, 0.32, 1); /* 优雅且缓慢的滑出 */
-      z-index: 1500;
-      padding: 80px 30px;
-      display: flex; flex-direction: column; justify-content: center;
-      box-shadow: 15px 0 50px rgba(0,0,0,0.2);
-    }
-
-    /* 鼠标碰到侧栏区域滑出 */
-    .main-wrapper:hover #sidebar {
+    #sidebar-container:hover {
       transform: translateX(0);
     }
 
-    /* 文字动态效果：极致对比 */
+    #sidebar { 
+      width: 100%; height: 100%; background: #1a1a1a;
+      /* 这里的 mask 使用 SVG 实现绝对平滑 */
+      mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L85,0 C95,20 80,40 90,60 C100,80 85,100 85,100 L0,100 Z" fill="black"/></svg>');
+      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L85,0 C95,20 80,40 90,60 C100,80 85,100 85,100 L0,100 Z" fill="black"/></svg>');
+      mask-size: 100% 100%; -webkit-mask-size: 100% 100%;
+      padding: 80px 30px;
+      display: flex; flex-direction: column; justify-content: center;
+      box-shadow: 15px 0 40px rgba(0,0,0,0.2);
+    }
+
+    /* 底层预留装饰 */
+    #sidebar-underlay {
+      position: absolute; top: 0; left: 0; width: 40px; height: 100%;
+      background: rgba(47, 79, 79, 0.08); z-index: 1400;
+      mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L10,0 C15,20 8,40 12,60 C18,80 10,100 10,100 L0,100 Z" fill="black"/></svg>');
+      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L10,0 C15,20 8,40 12,60 C18,80 10,100 10,100 L0,100 Z" fill="black"/></svg>');
+      -webkit-mask-size: 100% 100%;
+    }
+
+    /* 侧栏动态字效 */
     .nav-item-wrapper {
       display: block; padding: 10px 40px; text-decoration: none;
       color: rgba(255,255,255,0.2); font-size: 10px;
       transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-      transform-origin: left center;
-      white-space: nowrap;
+      transform-origin: left center; white-space: nowrap;
     }
     .nav-item-wrapper:hover {
       color: white; font-size: 24px !important; padding-left: 60px;
     }
     .nav-item-wrapper.active { color: var(--accent); font-weight: bold; font-size: 13px; }
 
-    .folder-label { padding: 25px 40px 5px; color: #444; font-size: 8px; font-weight: bold; text-transform: uppercase; letter-spacing: 4px; }
-
-    #content-wrapper { flex-grow: 1; overflow-y: auto; padding-left: 40px; }
+    #content-wrapper { flex-grow: 1; overflow-y: auto; padding-left: 30px; }
     .container { max-width: 850px; margin: 3rem auto; background: var(--card-bg); padding: 5rem 4rem; box-shadow: 0 10px 40px rgba(0,0,0,0.03); border-radius: 2px; }
+    #markdown-body h1 { font-size: 2.2rem; color: var(--primary); margin-bottom: 2rem; text-align: center; }
     
     footer { padding: 4rem 0; text-align: center; color: #bbb; font-size: 0.7rem; letter-spacing: 2px; }
   </style>
@@ -92,7 +90,9 @@
 
   <div class="main-wrapper">
     <div id="sidebar-underlay"></div>
-    <aside id="sidebar"><div id="tree-root"></div></aside>
+    <div id="sidebar-container">
+      <aside id="sidebar"><div id="tree-root"></div></aside>
+    </div>
     <div id="content-wrapper">
       <main class="container">
         <div id="markdown-body">
@@ -134,7 +134,7 @@
             parent.appendChild(a);
           } else {
             const label = document.createElement('div');
-            label.className = 'folder-label';
+            label.style = "padding: 20px 40px 5px; color:rgba(255,255,255,0.4); font-size:9px; font-weight:bold; text-transform:uppercase; letter-spacing:3px;";
             label.innerText = clean(key);
             parent.appendChild(label);
             const sub = document.createElement('div');
