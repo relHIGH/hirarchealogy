@@ -40,11 +40,9 @@
 
     .main-wrapper { display: flex; flex-grow: 1; overflow: hidden; position: relative; }
 
-    /* 5.6 智能记忆侧栏 */
     #sidebar-container {
       position: absolute; top: 0; left: 0; height: 100%; z-index: 1500;
       width: var(--sidebar-width);
-      /* 初始状态由 JS 动态注入样式 */
       transform: translateX(calc(-1 * var(--sidebar-width) + var(--sidebar-peek)));
       transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.8s;
       background: var(--accent-deep);
@@ -52,8 +50,6 @@
       -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L15,0 L15,40 C15,55 100,50 100,75 C100,95 40,100 20,100 L0,100 Z" fill="black"/></svg>');
       -webkit-mask-size: 100% 100%;
     }
-    /* 仅在非跳转即显时应用过渡 */
-    #sidebar-container.ready { transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.8s; }
 
     #sidebar { 
       width: 100%; height: 100%;
@@ -115,7 +111,7 @@
 
     const container = document.getElementById('sidebar-container');
     
-    // 1. 侧栏智能状态管理
+    // 侧栏智能状态管理
     const isGraph = window.location.pathname.includes("graph");
     
     if (!isGraph) {
@@ -130,16 +126,14 @@
         sessionStorage.setItem('sidebar_open', 'false');
       };
 
-      // 恢复状态：如果之前是打开的，新页面直接显示打开，避免闪烁
       if (sessionStorage.getItem('sidebar_open') === 'true') {
-        container.style.transition = 'none'; // 瞬间恢复
+        container.style.transition = 'none'; 
         container.style.transform = 'translateX(0)';
         container.style.background = 'var(--accent-active)';
-        setTimeout(() => { container.style.transition = ''; }, 100);
+        setTimeout(() => { container.style.transition = 'transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.8s'; }, 100);
       }
     }
 
-    // 2. 开屏逻辑
     const splash = document.getElementById('splash-screen');
     splash.onclick = () => { splash.classList.add('hidden'); sessionStorage.setItem('hi_splashed', 'true'); };
     if(sessionStorage.getItem('hi_splashed') === 'true' && window.location.pathname !== "{{ site.baseurl }}/") {
