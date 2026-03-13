@@ -3,11 +3,4 @@ description: 探索古文化与层次结构的奥秘
 baseurl: /hirarchealogy
 url: https://relHIGH.github.io
 layout: default
-cache_bust: 1773381417741
-
-# 全局默认配置：确保新页面自动生效
-defaults:
-  - scope:
-      path: ""
-    values:
-      layout: "default"
+cache_bust: 1773417649
