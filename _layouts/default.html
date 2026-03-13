@@ -6,8 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root { 
-      --sidebar-width: 380px; /* 加宽确保文字显示 */
+      --sidebar-width: 380px;
       --sidebar-visible-gap: 45px; 
+      --right-wave-width: 30px;
       --primary: #2f4f4f; 
       --accent: #800020;  
       --bg-main: #f4f1ea; 
@@ -28,29 +29,33 @@
 
     .main-wrapper { display: flex; flex-grow: 1; overflow: hidden; position: relative; }
 
-    /* 4.3 古典瓷瓶曲线侧栏 */
+    /* 4.4 慢速左侧波浪 */
     #sidebar-container {
       position: absolute; top: 0; left: 0; height: 100%; z-index: 1500;
       width: var(--sidebar-width);
       transform: translateX(calc(-1 * var(--sidebar-width) + var(--sidebar-visible-gap)));
-      transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); /* 极慢速且极其平滑 */
     }
     #sidebar-container:hover { transform: translateX(0); }
 
     #sidebar { 
       width: 100%; height: 100%; background: #111;
-      /* 核心：精确的多段花瓶轮廓路径 */
-      /* 路径分解：
-         L15,0 (瓶口展开) -> C2,10 5,20 10,25 (瓶颈收窄) 
-         -> C20,35 45,45 45,65 (瓶肩与饱满瓶身) 
-         -> C45,85 20,95 15,100 (瓶足收束) 
-      */
       mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L15,0 C5,10 5,20 10,30 C20,40 45,45 45,65 C45,85 20,95 15,100 L0,100 Z" fill="black"/></svg>');
       -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L15,0 C5,10 5,20 10,30 C20,40 45,45 45,65 C45,85 20,95 15,100 L0,100 Z" fill="black"/></svg>');
-      mask-size: 100% 100%; -webkit-mask-size: 100% 100%;
-      /* 目录对齐瓶身 */
+      -webkit-mask-size: 100% 100%;
       padding-top: 45vh; padding-left: 30px; padding-right: 50px;
       display: flex; flex-direction: column; justify-content: flex-start;
+    }
+
+    /* 右侧静止装饰波浪 */
+    #right-wave {
+      position: absolute; top: 0; right: 0; height: 100%; width: var(--right-wave-width);
+      background: rgba(47, 79, 79, 0.05); /* 极淡的墨青色 */
+      z-index: 1400;
+      /* 镜像左侧曲线，但更细窄 */
+      mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M100,0 L85,0 C95,10 95,20 90,30 C80,40 55,45 55,65 C55,85 80,95 85,100 L100,100 Z" fill="black"/></svg>');
+      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M100,0 L85,0 C95,10 95,20 90,30 C80,40 55,45 55,65 C55,85 80,95 85,100 L100,100 Z" fill="black"/></svg>');
+      -webkit-mask-size: 100% 100%;
     }
 
     .nav-item-wrapper {
@@ -66,7 +71,7 @@
 
     .folder-label { padding: 30px 20px 5px; color: rgba(255,255,255,0.2); font-size: 9px; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; }
 
-    #content-wrapper { flex-grow: 1; overflow-y: auto; padding-left: 50px; }
+    #content-wrapper { flex-grow: 1; overflow-y: auto; padding: 0 var(--right-wave-width) 0 50px; }
     .container { max-width: 850px; margin: 3rem auto; background: var(--card-bg); padding: 5rem 4rem; box-shadow: 0 10px 40px rgba(0,0,0,0.03); border-radius: 2px; }
     
     footer { padding: 4rem 0; text-align: center; color: #bbb; font-size: 0.7rem; letter-spacing: 2px; }
@@ -82,6 +87,7 @@
   </header>
 
   <div class="main-wrapper">
+    <div id="right-wave"></div>
     <div id="sidebar-container">
       <aside id="sidebar"><div id="tree-root"></div></aside>
     </div>
@@ -126,7 +132,7 @@
             parent.appendChild(a);
           } else {
             const label = document.createElement('div');
-            label.className = 'folder-label';
+            label.style = "padding: 25px 40px 5px; color:rgba(255,255,255,0.3); font-size:9px; font-weight:bold; text-transform:uppercase; letter-spacing:3px;";
             label.innerText = clean(key);
             parent.appendChild(label);
             const sub = document.createElement('div');
