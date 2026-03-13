@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root { 
-      --sidebar-width: 340px;
-      --sidebar-pre-width: 35px; /* 增强预留层可见宽度 */
+      --sidebar-width: 300px;
+      --sidebar-visible-gap: 40px; 
       --primary: #2f4f4f; 
       --accent: #800020;  
       --bg-main: #f4f1ea; 
@@ -28,52 +28,40 @@
 
     .main-wrapper { display: flex; flex-grow: 1; overflow: hidden; position: relative; }
 
-    /* 4.0 张力波浪侧栏 */
-    
-    /* 预留底层：大幅起伏的半透明层 */
-    #sidebar-underlay {
-      position: absolute; top: 0; left: 0; width: var(--sidebar-pre-width); height: 100%;
-      background: rgba(47, 79, 79, 0.12); /* 加深颜色，增强可见度 */
-      z-index: 1400;
-      /* 极度不对称波浪曲线 */
-      mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L15,0 C25,15 5,35 20,55 C35,75 10,100 10,100 L0,100 Z" fill="black"/></svg>');
-      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L15,0 C25,15 5,35 20,55 C35,75 10,100 10,100 L0,100 Z" fill="black"/></svg>');
-      mask-size: 100% 100%; -webkit-mask-size: 100% 100%;
-      box-shadow: inset -5px 0 10px rgba(0,0,0,0.05);
-    }
-
-    /* 活跃上层：深色剧烈波浪 */
+    /* 4.2 内敛花瓶侧栏 */
     #sidebar-container {
       position: absolute; top: 0; left: 0; height: 100%; z-index: 1500;
       width: var(--sidebar-width);
-      transform: translateX(calc(-100% + var(--sidebar-pre-width)));
+      transform: translateX(calc(-1 * var(--sidebar-width) + var(--sidebar-visible-gap)));
       transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
     }
     #sidebar-container:hover { transform: translateX(0); }
 
     #sidebar { 
       width: 100%; height: 100%; background: #111;
-      /* 与底层呼应但更饱满的波浪 */
-      mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L80,0 C95,15 75,35 95,55 C115,75 80,100 80,100 L0,100 Z" fill="black"/></svg>');
-      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L80,0 C95,15 75,35 95,55 C115,75 80,100 80,100 L0,100 Z" fill="black"/></svg>');
+      mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L2,0 C8,20 5,45 35,65 C60,85 10,100 10,100 L0,100 Z" fill="black"/></svg>');
+      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L2,0 C8,20 5,45 35,65 C60,85 10,100 10,100 L0,100 Z" fill="black"/></svg>');
       mask-size: 100% 100%; -webkit-mask-size: 100% 100%;
-      padding: 100px 30px; display: flex; flex-direction: column; justify-content: center;
-      box-shadow: 20px 0 60px rgba(0,0,0,0.3);
+      padding-top: 45vh; padding-left: 20px; padding-right: 40px;
+      display: flex; flex-direction: column; justify-content: flex-start;
     }
 
-    /* 文字平衡：提升清晰度 */
+    /* 字体：克制的动态对比 */
     .nav-item-wrapper {
-      display: block; padding: 12px 40px; text-decoration: none;
-      color: rgba(255,255,255,0.45); /* 加亮文字 */
-      font-size: 13px; /* 提升基准字号 */
-      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: block; padding: 10px 20px; text-decoration: none;
+      color: rgba(255,255,255,0.4); 
+      font-size: 14px; /* 精致的基础字号 */
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       transform-origin: left center; white-space: nowrap;
     }
     .nav-item-wrapper:hover {
-      color: white; font-size: 26px !important; padding-left: 60px;
-      text-shadow: 0 0 20px rgba(255,255,255,0.4);
+      color: white; 
+      font-size: 18px !important; /* 温和的聚焦放大 */
+      padding-left: 35px;
     }
-    .nav-item-wrapper.active { color: var(--accent); font-weight: bold; font-size: 15px; }
+    .nav-item-wrapper.active { color: var(--accent); font-weight: bold; font-size: 15px; border-left: 2px solid var(--accent); padding-left: 15px; }
+
+    .folder-label { padding: 30px 20px 5px; color: rgba(255,255,255,0.25); font-size: 9px; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; }
 
     #content-wrapper { flex-grow: 1; overflow-y: auto; padding-left: 40px; }
     .container { max-width: 850px; margin: 3rem auto; background: var(--card-bg); padding: 5rem 4rem; box-shadow: 0 10px 40px rgba(0,0,0,0.03); border-radius: 2px; }
@@ -91,7 +79,6 @@
   </header>
 
   <div class="main-wrapper">
-    <div id="sidebar-underlay"></div>
     <div id="sidebar-container">
       <aside id="sidebar"><div id="tree-root"></div></aside>
     </div>
@@ -136,7 +123,7 @@
             parent.appendChild(a);
           } else {
             const label = document.createElement('div');
-            label.style = "padding: 25px 40px 5px; color:rgba(255,255,255,0.3); font-size:9px; font-weight:bold; text-transform:uppercase; letter-spacing:3px;";
+            label.className = 'folder-label';
             label.innerText = clean(key);
             parent.appendChild(label);
             const sub = document.createElement('div');
