@@ -76,7 +76,7 @@
     .portal-orb:hover .orb-title { color: white; }
     .orb-title { color: var(--accent); font-size: 2.4rem; font-family: "Songti SC", serif; transition: 0.4s; }
     
-    .portal-orb.scanning { border-color: var(--accent); border-width: 2px; box-shadow: 0 0 30px rgba(128,0,32,0.25); transform: scale(1.05); background: #fffcf5; transition: all 0.05s ease; }
+    .portal-orb.scanning { border-color: var(--accent); border-width: 2.5px; box-shadow: 0 0 30px rgba(128,0,32,0.3); background: #fffcf5; transition: all 0.08s ease; }
     
     .portal-orb.highlight { border-color: var(--accent); border-width: 2px; animation: orb-breath 3s infinite; }
     @keyframes orb-breath { 0%, 100% { box-shadow: 0 10px 30px rgba(0,0,0,0.05); } 50% { box-shadow: 0 0 50px rgba(128,0,32,0.3); transform: scale(1.02); } }
@@ -126,20 +126,21 @@
   <script>
     function clean(str) { return str ? str.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, "").trim() : ""; }
     const pages = [{% for p in site.pages %}{ "path": {{ p.path | jsonify }}, "url": {{ p.url | relative_url | jsonify }}, "name": clean({{ p.name | remove: ".md" | jsonify }}) },{% endfor %}];
+    const currentUrl = {{ page.url | relative_url | jsonify }};
     const isHome = (window.location.pathname === "{{ site.baseurl }}/" || window.location.pathname === "{{ site.baseurl }}/index.html" || window.location.pathname === "{{ site.baseurl }}");
 
     const splash = document.getElementById('splash-screen');
-    const hasSplashed = sessionStorage.getItem('splashed_v1.2.1');
+    const hasSplashed = sessionStorage.getItem('splashed_v1.2.2');
     if (!isHome || hasSplashed) { splash.style.display = 'none'; }
-    splash.onclick = () => { splash.classList.add('hidden'); sessionStorage.setItem('splashed_v1.2.1', 'true'); if(isHome) runFastSelection(); };
-    if (isHome && splash.style.display === 'none') { window.onload = runFastSelection; }
+    splash.onclick = () => { splash.classList.add('hidden'); sessionStorage.setItem('splashed_v1.2.2', 'true'); if(isHome) runInstantSelection(); };
+    if (isHome && splash.style.display === 'none') { window.onload = runInstantSelection; }
 
-    function runFastSelection() {
+    function runInstantSelection() {
       const orbs = document.querySelectorAll('.portal-orb');
-      orbs.forEach((orb, i) => { setTimeout(() => orb.classList.add('active-orb'), i * 80); });
+      orbs.forEach((orb, i) => { setTimeout(() => orb.classList.add('active-orb'), i * 60); });
       
       let count = 0;
-      let maxTicks = 12 + Math.floor(Math.random() * 4); 
+      let maxTicks = 5 + Math.floor(Math.random() * 3); // 极简闪烁 5-7 次
       let currentIdx = -1;
 
       function tick() {
@@ -148,16 +149,16 @@
         orbs[currentIdx].classList.add('scanning');
         count++;
         if (count < maxTicks) {
-          let delay = 35 + (Math.pow(count, 2) * 2.5); // 指数级减速
+          let delay = 100 + (count * 60); // 线性快速减速
           setTimeout(tick, delay);
         } else {
           setTimeout(() => {
             orbs[currentIdx].classList.remove('scanning');
             orbs[currentIdx].classList.add('highlight');
-          }, 200);
+          }, 150);
         }
       }
-      setTimeout(tick, orbs.length * 80 + 200);
+      setTimeout(tick, orbs.length * 60 + 150);
     }
 
     const md = document.getElementById('markdown-body');
