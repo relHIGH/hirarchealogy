@@ -18,7 +18,6 @@
     * { box-sizing: border-box; }
     body { font-family: "Georgia", "Times New Roman", serif; margin: 0; display: flex; flex-direction: column; height: 100vh; background: var(--bg-main); overflow: hidden; }
 
-    /* 开屏页 */
     #splash-screen {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       z-index: 9999; display: flex; align-items: center; justify-content: center;
@@ -67,15 +66,19 @@
       cursor: pointer;
       display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 100px;
     }
-    #right-sidebar-trigger:hover { transform: translateX(0); background: rgba(128, 0, 32, 0.35); }
+    /* 核心精修：拉出后颜色变实 */
+    #right-sidebar-trigger:hover { 
+      transform: translateX(0); 
+      background: rgba(128, 0, 32, 0.85); /* 显著变实 */
+    }
 
-    /* 侧栏文字垂直序列 */
-    aside { padding-top: 35vh; padding-left: 20px; padding-right: 40px; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+    /* 侧栏文字位置精修 */
+    aside { padding-top: 45vh; padding-left: 20px; padding-right: 40px; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
 
     .nav-item-wrapper { 
       text-decoration: none; 
       color: rgba(255,255,255,0.5); font-size: 32px; font-family: "Songti SC", serif; 
-      transition: 0.4s; letter-spacing: 4px;
+      transition: 0.4s; letter-spacing: 2px;
     }
     #sidebar-container:hover .nav-item-wrapper { color: white; }
     .nav-item-wrapper:hover { transform: scale(1.3) translateX(10px); color: white !important; }
@@ -96,12 +99,14 @@
   <header>
     <a href="{{ site.baseurl }}/" class="header-logo">HIRARCHEALOGY</a>
     <nav class="header-nav">
-      <a href="{{ site.baseurl }}/" class="header-icon" title="Index"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></a>
-      <a href="{{ site.baseurl }}/graph.html" class="header-icon" title="Network"><svg viewBox="0 0 24 24"><path d="M17 11c.34 0 .66.08.95.22l2.64-2.64A3.962 3.962 0 0 0 21 5c0-2.21-1.79-4-4-4-2.21 0-4 1.79-4 4 0 .34.08.66.22.95L10.58 8.59a3.96 3.96 0 0 0-1.16-.59V5c0-2.21-1.79-4-4-4S1.42 2.79 1.42 5c0 2.21 1.79 4 4 4 .4 0 .78-.07 1.14-.2l2.66 2.66c-.14.28-.22.6-.22.94s.08.66.22.95l-2.66 2.66a3.96 3.96 0 0 0-1.14-.2c-2.21 0-4 1.79-4 4 0 2.21 1.79 4 4 4 2.21 0 4-1.79 4-4 0-.34-.08-.66-.22-.95l2.64-2.64c.29.14.61.22.95.22 2.21 0 4-1.79 4-4s-1.79-4-4-4zm-8-2c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm8-6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0-8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg></a>
+      <a href="{{ site.baseurl }}/" class="header-icon {% if page.url == '/' %}active{% endif %}" title="Index"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></a>
+      <a href="{{ site.baseurl }}/graph.html" class="header-icon {% if page.url contains 'graph' %}active{% endif %}" title="Network"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17 11c.34 0 .66.08.95.22l2.64-2.64A3.962 3.962 0 0 0 21 5c0-2.21-1.79-4-4-4-2.21 0-4 1.79-4 4 0 .34.08.66.22.95L10.58 8.59a3.96 3.96 0 0 0-1.16-.59V5c0-2.21-1.79-4-4-4S1.42 2.79 1.42 5c0 2.21 1.79 4 4 4 .4 0 .78-.07 1.14-.2l2.66 2.66c-.14.28-.22.6-.22.94s.08.66.22.95l-2.66 2.66a3.96 3.96 0 0 0-1.14-.2c-2.21 0-4 1.79-4 4 0 2.21 1.79 4 4 4 2.21 0 4-1.79 4-4 0-.34-.08-.66-.22-.95l2.64-2.64c.29.14.61.22.95.22 2.21 0 4-1.79 4-4s-1.79-4-4-4zm-8-2c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm8-6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0-8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg></a>
     </nav>
   </header>
   <div class="main-wrapper">
-    <!-- 左侧：旅、戏、饮、感 -->
+    <div id="right-sidebar-trigger" onclick="window.history.back()">
+      <div class="back-text">回</div>
+    </div>
     <div id="sidebar-container">
       <aside id="sidebar">
         <a href="{{ site.baseurl }}/docs/古代旅行/" class="nav-item-wrapper">旅</a>
@@ -110,11 +115,6 @@
         <a href="{{ site.baseurl }}/docs/感/" class="nav-item-wrapper">感</a>
       </aside>
     </div>
-    <!-- 右侧：回 -->
-    <div id="right-sidebar-trigger" onclick="window.history.back()">
-      <div class="back-text">回</div>
-    </div>
-    
     <div id="content-wrapper">
       <main class="container">
         <div id="markdown-body">
@@ -134,20 +134,18 @@
   <script>
     function clean(str) { return str ? str.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, "").trim() : ""; }
     const pages = [{% for p in site.pages %}{ "path": {{ p.path | jsonify }}, "url": {{ p.url | relative_url | jsonify }}, "name": clean({{ p.name | remove: ".md" | jsonify }}) },{% endfor %}];
-    
+    const currentUrl = {{ page.url | relative_url | jsonify }};
     const splash = document.getElementById('splash-screen');
     const isHome = (window.location.pathname === "{{ site.baseurl }}/" || window.location.pathname === "{{ site.baseurl }}");
     const hasSplashed = sessionStorage.getItem('splashed_v7');
     if (!isHome || hasSplashed) { splash.style.display = 'none'; }
     splash.onclick = () => { splash.classList.add('hidden'); sessionStorage.setItem('splashed_v7', 'true'); };
-
     const md = document.getElementById('markdown-body');
     md.innerHTML = md.innerHTML.replace(/\[\[(.*?)\]\]/g, (m, c) => {
       let [t, l] = c.split('|'); let target = clean(t.split('#')[0]);
       const f = pages.find(p => clean(p.name) === target);
       return f ? `<a style="color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(128,0,32,0.2);" href="${f.url}">${l || target}</a>` : `<span style="color:#999">[[${c}]]</span>`;
     });
-
     if (!isHome) {
       fetch("{{ site.baseurl }}/assets/graph_data.json").then(res => res.json()).then(data => {
         const cn = clean("{{ page.name | remove: '.md' }}");
