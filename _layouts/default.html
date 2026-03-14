@@ -40,6 +40,7 @@
 
     .main-wrapper { display: flex; flex-grow: 1; overflow: hidden; position: relative; }
 
+    /* 左右侧栏 */
     #sidebar-container {
       position: absolute; top: 0; left: 0; height: 100%; z-index: 1500; width: var(--sidebar-width);
       transform: translateX(calc(-1 * var(--sidebar-width) + var(--sidebar-peek)));
@@ -50,7 +51,6 @@
       -webkit-mask-size: 100% 100%;
     }
     #sidebar-container:hover { transform: translateX(0); background: rgba(30, 0, 5, 0.98); }
-
     #right-sidebar-trigger {
       position: absolute; top: 0; right: 0; height: 100%; z-index: 1500; width: 120px;
       transform: translateX(calc(120px - 55px)); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -62,22 +62,28 @@
     }
     #right-sidebar-trigger:hover { transform: translateX(0); background: rgba(128, 0, 32, 0.85); }
 
+    /* 球体基础样式 */
     .orb-grid { display: flex; justify-content: center; gap: 45px; flex-wrap: wrap; margin-top: 60px; }
     .portal-orb { 
       width: 180px; height: 180px; border-radius: 50%; 
       background: radial-gradient(circle at 30% 30%, #fff, #f8f8f8); 
       border: 1px solid #e0dbd0; display: flex; flex-direction: column; justify-content: center; align-items: center; 
-      cursor: pointer; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+      cursor: pointer; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
       box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-decoration: none !important;
-      opacity: 0; transform: translateY(20px) scale(0.9);
     }
-    .portal-orb.active-orb { opacity: 1; transform: translateY(0) scale(1); }
     .portal-orb:hover { transform: translateY(-15px) scale(1.08); background: var(--accent); border-color: transparent; box-shadow: 0 30px 60px rgba(128,0,32,0.3); }
     .portal-orb:hover .orb-title { color: white; }
-    .orb-title { color: var(--accent); font-size: 2.4rem; font-family: "Songti SC", serif; transition: 0.4s; }
+    .orb-title { color: var(--accent); font-size: 2.4rem; font-family: "Songti SC", serif; transition: 0.4s; pointer-events: none; }
     
+    /* 1.3 特供：初始化仪式球 */
+    #ritual-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: var(--bg-main); z-index: 1000; transition: 0.8s ease; }
+    .ritual-orb-large { width: 220px; height: 220px; box-shadow: 0 20px 60px rgba(128,0,32,0.1); border: 2px solid var(--accent); animation: ritual-pulse 2s infinite; }
+    @keyframes ritual-pulse { 0%, 100% { transform: scale(1); box-shadow: 0 20px 60px rgba(128,0,32,0.1); } 50% { transform: scale(1.05); box-shadow: 0 30px 80px rgba(128,0,32,0.2); } }
+
+    /* 扫选与呼吸 */
+    .portal-orb.active-orb { opacity: 1; transform: translateY(0) scale(1); }
+    .portal-orb.stagger { opacity: 0; transform: translateY(40px) scale(0.8); }
     .portal-orb.scanning { border-color: var(--accent); border-width: 2.5px; box-shadow: 0 0 30px rgba(128,0,32,0.3); background: #fffcf5; transition: all 0.08s ease; }
-    
     .portal-orb.highlight { border-color: var(--accent); border-width: 2px; animation: orb-breath 3s infinite; }
     @keyframes orb-breath { 0%, 100% { box-shadow: 0 10px 30px rgba(0,0,0,0.05); } 50% { box-shadow: 0 0 50px rgba(128,0,32,0.3); transform: scale(1.02); } }
 
@@ -98,6 +104,14 @@
 </head>
 <body>
   <div id="splash-screen"><div class="splash-hint">EXPLORE THE DEPTHS</div></div>
+  
+  <!-- 初始化仪式占位 -->
+  <div id="ritual-container" style="display:none;">
+    <div class="portal-orb ritual-orb-large" id="ritual-trigger">
+      <div class="orb-title" id="ritual-text">旅</div>
+    </div>
+  </div>
+
   <header>
     <a href="{{ site.baseurl }}/" class="header-logo">HIRARCHEALOGY</a>
     <nav class="header-nav">
@@ -113,54 +127,68 @@
       <a href="{{ site.baseurl }}/docs/饮/" class="nav-item-wrapper">饮</a>
       <a href="{{ site.baseurl }}/docs/感/" class="nav-item-wrapper">感</a>
     </aside></div>
-    <div id="content-wrapper"><main class="container">
-      <div id="markdown-body">{{ content }}</div>
-      {% if page.url != "/" and page.url != "/index.html" %}
-      <div id="discovery-section" style="margin-top: 80px; text-align:center;">
-        <div style="font-size: 0.7rem; color: #bbb; letter-spacing: 3px; margin-bottom: 30px; text-transform:uppercase;">Discovery Nodes</div>
-        <div id="discovery-nodes" class="orb-grid" style="gap:25px;"></div>
-      </div>
-      {% endif %}
-    </main><footer>HIRARCHEALOGY &copy; {{ site.time | date: "%Y" }}</footer></div>
+    <div id="content-wrapper">
+      <main class="container">
+        <div id="markdown-body">{{ content }}</div>
+        {% if page.url != "/" and page.url != "/index.html" %}
+        <div id="discovery-section" style="margin-top: 80px; text-align:center;">
+          <div style="font-size: 0.7rem; color: #bbb; letter-spacing: 3px; margin-bottom: 30px; text-transform:uppercase;">Discovery Nodes</div>
+          <div id="discovery-nodes" class="orb-grid" style="gap:25px;"></div>
+        </div>
+        {% endif %}
+      </main>
+      <footer>HIRARCHEALOGY &copy; {{ site.time | date: "%Y" }}</footer>
+    </div>
   </div>
   <script>
     function clean(str) { return str ? str.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, "").trim() : ""; }
     const pages = [{% for p in site.pages %}{ "path": {{ p.path | jsonify }}, "url": {{ p.url | relative_url | jsonify }}, "name": clean({{ p.name | remove: ".md" | jsonify }}) },{% endfor %}];
-    const currentUrl = {{ page.url | relative_url | jsonify }};
     const isHome = (window.location.pathname === "{{ site.baseurl }}/" || window.location.pathname === "{{ site.baseurl }}/index.html" || window.location.pathname === "{{ site.baseurl }}");
 
+    // 1. 仪式感管理逻辑
+    const ritualCont = document.getElementById('ritual-container');
+    const ritualText = document.getElementById('ritual-text');
     const splash = document.getElementById('splash-screen');
-    const hasSplashed = sessionStorage.getItem('splashed_v1.2.2');
-    if (!isHome || hasSplashed) { splash.style.display = 'none'; }
-    splash.onclick = () => { splash.classList.add('hidden'); sessionStorage.setItem('splashed_v1.2.2', 'true'); if(isHome) runInstantSelection(); };
-    if (isHome && splash.style.display === 'none') { window.onload = runInstantSelection; }
+    const hasInit = sessionStorage.getItem('ritual_done_v1.3');
 
-    function runInstantSelection() {
-      const orbs = document.querySelectorAll('.portal-orb');
-      orbs.forEach((orb, i) => { setTimeout(() => orb.classList.add('active-orb'), i * 60); });
+    if (isHome && !hasInit) {
+      // 首次进入：显示单球闪烁
+      ritualCont.style.display = 'flex';
+      const chars = ['旅', '戏', '饮', '感'];
+      let ci = 0;
+      const flickerInt = setInterval(() => { ritualText.innerText = chars[ci++ % 4]; }, 80);
       
-      let count = 0;
-      let maxTicks = 5 + Math.floor(Math.random() * 3); // 极简闪烁 5-7 次
-      let currentIdx = -1;
+      document.getElementById('ritual-trigger').onclick = () => {
+        clearInterval(flickerInt);
+        ritualCont.style.opacity = '0';
+        setTimeout(() => { 
+          ritualCont.style.display = 'none'; 
+          sessionStorage.setItem('ritual_done_v1.3', 'true');
+          runSelectionRitual(); // 触发 1.2.2 闪选
+        }, 800);
+      };
+    }
 
+    // 常规开屏逻辑
+    if (!isHome || sessionStorage.getItem('splashed_v7')) { splash.style.display = 'none'; }
+    splash.onclick = () => { splash.classList.add('hidden'); sessionStorage.setItem('splashed_v7', 'true'); if(isHome && hasInit) runSelectionRitual(); };
+    if (isHome && hasInit && splash.style.display === 'none') { window.onload = runSelectionRitual; }
+
+    function runSelectionRitual() {
+      const orbs = document.querySelectorAll('.portal-orb:not(.ritual-orb-large)');
+      orbs.forEach((orb, i) => { orb.classList.remove('stagger'); setTimeout(() => orb.classList.add('active-orb'), i * 60); });
+      let count = 0; let maxTicks = 5 + Math.floor(Math.random() * 3); let currentIdx = -1;
       function tick() {
         if (currentIdx >= 0) orbs[currentIdx].classList.remove('scanning');
-        currentIdx = (currentIdx + 1) % orbs.length;
-        orbs[currentIdx].classList.add('scanning');
+        currentIdx = (currentIdx + 1) % orbs.length; orbs[currentIdx].classList.add('scanning');
         count++;
-        if (count < maxTicks) {
-          let delay = 100 + (count * 60); // 线性快速减速
-          setTimeout(tick, delay);
-        } else {
-          setTimeout(() => {
-            orbs[currentIdx].classList.remove('scanning');
-            orbs[currentIdx].classList.add('highlight');
-          }, 150);
-        }
+        if (count < maxTicks) { setTimeout(tick, 100 + (count * 60)); }
+        else { setTimeout(() => { orbs[currentIdx].classList.remove('scanning'); orbs[currentIdx].classList.add('highlight'); }, 150); }
       }
       setTimeout(tick, orbs.length * 60 + 150);
     }
 
+    // 2. 双链与球体关联
     const md = document.getElementById('markdown-body');
     md.innerHTML = md.innerHTML.replace(/\[\[(.*?)\]\]/g, (m, c) => {
       let [t, l] = c.split('|'); let target = clean(t.split('#')[0]);
