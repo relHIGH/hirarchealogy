@@ -9,7 +9,6 @@
       --sidebar-width: 310px; 
       --sidebar-peek: 55px; 
       --header-height: 60px;
-      --primary: #1a1a1a; 
       --accent: #800020;  
       --bg-main: #f0ede4; 
       --card-bg: #ffffff;
@@ -18,6 +17,7 @@
     * { box-sizing: border-box; }
     body { font-family: "Georgia", "Times New Roman", serif; margin: 0; display: flex; flex-direction: column; height: 100vh; background: var(--bg-main); overflow: hidden; }
 
+    /* 开屏页 */
     #splash-screen {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       z-index: 9999; display: flex; align-items: center; justify-content: center;
@@ -40,10 +40,9 @@
 
     .main-wrapper { display: flex; flex-grow: 1; overflow: hidden; position: relative; }
 
-    /* 左侧 Vase 灵魂形态 */
+    /* 左右侧栏 */
     #sidebar-container {
-      position: absolute; top: 0; left: 0; height: 100%; z-index: 1500;
-      width: var(--sidebar-width);
+      position: absolute; top: 0; left: 0; height: 100%; z-index: 1500; width: var(--sidebar-width);
       transform: translateX(calc(-1 * var(--sidebar-width) + var(--sidebar-peek)));
       transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.8s;
       background: rgba(100, 0, 20, 0.65);
@@ -52,44 +51,47 @@
       -webkit-mask-size: 100% 100%;
     }
     #sidebar-container:hover { transform: translateX(0); background: rgba(30, 0, 5, 0.98); }
-
-    /* 右侧装饰波浪 */
     #right-sidebar-trigger {
-      position: absolute; top: 0; right: 0; height: 100%; z-index: 1500;
-      width: 120px;
-      transform: translateX(calc(120px - 55px));
-      transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      position: absolute; top: 0; right: 0; height: 100%; z-index: 1500; width: 120px;
+      transform: translateX(calc(120px - 55px)); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
       background: rgba(128, 0, 32, 0.08); 
       mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M100,0 L75,0 C65,5 95,10 90,20 C80,35 25,35 25,45 C25,55 65,55 60,65 C40,80 0,80 0,85 C0,95 50,100 70,100 L100,100 Z" fill="black"/></svg>');
       -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M100,0 L75,0 C65,5 95,10 90,20 C80,35 25,35 25,45 C25,55 65,55 60,65 C40,80 0,80 0,85 C0,95 50,100 70,100 L100,100 Z" fill="black"/></svg>');
       -webkit-mask-size: 100% 100%;
-      cursor: pointer;
-      display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 100px;
+      cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 100px;
     }
-    /* 核心精修：拉出后颜色变实 */
-    #right-sidebar-trigger:hover { 
-      transform: translateX(0); 
-      background: rgba(128, 0, 32, 0.85); /* 显著变实 */
-    }
+    #right-sidebar-trigger:hover { transform: translateX(0); background: rgba(128, 0, 32, 0.85); }
 
-    /* 侧栏文字位置精修 */
+    /* 【旅回 1.1】统一球体系统 */
+    .orb-grid { display: flex; justify-content: center; gap: 45px; flex-wrap: wrap; margin-top: 60px; }
+    .portal-orb { 
+      width: 180px; height: 180px; border-radius: 50%; 
+      background: radial-gradient(circle at 30% 30%, #fff, #f8f8f8); 
+      border: 1px solid #e0dbd0; display: flex; flex-direction: column; justify-content: center; align-items: center; 
+      cursor: pointer; transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-decoration: none !important;
+      opacity: 0; transform: translateY(40px) scale(0.8);
+    }
+    .portal-orb.active-orb { opacity: 1; transform: translateY(0) scale(1); }
+    .portal-orb:hover { transform: translateY(-20px) scale(1.1); background: var(--accent); border-color: transparent; box-shadow: 0 30px 60px rgba(128,0,32,0.3); }
+    .portal-orb:hover .orb-title { color: white; }
+    .orb-title { color: var(--accent); font-size: 2.4rem; font-family: "Songti SC", serif; transition: 0.4s; }
+    
+    /* 随机点亮呼吸效果 */
+    .portal-orb.highlight { border-color: var(--accent); border-width: 2px; animation: orb-breath 3s infinite; }
+    @keyframes orb-breath { 0%, 100% { box-shadow: 0 10px 30px rgba(0,0,0,0.05); } 50% { box-shadow: 0 0 50px rgba(128,0,32,0.2); } }
+
     aside { padding-top: 45vh; padding-left: 20px; padding-right: 40px; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
-
-    .nav-item-wrapper { 
-      text-decoration: none; 
-      color: rgba(255,255,255,0.5); font-size: 32px; font-family: "Songti SC", serif; 
-      transition: 0.4s; letter-spacing: 2px;
-    }
+    .nav-item-wrapper { text-decoration: none; color: rgba(255,255,255,0.5); font-size: 32px; font-family: "Songti SC", serif; transition: 0.4s; letter-spacing: 2px; }
     #sidebar-container:hover .nav-item-wrapper { color: white; }
     .nav-item-wrapper:hover { transform: scale(1.3) translateX(10px); color: white !important; }
-    
     .back-text { opacity: 0; transition: 0.8s; font-size: 28px; color: white; font-family: "Songti SC", serif; margin-bottom: 20px; }
     #right-sidebar-trigger:hover .back-text { opacity: 1; }
 
     #content-wrapper { flex-grow: 1; overflow-y: auto; padding: 0 55px; scroll-behavior: smooth; }
     .container { max-width: 850px; margin: 3rem auto; background: var(--card-bg); padding: 5rem 4rem; box-shadow: 0 20px 80px rgba(0,0,0,0.06); border-radius: 2px; }
     #markdown-body { font-size: 15px; color: #333; line-height: 1.8; }
-    #markdown-body h1 { font-size: 1.8rem; color: var(--accent); margin-bottom: 2rem; text-align: center; }
+    #markdown-body h1 { font-size: 1.8rem; color: var(--accent); margin-bottom: 2.5rem; text-align: center; font-family: "Songti SC", serif; }
     
     footer { padding: 4rem 0; text-align: center; color: #aaa; font-size: 0.7rem; letter-spacing: 3px; }
   </style>
@@ -99,59 +101,72 @@
   <header>
     <a href="{{ site.baseurl }}/" class="header-logo">HIRARCHEALOGY</a>
     <nav class="header-nav">
-      <a href="{{ site.baseurl }}/" class="header-icon {% if page.url == '/' %}active{% endif %}" title="Index"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></a>
-      <a href="{{ site.baseurl }}/graph.html" class="header-icon {% if page.url contains 'graph' %}active{% endif %}" title="Network"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17 11c.34 0 .66.08.95.22l2.64-2.64A3.962 3.962 0 0 0 21 5c0-2.21-1.79-4-4-4-2.21 0-4 1.79-4 4 0 .34.08.66.22.95L10.58 8.59a3.96 3.96 0 0 0-1.16-.59V5c0-2.21-1.79-4-4-4S1.42 2.79 1.42 5c0 2.21 1.79 4 4 4 .4 0 .78-.07 1.14-.2l2.66 2.66c-.14.28-.22.6-.22.94s.08.66.22.95l-2.66 2.66a3.96 3.96 0 0 0-1.14-.2c-2.21 0-4 1.79-4 4 0 2.21 1.79 4 4 4 2.21 0 4-1.79 4-4 0-.34-.08-.66-.22-.95l2.64-2.64c.29.14.61.22.95.22 2.21 0 4-1.79 4-4s-1.79-4-4-4zm-8-2c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm8-6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0-8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg></a>
+      <a href="{{ site.baseurl }}/" class="header-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></a>
+      <a href="{{ site.baseurl }}/graph.html" class="header-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17 11c.34 0 .66.08.95.22l2.64-2.64A3.962 3.962 0 0 0 21 5c0-2.21-1.79-4-4-4-2.21 0-4 1.79-4 4 0 .34.08.66.22.95L10.58 8.59a3.96 3.96 0 0 0-1.16-.59V5c0-2.21-1.79-4-4-4S1.42 2.79 1.42 5c0 2.21 1.79 4 4 4 .4 0 .78-.07 1.14-.2l2.66 2.66c-.14.28-.22.6-.22.94s.08.66.22.95l-2.66 2.66a3.96 3.96 0 0 0-1.14-.2c-2.21 0-4 1.79-4 4 0 2.21 1.79 4 4 4 2.21 0 4-1.79 4-4 0-.34-.08-.66-.22-.95l2.64-2.64c.29.14.61.22.95.22 2.21 0 4-1.79 4-4s-1.79-4-4-4zm-8-2c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm8-6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0-8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg></a>
     </nav>
   </header>
   <div class="main-wrapper">
-    <div id="right-sidebar-trigger" onclick="window.history.back()">
-      <div class="back-text">回</div>
-    </div>
-    <div id="sidebar-container">
-      <aside id="sidebar">
-        <a href="{{ site.baseurl }}/docs/古代旅行/" class="nav-item-wrapper">旅</a>
-        <a href="{{ site.baseurl }}/docs/戏/" class="nav-item-wrapper">戏</a>
-        <a href="{{ site.baseurl }}/docs/饮/" class="nav-item-wrapper">饮</a>
-        <a href="{{ site.baseurl }}/docs/感/" class="nav-item-wrapper">感</a>
-      </aside>
-    </div>
-    <div id="content-wrapper">
-      <main class="container">
-        <div id="markdown-body">
-          {% if page.url != "/" %}<h1>{{ page.name | remove: ".md" }}</h1>{% endif %}
-          {{ content }}
-        </div>
-        {% if page.url != "/" %}
-        <div style="margin-top: 60px; padding: 30px; background: #fafafa; border: 1px solid #eee;">
-          <div style="font-size: 0.8rem; color: #999; letter-spacing: 2px; margin-bottom: 20px;">CONTINUE DISCOVERY</div>
-          <div id="discovery-nodes" style="display:flex; gap:20px; flex-wrap:wrap;"></div>
-        </div>
-        {% endif %}
-      </main>
-      <footer>HIRARCHEALOGY &copy; {{ site.time | date: "%Y" }}</footer>
-    </div>
+    <div id="right-sidebar-trigger" onclick="window.history.back()"><div class="back-text">回</div></div>
+    <div id="sidebar-container"><aside id="sidebar">
+      <a href="{{ site.baseurl }}/docs/古代旅行/" class="nav-item-wrapper">旅</a>
+      <a href="{{ site.baseurl }}/docs/戏/" class="nav-item-wrapper">戏</a>
+      <a href="{{ site.baseurl }}/docs/饮/" class="nav-item-wrapper">饮</a>
+      <a href="{{ site.baseurl }}/docs/感/" class="nav-item-wrapper">感</a>
+    </aside></div>
+    <div id="content-wrapper"><main class="container">
+      <div id="markdown-body">{{ content }}</div>
+      {% if page.url != "/" and page.url != "/index.html" %}
+      <div id="discovery-section" style="margin-top: 80px; text-align:center;">
+        <div style="font-size: 0.7rem; color: #bbb; letter-spacing: 3px; margin-bottom: 30px; text-transform:uppercase;">Discovery Nodes</div>
+        <div id="discovery-nodes" class="orb-grid" style="gap:25px;"></div>
+      </div>
+      {% endif %}
+    </main><footer>HIRARCHEALOGY &copy; {{ site.time | date: "%Y" }}</footer></div>
   </div>
   <script>
     function clean(str) { return str ? str.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, "").trim() : ""; }
     const pages = [{% for p in site.pages %}{ "path": {{ p.path | jsonify }}, "url": {{ p.url | relative_url | jsonify }}, "name": clean({{ p.name | remove: ".md" | jsonify }}) },{% endfor %}];
     const currentUrl = {{ page.url | relative_url | jsonify }};
+    const isHome = (window.location.pathname === "{{ site.baseurl }}/" || window.location.pathname === "{{ site.baseurl }}/index.html" || window.location.pathname === "{{ site.baseurl }}");
+
+    // 1. 开屏与首页动画
     const splash = document.getElementById('splash-screen');
-    const isHome = (window.location.pathname === "{{ site.baseurl }}/" || window.location.pathname === "{{ site.baseurl }}");
-    const hasSplashed = sessionStorage.getItem('splashed_v7');
+    const hasSplashed = sessionStorage.getItem('splashed_v1.1');
     if (!isHome || hasSplashed) { splash.style.display = 'none'; }
-    splash.onclick = () => { splash.classList.add('hidden'); sessionStorage.setItem('splashed_v7', 'true'); };
+    splash.onclick = () => { splash.classList.add('hidden'); sessionStorage.setItem('splashed_v1.1', 'true'); if(isHome) triggerHomeAnim(); };
+    if (isHome && splash.style.display === 'none') { window.onload = triggerHomeAnim; }
+
+    function triggerHomeAnim() {
+      const orbs = document.querySelectorAll('.portal-orb');
+      orbs.forEach((orb, i) => { setTimeout(() => orb.classList.add('active-orb'), i * 150); });
+      if(orbs.length > 0) {
+        const rand = Math.floor(Math.random() * orbs.length);
+        setTimeout(() => orbs[rand].classList.add('highlight'), orbs.length * 150 + 400);
+      }
+    }
+
+    // 2. 双链解析
     const md = document.getElementById('markdown-body');
     md.innerHTML = md.innerHTML.replace(/\[\[(.*?)\]\]/g, (m, c) => {
       let [t, l] = c.split('|'); let target = clean(t.split('#')[0]);
       const f = pages.find(p => clean(p.name) === target);
       return f ? `<a style="color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(128,0,32,0.2);" href="${f.url}">${l || target}</a>` : `<span style="color:#999">[[${c}]]</span>`;
     });
+
+    // 3. 关联项球体化
     if (!isHome) {
       fetch("{{ site.baseurl }}/assets/graph_data.json").then(res => res.json()).then(data => {
         const cn = clean("{{ page.name | remove: '.md' }}");
         const neighbors = data.links.filter(l => clean(l.source) === cn || clean(l.target) === cn).map(l => clean(l.source) === cn ? clean(l.target) : clean(l.source));
         const un = [...new Set(neighbors)]; const container = document.getElementById('discovery-nodes');
-        un.forEach(name => { const found = pages.find(p => clean(p.name) === name); if (found) { const a = document.createElement('a'); a.href = found.url; a.className = 'nav-item-wrapper'; a.style.color="var(--primary)"; a.style.fontSize="14px"; a.style.padding="10px"; a.innerText = "→ " + found.name; container.appendChild(a); } });
+        un.forEach(name => { 
+          const found = pages.find(p => clean(p.name) === name); 
+          if (found) { 
+            const a = document.createElement('a'); a.href = found.url; a.className = 'portal-orb active-orb'; 
+            a.style.width="100px"; a.style.height="100px"; a.style.opacity="1"; a.style.transform="scale(1)"; 
+            a.innerHTML = `<div class="orb-title" style="font-size:1.2rem;">${found.name.charAt(0)}</div>`; container.appendChild(a); 
+          } 
+        });
       });
     }
   </script>
