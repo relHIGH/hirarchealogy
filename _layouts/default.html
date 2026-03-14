@@ -57,37 +57,37 @@
     .back-text { opacity: 0; transition: 0.8s; font-size: 28px; color: white; font-family: "Songti SC", serif; margin-bottom: 20px; }
     #right-sidebar-trigger:hover .back-text { opacity: 1; }
 
-    /* 【旅回 1.3.4】仪式设计：镂空圆环方案，彻底杜绝实心红球 */
+    /* 【单球仪式】保持不动 */
     #ritual-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: var(--bg-main); z-index: 1000; }
-    .ritual-orb-large { 
-      width: 220px; height: 220px; border-radius: 50%;
-      background: #fff; border: 1px solid #e0dbd0; 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-      cursor: pointer; transition: 0.5s; display: flex; justify-content: center; align-items: center;
-    }
-    .ritual-orb-large #ritual-text { color: var(--accent) !important; font-weight: bold; font-size: 3rem; font-family: "Songti SC", serif; }
-    
-    /* 锁定态：镂空双环效果，绝非实心红球 */
-    .ritual-orb-large.locked { 
-      border: 4px double var(--accent); 
-      background: #fff; /* 保持白色背景 */
-      box-shadow: 0 0 40px rgba(128,0,32,0.15);
-      animation: ritual-breath 3s infinite;
-    }
-    @keyframes ritual-breath { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.05); opacity: 0.8; } }
+    .ritual-orb-large { width: 220px; height: 220px; border-radius: 50%; background: #fff; border: 1px solid #e0dbd0; cursor: pointer; transition: 0.5s; display: flex; justify-content: center; align-items: center; }
+    #ritual-text { color: var(--accent) !important; font-weight: bold; font-size: 3rem; font-family: "Songti SC", serif; }
+    .ritual-orb-large.locked { border: 4px double var(--accent); background: #fff; animation: ritual-breath 3s infinite; }
+    @keyframes ritual-breath { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
-    /* 内容样式 */
+    /* 【多球界面】专项修正 */
+    .orb-grid { display: flex; justify-content: center; gap: 45px; flex-wrap: wrap; margin-top: 60px; }
+    .portal-orb { 
+      width: 180px; height: 180px; border-radius: 50%; 
+      background: radial-gradient(circle at 30% 30%, #fff, #f8f8f8); border: 1px solid #e0dbd0; 
+      display: flex; flex-direction: column; justify-content: center; align-items: center; 
+      cursor: pointer; transition: 0.6s; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-decoration: none !important;
+      opacity: 0.1; transform: translateY(20px); /* 初始微显，防止闪烁感 */
+    }
+    .portal-orb.active-orb { opacity: 1 !important; transform: translateY(0) !important; }
+    .portal-orb:hover { background: var(--accent); border-color: transparent; box-shadow: 0 30px 60px rgba(128,0,32,0.3); }
+    
+    /* 核心文字修正 */
+    .orb-title { color: var(--accent); font-size: 2.4rem; font-family: "Songti SC", serif; transition: 0.4s; pointer-events: none; }
+    .portal-orb:hover .orb-title { color: white !important; }
+    
+    .portal-orb.highlight { border-color: var(--accent); border-width: 2px; animation: orb-breath 3s infinite; }
+    @keyframes orb-breath { 0%, 100% { box-shadow: 0 10px 30px rgba(0,0,0,0.05); } 50% { box-shadow: 0 0 50px rgba(128,0,32,0.3); } }
+
     #content-wrapper { flex-grow: 1; overflow-y: auto; padding: 0 55px; background: var(--bg-main); }
     .container { max-width: 850px; margin: 3rem auto; background: var(--card-bg); padding: 5rem 4rem; box-shadow: 0 20px 80px rgba(0,0,0,0.06); border-radius: 2px; }
     #markdown-body { font-size: 15px; color: #333; line-height: 1.8; }
     #markdown-body h1 { font-size: 1.8rem; color: var(--accent); margin-bottom: 2.5rem; text-align: center; font-family: "Songti SC", serif; }
     
-    .orb-grid { display: flex; justify-content: center; gap: 45px; flex-wrap: wrap; margin-top: 60px; }
-    .portal-orb { width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #fff, #f8f8f8); border: 1px solid #e0dbd0; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; transition: 0.6s; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-decoration: none !important; opacity: 0; transform: translateY(20px); }
-    .portal-orb.active-orb { opacity: 1 !important; transform: translateY(0) !important; }
-    .portal-orb:hover { transform: translateY(-15px) scale(1.08); background: var(--accent); color: white; }
-    .portal-orb:hover .orb-title { color: white !important; }
-
     footer { padding: 4rem 0; text-align: center; color: #aaa; font-size: 0.7rem; letter-spacing: 3px; }
   </style>
 </head>
