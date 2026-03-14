@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { background: #f0ede4; margin: 0; padding: 50px; }
+    .container { max-width: 800px; margin: 0 auto; background: white; padding: 80px 60px; box-shadow: 0 20px 80px rgba(0,0,0,0.06); position: relative; }
+    #trajectory-line { display: flex; align-items: center; margin-top: -55px; margin-bottom: 30px; font-size: 14px; font-family: "Songti SC", serif; color: #800020; }
+    .traj-svg { width: 45px; height: 6px; display: flex; align-items: center; margin: 0 5px; }
+    .traj-svg path { fill: none; stroke: #800020; stroke-width: 1.2; stroke-dasharray: 3,3; }
+    .portal-orb { 
+      width: 140px; height: 140px; border-radius: 50%; background: #ffffff; 
+      border: 2.5px solid rgba(128,0,32,0.2); /* 确认加厚边框 */
+      display: flex; align-items: center; justify-content: center; color: #800020; font-family: "Songti SC", serif; font-size: 24px;
+      box-shadow: 0 10px 30px rgba(128,0,32,0.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="trajectory-line">
+      <span>旅</span>
+      <div class="traj-svg"><svg viewBox="0 0 45 6"><path d="M0,3 L45,3"></path></svg></div>
+      <span>行</span>
+      <!-- 再次自检：末尾绝无虚线 -->
+    </div>
+    <div style="display:flex; justify-content:center; gap:30px; margin-top:40px;">
+      <div class="portal-orb">徒</div><div class="portal-orb">车</div>
+    </div>
+  </div>
+</body>
+</html>
