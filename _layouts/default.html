@@ -55,7 +55,7 @@
     .back-text { opacity: 0; transition: 0.8s; font-size: 28px; color: white; font-family: "Songti SC", serif; margin-bottom: 20px; }
     #right-sidebar-trigger:hover .back-text { opacity: 1; }
 
-    /* 轨迹视觉 - 彻底锁定红线 */
+    /* 轨迹系统 */
     #trajectory-line { display: flex; align-items: center; justify-content: flex-start; margin-bottom: 30px; margin-top: -55px; opacity: 0.3; transition: 0.4s; min-height: 35px; }
     #trajectory-line:hover { opacity: 1; }
     .traj-node-container { display: flex; flex-direction: column; align-items: center; }
@@ -67,32 +67,30 @@
     .traj-svg path { fill: none; stroke: var(--accent) !important; stroke-width: 1.2; stroke-dasharray: 3,3; }
     .mesh-link path { stroke-width: 0.8; stroke-dasharray: 1,2; }
 
-    /* 多球看板 - 彻底去灰，边框转红 */
+    /* 多球看板 - 1.7.9 线宽增厚 */
     .orb-grid { display: flex; justify-content: center; gap: 45px; flex-wrap: wrap; margin-top: 60px; }
     .portal-orb { 
-      width: 180px; height: 180px; border-radius: 50%; 
-      background: #ffffff !important; 
-      border: 1px solid rgba(128,0,32,0.15) !important; /* 描边转红 */
+      width: 180px; height: 180px; border-radius: 50%; background: #ffffff !important; 
+      border: 2px solid rgba(128,0,32,0.15) !important; /* 增厚至 2px */
       display: flex; flex-direction: column; justify-content: center; align-items: center; 
       cursor: pointer; transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 10px 30px rgba(128,0,32,0.05); /* 极淡红晕 */
-      text-decoration: none !important; opacity: 0; transform: translateY(20px);
+      box-shadow: 0 10px 30px rgba(128,0,32,0.05); text-decoration: none !important; opacity: 0; transform: translateY(20px);
     }
     .portal-orb.active-orb { opacity: 1 !important; transform: translateY(0) !important; }
     .portal-orb:hover { background: var(--accent) !important; border-color: transparent !important; box-shadow: 0 30px 60px rgba(128,0,32,0.35) !important; }
     .orb-title { color: var(--accent); font-size: 2.4rem; font-family: "Songti SC", serif; transition: 0.4s; }
     .portal-orb:hover .orb-title { color: white !important; }
     
-    /* 扫选与锁定态：实心红框 */
-    .portal-orb.scanning { border: 3px solid var(--accent) !important; box-shadow: 0 0 35px rgba(128,0,32,0.4) !important; }
-    .portal-orb.highlight { border: 2px solid var(--accent) !important; box-shadow: 0 0 45px rgba(128,0,32,0.25) !important; animation: orb-breath 3s infinite; }
+    /* 扫选与锁定态：加厚红框 */
+    .portal-orb.scanning { border: 4px solid var(--accent) !important; box-shadow: 0 0 35px rgba(128,0,32,0.4) !important; }
+    .portal-orb.highlight { border: 3px solid var(--accent) !important; box-shadow: 0 0 45px rgba(128,0,32,0.25) !important; animation: orb-breath 3s infinite; }
     @keyframes orb-breath { 0%, 100% { box-shadow: 0 0 25px rgba(128,0,32,0.15); } 50% { box-shadow: 0 0 50px rgba(128,0,32,0.3); } }
 
     /* 印章仪式 */
     #ritual-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: var(--bg-main); z-index: 1000; }
     .ritual-seal { width: 200px; height: 200px; background: #fff; border: 1.5px solid var(--accent); display: flex; justify-content: center; align-items: center; cursor: pointer; transition: 0.4s; position: relative; }
     .ritual-seal::after { content: ''; position: absolute; top: 6px; left: 6px; right: 6px; bottom: 6px; border: 0.5px solid rgba(128,0,32,0.3); }
-    .ritual-seal.locked { border: 4px solid var(--accent) !important; transform: scale(1.05); box-shadow: 0 0 40px rgba(128,0,32,0.15); }
+    .ritual-seal.locked { border: 4px solid var(--accent) !important; transform: scale(1.05); }
     .ritual-seal.locked::after { border: 1px solid var(--accent); }
     #ritual-text { color: var(--accent) !important; font-weight: bold; font-size: 4rem; font-family: "Songti SC", serif; }
 
@@ -173,11 +171,13 @@
       container.innerHTML = html;
     }
 
+    // 1.7.9 修正动效引擎：仅首页开启扫选
     function runOrbRitual() {
       const orbs = document.querySelectorAll('.portal-orb:not(.ritual-orb-large)');
       if (orbs.length === 0) return;
       orbs.forEach((o, i) => { setTimeout(() => o.style.opacity="1", i * 100); });
-      if (orbs.length > 1) {
+      // 关键判定：只有是首页（主题层级）才执行扫选
+      if (isHome && orbs.length > 1) {
         let count = 0, curIdx = -1;
         function tick() {
           if (curIdx >= 0) orbs[curIdx].classList.remove('scanning');
@@ -205,18 +205,6 @@
       return f ? `<a style="color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(128,0,32,0.2);" href="${f.u}">${c.split('|')[1] || target}</a>` : `<span style="color:#999">[[${c}]]</span>`;
     });
 
-    function startRitual() {
-      const rc = document.getElementById('ritual-container'); rc.style.display = 'flex';
-      const th = [{char:'旅',url:'{{site.baseurl}}/docs/古代旅行/'},{char:'戏',url:'{{site.baseurl}}/docs/戏/'},{char:'饮',url:'{{site.baseurl}}/docs/饮/'},{char:'感',url:'{{site.baseurl}}/docs/感/'}];
-      let ci=0, count=0;
-      function run() {
-        document.getElementById('ritual-text').textContent = th[ci%4].char; ci++; count++;
-        if (count < 12) { setTimeout(run, 50 + (Math.pow(count, 2) * 2)); }
-        else { const t = document.getElementById('ritual-trigger'); t.classList.add('locked'); t.onclick = () => { sessionStorage.setItem('ritual_done_v1.3','true'); window.location.href = th[(ci-1)%4].url; }; }
-      }
-      setTimeout(run, 800);
-    }
-
     window.onload = () => {
       if (!isHome) { updateTraj(); runOrbRitual(); 
         fetch("{{ site.baseurl }}/assets/graph_data.json").then(res => res.json()).then(data => {
@@ -233,6 +221,18 @@
         else if (!sessionStorage.getItem('ritual_done_v1.3')) { startRitual(); } else { runOrbRitual(); }
       }
     };
+
+    function startRitual() {
+      document.getElementById('ritual-container').style.display = 'flex';
+      const th = [{char:'旅',url:'{{site.baseurl}}/docs/古代旅行/'},{char:'戏',url:'{{site.baseurl}}/docs/戏/'},{char:'饮',url:'{{site.baseurl}}/docs/饮/'},{char:'感',url:'{{site.baseurl}}/docs/感/'}];
+      let ci=0, count=0;
+      function run() {
+        document.getElementById('ritual-text').textContent = th[ci%4].char; ci++; count++;
+        if (count < 12) { setTimeout(run, 50 + (Math.pow(count, 2) * 2)); }
+        else { const t = document.getElementById('ritual-trigger'); t.classList.add('locked'); t.onclick = () => { sessionStorage.setItem('ritual_done_v1.3','true'); window.location.href = th[(ci-1)%4].url; }; }
+      }
+      setTimeout(run, 800);
+    }
   </script>
 </body>
 </html>
