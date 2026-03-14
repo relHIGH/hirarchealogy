@@ -25,7 +25,7 @@
 
     .main-wrapper { display: flex; flex-grow: 1; overflow: hidden; position: relative; }
 
-    /* 左侧侧栏 - 垂直锁死 */
+    /* 左侧侧栏 - 垂直排列，重心 52vh */
     #sidebar-container {
       position: absolute; top: 0; left: 0; height: 100%; z-index: 1500; width: var(--sidebar-width);
       transform: translateX(calc(-1 * var(--sidebar-width) + var(--sidebar-peek)));
@@ -40,7 +40,6 @@
     .nav-item-wrapper { text-decoration: none; color: rgba(255,255,255,0.5); font-size: 32px; font-family: "Songti SC", serif; transition: 0.4s; letter-spacing: 2px; }
     #sidebar-container:hover .nav-item-wrapper { color: white; }
 
-    /* 右侧“回” */
     #right-sidebar-trigger {
       position: absolute; top: 0; right: 0; height: 100%; z-index: 1500; width: 120px;
       transform: translateX(calc(120px - 55px)); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -53,19 +52,19 @@
     .back-text { opacity: 0; transition: 0.8s; font-size: 28px; color: white; font-family: "Songti SC", serif; margin-bottom: 20px; }
     #right-sidebar-trigger:hover .back-text { opacity: 1; }
 
-    /* 【旅回 1.6.4】全汉字轨迹页眉 */
+    /* 【旅回 1.6.5】全汉字虚线轨迹页眉 */
     #trajectory-line {
       display: flex; align-items: center; justify-content: flex-start;
-      margin-bottom: 30px; margin-top: -35px;
-      opacity: 0.3; transition: 0.4s; min-height: 20px;
+      margin-bottom: 30px; margin-top: -45px; /* 拔高 */
+      opacity: 0.3; transition: 0.4s; min-height: 25px;
     }
     #trajectory-line:hover { opacity: 1; }
     .traj-node { text-decoration: none; color: var(--accent); font-family: "Songti SC", serif; font-size: 12px; letter-spacing: 1px; transition: 0.3s; padding: 2px 5px; }
     .traj-node:hover { background: var(--accent); color: white; border-radius: 2px; }
     .traj-svg { width: 40px; height: 20px; overflow: visible; display: flex; align-items: center; }
-    .traj-svg path { fill: none; stroke: var(--accent); stroke-width: 1; stroke-dasharray: 3,3; transition: 0.6s; }
+    .traj-svg path { fill: none; stroke: var(--accent); stroke-width: 1; stroke-dasharray: 3,3; }
 
-    /* 球体矩阵 */
+    /* 球体与内容 */
     .orb-grid { display: flex; justify-content: center; gap: 45px; flex-wrap: wrap; margin-top: 60px; }
     .portal-orb { width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #fff, #f8f8f8); border: 1px solid #e0dbd0; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; transition: 0.6s; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-decoration: none !important; opacity: 0; transform: translateY(20px); }
     .portal-orb.active-orb { opacity: 1 !important; transform: translateY(0) !important; }
@@ -73,13 +72,11 @@
     .portal-orb:hover { background: var(--accent); border-color: transparent; }
     .portal-orb:hover .orb-title { color: white !important; }
 
-    /* 仪式感大球 */
     #ritual-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: var(--bg-main); z-index: 1000; }
-    .ritual-orb-large { width: 220px; height: 220px; border: 2.5px solid var(--accent); background: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; }
+    .ritual-orb-large { width: 220px; height: 220px; border: 2px solid var(--accent); background: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; }
     #ritual-text { color: #800020 !important; font-weight: bold; font-size: 3rem; font-family: "Songti SC", serif; }
     .ritual-orb-large.locked { border: 4px double var(--accent); }
 
-    /* 容器样式 */
     #content-wrapper { flex-grow: 1; overflow-y: auto; padding: 0 55px; background: var(--bg-main); }
     .container { max-width: 850px; margin: 3rem auto; background: var(--card-bg); padding: 5rem 4rem; box-shadow: 0 20px 80px rgba(0,0,0,0.06); border-radius: 2px; }
     #markdown-body { font-size: 15px; color: #333; line-height: 1.8; }
@@ -109,21 +106,22 @@
     </div>
     <div id="content-wrapper">
       <main class="container">
-        <!-- 【旅回 1.6.4】Liquid 物理路径引擎 - 绝无乱码 -->
+        <!-- 【旅回 1.6.5】物理路径解析 - 终结乱码 -->
         <div id="trajectory-line">
           {% assign path_parts = page.path | split: "/" %}
-          {% assign link_path = site.baseurl | append: "/" %}
+          {% assign cur_build_path = site.baseurl %}
           {% for part in path_parts %}
+            {% assign cur_build_path = cur_build_path | append: "/" | append: part %}
             {% if part == "docs" or part == "index.md" %}{% continue %}{% endif %}
-            {% assign clean_name = part | remove: ".md" %}
-            {% assign display_name = clean_name %}
-            {% if clean_name == "古代旅行" %}{% assign display_name = "旅" %}{% endif %}
             
-            {% assign link_path = link_path | append: "docs/" | append: part | replace: "index.md", "" | replace: ".md", ".html" %}
-            <a href="{{ link_path }}" class="traj-node">{{ display_name }}</a>
+            {% assign raw_name = part | remove: ".md" %}
+            {% assign display_name = raw_name %}
+            {% if raw_name == "古代旅行" %}{% assign display_name = "旅" %}{% endif %}
+            
+            {% assign final_link = cur_build_path | replace: ".md", ".html" | replace: "index.html", "" %}
+            <a href="{{ final_link }}" class="traj-node">{{ display_name }}</a>
             
             {% unless forloop.last %}
-              {% if part contains ".md" %}{% break %}{% endif %}
               <div class="traj-svg"><svg viewBox="0 0 40 20"><path d="M0,10 L40,10" class="traj-path"></path></svg></div>
             {% endunless %}
           {% endfor %}
