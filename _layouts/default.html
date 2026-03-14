@@ -25,7 +25,7 @@
 
     .main-wrapper { display: flex; flex-grow: 1; overflow: hidden; position: relative; }
 
-    /* 左侧侧栏 - 垂直排列，重心 52vh */
+    /* 左侧侧栏 - 垂直排列 */
     #sidebar-container {
       position: absolute; top: 0; left: 0; height: 100%; z-index: 1500; width: var(--sidebar-width);
       transform: translateX(calc(-1 * var(--sidebar-width) + var(--sidebar-peek)));
@@ -40,6 +40,7 @@
     .nav-item-wrapper { text-decoration: none; color: rgba(255,255,255,0.5); font-size: 32px; font-family: "Songti SC", serif; transition: 0.4s; letter-spacing: 2px; }
     #sidebar-container:hover .nav-item-wrapper { color: white; }
 
+    /* 右侧“回” */
     #right-sidebar-trigger {
       position: absolute; top: 0; right: 0; height: 100%; z-index: 1500; width: 120px;
       transform: translateX(calc(120px - 55px)); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -52,19 +53,19 @@
     .back-text { opacity: 0; transition: 0.8s; font-size: 28px; color: white; font-family: "Songti SC", serif; margin-bottom: 20px; }
     #right-sidebar-trigger:hover .back-text { opacity: 1; }
 
-    /* 【旅回 1.6.5】全汉字虚线轨迹页眉 */
+    /* 【旅回 1.6.6】全景虚线轨迹 - 拔高放大版 */
     #trajectory-line {
       display: flex; align-items: center; justify-content: flex-start;
-      margin-bottom: 30px; margin-top: -45px; /* 拔高 */
-      opacity: 0.3; transition: 0.4s; min-height: 25px;
+      margin-bottom: 30px; margin-top: -55px; /* 拔高 */
+      opacity: 0.3; transition: 0.4s; min-height: 30px;
     }
     #trajectory-line:hover { opacity: 1; }
-    .traj-node { text-decoration: none; color: var(--accent); font-family: "Songti SC", serif; font-size: 12px; letter-spacing: 1px; transition: 0.3s; padding: 2px 5px; }
+    .traj-node { text-decoration: none; color: var(--accent); font-family: "Songti SC", serif; font-size: 14px; letter-spacing: 1px; transition: 0.3s; padding: 2px 8px; }
     .traj-node:hover { background: var(--accent); color: white; border-radius: 2px; }
-    .traj-svg { width: 40px; height: 20px; overflow: visible; display: flex; align-items: center; }
-    .traj-svg path { fill: none; stroke: var(--accent); stroke-width: 1; stroke-dasharray: 3,3; }
+    .traj-svg { width: 45px; height: 20px; overflow: visible; display: flex; align-items: center; }
+    .traj-svg path { fill: none; stroke: var(--accent); stroke-width: 1.2; stroke-dasharray: 3,3; }
 
-    /* 球体与内容 */
+    /* 球体看板 */
     .orb-grid { display: flex; justify-content: center; gap: 45px; flex-wrap: wrap; margin-top: 60px; }
     .portal-orb { width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #fff, #f8f8f8); border: 1px solid #e0dbd0; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; transition: 0.6s; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-decoration: none !important; opacity: 0; transform: translateY(20px); }
     .portal-orb.active-orb { opacity: 1 !important; transform: translateY(0) !important; }
@@ -73,7 +74,7 @@
     .portal-orb:hover .orb-title { color: white !important; }
 
     #ritual-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: var(--bg-main); z-index: 1000; }
-    .ritual-orb-large { width: 220px; height: 220px; border: 2px solid var(--accent); background: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; }
+    .ritual-orb-large { width: 220px; height: 220px; border: 2.5px solid var(--accent); background: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; }
     #ritual-text { color: #800020 !important; font-weight: bold; font-size: 3rem; font-family: "Songti SC", serif; }
     .ritual-orb-large.locked { border: 4px double var(--accent); }
 
@@ -106,27 +107,12 @@
     </div>
     <div id="content-wrapper">
       <main class="container">
-        <!-- 【旅回 1.6.5】物理路径解析 - 终结乱码 -->
-        <div id="trajectory-line">
-          {% assign path_parts = page.path | split: "/" %}
-          {% assign cur_build_path = site.baseurl %}
-          {% for part in path_parts %}
-            {% assign cur_build_path = cur_build_path | append: "/" | append: part %}
-            {% if part == "docs" or part == "index.md" %}{% continue %}{% endif %}
-            
-            {% assign raw_name = part | remove: ".md" %}
-            {% assign display_name = raw_name %}
-            {% if raw_name == "古代旅行" %}{% assign display_name = "旅" %}{% endif %}
-            
-            {% assign final_link = cur_build_path | replace: ".md", ".html" | replace: "index.html", "" %}
-            <a href="{{ final_link }}" class="traj-node">{{ display_name }}</a>
-            
-            {% unless forloop.last %}
-              <div class="traj-svg"><svg viewBox="0 0 40 20"><path d="M0,10 L40,10" class="traj-path"></path></svg></div>
-            {% endunless %}
-          {% endfor %}
+        <!-- 【旅回 1.6.6】物理+动态混合轨迹引擎 -->
+        <div id="trajectory-line" 
+             data-path="{{ page.path }}" 
+             data-title="{{ page.title | default: page.name | remove: '.md' }}"
+             data-base="{{ site.baseurl }}">
         </div>
-        
         <div id="markdown-body">{{ content }}</div>
         {% if page.url != "/" and page.url != "/index.html" %}<div id="discovery-section" style="margin-top: 80px; text-align:center;"><div id="discovery-nodes" class="orb-grid" style="gap:25px;"></div></div>{% endif %}
       </main>
@@ -135,37 +121,82 @@
   </div>
   <script>
     const isHome = (window.location.pathname.endsWith("/") || window.location.pathname.endsWith("/index.html") || window.location.pathname === "{{ site.baseurl }}/");
-    
-    // 跨维度跳转折线逻辑
-    window.addEventListener('DOMContentLoaded', () => {
-      if (sessionStorage.getItem('last_nav_type') === 'mesh') {
-        const paths = document.querySelectorAll('.traj-path');
-        if (paths.length > 0) paths[paths.length - 1].setAttribute('d', 'M0,10 L20,10 L40,0');
-      }
-    });
+    const themeMap = {'古代旅行': '旅', '行': '行', '路': '路', '驿': '驿', '游': '游', '记': '记'};
 
+    // 1.6.6 时空轨迹引擎：支持阅览路径记忆
+    function renderTrajectory() {
+      const container = document.getElementById('trajectory-line');
+      if (!container || isHome) return;
+      
+      const navType = sessionStorage.getItem('last_nav_type');
+      const pagePath = container.getAttribute('data-path');
+      const pageTitle = container.getAttribute('data-title');
+      const baseUrl = container.getAttribute('data-base');
+      
+      // 解析物理路径
+      const segments = pagePath.split('/').filter(s => s !== 'docs' && s !== 'index.md');
+      let nodes = [];
+      let curLink = baseUrl + '/docs/';
+      
+      segments.forEach((seg, i) => {
+        const raw = seg.replace('.md', '');
+        nodes.push({
+          name: themeMap[raw] || raw,
+          url: curLink + seg.replace('.md', '.html').replace('index.html', '')
+        });
+        curLink += seg + '/';
+      });
+
+      // 如果是跨维度跳转，执行追加逻辑
+      if (navType === 'mesh' && sessionStorage.getItem('prev_traj_html')) {
+        const prevHtml = sessionStorage.getItem('prev_traj_html');
+        // 在上一页基础上追加当前节点，且连接线为折线
+        const lastNode = nodes[nodes.length - 1];
+        const angledLine = `<div class="traj-svg"><svg viewBox="0 0 40 20"><path d="M0,10 L20,10 L40,0"></path></svg></div>`;
+        container.innerHTML = prevHtml + angledLine + `<a href="${lastNode.url}" class="traj-node">${lastNode.name}</a>`;
+      } else {
+        // 标准物理层级渲染
+        let html = "";
+        nodes.forEach((node, i) => {
+          html += `<a href="${node.url}" class="traj-node">${node.name}</a>`;
+          if (i < nodes.length - 1) {
+            html += `<div class="traj-svg"><svg viewBox="0 0 40 20"><path d="M0,10 L40,10"></path></svg></div>`;
+          }
+        });
+        container.innerHTML = html;
+      }
+      // 存证当前路径，供下一页 Mesh 跳转使用
+      sessionStorage.setItem('prev_traj_html', container.innerHTML);
+    }
+
+    // 记录跳转标记
     document.addEventListener('click', (e) => {
       const orb = e.target.closest('.portal-orb');
-      if (orb) sessionStorage.setItem('last_nav_type', orb.closest('#discovery-section') ? 'mesh' : 'hierarchical');
+      if (orb) {
+        const isMesh = !!orb.closest('#discovery-section');
+        sessionStorage.setItem('last_nav_type', isMesh ? 'mesh' : 'hierarchical');
+        if (!isMesh) sessionStorage.removeItem('prev_traj_html'); // 主线导航重置记忆
+      }
     });
 
     // 仪式逻辑保持
     const splash = document.getElementById('splash-screen');
-    const hasSplashed = sessionStorage.getItem('splashed_v7');
     const ritualDone = sessionStorage.getItem('ritual_done_v1.3');
+    const hasSplashed = sessionStorage.getItem('splashed_v7');
     if (isHome && !hasSplashed) { splash.style.display = 'flex'; } else { splash.style.display = 'none'; }
     splash.onclick = () => { splash.classList.add('hidden'); sessionStorage.setItem('splashed_v7', 'true'); if(isHome && !ritualDone) startRitual(); else if(isHome) runOrbs(); };
-    if(isHome && hasSplashed && !ritualDone) startRitual();
     
     window.addEventListener('load', () => {
       if(isHome && hasSplashed && ritualDone) runOrbs();
       if(!isHome) {
+        renderTrajectory();
         runOrbs();
         fetch("{{ site.baseurl }}/assets/graph_data.json").then(res => res.json()).then(data => {
           const cn = "{{ page.name | remove: '.md' }}";
-          const ns = data.links.filter(l => clean(l.source) === clean(cn) || clean(l.target) === clean(cn)).map(l => clean(l.source) === clean(cn) ? clean(l.target) : clean(l.source));
+          const ns = data.links.filter(l => l.source === cn || l.target === cn).map(l => l.source === cn ? l.target : l.source);
           const un = [...new Set(ns)]; const cont = document.getElementById('discovery-nodes');
-          un.forEach(n => { const f = pages.find(p => clean(p.name) === clean(n)); if (f) { const a = document.createElement('a'); a.href = f.url; a.className = 'portal-orb active-orb'; a.style.width="100px"; a.style.height="100px"; a.innerHTML = `<div class="orb-title" style="font-size:1.2rem;">${f.name.charAt(0)}</div>`; cont.appendChild(a); } });
+          const pgs = [{% for p in site.pages %}{ "name": "{{ p.name | remove: '.md' }}", "url": "{{ p.url | relative_url }}" },{% endfor %}];
+          un.forEach(n => { const f = pgs.find(p => p.name === n); if (f) { const a = document.createElement('a'); a.href = f.url; a.className = 'portal-orb active-orb'; a.style.width="100px"; a.style.height="100px"; a.innerHTML = `<div class="orb-title" style="font-size:1.2rem;">${f.name.charAt(0)}</div>`; cont.appendChild(a); } });
         });
       }
     });
@@ -182,15 +213,6 @@
       setTimeout(run, 800);
     }
     function runOrbs() { document.querySelectorAll('.portal-orb:not(.ritual-orb-large)').forEach((o, i) => { setTimeout(()=>o.classList.add('active-orb'), i*100); }); }
-
-    const clean = (s) => s.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, "").trim();
-    const pages = [{% for p in site.pages %}{ "path": {{ p.path | jsonify }}, "url": {{ p.url | relative_url | jsonify }}, "name": "{{ p.name | remove: '.md' }}" },{% endfor %}];
-    const md = document.getElementById('markdown-body');
-    md.innerHTML = md.innerHTML.replace(/\[\[(.*?)\]\]/g, (m, c) => {
-      let [t, l] = c.split('|'); let target = t.split('#')[0].trim();
-      const f = pages.find(p => clean(p.name) === clean(target));
-      return f ? `<a style="color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(128,0,32,0.2);" href="${f.url}">${l || target}</a>` : `<span style="color:#999">[[${c}]]</span>`;
-    });
   </script>
 </body>
 </html>
