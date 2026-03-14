@@ -7,8 +7,7 @@
   <style>
     :root { 
       --sidebar-width: 310px; --sidebar-peek: 55px; 
-      --header-height: 60px; --accent: #800020;  
-      --bg-main: #f0ede4; --card-bg: #ffffff;
+      --accent: #800020; --bg-main: #f0ede4; --card-bg: #ffffff;
     }
     * { box-sizing: border-box; }
     body { font-family: "Georgia", "Times New Roman", serif; margin: 0; height: 100vh; background: var(--bg-main); overflow: hidden; }
@@ -17,17 +16,16 @@
     #splash-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; display: none; align-items: center; justify-content: center; cursor: pointer; transition: 0.8s; background: linear-gradient(135deg, #800020, #1a1a1a); }
     #splash-screen.active { display: flex; }
     #splash-screen.hidden { transform: translateY(-100%); opacity: 0; pointer-events: none; }
-    .splash-hint { color: white; font-size: 0.9rem; letter-spacing: 4px; font-family: sans-serif; opacity: 0.7; }
 
     header { height: 60px; background: rgba(255,255,255,0.9); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(128,0,32,0.1); display: flex; align-items: center; padding: 0 30px; z-index: 2000; justify-content: space-between; }
     .header-logo { font-weight: 600; color: var(--accent); font-size: 0.9rem; letter-spacing: 2px; text-decoration: none; }
-    .header-nav { display: flex !important; gap: 15px; }
+    .header-nav { display: flex !important; gap: 15px; align-items: center; }
     .header-icon { color: #666; text-decoration: none; display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; }
     .header-icon svg { width: 20px; height: 20px; fill: currentColor; }
 
     .main-wrapper { display: flex; flex-grow: 1; overflow: hidden; position: relative; }
 
-    /* 左右侧栏 */
+    /* 左侧侧栏 - 严格垂直布局 */
     #sidebar-container {
       position: absolute; top: 0; left: 0; height: 100%; z-index: 1500; width: var(--sidebar-width);
       transform: translateX(calc(-1 * var(--sidebar-width) + var(--sidebar-peek)));
@@ -41,7 +39,9 @@
     #sidebar-container:hover { transform: translateX(0); background: rgba(30, 0, 5, 0.98); }
     .nav-item-wrapper { text-decoration: none; color: rgba(255,255,255,0.5); font-size: 32px; font-family: "Songti SC", serif; transition: 0.4s; letter-spacing: 2px; }
     #sidebar-container:hover .nav-item-wrapper { color: white; }
+    .nav-item-wrapper:hover { transform: scale(1.3) translateX(10px); }
 
+    /* 右侧“回” */
     #right-sidebar-trigger {
       position: absolute; top: 0; right: 0; height: 100%; z-index: 1500; width: 120px;
       transform: translateX(calc(120px - 55px)); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -50,36 +50,37 @@
       -webkit-mask-size: 100% 100%;
       cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 100px;
     }
-    #right-sidebar-trigger:hover { transform: translateX(0); background: rgba(128, 0, 32, 0.35); }
+    #right-sidebar-trigger:hover { transform: translateX(0); background: rgba(128, 0, 32, 0.85); }
     .back-text { opacity: 0; transition: 0.8s; font-size: 28px; color: white; font-family: "Songti SC", serif; margin-bottom: 20px; }
     #right-sidebar-trigger:hover .back-text { opacity: 1; }
 
-    /* 【单球仪式】双环锁定，白底 */
-    #ritual-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: var(--bg-main); z-index: 1000; }
-    .ritual-orb-large { width: 220px; height: 220px; border-radius: 50%; background: #fff; border: 1px solid #e0dbd0; cursor: pointer; transition: 0.5s; display: flex; justify-content: center; align-items: center; }
-    #ritual-text { color: var(--accent) !important; font-weight: bold; font-size: 3.5rem; font-family: "Songti SC", serif; }
-    .ritual-orb-large.locked { border: 4px double var(--accent); background: #fff; animation: ritual-breath 3s infinite; }
-    @keyframes ritual-breath { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-
-    /* 【全局球体系统】1.3.6 核心 */
-    .orb-grid { display: flex; justify-content: center; gap: 45px; flex-wrap: wrap; margin-top: 60px; }
-    .portal-orb { 
-      width: 180px; height: 180px; border-radius: 50%; 
-      background: radial-gradient(circle at 30% 30%, #fff, #f8f8f8); border: 1px solid #e0dbd0; 
-      display: flex; flex-direction: column; justify-content: center; align-items: center; 
-      cursor: pointer; transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
-      text-decoration: none !important; opacity: 0; transform: translateY(30px); /* 默认隐藏，等待动画 */
+    /* 【旅回 1.6.2】横向虚线轨迹系统 */
+    #pathway-container {
+      display: flex; align-items: center; justify-content: flex-start;
+      margin-bottom: 35px; margin-top: -35px; /* 拔高位置 */
+      opacity: 0.3; transition: 0.4s; min-height: 30px;
     }
+    #pathway-container:hover { opacity: 1; }
+    .path-node-btn { text-decoration: none; color: var(--accent); font-family: "Songti SC", serif; font-size: 13px; letter-spacing: 1px; transition: 0.3s; padding: 2px 6px; }
+    .path-node-btn:hover { background: var(--accent); color: white; border-radius: 2px; }
+    
+    .path-line-svg { width: 40px; height: 20px; display: flex; align-items: center; overflow: visible; }
+    .path-line-svg path { fill: none; stroke: var(--accent); stroke-width: 1; stroke-dasharray: 3,3; }
+
+    /* 球体看板 */
+    .orb-grid { display: flex; justify-content: center; gap: 45px; flex-wrap: wrap; margin-top: 60px; }
+    .portal-orb { width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #fff, #f8f8f8); border: 1px solid #e0dbd0; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; transition: 0.6s; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-decoration: none !important; opacity: 0; transform: translateY(20px); }
     .portal-orb.active-orb { opacity: 1 !important; transform: translateY(0) !important; }
-    .portal-orb:hover { background: var(--accent) !important; border-color: transparent !important; box-shadow: 0 30px 60px rgba(128,0,32,0.3); }
-    
-    .orb-title { color: var(--accent); font-size: 2.4rem; font-family: "Songti SC", serif; transition: 0.4s; pointer-events: none; }
+    .orb-title { color: var(--accent) !important; font-size: 2.4rem; font-family: "Songti SC", serif; transition: 0.4s; }
+    .portal-orb:hover { background: var(--accent); border-color: transparent; }
     .portal-orb:hover .orb-title { color: white !important; }
-    
-    /* 扫选与呼吸灯（全局适用） */
-    .portal-orb.scanning { border-color: var(--accent); border-width: 3px; box-shadow: 0 0 30px rgba(128,0,32,0.4); background: #fffcf5; }
-    .portal-orb.highlight { border-color: var(--accent); border-width: 2px; animation: orb-breath 3s infinite; }
-    @keyframes orb-breath { 0%, 100% { box-shadow: 0 10px 30px rgba(0,0,0,0.05); } 50% { box-shadow: 0 0 50px rgba(128,0,32,0.3); } }
+
+    /* 仪式球 */
+    #ritual-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: var(--bg-main); z-index: 1000; }
+    .ritual-orb-large { width: 220px; height: 220px; border: 2.5px solid var(--accent); background: #fff; cursor: pointer; }
+    .ritual-orb-large #ritual-text { color: #800020 !important; font-weight: bold; font-size: 3rem; font-family: "Songti SC", serif; }
+    .ritual-orb-large.locked { background: var(--accent); }
+    .ritual-orb-large.locked #ritual-text { color: white !important; }
 
     #content-wrapper { flex-grow: 1; overflow-y: auto; padding: 0 55px; background: var(--bg-main); }
     .container { max-width: 850px; margin: 3rem auto; background: var(--card-bg); padding: 5rem 4rem; box-shadow: 0 20px 80px rgba(0,0,0,0.06); border-radius: 2px; }
@@ -87,22 +88,11 @@
     #markdown-body h1 { font-size: 1.8rem; color: var(--accent); margin-bottom: 2.5rem; text-align: center; font-family: "Songti SC", serif; }
     
     footer { padding: 4rem 0; text-align: center; color: #aaa; font-size: 0.7rem; letter-spacing: 3px; }
-    /* 路径页眉：独立隔离样式 */
-    #content-pathway {
-      display: flex; gap: 8px; margin-bottom: 25px; margin-top: -30px;
-      font-family: "Songti SC", serif; font-size: 11px;
-      opacity: 0.3; transition: 0.4s;
-      justify-content: flex-start; letter-spacing: 1px;
-    }
-    #content-pathway:hover { opacity: 1; }
-    .path-node { text-decoration: none; color: var(--accent); }
-    .path-node:hover { border-bottom: 1px solid var(--accent); }
-    .path-divider { color: #ddd; }
   </style>
 </head>
 <body>
   <div id="splash-screen"><div class="splash-hint">EXPLORE THE DEPTHS</div></div>
-  <div id="ritual-container" style="display:none;"><div class="ritual-orb-large" id="ritual-trigger"><div id="ritual-text">旅</div></div></div>
+  <div id="ritual-container" style="display:none;"><div class="portal-orb ritual-orb-large" id="ritual-trigger"><div class="orb-title" id="ritual-text">旅</div></div></div>
 
   <header>
     <a href="{{ site.baseurl }}/" class="header-logo">HIRARCHEALOGY</a>
@@ -121,63 +111,92 @@
     </div>
     <div id="content-wrapper">
       <main class="container">
-        <div id="content-pathway"></div>
+        <!-- 【轨迹链路展示】 -->
+        <div id="pathway-container"></div>
         <div id="markdown-body">{{ content }}</div>
-      {% if page.url != "/" and page.url != "/index.html" %}<div id="discovery-section" style="margin-top: 80px; text-align:center;"><div id="discovery-nodes" class="orb-grid" style="gap:25px;"></div></div>{% endif %}
-    </main><footer>HIRARCHEALOGY &copy; {{ site.time | date: "%Y" }}</footer></div>
+        {% if page.url != "/" and page.url != "/index.html" %}<div id="discovery-section" style="margin-top: 80px; text-align:center;"><div id="discovery-nodes" class="orb-grid" style="gap:25px;"></div></div>{% endif %}
+      </main>
+      <footer>HIRARCHEALOGY &copy; {{ site.time | date: "%Y" }}</footer>
+    </div>
   </div>
   <script>
     function clean(str) { return str ? str.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, "").trim() : ""; }
     const pages = [{% for p in site.pages %}{ "path": {{ p.path | jsonify }}, "url": {{ p.url | relative_url | jsonify }}, "name": "{{ p.name | remove: '.md' }}" },{% endfor %}];
     const isHome = (window.location.pathname.endsWith("/") || window.location.pathname.endsWith("/index.html") || window.location.pathname === "{{ site.baseurl }}/");
 
-    // 统一动画引擎：Stagger & Ritual
-    function runOrbRitual() {
-      const orbs = document.querySelectorAll('.portal-orb:not(.ritual-orb-large)');
-      if (orbs.length === 0) return;
+    // 旅回 1.6.2 全层级轨迹引擎 (物理匹配版)
+    function runPathwayEngine() {
+      const container = document.getElementById('pathway-container');
+      if (!container || isHome) return;
+      const themeMap = {'古代旅行': '旅', '行': '行', '路': '路', '驿': '驿', '游': '游', '记': '记'};
       
-      // 1. Stagger 入场
-      orbs.forEach((orb, i) => { setTimeout(() => orb.classList.add('active-orb'), i * 100); });
+      const currentUrl = window.location.pathname;
+      const decodedPath = decodeURIComponent(currentUrl).replace('{{ site.baseurl }}', '');
+      const segments = decodedPath.split('/').filter(p => p && p !== 'docs' && p !== 'index.html');
+      const navType = sessionStorage.getItem('last_nav_type') || 'hierarchical';
       
-      // 2. 如果是索引页，执行闪选锁定
-      const isIndex = (orbs.length > 1);
-      if (isIndex) {
-        let count = 0, currentIdx = -1;
-        function tick() {
-          if (currentIdx >= 0) orbs[currentIdx].classList.remove('scanning');
-          currentIdx = (currentIdx + 1) % orbs.length; orbs[currentIdx].classList.add('scanning');
-          if (++count < 6) { setTimeout(tick, 100 + (count * 60)); }
-          else { setTimeout(() => { orbs[currentIdx].classList.remove('scanning'); orbs[currentIdx].classList.add('highlight'); }, 150); }
+      let html = "";
+      segments.forEach((seg, i) => {
+        const rawName = seg.replace('.html', '');
+        const displayName = themeMap[rawName] || rawName;
+        const subPath = segments.slice(0, i+1).join('/');
+        const isLastNode = (i === segments.length - 1);
+        const targetUrl = '{{ site.baseurl }}/docs/' + subPath + (isLastNode && !currentUrl.endsWith('/') ? '.html' : '/');
+        
+        html += `<a href="${targetUrl}" class="path-node-btn">${displayName}</a>`;
+        
+        if (!isLastNode) {
+          const isAngleStep = (i === segments.length - 2 && navType === 'mesh');
+          const pathD = isAngleStep ? "M0,10 L20,10 L40,0" : "M0,10 L40,10";
+          html += `<div class="path-line-svg"><svg viewBox="0 0 40 20"><path d="${pathD}"></path></svg></div>`;
         }
-        setTimeout(tick, orbs.length * 100 + 200);
-      }
+      });
+      container.innerHTML = html;
     }
 
-    // 仪式逻辑
+    // 记录跳转标记
+    document.addEventListener('click', (e) => {
+      const orb = e.target.closest('.portal-orb');
+      if (orb) sessionStorage.setItem('last_nav_type', orb.closest('#discovery-section') ? 'mesh' : 'hierarchical');
+    });
+
+    // 仪式感与开屏 (保持 1.3.1 稳定版)
     const splash = document.getElementById('splash-screen');
-    const ritualCont = document.getElementById('ritual-container');
-    const ritualText = document.getElementById('ritual-text');
-    const hasSplashed = sessionStorage.getItem('splashed_v7');
     const ritualDone = sessionStorage.getItem('ritual_done_v1.3');
+    const hasSplashed = sessionStorage.getItem('splashed_v7');
 
     if (isHome && !hasSplashed) { splash.style.display = 'flex'; } else { splash.style.display = 'none'; }
     splash.onclick = () => {
       splash.classList.add('hidden');
       sessionStorage.setItem('splashed_v7', 'true');
-      if (isHome && !ritualDone) startRitual(); else runOrbRitual();
+      if(isHome && !ritualDone) startRitual(); else if(isHome) runOrbs();
     };
 
-    if (isHome && hasSplashed && !ritualDone) startRitual();
-    if ((isHome && hasSplashed && ritualDone) || (!isHome)) { window.onload = runOrbRitual; }
+    if(isHome && hasSplashed && !ritualDone) startRitual();
+    
+    // 强制全层级触发加载
+    window.addEventListener('load', () => {
+      if(isHome && hasSplashed && ritualDone) runOrbs();
+      if(!isHome) {
+        runPathwayEngine();
+        // 渲染发现节点
+        fetch("{{ site.baseurl }}/assets/graph_data.json").then(res => res.json()).then(data => {
+          const cn = "{{ page.name | remove: '.md' }}";
+          const ns = data.links.filter(l => clean(l.source) === clean(cn) || clean(l.target) === clean(cn)).map(l => clean(l.source) === clean(cn) ? clean(l.target) : clean(l.source));
+          const un = [...new Set(ns)]; const cont = document.getElementById('discovery-nodes');
+          un.forEach(n => { const f = pages.find(p => clean(p.name) === clean(n)); if (f) { const a = document.createElement('a'); a.href = f.url; a.className = 'portal-orb active-orb'; a.style.width="100px"; a.style.height="100px"; a.innerHTML = `<div class="orb-title" style="font-size:1.2rem;">${f.name.charAt(0)}</div>`; cont.appendChild(a); } });
+        });
+      }
+    });
 
     function startRitual() {
-      ritualCont.style.display = 'flex';
+      document.getElementById('ritual-container').style.display = 'flex';
       const th = [{char:'旅',url:'{{site.baseurl}}/docs/古代旅行/'},{char:'戏',url:'{{site.baseurl}}/docs/戏/'},{char:'饮',url:'{{site.baseurl}}/docs/饮/'},{char:'感',url:'{{site.baseurl}}/docs/感/'}];
       let ci=0, count=0;
       function run() {
-        ritualText.textContent = th[ci%4].char; ci++; count++;
+        document.getElementById('ritual-text').textContent = th[ci%4].char; ci++; count++;
         if (count < 12) { setTimeout(run, 50 + (Math.pow(count, 2) * 2)); }
-        else {
+        else { 
           const t = document.getElementById('ritual-trigger'); t.classList.add('locked');
           t.onclick = () => { sessionStorage.setItem('ritual_done_v1.3','true'); window.location.href = th[(ci-1)%4].url; };
         }
@@ -185,39 +204,14 @@
       setTimeout(run, 800);
     }
 
+    function runOrbs() { document.querySelectorAll('.portal-orb:not(.ritual-orb-large)').forEach((o, i) => { setTimeout(()=>o.classList.add('active-orb'), i*100); }); }
+
     const md = document.getElementById('markdown-body');
     md.innerHTML = md.innerHTML.replace(/\[\[(.*?)\]\]/g, (m, c) => {
       let [t, l] = c.split('|'); let target = t.split('#')[0].trim();
       const f = pages.find(p => clean(p.name) === clean(target));
       return f ? `<a style="color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(128,0,32,0.2);" href="${f.url}">${l || target}</a>` : `<span style="color:#999">[[${c}]]</span>`;
     });
-
-    if (!isHome) {
-      fetch("{{ site.baseurl }}/assets/graph_data.json").then(res => res.json()).then(data => {
-        const cn = "{{ page.name | remove: '.md' }}";
-        const ns = data.links.filter(l => clean(l.source) === clean(cn) || clean(l.target) === clean(cn)).map(l => clean(l.source) === clean(cn) ? clean(l.target) : clean(l.source));
-        const un = [...new Set(ns)]; const cont = document.getElementById('discovery-nodes');
-        un.forEach(n => { const f = pages.find(p => clean(p.name) === clean(n)); if (f) { const a = document.createElement('a'); a.href = f.url; a.className = 'portal-orb'; a.style.width="100px"; a.style.height="100px"; a.innerHTML = `<div class="orb-title" style="font-size:1.2rem;">${f.name.charAt(0)}</div>`; cont.appendChild(a); } });
-        runOrbRitual(); // 动态生成的球体也跑一遍动画
-      });
-    }
-    // 独立的路径导航渲染引擎
-    function renderContentPathway() {
-      const pathway = document.getElementById('content-pathway');
-      if (!pathway || isHome) return;
-      const themeMapping = {'古代旅行': '旅', '行': '行', '路': '路', '驿': '驿', '游': '游', '记': '记'};
-      const urlSegments = decodeURIComponent(window.location.pathname).replace('{{ site.baseurl }}', '').split('/').filter(p => p && p !== 'docs' && p !== 'index.html');
-      let navHtml = "";
-      urlSegments.forEach((segment, idx) => {
-        const slug = segment.replace('.html', '');
-        const name = themeMapping[slug] || slug;
-        const targetUrl = '{{ site.baseurl }}/docs/' + urlSegments.slice(0, idx+1).join('/') + (idx === urlSegments.length - 1 && !window.location.pathname.endsWith('/') ? '.html' : '/');
-        navHtml += `<a href="${targetUrl}" class="path-node">${name}</a>`;
-        if (idx < urlSegments.length - 1) navHtml += `<span class="path-divider">/</span>`;
-      });
-      pathway.innerHTML = navHtml;
-    }
-    if (!isHome) { window.addEventListener('load', renderContentPathway); }
   </script>
 </body>
 </html>
