@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>{{ page.name | remove: ".md" }} | Hirarchealogy</title>
+  <title>{{ page.title | default: page.name | remove: ".md" }} | Hirarchealogy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root { 
@@ -17,7 +17,7 @@
     * { box-sizing: border-box; }
     body { font-family: "Georgia", "Times New Roman", serif; margin: 0; display: flex; flex-direction: column; height: 100vh; background: var(--bg-main); overflow: hidden; }
 
-    /* 开屏页 - 默认隐藏，防止闪烁 */
+    /* 开屏页 */
     #splash-screen {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       z-index: 9999; display: none; align-items: center; justify-content: center;
@@ -80,6 +80,7 @@
     #content-wrapper { flex-grow: 1; overflow-y: auto; padding: 0 55px; scroll-behavior: smooth; }
     .container { max-width: 850px; margin: 3rem auto; background: var(--card-bg); padding: 5rem 4rem; box-shadow: 0 20px 80px rgba(0,0,0,0.06); border-radius: 2px; }
     #markdown-body { font-size: 15px; color: #333; line-height: 1.8; }
+    /* 修正标题显示逻辑：优先使用 title */
     #markdown-body h1 { font-size: 1.8rem; color: var(--accent); margin-bottom: 2.5rem; text-align: center; font-family: "Songti SC", serif; }
     
     /* 首页球体 */
@@ -108,7 +109,6 @@
   </style>
 </head>
 <body>
-  <!-- 修改点：splash 默认不显示，避免闪烁 -->
   <div id="splash-screen"><div class="splash-hint">EXPLORE THE DEPTHS</div></div>
   <div id="ritual-container" style="display:none;"><div class="portal-orb ritual-orb-large" id="ritual-trigger"><div class="orb-title" id="ritual-text" style="color: #800020 !important;">旅</div></div></div>
 
@@ -129,7 +129,9 @@
     </aside></div>
     <div id="content-wrapper"><main class="container">
       <div id="markdown-body">
-        {% if page.url != "/" and page.url != "/index.html" %}<h1>{{ page.name | remove: ".md" }}</h1>{% endif %}
+        {% if page.url != "/" and page.url != "/index.html" %}
+          <h1>{{ page.title | default: page.name | remove: ".md" }}</h1>
+        {% endif %}
         {{ content }}
       </div>
       {% if page.url != "/" and page.url != "/index.html" %}<div id="discovery-section" style="margin-top: 80px; text-align:center;"><div id="discovery-nodes" class="orb-grid" style="gap:25px;"></div></div>{% endif %}
@@ -140,12 +142,10 @@
     const pages = [{% for p in site.pages %}{ "path": {{ p.path | jsonify }}, "url": {{ p.url | relative_url | jsonify }}, "name": "{{ p.name | remove: '.md' }}" },{% endfor %}];
     const isHome = (window.location.pathname.endsWith("/") || window.location.pathname.endsWith("/index.html") || window.location.pathname === "{{ site.baseurl }}/");
 
-    // 核心修复逻辑：极其严格的开屏判定
     const splash = document.getElementById('splash-screen');
     const hasSplashed = sessionStorage.getItem('splashed_v7');
     const ritualDone = sessionStorage.getItem('ritual_done_v1.3');
 
-    // 只有在首页且未显示过开屏时，才展示
     if (isHome && !hasSplashed) {
       splash.style.display = 'flex';
     } else {
@@ -158,7 +158,6 @@
       if(isHome && !ritualDone) runRitual();
     };
 
-    // 仪式逻辑
     if(isHome && hasSplashed && !ritualDone) { runRitual(); }
     function runRitual() {
       const ritualCont = document.getElementById('ritual-container');
