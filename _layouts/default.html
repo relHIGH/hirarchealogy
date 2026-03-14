@@ -30,7 +30,7 @@
 
     .main-wrapper { display: flex; flex-grow: 1; overflow: hidden; position: relative; }
 
-    /* 左右侧栏保持 */
+    /* 左右侧栏保持稳定 */
     #sidebar-container {
       position: absolute; top: 0; left: 0; height: 100%; z-index: 1500; width: var(--sidebar-width);
       transform: translateX(calc(-1 * var(--sidebar-width) + var(--sidebar-peek)));
@@ -53,38 +53,30 @@
       -webkit-mask-size: 100% 100%;
       cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 100px;
     }
-    #right-sidebar-trigger:hover { transform: translateX(0); background: rgba(128, 0, 32, 0.85); }
+    #right-sidebar-trigger:hover { transform: translateX(0); background: rgba(128, 0, 32, 0.35); }
     .back-text { opacity: 0; transition: 0.8s; font-size: 28px; color: white; font-family: "Songti SC", serif; margin-bottom: 20px; }
     #right-sidebar-trigger:hover .back-text { opacity: 1; }
 
-    /* 【旅回 1.3.3】安全仪式设计：深色模式下的发光球体 */
-    #ritual-container { 
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-      display: flex; justify-content: center; align-items: center; 
-      background: #1a1a1a; /* 彻底改为深色背景，杜绝国旗关联 */
-      z-index: 1000; transition: 0.8s ease; 
-    }
+    /* 【旅回 1.3.4】仪式设计：镂空圆环方案，彻底杜绝实心红球 */
+    #ritual-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: var(--bg-main); z-index: 1000; }
     .ritual-orb-large { 
-      width: 240px; height: 240px; border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, #2a2a2a, #000); /* 深色晶体感 */
-      border: 1px solid rgba(128,0,32,0.5);
-      box-shadow: 0 0 40px rgba(0,0,0,0.5);
-      cursor: pointer; transition: 0.5s;
-      display: flex; justify-content: center; align-items: center;
+      width: 220px; height: 220px; border-radius: 50%;
+      background: #fff; border: 1px solid #e0dbd0; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+      cursor: pointer; transition: 0.5s; display: flex; justify-content: center; align-items: center;
     }
-    .ritual-orb-large #ritual-text { 
-      color: #d4af37 !important; /* 文字改为古铜金 */
-      font-weight: bold; font-size: 3.5rem; font-family: "Songti SC", serif;
-      text-shadow: 0 0 20px rgba(212,175,55,0.3);
-    }
+    .ritual-orb-large #ritual-text { color: var(--accent) !important; font-weight: bold; font-size: 3rem; font-family: "Songti SC", serif; }
+    
+    /* 锁定态：镂空双环效果，绝非实心红球 */
     .ritual-orb-large.locked { 
-      background: var(--accent); 
-      border-color: #fff;
-      box-shadow: 0 0 60px rgba(128,0,32,0.6); 
+      border: 4px double var(--accent); 
+      background: #fff; /* 保持白色背景 */
+      box-shadow: 0 0 40px rgba(128,0,32,0.15);
+      animation: ritual-breath 3s infinite;
     }
-    .ritual-orb-large.locked #ritual-text { color: white !important; text-shadow: none; }
+    @keyframes ritual-breath { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.05); opacity: 0.8; } }
 
-    /* 正文样式 */
+    /* 内容样式 */
     #content-wrapper { flex-grow: 1; overflow-y: auto; padding: 0 55px; background: var(--bg-main); }
     .container { max-width: 850px; margin: 3rem auto; background: var(--card-bg); padding: 5rem 4rem; box-shadow: 0 20px 80px rgba(0,0,0,0.06); border-radius: 2px; }
     #markdown-body { font-size: 15px; color: #333; line-height: 1.8; }
@@ -101,12 +93,7 @@
 </head>
 <body>
   <div id="splash-screen"><div class="splash-hint">EXPLORE THE DEPTHS</div></div>
-  
-  <div id="ritual-container" style="display:none;">
-    <div class="ritual-orb-large" id="ritual-trigger">
-      <div id="ritual-text">旅</div>
-    </div>
-  </div>
+  <div id="ritual-container" style="display:none;"><div class="ritual-orb-large" id="ritual-trigger"><div id="ritual-text">旅</div></div></div>
 
   <header>
     <a href="{{ site.baseurl }}/" class="header-logo">HIRARCHEALOGY</a>
