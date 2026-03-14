@@ -87,6 +87,17 @@
     #markdown-body h1 { font-size: 1.8rem; color: var(--accent); margin-bottom: 2.5rem; text-align: center; font-family: "Songti SC", serif; }
     
     footer { padding: 4rem 0; text-align: center; color: #aaa; font-size: 0.7rem; letter-spacing: 3px; }
+    /* 路径页眉：独立隔离样式 */
+    #content-pathway {
+      display: flex; gap: 8px; margin-bottom: 25px; margin-top: -30px;
+      font-family: "Songti SC", serif; font-size: 11px;
+      opacity: 0.3; transition: 0.4s;
+      justify-content: flex-start; letter-spacing: 1px;
+    }
+    #content-pathway:hover { opacity: 1; }
+    .path-node { text-decoration: none; color: var(--accent); }
+    .path-node:hover { border-bottom: 1px solid var(--accent); }
+    .path-divider { color: #ddd; }
   </style>
 </head>
 <body>
@@ -108,7 +119,10 @@
       <a href="{{ site.baseurl }}/docs/饮/" class="nav-item-wrapper">饮</a>
       <a href="{{ site.baseurl }}/docs/感/" class="nav-item-wrapper">感</a>
     </div>
-    <div id="content-wrapper"><main class="container"><div id="markdown-body">{{ content }}</div>
+    <div id="content-wrapper">
+      <main class="container">
+        <div id="content-pathway"></div>
+        <div id="markdown-body">{{ content }}</div>
       {% if page.url != "/" and page.url != "/index.html" %}<div id="discovery-section" style="margin-top: 80px; text-align:center;"><div id="discovery-nodes" class="orb-grid" style="gap:25px;"></div></div>{% endif %}
     </main><footer>HIRARCHEALOGY &copy; {{ site.time | date: "%Y" }}</footer></div>
   </div>
@@ -187,6 +201,23 @@
         runOrbRitual(); // 动态生成的球体也跑一遍动画
       });
     }
+    // 独立的路径导航渲染引擎
+    function renderContentPathway() {
+      const pathway = document.getElementById('content-pathway');
+      if (!pathway || isHome) return;
+      const themeMapping = {'古代旅行': '旅', '行': '行', '路': '路', '驿': '驿', '游': '游', '记': '记'};
+      const urlSegments = decodeURIComponent(window.location.pathname).replace('{{ site.baseurl }}', '').split('/').filter(p => p && p !== 'docs' && p !== 'index.html');
+      let navHtml = "";
+      urlSegments.forEach((segment, idx) => {
+        const slug = segment.replace('.html', '');
+        const name = themeMapping[slug] || slug;
+        const targetUrl = '{{ site.baseurl }}/docs/' + urlSegments.slice(0, idx+1).join('/') + (idx === urlSegments.length - 1 && !window.location.pathname.endsWith('/') ? '.html' : '/');
+        navHtml += `<a href="${targetUrl}" class="path-node">${name}</a>`;
+        if (idx < urlSegments.length - 1) navHtml += `<span class="path-divider">/</span>`;
+      });
+      pathway.innerHTML = navHtml;
+    }
+    if (!isHome) { window.addEventListener('load', renderContentPathway); }
   </script>
 </body>
 </html>
