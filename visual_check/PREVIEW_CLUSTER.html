@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { background: #f0ede4; font-family: "Georgia", serif; margin: 0; padding: 50px; }
+    .container { max-width: 800px; margin: 0 auto; background: white; padding: 80px 60px; box-shadow: 0 20px 80px rgba(0,0,0,0.06); position: relative; }
+    #trajectory-line { display: flex; align-items: center; margin-bottom: 30px; margin-top: -55px; opacity: 0.8; font-size: 14px; color: #800020; font-family: "Songti SC", serif; }
+    .traj-node-container { display: flex; flex-direction: column; align-items: center; }
+    .traj-mesh-dots { display: flex; gap: 3px; margin-top: 2px; }
+    .mesh-dot { width: 3px; height: 3px; background: #800020; border-radius: 50%; opacity: 0.4; }
+    .traj-line-svg { width: 45px; height: 2px; overflow: visible; display: flex; align-items: center; margin: 0 5px; }
+    .traj-line-svg line { stroke: #800020; stroke-width: 1; stroke-dasharray: 3,3; }
+    h1 { color: #800020; text-align: center; font-family: "Songti SC", serif; font-size: 28px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="trajectory-line">
+      <div class="traj-node-container">
+        <span>旅</span>
+        <div class="traj-mesh-dots"><div class="mesh-dot"></div><div class="mesh-dot"></div></div>
+      </div>
+      <div class="traj-line-svg"><svg width="45" height="2"><line x1="0" y1="1" x2="45" y2="1"></line></svg></div>
+      <div class="traj-node-container">
+        <span>行</span>
+        <div class="traj-mesh-dots"><div class="mesh-dot"></div><div class="mesh-dot"></div><div class="mesh-dot"></div></div>
+      </div>
+      <div class="traj-line-svg"><svg width="45" height="2"><line x1="0" y1="1" x2="45" y2="1"></line></svg></div>
+      <div class="traj-node-container">
+        <span>徒行</span>
+        <div class="traj-mesh-dots"><div class="mesh-dot"></div></div>
+      </div>
+    </div>
+    <h1>徒行</h1>
+    <p>自检结论：全平直虚线连接，每个文字下方带有微小的“网状星簇点”，体现了知识节点的连接密度。</p>
+  </div>
+</body>
+</html>
