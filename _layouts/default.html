@@ -17,13 +17,14 @@
     * { box-sizing: border-box; }
     body { font-family: "Georgia", "Times New Roman", serif; margin: 0; display: flex; flex-direction: column; height: 100vh; background: var(--bg-main); overflow: hidden; }
 
-    /* 开屏页 */
+    /* 开屏页 - 默认隐藏，防止闪烁 */
     #splash-screen {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      z-index: 9999; display: flex; align-items: center; justify-content: center;
+      z-index: 9999; display: none; align-items: center; justify-content: center;
       cursor: pointer; transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1);
       background: linear-gradient(135deg, #800020, #1a1a1a);
     }
+    #splash-screen.active { display: flex; }
     #splash-screen.hidden { transform: translateY(-100%); opacity: 0; pointer-events: none; }
     .splash-hint { color: white; font-size: 0.9rem; letter-spacing: 4px; font-family: sans-serif; opacity: 0.7; }
 
@@ -40,9 +41,10 @@
 
     .main-wrapper { display: flex; flex-grow: 1; overflow: hidden; position: relative; }
 
-    /* 左右侧栏 */
+    /* 左侧 Vase */
     #sidebar-container {
-      position: absolute; top: 0; left: 0; height: 100%; z-index: 1500; width: var(--sidebar-width);
+      position: absolute; top: 0; left: 0; height: 100%; z-index: 1500;
+      width: var(--sidebar-width);
       transform: translateX(calc(-1 * var(--sidebar-width) + var(--sidebar-peek)));
       transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.8s;
       background: rgba(100, 0, 20, 0.65);
@@ -51,41 +53,23 @@
       -webkit-mask-size: 100% 100%;
     }
     #sidebar-container:hover { transform: translateX(0); background: rgba(30, 0, 5, 0.98); }
+
+    /* 右侧回 */
     #right-sidebar-trigger {
-      position: absolute; top: 0; right: 0; height: 100%; z-index: 1500; width: 120px;
-      transform: translateX(calc(120px - 55px)); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      position: absolute; top: 0; right: 0; height: 100%; z-index: 1500;
+      width: 120px;
+      transform: translateX(calc(120px - 55px));
+      transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
       background: rgba(128, 0, 32, 0.08); 
       mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M100,0 L75,0 C65,5 95,10 90,20 C80,35 25,35 25,45 C25,55 65,55 60,65 C40,80 0,80 0,85 C0,95 50,100 70,100 L100,100 Z" fill="black"/></svg>');
+      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M100,0 L75,0 C65,5 95,10 90,20 C80,35 25,35 25,45 C25,55 65,55 60,65 C40,80 0,80 0,85 C0,95 50,100 70,100 L100,100 Z" fill="black"/></svg>');
       -webkit-mask-size: 100% 100%;
-      cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 100px;
+      cursor: pointer;
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 100px;
     }
-    #right-sidebar-trigger:hover { transform: translateX(0); background: rgba(128, 0, 32, 0.85); }
+    #right-sidebar-trigger:hover { transform: translateX(0); background: rgba(128, 0, 32, 0.35); }
 
-    /* 球体系统 1.3.1 */
-    .orb-grid { display: flex; justify-content: center; gap: 45px; flex-wrap: wrap; margin-top: 60px; }
-    .portal-orb { 
-      width: 180px; height: 180px; border-radius: 50%; 
-      background: radial-gradient(circle at 30% 30%, #fff, #f8f8f8); 
-      border: 1px solid #e0dbd0; display: flex; flex-direction: column; justify-content: center; align-items: center; 
-      cursor: pointer; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-decoration: none !important;
-    }
-    .portal-orb:hover { transform: translateY(-15px) scale(1.08); background: var(--accent); border-color: transparent; box-shadow: 0 30px 60px rgba(128,0,32,0.3); }
-    .portal-orb:hover .orb-title { color: white; }
-    .orb-title { color: var(--accent); font-size: 2.4rem; font-family: "Songti SC", serif; transition: 0.4s; pointer-events: none; }
-    
-    /* 单球仪式特供 */
-    #ritual-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: var(--bg-main); z-index: 1000; transition: 0.8s ease; }
-    .ritual-orb-large { width: 220px; height: 220px; box-shadow: 0 20px 60px rgba(128,0,32,0.1); border: 2px solid var(--accent); }
-    .ritual-orb-large.locked { animation: orb-breath 3s infinite; background: var(--accent); }
-    .ritual-orb-large.locked .orb-title { color: white; }
-
-    .portal-orb.active-orb { opacity: 1; transform: translateY(0) scale(1); }
-    .portal-orb.stagger { opacity: 0; transform: translateY(40px) scale(0.8); }
-    .portal-orb.scanning { border-color: var(--accent); border-width: 2.5px; box-shadow: 0 0 30px rgba(128,0,32,0.3); background: #fffcf5; transition: all 0.08s ease; }
-    .portal-orb.highlight { border-color: var(--accent); border-width: 2px; animation: orb-breath 3s infinite; }
-    @keyframes orb-breath { 0%, 100% { box-shadow: 0 10px 30px rgba(0,0,0,0.05); } 50% { box-shadow: 0 0 50px rgba(128,0,32,0.3); transform: scale(1.02); } }
-
+    /* 侧栏文字位置 */
     aside { padding-top: 45vh; padding-left: 20px; padding-right: 40px; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
     .nav-item-wrapper { text-decoration: none; color: rgba(255,255,255,0.5); font-size: 32px; font-family: "Songti SC", serif; transition: 0.4s; letter-spacing: 2px; }
     #sidebar-container:hover .nav-item-wrapper { color: white; }
@@ -98,12 +82,35 @@
     #markdown-body { font-size: 15px; color: #333; line-height: 1.8; }
     #markdown-body h1 { font-size: 1.8rem; color: var(--accent); margin-bottom: 2.5rem; text-align: center; font-family: "Songti SC", serif; }
     
+    /* 首页球体 */
+    .orb-grid { display: flex; justify-content: center; gap: 45px; flex-wrap: wrap; margin-top: 60px; }
+    .portal-orb { 
+      width: 180px; height: 180px; border-radius: 50%; 
+      background: radial-gradient(circle at 30% 30%, #fff, #f8f8f8); border: 1px solid #e0dbd0; 
+      display: flex; flex-direction: column; justify-content: center; align-items: center; 
+      cursor: pointer; transition: 0.6s; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-decoration: none !important;
+    }
+    .portal-orb:hover { transform: translateY(-15px) scale(1.08); background: var(--accent); border-color: transparent; box-shadow: 0 30px 60px rgba(128,0,32,0.3); }
+    .portal-orb:hover .orb-title { color: white; }
+    .orb-title { color: var(--accent); font-size: 2.4rem; font-family: "Songti SC", serif; transition: 0.4s; pointer-events: none; }
+    .portal-orb.active-orb { opacity: 1 !important; transform: translateY(0) !important; }
+    .portal-orb.highlight { border-color: var(--accent); border-width: 2px; animation: orb-breath 3s infinite; }
+    @keyframes orb-breath { 0%, 100% { box-shadow: 0 10px 30px rgba(0,0,0,0.05); } 50% { box-shadow: 0 0 50px rgba(128,0,32,0.3); transform: scale(1.02); } }
+
+    /* 仪式感球体 */
+    #ritual-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: var(--bg-main); z-index: 1000; transition: 0.8s ease; }
+    .ritual-orb-large { width: 220px; height: 220px; border: 2px solid var(--accent); background: #fff; cursor: pointer; }
+    .ritual-orb-large #ritual-text { color: #800020 !important; font-weight: bold; font-size: 3rem; }
+    .ritual-orb-large.locked { background: var(--accent); }
+    .ritual-orb-large.locked #ritual-text { color: white !important; }
+
     footer { padding: 4rem 0; text-align: center; color: #aaa; font-size: 0.7rem; letter-spacing: 3px; }
   </style>
 </head>
 <body>
+  <!-- 修改点：splash 默认不显示，避免闪烁 -->
   <div id="splash-screen"><div class="splash-hint">EXPLORE THE DEPTHS</div></div>
-  <div id="ritual-container" style="display:none;"><div class="portal-orb ritual-orb-large" id="ritual-trigger"><div class="orb-title" id="ritual-text">旅</div></div></div>
+  <div id="ritual-container" style="display:none;"><div class="portal-orb ritual-orb-large" id="ritual-trigger"><div class="orb-title" id="ritual-text" style="color: #800020 !important;">旅</div></div></div>
 
   <header>
     <a href="{{ site.baseurl }}/" class="header-logo">HIRARCHEALOGY</a>
@@ -121,81 +128,67 @@
       <a href="{{ site.baseurl }}/docs/感/" class="nav-item-wrapper">感</a>
     </aside></div>
     <div id="content-wrapper"><main class="container">
-      <div id="markdown-body">{{ content }}</div>
-      {% if page.url != "/" and page.url != "/index.html" %}
-      <div id="discovery-section" style="margin-top: 80px; text-align:center;"><div id="discovery-nodes" class="orb-grid" style="gap:25px;"></div></div>
-      {% endif %}
+      <div id="markdown-body">
+        {% if page.url != "/" and page.url != "/index.html" %}<h1>{{ page.name | remove: ".md" }}</h1>{% endif %}
+        {{ content }}
+      </div>
+      {% if page.url != "/" and page.url != "/index.html" %}<div id="discovery-section" style="margin-top: 80px; text-align:center;"><div id="discovery-nodes" class="orb-grid" style="gap:25px;"></div></div>{% endif %}
     </main><footer>HIRARCHEALOGY &copy; {{ site.time | date: "%Y" }}</footer></div>
   </div>
   <script>
     function clean(str) { return str ? str.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, "").trim() : ""; }
-    const pages = [{% for p in site.pages %}{ "path": {{ p.path | jsonify }}, "url": {{ p.url | relative_url | jsonify }}, "name": clean({{ p.name | remove: ".md" | jsonify }}) },{% endfor %}];
-    const isHome = (window.location.pathname === "{{ site.baseurl }}/" || window.location.pathname === "{{ site.baseurl }}/index.html" || window.location.pathname === "{{ site.baseurl }}");
+    const pages = [{% for p in site.pages %}{ "path": {{ p.path | jsonify }}, "url": {{ p.url | relative_url | jsonify }}, "name": "{{ p.name | remove: '.md' }}" },{% endfor %}];
+    const isHome = (window.location.pathname.endsWith("/") || window.location.pathname.endsWith("/index.html") || window.location.pathname === "{{ site.baseurl }}/");
 
-    // 1. 仪式感管理逻辑
-    const ritualCont = document.getElementById('ritual-container');
-    const ritualTrigger = document.getElementById('ritual-trigger');
-    const ritualText = document.getElementById('ritual-text');
+    // 核心修复逻辑：极其严格的开屏判定
     const splash = document.getElementById('splash-screen');
-    const hasInit = sessionStorage.getItem('ritual_v1.3.1');
+    const hasSplashed = sessionStorage.getItem('splashed_v7');
+    const ritualDone = sessionStorage.getItem('ritual_done_v1.3');
 
-    if (isHome && !hasInit) {
-      ritualCont.style.display = 'flex';
-      const themes = [
-        { char: '旅', url: '{{ site.baseurl }}/docs/古代旅行/' },
-        { char: '戏', url: '{{ site.baseurl }}/docs/戏/' },
-        { char: '饮', url: '{{ site.baseurl }}/docs/饮/' },
-        { char: '感', url: '{{ site.baseurl }}/docs/感/' }
-      ];
-      let ci = 0; let count = 0; let maxTicks = 12 + Math.floor(Math.random() * 5);
-      
-      function runMono() {
-        ritualText.innerText = themes[ci % 4].char;
-        ci++; count++;
-        if (count < maxTicks) {
-          setTimeout(runMono, 50 + (Math.pow(count, 2) * 2)); // 渐慢
-        } else {
-          const final = themes[(ci-1) % 4];
-          ritualTrigger.classList.add('locked');
-          ritualTrigger.onclick = () => {
-            sessionStorage.setItem('ritual_v1.3.1', 'true');
-            window.location.href = final.url;
-          };
-        }
-      }
-      setTimeout(runMono, 1000);
+    // 只有在首页且未显示过开屏时，才展示
+    if (isHome && !hasSplashed) {
+      splash.style.display = 'flex';
+    } else {
+      splash.style.display = 'none';
     }
 
-    if (!isHome || sessionStorage.getItem('splashed_v7')) { splash.style.display = 'none'; }
-    splash.onclick = () => { splash.classList.add('hidden'); sessionStorage.setItem('splashed_v7', 'true'); if(isHome && hasInit) runSelectionRitual(); };
-    if (isHome && hasInit && splash.style.display === 'none') { window.onload = runSelectionRitual; }
+    splash.onclick = () => {
+      splash.classList.add('hidden');
+      sessionStorage.setItem('splashed_v7', 'true');
+      if(isHome && !ritualDone) runRitual();
+    };
 
-    function runSelectionRitual() {
-      const orbs = document.querySelectorAll('.portal-orb:not(.ritual-orb-large)');
-      orbs.forEach((orb, i) => { setTimeout(() => orb.classList.add('active-orb'), i * 60); });
-      let count = 0; let maxTicks = 6; let currentIdx = -1;
-      function tick() {
-        if (currentIdx >= 0) orbs[currentIdx].classList.remove('scanning');
-        currentIdx = (currentIdx + 1) % orbs.length; orbs[currentIdx].classList.add('scanning');
-        if (++count < maxTicks) { setTimeout(tick, 100 + (count * 60)); }
-        else { setTimeout(() => { orbs[currentIdx].classList.remove('scanning'); orbs[currentIdx].classList.add('highlight'); }, 150); }
+    // 仪式逻辑
+    if(isHome && hasSplashed && !ritualDone) { runRitual(); }
+    function runRitual() {
+      const ritualCont = document.getElementById('ritual-container');
+      ritualCont.style.display = 'flex';
+      const th = [{char:'旅',url:'{{site.baseurl}}/docs/古代旅行/'},{char:'戏',url:'{{site.baseurl}}/docs/戏/'},{char:'饮',url:'{{site.baseurl}}/docs/饮/'},{char:'感',url:'{{site.baseurl}}/docs/感/'}];
+      let ci=0, count=0;
+      function runM() {
+        document.getElementById('ritual-text').textContent = th[ci%4].char; ci++; count++;
+        if (count < 12) { setTimeout(runM, 50+(Math.pow(count,2)*2)); }
+        else { 
+          const t = document.getElementById('ritual-trigger'); t.classList.add('locked');
+          t.onclick = () => { sessionStorage.setItem('ritual_done_v1.3','true'); window.location.href=th[(ci-1)%4].url; };
+        }
       }
-      setTimeout(tick, orbs.length * 60 + 100);
+      setTimeout(runM, 1000);
     }
 
     const md = document.getElementById('markdown-body');
     md.innerHTML = md.innerHTML.replace(/\[\[(.*?)\]\]/g, (m, c) => {
-      let [t, l] = c.split('|'); let target = clean(t.split('#')[0]);
-      const f = pages.find(p => clean(p.name) === target);
+      let [t, l] = c.split('|'); let target = t.split('#')[0].trim();
+      const f = pages.find(p => clean(p.name) === clean(target));
       return f ? `<a style="color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(128,0,32,0.2);" href="${f.url}">${l || target}</a>` : `<span style="color:#999">[[${c}]]</span>`;
     });
 
     if (!isHome) {
       fetch("{{ site.baseurl }}/assets/graph_data.json").then(res => res.json()).then(data => {
-        const cn = clean("{{ page.name | remove: '.md' }}");
-        const neighbors = data.links.filter(l => clean(l.source) === cn || clean(l.target) === cn).map(l => clean(l.source) === cn ? clean(l.target) : clean(l.source));
-        const un = [...new Set(neighbors)]; const container = document.getElementById('discovery-nodes');
-        un.forEach(name => { const found = pages.find(p => clean(p.name) === name); if (found) { const a = document.createElement('a'); a.href = found.url; a.className = 'portal-orb active-orb'; a.style.width="100px"; a.style.height="100px"; a.style.opacity="1"; a.style.transform="scale(1)"; a.innerHTML = `<div class="orb-title" style="font-size:1.2rem;">${found.name.charAt(0)}</div>`; container.appendChild(a); } });
+        const cn = "{{ page.name | remove: '.md' }}";
+        const ns = data.links.filter(l => clean(l.source) === clean(cn) || clean(l.target) === clean(cn)).map(l => clean(l.source) === clean(cn) ? clean(l.target) : clean(l.source));
+        const un = [...new Set(ns)]; const cont = document.getElementById('discovery-nodes');
+        un.forEach(n => { const f = pages.find(p => clean(p.name) === clean(n)); if (f) { const a = document.createElement('a'); a.href = f.url; a.className = 'portal-orb active-orb'; a.style.width="100px"; a.style.height="100px"; a.style.opacity="1"; a.style.transform="scale(1)"; a.innerHTML = `<div class="orb-title" style="font-size:1.2rem;">${f.name.charAt(0)}</div>`; cont.appendChild(a); } });
       });
     }
   </script>
