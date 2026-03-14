@@ -6,12 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root { 
-      --sidebar-width: 310px; 
-      --sidebar-peek: 55px; 
-      --header-height: 60px;
-      --accent: #800020;  
-      --bg-main: #f0ede4; 
-      --card-bg: #ffffff;
+      --sidebar-width: 310px; --sidebar-peek: 55px; 
+      --header-height: 60px; --accent: #800020;  
+      --bg-main: #f0ede4; --card-bg: #ffffff;
     }
     * { box-sizing: border-box; }
     body { font-family: "Georgia", "Times New Roman", serif; margin: 0; height: 100vh; background: var(--bg-main); overflow: hidden; }
@@ -30,7 +27,7 @@
 
     .main-wrapper { display: flex; flex-grow: 1; overflow: hidden; position: relative; }
 
-    /* 左右侧栏保持稳定 */
+    /* 左右侧栏 */
     #sidebar-container {
       position: absolute; top: 0; left: 0; height: 100%; z-index: 1500; width: var(--sidebar-width);
       transform: translateX(calc(-1 * var(--sidebar-width) + var(--sidebar-peek)));
@@ -57,29 +54,30 @@
     .back-text { opacity: 0; transition: 0.8s; font-size: 28px; color: white; font-family: "Songti SC", serif; margin-bottom: 20px; }
     #right-sidebar-trigger:hover .back-text { opacity: 1; }
 
-    /* 【单球仪式】保持不动 */
+    /* 【单球仪式】双环锁定，白底 */
     #ritual-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: var(--bg-main); z-index: 1000; }
     .ritual-orb-large { width: 220px; height: 220px; border-radius: 50%; background: #fff; border: 1px solid #e0dbd0; cursor: pointer; transition: 0.5s; display: flex; justify-content: center; align-items: center; }
-    #ritual-text { color: var(--accent) !important; font-weight: bold; font-size: 3rem; font-family: "Songti SC", serif; }
+    #ritual-text { color: var(--accent) !important; font-weight: bold; font-size: 3.5rem; font-family: "Songti SC", serif; }
     .ritual-orb-large.locked { border: 4px double var(--accent); background: #fff; animation: ritual-breath 3s infinite; }
     @keyframes ritual-breath { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
-    /* 【多球界面】专项修正 */
+    /* 【全局球体系统】1.3.6 核心 */
     .orb-grid { display: flex; justify-content: center; gap: 45px; flex-wrap: wrap; margin-top: 60px; }
     .portal-orb { 
       width: 180px; height: 180px; border-radius: 50%; 
       background: radial-gradient(circle at 30% 30%, #fff, #f8f8f8); border: 1px solid #e0dbd0; 
       display: flex; flex-direction: column; justify-content: center; align-items: center; 
-      cursor: pointer; transition: 0.6s; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-decoration: none !important;
-      opacity: 0.1; transform: translateY(20px); /* 初始微显，防止闪烁感 */
+      cursor: pointer; transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+      text-decoration: none !important; opacity: 0; transform: translateY(30px); /* 默认隐藏，等待动画 */
     }
     .portal-orb.active-orb { opacity: 1 !important; transform: translateY(0) !important; }
-    .portal-orb:hover { background: var(--accent); border-color: transparent; box-shadow: 0 30px 60px rgba(128,0,32,0.3); }
+    .portal-orb:hover { background: var(--accent) !important; border-color: transparent !important; box-shadow: 0 30px 60px rgba(128,0,32,0.3); }
     
-    /* 核心文字修正 */
     .orb-title { color: var(--accent); font-size: 2.4rem; font-family: "Songti SC", serif; transition: 0.4s; pointer-events: none; }
     .portal-orb:hover .orb-title { color: white !important; }
     
+    /* 扫选与呼吸灯（全局适用） */
+    .portal-orb.scanning { border-color: var(--accent); border-width: 3px; box-shadow: 0 0 30px rgba(128,0,32,0.4); background: #fffcf5; }
     .portal-orb.highlight { border-color: var(--accent); border-width: 2px; animation: orb-breath 3s infinite; }
     @keyframes orb-breath { 0%, 100% { box-shadow: 0 10px 30px rgba(0,0,0,0.05); } 50% { box-shadow: 0 0 50px rgba(128,0,32,0.3); } }
 
@@ -119,6 +117,29 @@
     const pages = [{% for p in site.pages %}{ "path": {{ p.path | jsonify }}, "url": {{ p.url | relative_url | jsonify }}, "name": "{{ p.name | remove: '.md' }}" },{% endfor %}];
     const isHome = (window.location.pathname.endsWith("/") || window.location.pathname.endsWith("/index.html") || window.location.pathname === "{{ site.baseurl }}/");
 
+    // 统一动画引擎：Stagger & Ritual
+    function runOrbRitual() {
+      const orbs = document.querySelectorAll('.portal-orb:not(.ritual-orb-large)');
+      if (orbs.length === 0) return;
+      
+      // 1. Stagger 入场
+      orbs.forEach((orb, i) => { setTimeout(() => orb.classList.add('active-orb'), i * 100); });
+      
+      // 2. 如果是索引页，执行闪选锁定
+      const isIndex = (orbs.length > 1);
+      if (isIndex) {
+        let count = 0, currentIdx = -1;
+        function tick() {
+          if (currentIdx >= 0) orbs[currentIdx].classList.remove('scanning');
+          currentIdx = (currentIdx + 1) % orbs.length; orbs[currentIdx].classList.add('scanning');
+          if (++count < 6) { setTimeout(tick, 100 + (count * 60)); }
+          else { setTimeout(() => { orbs[currentIdx].classList.remove('scanning'); orbs[currentIdx].classList.add('highlight'); }, 150); }
+        }
+        setTimeout(tick, orbs.length * 100 + 200);
+      }
+    }
+
+    // 仪式逻辑
     const splash = document.getElementById('splash-screen');
     const ritualCont = document.getElementById('ritual-container');
     const ritualText = document.getElementById('ritual-text');
@@ -126,10 +147,14 @@
     const ritualDone = sessionStorage.getItem('ritual_done_v1.3');
 
     if (isHome && !hasSplashed) { splash.style.display = 'flex'; } else { splash.style.display = 'none'; }
-    splash.onclick = () => { splash.classList.add('hidden'); sessionStorage.setItem('splashed_v7', 'true'); if(isHome && !ritualDone) startRitual(); else if(isHome) runOrbs(); };
+    splash.onclick = () => {
+      splash.classList.add('hidden');
+      sessionStorage.setItem('splashed_v7', 'true');
+      if (isHome && !ritualDone) startRitual(); else runOrbRitual();
+    };
 
-    if(isHome && hasSplashed && !ritualDone) { startRitual(); }
-    if(isHome && hasSplashed && ritualDone) { setTimeout(runOrbs, 100); }
+    if (isHome && hasSplashed && !ritualDone) startRitual();
+    if ((isHome && hasSplashed && ritualDone) || (!isHome)) { window.onload = runOrbRitual; }
 
     function startRitual() {
       ritualCont.style.display = 'flex';
@@ -139,15 +164,12 @@
         ritualText.textContent = th[ci%4].char; ci++; count++;
         if (count < 12) { setTimeout(run, 50 + (Math.pow(count, 2) * 2)); }
         else {
-          const t = document.getElementById('ritual-trigger');
-          t.classList.add('locked');
+          const t = document.getElementById('ritual-trigger'); t.classList.add('locked');
           t.onclick = () => { sessionStorage.setItem('ritual_done_v1.3','true'); window.location.href = th[(ci-1)%4].url; };
         }
       }
       setTimeout(run, 800);
     }
-
-    function runOrbs() { document.querySelectorAll('.portal-orb:not(.ritual-orb-large)').forEach((o, i) => { setTimeout(()=>o.classList.add('active-orb'), i*100); }); }
 
     const md = document.getElementById('markdown-body');
     md.innerHTML = md.innerHTML.replace(/\[\[(.*?)\]\]/g, (m, c) => {
@@ -161,7 +183,8 @@
         const cn = "{{ page.name | remove: '.md' }}";
         const ns = data.links.filter(l => clean(l.source) === clean(cn) || clean(l.target) === clean(cn)).map(l => clean(l.source) === clean(cn) ? clean(l.target) : clean(l.source));
         const un = [...new Set(ns)]; const cont = document.getElementById('discovery-nodes');
-        un.forEach(n => { const f = pages.find(p => clean(p.name) === clean(n)); if (f) { const a = document.createElement('a'); a.href = f.url; a.className = 'portal-orb active-orb'; a.style.width="100px"; a.style.height="100px"; a.style.opacity="1"; a.style.transform="scale(1)"; a.innerHTML = `<div class="orb-title" style="font-size:1.2rem;">${f.name.charAt(0)}</div>`; cont.appendChild(a); } });
+        un.forEach(n => { const f = pages.find(p => clean(p.name) === clean(n)); if (f) { const a = document.createElement('a'); a.href = f.url; a.className = 'portal-orb'; a.style.width="100px"; a.style.height="100px"; a.innerHTML = `<div class="orb-title" style="font-size:1.2rem;">${f.name.charAt(0)}</div>`; cont.appendChild(a); } });
+        runOrbRitual(); // 动态生成的球体也跑一遍动画
       });
     }
   </script>
