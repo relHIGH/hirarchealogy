@@ -40,7 +40,7 @@
 
     .main-wrapper { display: flex; flex-grow: 1; overflow: hidden; position: relative; }
 
-    /* 左右侧栏 */
+    /* 左侧 Vase */
     #sidebar-container {
       position: absolute; top: 0; left: 0; height: 100%; z-index: 1500; width: var(--sidebar-width);
       transform: translateX(calc(-1 * var(--sidebar-width) + var(--sidebar-peek)));
@@ -51,6 +51,8 @@
       -webkit-mask-size: 100% 100%;
     }
     #sidebar-container:hover { transform: translateX(0); background: rgba(30, 0, 5, 0.98); }
+
+    /* 右侧“回” */
     #right-sidebar-trigger {
       position: absolute; top: 0; right: 0; height: 100%; z-index: 1500; width: 120px;
       transform: translateX(calc(120px - 55px)); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -62,13 +64,13 @@
     }
     #right-sidebar-trigger:hover { transform: translateX(0); background: rgba(128, 0, 32, 0.85); }
 
-    /* 【旅回 1.1】统一球体系统 */
+    /* 【旅回 1.2】球体矩阵与扫描动画 */
     .orb-grid { display: flex; justify-content: center; gap: 45px; flex-wrap: wrap; margin-top: 60px; }
     .portal-orb { 
       width: 180px; height: 180px; border-radius: 50%; 
       background: radial-gradient(circle at 30% 30%, #fff, #f8f8f8); 
       border: 1px solid #e0dbd0; display: flex; flex-direction: column; justify-content: center; align-items: center; 
-      cursor: pointer; transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); 
+      cursor: pointer; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
       box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-decoration: none !important;
       opacity: 0; transform: translateY(40px) scale(0.8);
     }
@@ -77,9 +79,12 @@
     .portal-orb:hover .orb-title { color: white; }
     .orb-title { color: var(--accent); font-size: 2.4rem; font-family: "Songti SC", serif; transition: 0.4s; }
     
-    /* 随机点亮呼吸效果 */
+    /* 扫描中点亮态 */
+    .portal-orb.scanning { border-color: var(--accent); border-width: 2px; box-shadow: 0 0 30px rgba(128,0,32,0.2); transform: scale(1.05); background: #fffcf5; }
+    
+    /* 锁定呼吸态 */
     .portal-orb.highlight { border-color: var(--accent); border-width: 2px; animation: orb-breath 3s infinite; }
-    @keyframes orb-breath { 0%, 100% { box-shadow: 0 10px 30px rgba(0,0,0,0.05); } 50% { box-shadow: 0 0 50px rgba(128,0,32,0.2); } }
+    @keyframes orb-breath { 0%, 100% { box-shadow: 0 10px 30px rgba(0,0,0,0.05); } 50% { box-shadow: 0 0 50px rgba(128,0,32,0.3); transform: scale(1.02); } }
 
     aside { padding-top: 45vh; padding-left: 20px; padding-right: 40px; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
     .nav-item-wrapper { text-decoration: none; color: rgba(255,255,255,0.5); font-size: 32px; font-family: "Songti SC", serif; transition: 0.4s; letter-spacing: 2px; }
@@ -126,26 +131,44 @@
   <script>
     function clean(str) { return str ? str.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, "").trim() : ""; }
     const pages = [{% for p in site.pages %}{ "path": {{ p.path | jsonify }}, "url": {{ p.url | relative_url | jsonify }}, "name": clean({{ p.name | remove: ".md" | jsonify }}) },{% endfor %}];
-    const currentUrl = {{ page.url | relative_url | jsonify }};
     const isHome = (window.location.pathname === "{{ site.baseurl }}/" || window.location.pathname === "{{ site.baseurl }}/index.html" || window.location.pathname === "{{ site.baseurl }}");
 
-    // 1. 开屏与首页动画
     const splash = document.getElementById('splash-screen');
-    const hasSplashed = sessionStorage.getItem('splashed_v1.1');
+    const hasSplashed = sessionStorage.getItem('splashed_v1.2');
     if (!isHome || hasSplashed) { splash.style.display = 'none'; }
-    splash.onclick = () => { splash.classList.add('hidden'); sessionStorage.setItem('splashed_v1.1', 'true'); if(isHome) triggerHomeAnim(); };
-    if (isHome && splash.style.display === 'none') { window.onload = triggerHomeAnim; }
+    splash.onclick = () => { splash.classList.add('hidden'); sessionStorage.setItem('splashed_v1.2', 'true'); if(isHome) runSelectionRitual(); };
+    if (isHome && splash.style.display === 'none') { window.onload = runSelectionRitual; }
 
-    function triggerHomeAnim() {
+    function runSelectionRitual() {
       const orbs = document.querySelectorAll('.portal-orb');
+      // 1. 入场
       orbs.forEach((orb, i) => { setTimeout(() => orb.classList.add('active-orb'), i * 150); });
-      if(orbs.length > 0) {
-        const rand = Math.floor(Math.random() * orbs.length);
-        setTimeout(() => orbs[rand].classList.add('highlight'), orbs.length * 150 + 400);
+      
+      // 2. 闪选仪式 (扫描)
+      let count = 0;
+      let maxTicks = 15 + Math.floor(Math.random() * 8); // 随机闪烁次数
+      let currentIdx = -1;
+
+      function tick() {
+        if (currentIdx >= 0) orbs[currentIdx].classList.remove('scanning');
+        currentIdx = (currentIdx + 1) % orbs.length;
+        orbs[currentIdx].classList.add('scanning');
+        
+        count++;
+        if (count < maxTicks) {
+          let delay = 80 + (count * 10); // 逐渐减速
+          setTimeout(tick, delay);
+        } else {
+          // 3. 最终锁定
+          setTimeout(() => {
+            orbs[currentIdx].classList.remove('scanning');
+            orbs[currentIdx].classList.add('highlight');
+          }, 300);
+        }
       }
+      setTimeout(tick, orbs.length * 150 + 300);
     }
 
-    // 2. 双链解析
     const md = document.getElementById('markdown-body');
     md.innerHTML = md.innerHTML.replace(/\[\[(.*?)\]\]/g, (m, c) => {
       let [t, l] = c.split('|'); let target = clean(t.split('#')[0]);
@@ -153,7 +176,6 @@
       return f ? `<a style="color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(128,0,32,0.2);" href="${f.url}">${l || target}</a>` : `<span style="color:#999">[[${c}]]</span>`;
     });
 
-    // 3. 关联项球体化
     if (!isHome) {
       fetch("{{ site.baseurl }}/assets/graph_data.json").then(res => res.json()).then(data => {
         const cn = clean("{{ page.name | remove: '.md' }}");
