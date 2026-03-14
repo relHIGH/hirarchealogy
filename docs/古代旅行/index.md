@@ -7,9 +7,9 @@ title: 古代旅行
 </div>
 
 <div class="orb-grid">
-  <a href="./出行方式/" class="portal-orb active-orb" style="width:140px; height:140px; opacity:1; transform:scale(1);"><div class="orb-title" style="font-size:1.5rem;">行</div></a>
-  <a href="./交通网络/" class="portal-orb active-orb" style="width:140px; height:140px; opacity:1; transform:scale(1);"><div class="orb-title" style="font-size:1.5rem;">网</div></a>
-  <a href="./旅行设施/" class="portal-orb active-orb" style="width:140px; height:140px; opacity:1; transform:scale(1);"><div class="orb-title" style="font-size:1.5rem;">设</div></a>
-  <a href="./旅行活动/" class="portal-orb active-orb" style="width:140px; height:140px; opacity:1; transform:scale(1);"><div class="orb-title" style="font-size:1.5rem;">活</div></a>
-  <a href="./旅行体验/" class="portal-orb active-orb" style="width:140px; height:140px; opacity:1; transform:scale(1);"><div class="orb-title" style="font-size:1.5rem;">验</div></a>
+  <a href="./行/" class="portal-orb active-orb" style="width:140px; height:140px; opacity:1; transform:scale(1);"><div class="orb-title" style="font-size:1.5rem;">行</div></a>
+  <a href="./路/" class="portal-orb active-orb" style="width:140px; height:140px; opacity:1; transform:scale(1);"><div class="orb-title" style="font-size:1.5rem;">路</div></a>
+  <a href="./驿/" class="portal-orb active-orb" style="width:140px; height:140px; opacity:1; transform:scale(1);"><div class="orb-title" style="font-size:1.5rem;">驿</div></a>
+  <a href="./游/" class="portal-orb active-orb" style="width:140px; height:140px; opacity:1; transform:scale(1);"><div class="orb-title" style="font-size:1.5rem;">游</div></a>
+  <a href="./记/" class="portal-orb active-orb" style="width:140px; height:140px; opacity:1; transform:scale(1);"><div class="orb-title" style="font-size:1.5rem;">记</div></a>
 </div>
