@@ -69,7 +69,7 @@
     .orb-grid { display: flex; justify-content: center; gap: 45px; flex-wrap: wrap; margin-top: 60px; }
     .portal-orb { 
       width: 180px; height: 180px; border-radius: 50%; background: #ffffff !important; 
-      border: 3px solid rgba(128,0,32,0.25) !important; /* 加厚至 3px，且显红色 */
+      border: 1.5px solid rgba(128,0,32,0.25) !important; /* 精细化至 1.5px */
       display: flex; flex-direction: column; justify-content: center; align-items: center; 
       cursor: pointer; transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
       box-shadow: 0 10px 30px rgba(128,0,32,0.05); text-decoration: none !important; opacity: 0; transform: translateY(20px);
@@ -79,9 +79,9 @@
     .orb-title { color: var(--accent); font-size: 2.4rem; font-family: "Songti SC", serif; transition: 0.4s; }
     .portal-orb:hover .orb-title { color: white !important; }
     
-    /* 锁定态：加重质感 */
-    .portal-orb.scanning { border: 5px solid var(--accent) !important; box-shadow: 0 0 35px rgba(128,0,32,0.4) !important; }
-    .portal-orb.highlight { border: 3.5px solid var(--accent) !important; box-shadow: 0 0 45px rgba(128,0,32,0.25) !important; animation: orb-breath 3s infinite; }
+    /* 扫选与锁定态：精细红框 */
+    .portal-orb.scanning { border: 3px solid var(--accent) !important; box-shadow: 0 0 35px rgba(128,0,32,0.4) !important; }
+    .portal-orb.highlight { border: 2px solid var(--accent) !important; box-shadow: 0 0 45px rgba(128,0,32,0.25) !important; animation: orb-breath 3s infinite; }
     @keyframes orb-breath { 0%, 100% { box-shadow: 0 0 25px rgba(128,0,32,0.15); } 50% { box-shadow: 0 0 50px rgba(128,0,32,0.3); } }
 
     /* 印章仪式 */
