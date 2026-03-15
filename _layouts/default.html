@@ -5,8 +5,8 @@
   <title>{{ page.title | default: page.name | remove: ".md" }} | Hirarchealogy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    :root { 
-      --sidebar-width: 310px; --sidebar-peek: 55px; 
+    :root {
+      --sidebar-width: 310px; --sidebar-peek: 55px;
       --accent: #800020; --bg-main: #f0ede4; --card-bg: #ffffff;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,7 +32,7 @@
       display: flex; flex-direction: column; align-items: flex-start; padding-top: 52vh; padding-left: 20px; gap: 20px;
     }
     #sidebar-container:hover { transform: translateX(0); background: rgba(30, 0, 5, 0.98); }
-    
+
     /* 左侧触发区域 - 静默时可见 */
     #sidebar-trigger {
       position: fixed; left: 0; top: 50%; transform: translateY(-50%);
@@ -54,7 +54,7 @@
     #right-sidebar-trigger {
       position: absolute; top: 0; right: 0; height: 100%; z-index: 1500; width: 120px;
       transform: translateX(calc(120px - 55px)); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-      background: rgba(128, 0, 32, 0.08); 
+      background: rgba(128, 0, 32, 0.08);
       mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M100,0 L75,0 C65,5 95,10 90,20 C80,35 25,35 25,45 C25,55 65,55 60,65 C40,80 0,80 0,85 C0,95 50,100 70,100 L100,100 Z" fill="black"/></svg>');
       -webkit-mask-size: 100% 100%;
       cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 100px;
@@ -79,10 +79,10 @@
 
     /* 多球看板 */
     .orb-grid { display: flex; justify-content: center; gap: 45px; flex-wrap: wrap; margin-top: 60px; }
-    .portal-orb { 
-      width: 180px; height: 180px; border-radius: 50%; background: #ffffff !important; 
-      border: 1.5px solid rgba(128,0,32,0.2) !important; 
-      display: flex; flex-direction: column; justify-content: center; align-items: center; 
+    .portal-orb {
+      width: 180px; height: 180px; border-radius: 50%; background: #ffffff !important;
+      border: 1.5px solid rgba(128,0,32,0.2) !important;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
       cursor: pointer; transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
       box-shadow: 0 10px 30px rgba(128,0,32,0.05); text-decoration: none !important; opacity: 0; transform: translateY(20px);
     }
@@ -189,16 +189,22 @@
         startSeal: function() {
           const rc = document.getElementById('ritual-container'); rc.style.display = 'flex';
           const th = [{char:'旅',u:'/docs/古代旅行/'},{char:'戏',u:'/docs/戏/'},{char:'饮',u:'/docs/饮/'},{char:'感',u:'/docs/感/'}];
+          
+          // 随机选择一个主题作为最终落点
+          const finalIdx = Math.floor(Math.random() * 4);
+          
           let ci=0, count=0;
           const tick = () => {
             document.getElementById('ritual-text').textContent = th[ci%4].char; ci++; count++;
-            if (count < 12) setTimeout(tick, 50 + (count * count * 2));
+            // 循环次数随机，确保最终落在选定的主题上
+            if (count < 8 + finalIdx) setTimeout(tick, 50 + (count * count * 2));
             else {
+              // 显示最终选定的主题
+              document.getElementById('ritual-text').textContent = th[finalIdx].char;
               const tri = document.getElementById('ritual-trigger'); tri.classList.add('locked');
               tri.onclick = () => { 
                 sessionStorage.setItem('hr_ritual_done','true'); 
-                // 关键修正：确保在“进入主题”的瞬间，布局已准备好
-                window.location.href = "{{site.baseurl}}" + th[(ci-1)%4].u; 
+                window.location.href = "{{site.baseurl}}" + th[finalIdx].u; 
               };
             }
           };
@@ -207,34 +213,34 @@
         setupTrajectory: function() {
           const container = document.getElementById('trajectory-line');
           if (!container || isHome) return;
-          
+
           // 获取当前页面信息
           const currentPath = window.location.pathname;
           const currentName = container.dataset.name;
           const currentUrl = container.dataset.url;
-          
+
           // 从 sessionStorage 读取轨迹历史
           let trajHistory = JSON.parse(sessionStorage.getItem('hr_traj_history') || '[]');
-          
+
           // 获取当前主题（从路径中提取）
           const pathMatch = currentPath.match(/\/docs\/([^\/]+)/);
           const currentTheme = pathMatch ? pathMatch[1] : '';
-          
+
           // 判断是否是维度关联跳转（通过检查 referrer 或标记）
           const isMeshNav = sessionStorage.getItem('hr_mesh_nav') === 'true';
           sessionStorage.removeItem('hr_mesh_nav'); // 清除标记
-          
+
           // 获取上一个节点
           const lastNode = trajHistory.length > 0 ? trajHistory[trajHistory.length - 1] : null;
-          
+
           // 判断当前节点类型
           let nodeType = 'main'; // main=主线, branch=支线
-          
+
           if (lastNode) {
             // 获取上一个节点的主题
             const lastMatch = lastNode.u.match(/\/docs\/([^\/]+)/);
             const lastTheme = lastMatch ? lastMatch[1] : '';
-            
+
             if (lastTheme && currentTheme && lastTheme !== currentTheme) {
               // 主题不同，是支线跳转
               nodeType = 'branch';
@@ -243,7 +249,7 @@
               nodeType = 'branch';
             }
           }
-          
+
           // 添加当前节点到历史（如果不存在或URL不同）
           const existingIdx = trajHistory.findIndex(n => n.u === currentUrl);
           if (existingIdx === -1) {
@@ -262,32 +268,32 @@
             // 已存在的节点，截断到该位置（用户点击了历史节点）
             trajHistory = trajHistory.slice(0, existingIdx + 1);
           }
-          
+
           // 保存更新后的历史
           sessionStorage.setItem('hr_traj_history', JSON.stringify(trajHistory));
-          
+
           // 如果没有历史，隐藏轨迹线
           if (trajHistory.length === 0) {
             container.style.display = 'none';
             return;
           }
-          
+
           // 渲染轨迹
           let html = "";
           trajHistory.forEach((node, i) => {
             // 主线：实心点，支线：空心/不同颜色
             const isMain = node.type === 'main';
-            const dots = isMain 
+            const dots = isMain
               ? '<div class="mesh-dot" style="opacity:1;"></div><div class="mesh-dot" style="opacity:1;"></div><div class="mesh-dot" style="opacity:1;"></div>'
               : '<div class="mesh-dot" style="opacity:0.3; background:transparent; border:1px solid var(--accent);"></div><div class="mesh-dot" style="opacity:0.3; background:transparent; border:1px solid var(--accent);"></div><div class="mesh-dot" style="opacity:0.3; background:transparent; border:1px solid var(--accent);"></div>';
-            
+
             // 当前节点高亮
             const isCurrent = i === trajHistory.length - 1;
             const nodeStyle = isCurrent ? 'font-weight:bold; color:var(--accent);' : '';
             const nodeClass = isMain ? 'traj-node' : 'traj-node traj-branch';
-            
+
             html += `<div class="traj-node-container" style="${isCurrent?'opacity:1;':'opacity:0.7;'}" data-idx="${i}"><a href="${node.u}" class="${nodeClass}" style="${nodeStyle}">${node.n}</a><div class="traj-mesh-dots">${dots}</div></div>`;
-            
+
             if (i < trajHistory.length - 1) {
               // 连接线的样式也区分主线/支线
               const isNextBranch = trajHistory[i+1].type === 'branch';
@@ -297,7 +303,7 @@
             }
           });
           container.innerHTML = html;
-          
+
           // 为轨迹节点添加点击事件，用于截断历史
           container.querySelectorAll('.traj-node-container').forEach(el => {
             el.addEventListener('click', (e) => {
