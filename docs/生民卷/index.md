@@ -149,8 +149,9 @@ title: 生民卷
   justify-content: center;
   align-items: flex-start;
   gap: 30px;
-  padding: 60px 40px 120px;
+  padding: 80px 60px 140px;
   overflow-x: auto;
+  overflow-y: visible;
   min-height: 500px;
 }
 
