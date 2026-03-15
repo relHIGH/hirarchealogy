@@ -14,7 +14,7 @@ title: 生民卷
       <div class="char-img" style="background-position: 0% 0%;"></div>
       <div class="char-info">
         <span class="char-dynasty">战国</span>
-        <span class="char-name">炉青</span>
+        <span class="char-role">冶铁作坊之女</span>
       </div>
     </a>
     
@@ -22,7 +22,7 @@ title: 生民卷
       <div class="char-img" style="background-position: 25% 0%;"></div>
       <div class="char-info">
         <span class="char-dynasty">秦</span>
-        <span class="char-name">衡羽</span>
+        <span class="char-role">咸阳驿舍女管事</span>
       </div>
     </a>
     
@@ -30,7 +30,7 @@ title: 生民卷
       <div class="char-img" style="background-position: 50% 0%;"></div>
       <div class="char-info">
         <span class="char-dynasty">汉</span>
-        <span class="char-name">禾宁</span>
+        <span class="char-role">河西屯田女户</span>
       </div>
     </a>
     
@@ -38,7 +38,7 @@ title: 生民卷
       <div class="char-img" style="background-position: 75% 0%;"></div>
       <div class="char-info">
         <span class="char-dynasty">北魏</span>
-        <span class="char-name">石兰</span>
+        <span class="char-role">云冈石窟女石匠</span>
       </div>
     </a>
     
@@ -46,7 +46,7 @@ title: 生民卷
       <div class="char-img" style="background-position: 100% 0%;"></div>
       <div class="char-info">
         <span class="char-dynasty">唐</span>
-        <span class="char-name">月珑</span>
+        <span class="char-role">长安胡商之妻</span>
       </div>
     </a>
     
@@ -54,7 +54,7 @@ title: 生民卷
       <div class="char-img" style="background-position: 0% 100%;"></div>
       <div class="char-info">
         <span class="char-dynasty">五代十国</span>
-        <span class="char-name">潮音</span>
+        <span class="char-role">吴越运河船家女</span>
       </div>
     </a>
     
@@ -62,7 +62,7 @@ title: 生民卷
       <div class="char-img" style="background-position: 25% 100%;"></div>
       <div class="char-info">
         <span class="char-dynasty">宋</span>
-        <span class="char-name">清弦</span>
+        <span class="char-role">汴梁瓦舍女艺人</span>
       </div>
     </a>
     
@@ -70,7 +70,7 @@ title: 生民卷
       <div class="char-img" style="background-position: 50% 100%;"></div>
       <div class="char-info">
         <span class="char-dynasty">辽</span>
-        <span class="char-name">骁雪</span>
+        <span class="char-role">草原牧民信使女</span>
       </div>
     </a>
     
@@ -78,7 +78,7 @@ title: 生民卷
       <div class="char-img" style="background-position: 75% 100%;"></div>
       <div class="char-info">
         <span class="char-dynasty">西夏</span>
-        <span class="char-name">墨岚</span>
+        <span class="char-role">黑水城女文书吏</span>
       </div>
     </a>
     
@@ -86,7 +86,7 @@ title: 生民卷
       <div class="char-img" style="background-position: 100% 100%;"></div>
       <div class="char-info">
         <span class="char-dynasty">大理国</span>
-        <span class="char-name">茶岑</span>
+        <span class="char-role">茶马古道女商人</span>
       </div>
     </a>
   </div>
@@ -161,7 +161,7 @@ title: 生民卷
   text-decoration: none;
   transition: all 0.4s ease;
   flex-shrink: 0;
-  width: 90px;
+  width: 100px;
 }
 
 .char-item:hover {
@@ -174,8 +174,8 @@ title: 生民卷
 .char-item.offset-3 { margin-top: 120px; }
 
 .char-img {
-  width: 90px;
-  height: 340px;
+  width: 100px;
+  height: 380px;
   background-image: url('https://relhigh.github.io/hirarchealogy/assets/characters.png');
   background-size: 500% 200%;
   background-repeat: no-repeat;
@@ -183,8 +183,8 @@ title: 生民卷
   border-radius: 0;
   background-color: transparent;
   transition: all 0.3s ease;
-  /* 精确裁剪掉边框 */
-  clip-path: inset(8% 10% 8% 10%);
+  /* 轻微裁剪，保持构图 */
+  clip-path: inset(3% 4% 3% 4%);
 }
 
 .char-item:hover .char-img {
@@ -192,27 +192,26 @@ title: 生民卷
 }
 
 .char-info {
-  margin-top: 12px;
+  margin-top: 16px;
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .char-dynasty {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: #8b6b6b;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
 }
 
-.char-name {
-  font-size: 1rem;
-  font-family: "Songti SC", serif;
+.char-role {
+  font-size: 0.85rem;
   color: #c9a86c;
   font-weight: 500;
 }
 
-.char-item:hover .char-name {
+.char-item:hover .char-role {
   color: #e8c88a;
 }
 
@@ -221,9 +220,12 @@ title: 生民卷
   .character-row {
     gap: 25px;
   }
+  .char-item {
+    width: 85px;
+  }
   .char-img {
-    width: 80px;
-    height: 300px;
+    width: 85px;
+    height: 323px;
   }
 }
 
@@ -232,9 +234,12 @@ title: 生民卷
     gap: 20px;
     padding: 40px 30px 100px;
   }
+  .char-item {
+    width: 75px;
+  }
   .char-img {
-    width: 70px;
-    height: 265px;
+    width: 75px;
+    height: 285px;
   }
 }
 
@@ -247,18 +252,21 @@ title: 生民卷
     gap: 15px;
     padding: 30px 20px 80px;
   }
+  .char-item {
+    width: 60px;
+  }
   .char-img {
-    width: 55px;
-    height: 208px;
+    width: 60px;
+    height: 228px;
   }
   .char-info {
-    margin-top: 8px;
+    margin-top: 12px;
   }
-  .char-name {
-    font-size: 0.85rem;
+  .char-role {
+    font-size: 0.75rem;
   }
   .char-dynasty {
-    font-size: 0.6rem;
+    font-size: 0.65rem;
   }
 }
 </style>
