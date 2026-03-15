@@ -161,6 +161,7 @@ title: 生民卷
   text-decoration: none;
   transition: all 0.4s ease;
   flex-shrink: 0;
+  width: 90px;
 }
 
 .char-item:hover {
@@ -173,17 +174,17 @@ title: 生民卷
 .char-item.offset-3 { margin-top: 120px; }
 
 .char-img {
-  width: 80px;
-  height: 300px;
+  width: 90px;
+  height: 340px;
   background-image: url('https://relhigh.github.io/hirarchealogy/assets/characters.png');
-  background-size: 560% 220%;
+  background-size: 500% 200%;
   background-repeat: no-repeat;
   border: none;
   border-radius: 0;
   background-color: transparent;
   transition: all 0.3s ease;
-  /* 裁剪掉边缘 */
-  clip-path: inset(2% 2% 2% 2%);
+  /* 精确裁剪掉边框 */
+  clip-path: inset(8% 10% 8% 10%);
 }
 
 .char-item:hover .char-img {
@@ -221,9 +222,8 @@ title: 生民卷
     gap: 25px;
   }
   .char-img {
-    width: 70px;
-    height: 262px;
-    background-size: 560% 220%;
+    width: 80px;
+    height: 300px;
   }
 }
 
@@ -233,9 +233,8 @@ title: 生民卷
     padding: 40px 30px 100px;
   }
   .char-img {
-    width: 60px;
-    height: 225px;
-    background-size: 560% 220%;
+    width: 70px;
+    height: 265px;
   }
 }
 
@@ -249,9 +248,8 @@ title: 生民卷
     padding: 30px 20px 80px;
   }
   .char-img {
-    width: 50px;
-    height: 187px;
-    background-size: 560% 220%;
+    width: 55px;
+    height: 208px;
   }
   .char-info {
     margin-top: 8px;
