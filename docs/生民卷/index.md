@@ -105,67 +105,72 @@ title: 生民卷
 </div>
 
 <style>
-/* 生民卷暗色主题首页 */
+/* 生民卷暗色主题首页 - 全屏布局，突破 container 限制 */
 .shengmin-dark-page {
   min-height: 100vh;
+  width: 100vw;
+  margin: 0 -55px;
+  padding: 0;
   background: linear-gradient(180deg, #1a0a0f 0%, #0d0508 100%);
-  padding: 60px 40px;
   color: #d4a5a5;
 }
 
 .shengmin-header {
   text-align: center;
-  margin-bottom: 60px;
+  padding: 60px 40px 40px;
 }
 
 .shengmin-header h1 {
   font-family: "Songti SC", serif;
-  font-size: 2.5rem;
+  font-size: 3rem;
   color: #c9a86c;
-  letter-spacing: 12px;
-  margin-bottom: 15px;
+  letter-spacing: 16px;
+  margin-bottom: 20px;
   font-weight: 400;
 }
 
 .shengmin-header p {
   color: #8b6b6b;
-  font-size: 0.9rem;
-  letter-spacing: 4px;
+  font-size: 1rem;
+  letter-spacing: 6px;
 }
 
-/* 横向长条流式布局 */
+/* 横向长条流式布局 - 全屏 */
 .character-flow {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px 15px;
-  max-width: 1200px;
+  align-items: flex-start;
+  gap: 30px 40px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 40px 60px 80px;
+  box-sizing: border-box;
 }
 
 .char-strip {
   display: flex;
   flex-direction: column;
-  width: 100px;
+  width: 140px;
   text-decoration: none;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .char-strip:hover {
-  transform: translateY(-8px);
+  transform: translateY(-12px);
 }
 
 .char-strip.offset-down {
-  margin-top: 40px;
+  margin-top: 80px;
 }
 
 .char-img {
-  width: 100px;
-  height: 200px;
+  width: 140px;
+  height: 280px;
   background-image: url('https://relhigh.github.io/hirarchealogy/assets/characters.png');
   background-size: 500% 200%;
-  border-radius: 4px;
+  border-radius: 6px;
   border: 1px solid rgba(201, 168, 108, 0.2);
   transition: all 0.4s;
   filter: grayscale(30%) brightness(0.9);
@@ -174,32 +179,32 @@ title: 生民卷
 .char-strip:hover .char-img {
   filter: grayscale(0%) brightness(1);
   border-color: rgba(201, 168, 108, 0.5);
-  box-shadow: 0 10px 40px rgba(128, 0, 32, 0.4);
+  box-shadow: 0 20px 60px rgba(128, 0, 32, 0.5);
 }
 
 .char-meta {
-  margin-top: 12px;
+  margin-top: 16px;
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .meta-dynasty {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: #8b6b6b;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
 }
 
 .meta-name {
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   font-family: "Songti SC", serif;
   color: #c9a86c;
   font-weight: 500;
 }
 
 .meta-role {
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   color: #6b5050;
 }
 
@@ -208,9 +213,46 @@ title: 生民卷
 }
 
 /* 响应式 */
+@media (max-width: 1200px) {
+  .character-flow {
+    gap: 25px 30px;
+    padding: 40px;
+  }
+  .char-strip, .char-img {
+    width: 120px;
+  }
+  .char-img {
+    height: 240px;
+  }
+  .char-strip.offset-down {
+    margin-top: 60px;
+  }
+}
+
 @media (max-width: 900px) {
   .character-flow {
-    gap: 15px 10px;
+    gap: 20px 25px;
+    padding: 30px;
+  }
+  .char-strip, .char-img {
+    width: 100px;
+  }
+  .char-img {
+    height: 200px;
+  }
+  .char-strip.offset-down {
+    margin-top: 50px;
+  }
+  .shengmin-header h1 {
+    font-size: 2rem;
+    letter-spacing: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .character-flow {
+    gap: 15px 20px;
+    padding: 20px;
   }
   .char-strip, .char-img {
     width: 80px;
@@ -219,22 +261,14 @@ title: 生民卷
     height: 160px;
   }
   .char-strip.offset-down {
-    margin-top: 30px;
+    margin-top: 40px;
   }
-}
-
-@media (max-width: 600px) {
-  .shengmin-dark-page {
-    padding: 40px 20px;
+  .shengmin-header {
+    padding: 40px 20px 30px;
   }
-  .character-flow {
-    gap: 12px 8px;
-  }
-  .char-strip, .char-img {
-    width: 70px;
-  }
-  .char-img {
-    height: 140px;
+  .shengmin-header h1 {
+    font-size: 1.6rem;
+    letter-spacing: 6px;
   }
 }
 </style>
