@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>{{ page.title | default: page.name | remove: ".md" }} | Hirarchealogy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/shengmin.css">
   <style>
     :root {
       --sidebar-width: 310px; --sidebar-peek: 55px;
@@ -132,6 +133,7 @@
       <a href="{{ site.baseurl }}/docs/戏/" class="nav-item-wrapper">戏</a>
       <a href="{{ site.baseurl }}/docs/饮/" class="nav-item-wrapper">饮</a>
       <a href="{{ site.baseurl }}/docs/感/" class="nav-item-wrapper">感</a>
+      <a href="{{ site.baseurl }}/docs/生民卷/" class="nav-item-wrapper">民</a>
     </aside>
     <div id="sidebar-trigger"></div>
 
@@ -359,5 +361,6 @@
       window.addEventListener('DOMContentLoaded', () => { setTimeout(() => { if(document.getElementById('splash-screen')) document.getElementById('splash-screen').classList.add('hidden'); }, 3000); Hirarchealogy.init(); });
     })();
   </script>
+  <script src="{{ site.baseurl }}/assets/js/shengmin.js"></script>
 </body>
 </html>

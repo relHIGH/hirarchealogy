@@ -1,0 +1,271 @@
+/* 生民卷样式 */
+
+/* 人物选择页 */
+.shengmin-page {
+  padding: 60px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.shengmin-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.shengmin-header h1 {
+  font-family: "Songti SC", serif;
+  font-size: 2.5rem;
+  color: var(--accent);
+  letter-spacing: 12px;
+  margin-bottom: 15px;
+}
+
+.shengmin-header p {
+  color: #888;
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+}
+
+.character-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 30px;
+}
+
+.character-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 20px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.5);
+}
+
+.character-card:hover {
+  transform: translateY(-10px);
+  background: white;
+  box-shadow: 0 20px 60px rgba(128,0,32,0.15);
+}
+
+.char-portrait {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f0ede4, #e8e4d9);
+  margin-bottom: 15px;
+  border: 2px solid rgba(128,0,32,0.1);
+  /* 等 sprite 图来了再设置 background-image */
+}
+
+.char-info {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.char-dynasty {
+  font-size: 0.75rem;
+  color: #999;
+  letter-spacing: 2px;
+}
+
+.char-name {
+  font-size: 1.4rem;
+  font-family: "Songti SC", serif;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.char-role {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/* 故事页 */
+.story-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.story-header {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 50px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgba(128,0,32,0.1);
+}
+
+.char-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f0ede4, #e8e4d9);
+  border: 2px solid rgba(128,0,32,0.2);
+}
+
+.char-title h1 {
+  font-family: "Songti SC", serif;
+  color: var(--accent);
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.char-title p {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.story-timeline {
+  margin-bottom: 60px;
+}
+
+.story-chapter {
+  margin-bottom: 40px;
+  padding-left: 30px;
+  border-left: 2px solid rgba(128,0,32,0.1);
+}
+
+.story-chapter h3 {
+  color: var(--accent);
+  font-family: "Songti SC", serif;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.story-chapter p {
+  line-height: 1.9;
+  color: #444;
+  margin-bottom: 12px;
+}
+
+/* 故事中的节点标记 */
+.story-chapter a[href^="./"],
+.story-chapter a[href^="../"] {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(128,0,32,0.3);
+  cursor: pointer;
+}
+
+.story-chapter a[href^="./"]:hover,
+.story-chapter a[href^="../"]:hover {
+  background: rgba(128,0,32,0.05);
+  border-bottom-style: solid;
+}
+
+/* 文物标记 - 不同样式 */
+.story-chapter a.relic-tag {
+  color: #8B4513;
+  border-bottom-color: rgba(139,69,19,0.3);
+}
+
+/* 收藏区域 */
+.story-collection {
+  background: rgba(128,0,32,0.03);
+  padding: 40px;
+  border-radius: 12px;
+  margin-top: 60px;
+}
+
+.story-collection h2 {
+  text-align: center;
+  font-family: "Songti SC", serif;
+  color: var(--accent);
+  margin-bottom: 30px;
+}
+
+.collection-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.collection-group h4 {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.collected-nodes,
+.collected-relics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.collected-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  background: white;
+  border: 1px solid rgba(128,0,32,0.2);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: var(--accent);
+}
+
+.collected-item.lit {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.collected-item.relic {
+  border-color: rgba(139,69,19,0.3);
+  color: #8B4513;
+}
+
+.collected-item.relic.lit {
+  background: #8B4513;
+  color: white;
+  border-color: #8B4513;
+}
+
+.export-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(128,0,32,0.1);
+}
+
+.export-actions button {
+  padding: 12px 30px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  transition: all 0.3s;
+}
+
+.export-actions button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(128,0,32,0.3);
+}
+
+/* 响应式 */
+@media (max-width: 900px) {
+  .character-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .collection-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .character-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

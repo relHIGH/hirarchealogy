@@ -1,0 +1,63 @@
+/* 生民卷人物sprite图样式 */
+
+/* 人物头像sprite - 2行5列 */
+.char-portrait {
+  width: 140px;
+  height: 200px;
+  background-image: url('{{ site.baseurl }}/assets/characters.png');
+  background-size: 500% 200%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 2px solid rgba(128,0,32,0.1);
+  transition: all 0.4s;
+}
+
+.character-card:hover .char-portrait {
+  transform: scale(1.05);
+  border-color: rgba(128,0,32,0.3);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* 第一行人物位置 */
+.char-luqing { background-position: 0% 0%; }      /* 炉青 - 战国 */
+.char-hengyu { background-position: 25% 0%; }     /* 衡羽 - 秦 */
+.char-hening { background-position: 50% 0%; }     /* 禾宁 - 汉 */
+.char-shilan { background-position: 75% 0%; }     /* 石兰 - 北魏 */
+.char-yuelong { background-position: 100% 0%; }   /* 月珑 - 唐 */
+
+/* 第二行人物位置 */
+.char-chaoyin { background-position: 0% 100%; }   /* 潮音 - 五代十国 */
+.char-qingxian { background-position: 25% 100%; } /* 清弦 - 宋 */
+.char-xiaoxue { background-position: 50% 100%; }  /* 骁雪 - 辽 */
+.char-molan { background-position: 75% 100%; }    /* 墨岚 - 西夏 */
+.char-chacen { background-position: 100% 100%; }  /* 茶岑 - 大理国 */
+
+/* 故事页大头像 */
+.story-header .char-avatar {
+  width: 120px;
+  height: 170px;
+  background-image: url('{{ site.baseurl }}/assets/characters.png');
+  background-size: 500% 200%;
+  border-radius: 8px;
+  border: 2px solid rgba(128,0,32,0.2);
+}
+
+/* 响应式调整 */
+@media (max-width: 900px) {
+  .char-portrait {
+    width: 100px;
+    height: 143px;
+  }
+}
+
+@media (max-width: 600px) {
+  .char-portrait {
+    width: 80px;
+    height: 114px;
+  }
+  
+  .story-header .char-avatar {
+    width: 80px;
+    height: 114px;
+  }
+}
