@@ -170,32 +170,24 @@ title: 生民卷
   transform: translateY(-10px);
 }
 
-/* 高斯模糊扩散底图 */
-.char-item::before {
+/* 淡红遮罩 - 未选中时显示 */
+.char-item::after {
   content: '';
   position: absolute;
-  top: -40px;
-  left: -20px;
-  right: -20px;
-  bottom: -60px;
-  background-image: url('https://relhigh.github.io/hirarchealogy/assets/characters.png');
-  background-size: 500% 200%;
-  filter: blur(40px) brightness(0.5);
-  opacity: 0.6;
-  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 380px;
+  background: rgba(128, 0, 32, 0.3);
+  z-index: 3;
   pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
-.char-item[data-char="炉青"]::before { background-position: 0% 0%; }
-.char-item[data-char="衡羽"]::before { background-position: 25% 0%; }
-.char-item[data-char="禾宁"]::before { background-position: 50% 0%; }
-.char-item[data-char="石兰"]::before { background-position: 75% 0%; }
-.char-item[data-char="月珑"]::before { background-position: 100% 0%; }
-.char-item[data-char="潮音"]::before { background-position: 0% 100%; }
-.char-item[data-char="清弦"]::before { background-position: 25% 100%; }
-.char-item[data-char="骁雪"]::before { background-position: 50% 100%; }
-.char-item[data-char="墨岚"]::before { background-position: 75% 100%; }
-.char-item[data-char="茶岑"]::before { background-position: 100% 100%; }
+/* hover时去掉遮罩 */
+.char-item:hover::after {
+  opacity: 0;
+}
 
 /* 错开位置 - 波浪形 */
 .char-item.offset-1 { margin-top: 40px; }
@@ -217,7 +209,7 @@ title: 生民卷
 }
 
 .char-item:hover .char-img {
-  filter: brightness(1.2);
+  filter: brightness(1.1);
 }
 
 .char-info {
