@@ -180,8 +180,8 @@ title: 生民卷
   background-image: url('https://relhigh.github.io/hirarchealogy/assets/characters.png');
   background-size: 500% 200%;
   filter: blur(40px) brightness(0.5);
-  opacity: 0.5;
-  z-index: -1;
+  opacity: 0.6;
+  z-index: 0;
   pointer-events: none;
 }
 
@@ -212,7 +212,7 @@ title: 生民卷
   background-color: transparent;
   transition: all 0.3s ease;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .char-item:hover .char-img {
