@@ -170,7 +170,7 @@ title: 生民卷
   transform: translateY(-10px);
 }
 
-/* 淡红遮罩 - 未选中时显示 */
+/* 黑色遮罩 - 未选中时显示 */
 .char-item::after {
   content: '';
   position: absolute;
@@ -178,7 +178,7 @@ title: 生民卷
   left: 0;
   width: 100px;
   height: 380px;
-  background: rgba(128, 0, 32, 0.3);
+  background: rgba(0, 0, 0, 0.3);
   z-index: 3;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -209,7 +209,7 @@ title: 生民卷
 }
 
 .char-item:hover .char-img {
-  filter: brightness(1.1);
+  filter: none;
 }
 
 .char-info {
