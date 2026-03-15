@@ -221,11 +221,12 @@
           
           // 只在主题页面显示轨迹（旅/戏/饮/感）
           // 生民卷、graph、tags 等非主题页面不显示
-          const isThemePage = /\/docs\/(古代旅行|戏|饮|感)\//.test(currentPath);
+          const isThemePage = /\/docs\/(古代旅行|戏|饮|感)/.test(currentPath);
           if (!isThemePage) {
             container.style.display = 'none';
             return;
           }
+          container.style.display = 'flex'; // 确保显示
 
           const currentName = container.dataset.name;
           const currentUrl = container.dataset.url;

@@ -52,7 +52,7 @@
 .char-portrait {
   width: 100px;
   height: 143px;
-  background-image: url('{{ site.baseurl }}/assets/characters.png');
+  background-image: url('../characters.png');
   background-size: 500% 200%;
   border-radius: 6px;
   margin-bottom: 12px;
@@ -108,9 +108,9 @@
 }
 
 .char-avatar {
-  width: 120px;
-  height: 170px;
-  background-image: url('{{ site.baseurl }}/assets/characters.png');
+  width: 100px;
+  height: 143px;
+  background-image: url('../characters.png');
   background-size: 500% 200%;
   border-radius: 8px;
   border: 2px solid rgba(128,0,32,0.2);
