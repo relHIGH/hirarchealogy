@@ -5,7 +5,7 @@ title: 墨岚
 
 <div class="story-page">
   <div class="story-header">
-    <div class="char-avatar"></div>
+    <div class="char-avatar" style="background-position: 75% 100%;"></div>
     <div class="char-title">
       <h1>墨岚</h1>
       <p>西夏 · 黑水城女文书吏</p>

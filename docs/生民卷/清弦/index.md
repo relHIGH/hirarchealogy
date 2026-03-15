@@ -5,7 +5,7 @@ title: 清弦
 
 <div class="story-page">
   <div class="story-header">
-    <div class="char-avatar"></div>
+    <div class="char-avatar" style="background-position: 25% 100%;"></div>
     <div class="char-title">
       <h1>清弦</h1>
       <p>宋 · 汴梁瓦舍女艺人</p>

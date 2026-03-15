@@ -5,7 +5,7 @@ title: 月珑
 
 <div class="story-page">
   <div class="story-header">
-    <div class="char-avatar"></div>
+    <div class="char-avatar" style="background-position: 100% 0%;"></div>
     <div class="char-title">
       <h1>月珑</h1>
       <p>唐 · 长安胡商之妻</p>

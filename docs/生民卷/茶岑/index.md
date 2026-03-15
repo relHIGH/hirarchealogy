@@ -5,7 +5,7 @@ title: 茶岑
 
 <div class="story-page">
   <div class="story-header">
-    <div class="char-avatar"></div>
+    <div class="char-avatar" style="background-position: 100% 100%;"></div>
     <div class="char-title">
       <h1>茶岑</h1>
       <p>大理国 · 茶马古道女商人</p>

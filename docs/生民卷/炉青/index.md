@@ -5,7 +5,7 @@ title: 炉青
 
 <div class="story-page">
   <div class="story-header">
-    <div class="char-avatar"></div>
+    <div class="char-avatar" style="background-position: 0% 0%;"></div>
     <div class="char-title">
       <h1>炉青</h1>
       <p>战国 · 冶铁作坊之女</p>

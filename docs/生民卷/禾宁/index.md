@@ -5,7 +5,7 @@ title: 禾宁
 
 <div class="story-page">
   <div class="story-header">
-    <div class="char-avatar"></div>
+    <div class="char-avatar" style="background-position: 50% 0%;"></div>
     <div class="char-title">
       <h1>禾宁</h1>
       <p>汉 · 河西屯田女户</p>
