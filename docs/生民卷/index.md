@@ -9,96 +9,84 @@ title: 生民卷
     <p>以人物为线索，探索古代生活</p>
   </div>
   
-  <div class="character-flow">
-    <!-- 第一行 - 正常位置 -->
-    <a href="./炉青/" class="char-strip" data-char="炉青">
+  <div class="character-row">
+    <a href="./炉青/" class="char-item" data-char="炉青">
       <div class="char-img" style="background-position: 0% 0%;"></div>
-      <div class="char-meta">
-        <span class="meta-dynasty">战国</span>
-        <span class="meta-name">炉青</span>
-        <span class="meta-role">冶铁作坊之女</span>
+      <div class="char-info">
+        <span class="char-dynasty">战国</span>
+        <span class="char-name">炉青</span>
       </div>
     </a>
     
-    <a href="./衡羽/" class="char-strip offset-down" data-char="衡羽">
+    <a href="./衡羽/" class="char-item offset-1" data-char="衡羽">
       <div class="char-img" style="background-position: 25% 0%;"></div>
-      <div class="char-meta">
-        <span class="meta-dynasty">秦</span>
-        <span class="meta-name">衡羽</span>
-        <span class="meta-role">咸阳驿舍女管事</span>
+      <div class="char-info">
+        <span class="char-dynasty">秦</span>
+        <span class="char-name">衡羽</span>
       </div>
     </a>
     
-    <a href="./禾宁/" class="char-strip" data-char="禾宁">
+    <a href="./禾宁/" class="char-item offset-2" data-char="禾宁">
       <div class="char-img" style="background-position: 50% 0%;"></div>
-      <div class="char-meta">
-        <span class="meta-dynasty">汉</span>
-        <span class="meta-name">禾宁</span>
-        <span class="meta-role">河西屯田女户</span>
+      <div class="char-info">
+        <span class="char-dynasty">汉</span>
+        <span class="char-name">禾宁</span>
       </div>
     </a>
     
-    <a href="./石兰/" class="char-strip offset-down" data-char="石兰">
+    <a href="./石兰/" class="char-item offset-3" data-char="石兰">
       <div class="char-img" style="background-position: 75% 0%;"></div>
-      <div class="char-meta">
-        <span class="meta-dynasty">北魏</span>
-        <span class="meta-name">石兰</span>
-        <span class="meta-role">云冈石窟女石匠</span>
+      <div class="char-info">
+        <span class="char-dynasty">北魏</span>
+        <span class="char-name">石兰</span>
       </div>
     </a>
     
-    <a href="./月珑/" class="char-strip" data-char="月珑">
+    <a href="./月珑/" class="char-item offset-2" data-char="月珑">
       <div class="char-img" style="background-position: 100% 0%;"></div>
-      <div class="char-meta">
-        <span class="meta-dynasty">唐</span>
-        <span class="meta-name">月珑</span>
-        <span class="meta-role">长安胡商之妻</span>
+      <div class="char-info">
+        <span class="char-dynasty">唐</span>
+        <span class="char-name">月珑</span>
       </div>
     </a>
     
-    <!-- 第二行 - 交错 -->
-    <a href="./潮音/" class="char-strip offset-down" data-char="潮音">
+    <a href="./潮音/" class="char-item offset-1" data-char="潮音">
       <div class="char-img" style="background-position: 0% 100%;"></div>
-      <div class="char-meta">
-        <span class="meta-dynasty">五代十国</span>
-        <span class="meta-name">潮音</span>
-        <span class="meta-role">吴越运河船家女</span>
+      <div class="char-info">
+        <span class="char-dynasty">五代十国</span>
+        <span class="char-name">潮音</span>
       </div>
     </a>
     
-    <a href="./清弦/" class="char-strip" data-char="清弦">
+    <a href="./清弦/" class="char-item" data-char="清弦">
       <div class="char-img" style="background-position: 25% 100%;"></div>
-      <div class="char-meta">
-        <span class="meta-dynasty">宋</span>
-        <span class="meta-name">清弦</span>
-        <span class="meta-role">汴梁瓦舍女艺人</span>
+      <div class="char-info">
+        <span class="char-dynasty">宋</span>
+        <span class="char-name">清弦</span>
       </div>
     </a>
     
-    <a href="./骁雪/" class="char-strip offset-down" data-char="骁雪">
+    <a href="./骁雪/" class="char-item offset-1" data-char="骁雪">
       <div class="char-img" style="background-position: 50% 100%;"></div>
-      <div class="char-meta">
-        <span class="meta-dynasty">辽</span>
-        <span class="meta-name">骁雪</span>
-        <span class="meta-role">草原牧民信使女</span>
+      <div class="char-info">
+        <span class="char-dynasty">辽</span>
+        <span class="char-name">骁雪</span>
       </div>
     </a>
     
-    <a href="./墨岚/" class="char-strip" data-char="墨岚">
+    <a href="./墨岚/" class="char-item offset-2" data-char="墨岚">
       <div class="char-img" style="background-position: 75% 100%;"></div>
-      <div class="char-meta">
-        <span class="meta-dynasty">西夏</span>
-        <span class="meta-name">墨岚</span>
-        <span class="meta-role">黑水城女文书吏</span>
+      <div class="char-info">
+        <span class="char-dynasty">西夏</span>
+        <span class="char-name">墨岚</span>
       </div>
     </a>
     
-    <a href="./茶岑/" class="char-strip offset-down" data-char="茶岑">
+    <a href="./茶岑/" class="char-item offset-3" data-char="茶岑">
       <div class="char-img" style="background-position: 100% 100%;"></div>
-      <div class="char-meta">
-        <span class="meta-dynasty">大理国</span>
-        <span class="meta-name">茶岑</span>
-        <span class="meta-role">茶马古道女商人</span>
+      <div class="char-info">
+        <span class="char-dynasty">大理国</span>
+        <span class="char-name">茶岑</span>
       </div>
     </a>
   </div>
@@ -123,182 +111,145 @@ title: 生民卷
   display: none !important;
 }
 
-/* 生民卷暗色主题首页 - 真正全屏 */
+/* 生民卷暗色主题首页 */
 .shengmin-dark-page {
   min-height: calc(100vh - 60px);
-  width: 100vw;
+  width: 100%;
   margin: 0;
   padding: 0;
   background: linear-gradient(180deg, #1a0a0f 0%, #0d0508 100%);
   color: #d4a5a5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .shengmin-header {
   text-align: center;
-  padding: 60px 40px 40px;
+  padding: 40px 20px;
 }
 
 .shengmin-header h1 {
   font-family: "Songti SC", serif;
-  font-size: 3rem;
+  font-size: 2.5rem;
   color: #c9a86c;
   letter-spacing: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-weight: 400;
 }
 
 .shengmin-header p {
   color: #8b6b6b;
-  font-size: 1rem;
-  letter-spacing: 6px;
+  font-size: 0.9rem;
+  letter-spacing: 4px;
 }
 
-/* 横向长条流式布局 - 全屏 */
-.character-flow {
+/* 横向一排布局，十个图错开 */
+.character-row {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  gap: 30px 40px;
-  width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 40px 60px 80px;
-  box-sizing: border-box;
+  gap: 10px;
+  padding: 40px 20px 80px;
+  overflow-x: auto;
 }
 
-.char-strip {
+.char-item {
   display: flex;
   flex-direction: column;
-  width: 205px;
+  align-items: center;
   text-decoration: none;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.4s ease;
+  flex-shrink: 0;
 }
 
-.char-strip:hover {
-  transform: translateY(-8px);
+.char-item:hover {
+  transform: translateY(-10px);
 }
 
-.char-strip.offset-down {
-  margin-top: 120px;
-}
+/* 错开位置 - 波浪形 */
+.char-item.offset-1 { margin-top: 40px; }
+.char-item.offset-2 { margin-top: 80px; }
+.char-item.offset-3 { margin-top: 120px; }
 
 .char-img {
-  width: 205px;
-  height: 768px;
+  width: 80px;
+  height: 300px;
   background-image: url('https://relhigh.github.io/hirarchealogy/assets/characters.png');
   background-size: 500% 200%;
   border: none;
   border-radius: 0;
   background-color: transparent;
-  transition: all 0.4s;
-  filter: grayscale(30%) brightness(0.9);
+  transition: all 0.3s ease;
 }
 
-.char-strip:hover .char-img {
-  filter: grayscale(0%) brightness(1.1);
-  transform: scale(1.02);
+.char-item:hover .char-img {
+  filter: brightness(1.2);
 }
 
-.char-meta {
-  margin-top: 16px;
+.char-info {
+  margin-top: 12px;
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
-.meta-dynasty {
-  font-size: 0.8rem;
+.char-dynasty {
+  font-size: 0.7rem;
   color: #8b6b6b;
-  letter-spacing: 3px;
+  letter-spacing: 1px;
 }
 
-.meta-name {
-  font-size: 1.4rem;
+.char-name {
+  font-size: 1rem;
   font-family: "Songti SC", serif;
   color: #c9a86c;
   font-weight: 500;
 }
 
-.meta-role {
-  font-size: 0.85rem;
-  color: #6b5050;
-}
-
-.char-strip:hover .meta-name {
+.char-item:hover .char-name {
   color: #e8c88a;
 }
 
-/* 响应式 - 按比例缩放 */
-@media (max-width: 1400px) {
-  .char-strip, .char-img {
-    width: 180px;
-  }
+/* 响应式 */
+@media (max-width: 1000px) {
   .char-img {
-    height: 675px;
+    width: 70px;
+    height: 262px;
   }
-  .char-strip.offset-down {
-    margin-top: 100px;
+  .character-row {
+    gap: 8px;
   }
 }
 
-@media (max-width: 1200px) {
-  .character-flow {
-    gap: 20px 25px;
-    padding: 40px;
-  }
-  .char-strip, .char-img {
-    width: 150px;
-  }
+@media (max-width: 800px) {
   .char-img {
-    height: 562px;
+    width: 60px;
+    height: 225px;
   }
-  .char-strip.offset-down {
-    margin-top: 80px;
-  }
-}
-
-@media (max-width: 900px) {
-  .character-flow {
-    gap: 15px 20px;
-    padding: 30px;
-  }
-  .char-strip, .char-img {
-    width: 120px;
-  }
-  .char-img {
-    height: 450px;
-  }
-  .char-strip.offset-down {
-    margin-top: 60px;
-  }
-  .shengmin-header h1 {
-    font-size: 2rem;
-    letter-spacing: 10px;
-  }
+  .char-item.offset-1 { margin-top: 30px; }
+  .char-item.offset-2 { margin-top: 60px; }
+  .char-item.offset-3 { margin-top: 90px; }
 }
 
 @media (max-width: 600px) {
-  .character-flow {
-    gap: 10px 15px;
-    padding: 20px;
-  }
-  .char-strip, .char-img {
-    width: 90px;
+  .shengmin-header h1 {
+    font-size: 1.8rem;
+    letter-spacing: 8px;
   }
   .char-img {
-    height: 337px;
+    width: 50px;
+    height: 187px;
   }
-  .char-strip.offset-down {
-    margin-top: 50px;
+  .char-info {
+    margin-top: 8px;
   }
-  .shengmin-header {
-    padding: 40px 20px 30px;
+  .char-name {
+    font-size: 0.85rem;
   }
-  .shengmin-header h1 {
-    font-size: 1.6rem;
-    letter-spacing: 6px;
+  .char-dynasty {
+    font-size: 0.6rem;
   }
 }
 </style>
