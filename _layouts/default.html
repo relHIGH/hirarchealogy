@@ -232,13 +232,13 @@
             return;
           }
           
-          // 渲染轨迹
+          // 渲染轨迹（跳过docs节点）
           let html = "";
-          chain.forEach((node, i) => {
+          chain.filter(n => n.n !== 'docs').forEach((node, i, arr) => {
             const dots = (node.type === 'node') ? '<div class="mesh-dot"></div>' : '<div class="mesh-dot"></div><div class="mesh-dot"></div><div class="mesh-dot"></div>';
             html += `<div class="traj-node-container"><a href="${node.u}" class="traj-node">${node.n}</a><div class="traj-mesh-dots">${dots}</div></div>`;
-            if (i < chain.length - 1) {
-              const isNode = (chain[i+1].type === 'node');
+            if (i < arr.length - 1) {
+              const isNode = (arr[i+1].type === 'node');
               html += `<div class="traj-svg ${isNode?'mesh-link':''}"><svg viewBox="0 0 45 6"><path d="${isNode?'M0,1.5 L45,1.5 M0,4.5 L45,4.5':'M0,3 L45,3'}"></path></svg></div>`;
             }
           });
