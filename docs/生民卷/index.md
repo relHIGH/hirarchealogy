@@ -183,8 +183,8 @@ title: 生民卷
   border-radius: 0;
   background-color: transparent;
   transition: all 0.3s ease;
-  /* 轻微裁剪，保持构图 */
-  clip-path: inset(3% 4% 3% 4%);
+  /* 上4% 右3% 下2% 左3% - 减少底部裁剪 */
+  clip-path: inset(4% 3% 2% 3%);
 }
 
 .char-item:hover .char-img {
