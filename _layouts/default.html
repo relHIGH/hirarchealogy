@@ -186,16 +186,15 @@
           const container = document.getElementById('trajectory-line');
           if (!container || isHome) return;
           
-          // 获取当前路径并解析层级
+          // 获取当前路径并解析层级（保留docs）
           const path = window.location.pathname.replace('{{ site.baseurl }}', '');
-          const parts = path.split('/').filter(p => p && p !== 'docs');
+          const parts = path.split('/').filter(p => p);
           
           // 构建轨迹链：从主题开始到现在
           let chain = [];
           let linkAcc = '{{ site.baseurl }}';
           
           parts.forEach((part, idx) => {
-            const isLast = idx === parts.length - 1;
             const isMd = part.endsWith('.html');
             const rawName = isMd ? part.replace('.html', '') : part;
             
@@ -204,14 +203,14 @@
             try { displayName = decodeURIComponent(rawName); } catch(e) {}
             if (displayName === '古代旅行') displayName = '旅';
             
-            // 构建正确的链接
+            // 构建正确的链接（保留 docs 路径）
             linkAcc += '/' + part;
             let url;
             if (isMd) {
-              // 节点页：保持 .html 结尾
+              // 节点页：直接是 .html 文件
               url = linkAcc;
             } else {
-              // 分类页：添加 / 结尾
+              // 分类页：目录以 / 结尾
               url = linkAcc + '/';
             }
             
