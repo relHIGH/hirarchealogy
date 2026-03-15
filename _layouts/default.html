@@ -185,18 +185,44 @@
         setupTrajectory: function() {
           const container = document.getElementById('trajectory-line');
           if (!container || isHome) return;
-          let chain = JSON.parse(sessionStorage.getItem('hr_nav_chain') || "[]");
-          const cur = { n: container.dataset.name, u: container.dataset.url, type: sessionStorage.getItem('hr_last_nav_type') || 'hierarchical' };
-          if (chain.length === 0) { container.querySelectorAll('.traj-node-container').forEach(node => chain.push({ n: node.dataset.name, u: node.dataset.url, type: 'hierarchical' })); }
-          else if (chain[chain.length-1].u !== cur.u) { chain.push(cur); }
-          sessionStorage.setItem('hr_nav_chain', JSON.stringify(chain));
+          
+          // 获取当前路径并解析层级
+          const path = window.location.pathname.replace('{{ site.baseurl }}', '');
+          const parts = path.split('/').filter(p => p && p !== 'docs' && p !== 'index.html');
+          
+          // 构建轨迹链：从主题开始到现在
+          let chain = [];
+          let linkAcc = '{{ site.baseurl }}/';
+          
+          parts.forEach((part, idx) => {
+            const isMd = part.endsWith('.html');
+            const name = part.replace('.html', '').replace('%E6%97%85', '旅').replace('%E6%88%8F', '戏').replace('%E9%A5%AE', '饮').replace('%E6%84%9F', '感');
+            const displayName = name === '古代旅行' ? '旅' : decodeURIComponent(name);
+            
+            linkAcc += (idx === 0 ? 'docs/' : '') + part + '/';
+            const url = linkAcc.replace('.html/', '.html').replace(/\/$/, '.html');
+            
+            chain.push({
+              n: displayName,
+              u: url,
+              type: isMd ? 'node' : 'category'
+            });
+          });
+          
+          // 如果没有有效节点，隐藏轨迹线
+          if (chain.length === 0) {
+            container.style.display = 'none';
+            return;
+          }
+          
+          // 渲染轨迹
           let html = "";
           chain.forEach((node, i) => {
-            const dots = (node.type === 'mesh') ? '<div class="mesh-dot"></div>' : '<div class="mesh-dot"></div><div class="mesh-dot"></div><div class="mesh-dot"></div>';
+            const dots = (node.type === 'node') ? '<div class="mesh-dot"></div>' : '<div class="mesh-dot"></div><div class="mesh-dot"></div><div class="mesh-dot"></div>';
             html += `<div class="traj-node-container"><a href="${node.u}" class="traj-node">${node.n}</a><div class="traj-mesh-dots">${dots}</div></div>`;
             if (i < chain.length - 1) {
-              const isM = (chain[i+1].type === 'mesh');
-              html += `<div class="traj-svg ${isM?'mesh-link':''}"><svg viewBox="0 0 45 6"><path d="${isM?'M0,1.5 L45,1.5 M0,4.5 L45,4.5':'M0,3 L45,3'}"></path></svg></div>`;
+              const isNode = (chain[i+1].type === 'node');
+              html += `<div class="traj-svg ${isNode?'mesh-link':''}"><svg viewBox="0 0 45 6"><path d="${isNode?'M0,1.5 L45,1.5 M0,4.5 L45,4.5':'M0,3 L45,3'}"></path></svg></div>`;
             }
           });
           container.innerHTML = html;
