@@ -162,11 +162,39 @@ title: 生民卷
   transition: all 0.4s ease;
   flex-shrink: 0;
   width: 100px;
+  position: relative;
 }
 
 .char-item:hover {
   transform: translateY(-10px);
 }
+
+/* 高斯模糊扩散底图 */
+.char-item::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -10px;
+  right: -10px;
+  bottom: -40px;
+  background: inherit;
+  background-size: 500% 200%;
+  filter: blur(20px);
+  opacity: 0.6;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.char-item[data-char="炉青"]::before { background-position: 0% 0%; }
+.char-item[data-char="衡羽"]::before { background-position: 25% 0%; }
+.char-item[data-char="禾宁"]::before { background-position: 50% 0%; }
+.char-item[data-char="石兰"]::before { background-position: 75% 0%; }
+.char-item[data-char="月珑"]::before { background-position: 100% 0%; }
+.char-item[data-char="潮音"]::before { background-position: 0% 100%; }
+.char-item[data-char="清弦"]::before { background-position: 25% 100%; }
+.char-item[data-char="骁雪"]::before { background-position: 50% 100%; }
+.char-item[data-char="墨岚"]::before { background-position: 75% 100%; }
+.char-item[data-char="茶岑"]::before { background-position: 100% 100%; }
 
 /* 错开位置 - 波浪形 */
 .char-item.offset-1 { margin-top: 40px; }
@@ -183,9 +211,8 @@ title: 生民卷
   border-radius: 0;
   background-color: transparent;
   transition: all 0.3s ease;
-  /* 纵向向外淡开效果 - 减少淡出范围 */
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);
+  position: relative;
+  z-index: 1;
 }
 
 .char-item:hover .char-img {
