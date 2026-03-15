@@ -170,22 +170,22 @@ title: 生民卷
 .char-strip {
   display: flex;
   flex-direction: column;
-  width: 160px;
+  width: 205px;
   text-decoration: none;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .char-strip:hover {
-  transform: translateY(-12px);
+  transform: translateY(-8px);
 }
 
 .char-strip.offset-down {
-  margin-top: 80px;
+  margin-top: 120px;
 }
 
 .char-img {
-  width: 160px;
-  height: 229px;
+  width: 205px;
+  height: 768px;
   background-image: url('https://relhigh.github.io/hirarchealogy/assets/characters.png');
   background-size: 500% 200%;
   border: none;
@@ -197,7 +197,7 @@ title: 生民卷
 
 .char-strip:hover .char-img {
   filter: grayscale(0%) brightness(1.1);
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .char-meta {
@@ -230,36 +230,48 @@ title: 生民卷
   color: #e8c88a;
 }
 
-/* 响应式 */
+/* 响应式 - 按比例缩放 */
+@media (max-width: 1400px) {
+  .char-strip, .char-img {
+    width: 180px;
+  }
+  .char-img {
+    height: 675px;
+  }
+  .char-strip.offset-down {
+    margin-top: 100px;
+  }
+}
+
 @media (max-width: 1200px) {
   .character-flow {
-    gap: 25px 30px;
+    gap: 20px 25px;
     padding: 40px;
   }
   .char-strip, .char-img {
-    width: 140px;
+    width: 150px;
   }
   .char-img {
-    height: 200px;
+    height: 562px;
   }
   .char-strip.offset-down {
-    margin-top: 60px;
+    margin-top: 80px;
   }
 }
 
 @media (max-width: 900px) {
   .character-flow {
-    gap: 20px 25px;
+    gap: 15px 20px;
     padding: 30px;
   }
   .char-strip, .char-img {
     width: 120px;
   }
   .char-img {
-    height: 172px;
+    height: 450px;
   }
   .char-strip.offset-down {
-    margin-top: 50px;
+    margin-top: 60px;
   }
   .shengmin-header h1 {
     font-size: 2rem;
@@ -269,17 +281,17 @@ title: 生民卷
 
 @media (max-width: 600px) {
   .character-flow {
-    gap: 15px 20px;
+    gap: 10px 15px;
     padding: 20px;
   }
   .char-strip, .char-img {
-    width: 100px;
+    width: 90px;
   }
   .char-img {
-    height: 143px;
+    height: 337px;
   }
   .char-strip.offset-down {
-    margin-top: 40px;
+    margin-top: 50px;
   }
   .shengmin-header {
     padding: 40px 20px 30px;
