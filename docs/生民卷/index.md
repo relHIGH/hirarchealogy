@@ -183,8 +183,9 @@ title: 生民卷
   border-radius: 0;
   background-color: transparent;
   transition: all 0.3s ease;
-  /* 上4% 右3% 下2% 左3% - 减少底部裁剪 */
-  clip-path: inset(4% 3% 2% 3%);
+  /* 纵向向外淡开效果 */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
 }
 
 .char-item:hover .char-img {
