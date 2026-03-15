@@ -170,7 +170,7 @@ title: 生民卷
 .char-strip {
   display: flex;
   flex-direction: column;
-  width: 140px;
+  width: 160px;
   text-decoration: none;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -184,20 +184,20 @@ title: 生民卷
 }
 
 .char-img {
-  width: 140px;
-  height: 280px;
+  width: 160px;
+  height: 229px;
   background-image: url('https://relhigh.github.io/hirarchealogy/assets/characters.png');
   background-size: 500% 200%;
-  border-radius: 6px;
-  border: 1px solid rgba(201, 168, 108, 0.2);
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
   transition: all 0.4s;
   filter: grayscale(30%) brightness(0.9);
 }
 
 .char-strip:hover .char-img {
-  filter: grayscale(0%) brightness(1);
-  border-color: rgba(201, 168, 108, 0.5);
-  box-shadow: 0 20px 60px rgba(128, 0, 32, 0.5);
+  filter: grayscale(0%) brightness(1.1);
+  transform: scale(1.05);
 }
 
 .char-meta {
@@ -237,10 +237,10 @@ title: 生民卷
     padding: 40px;
   }
   .char-strip, .char-img {
-    width: 120px;
+    width: 140px;
   }
   .char-img {
-    height: 240px;
+    height: 200px;
   }
   .char-strip.offset-down {
     margin-top: 60px;
@@ -253,10 +253,10 @@ title: 生民卷
     padding: 30px;
   }
   .char-strip, .char-img {
-    width: 100px;
+    width: 120px;
   }
   .char-img {
-    height: 200px;
+    height: 172px;
   }
   .char-strip.offset-down {
     margin-top: 50px;
@@ -273,10 +273,10 @@ title: 生民卷
     padding: 20px;
   }
   .char-strip, .char-img {
-    width: 80px;
+    width: 100px;
   }
   .char-img {
-    height: 160px;
+    height: 143px;
   }
   .char-strip.offset-down {
     margin-top: 40px;
