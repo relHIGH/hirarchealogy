@@ -173,14 +173,14 @@ title: 生民卷
 .char-item::before {
   content: '';
   position: absolute;
-  top: -20px;
-  left: -10px;
-  right: -10px;
-  bottom: -40px;
+  top: -30px;
+  left: -15px;
+  right: -15px;
+  bottom: -50px;
   background: inherit;
   background-size: 500% 200%;
-  filter: blur(20px);
-  opacity: 0.6;
+  filter: blur(30px) brightness(0.3);
+  opacity: 0.4;
   z-index: -1;
   pointer-events: none;
 }
