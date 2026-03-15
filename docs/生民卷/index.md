@@ -105,11 +105,19 @@ title: 生民卷
 </div>
 
 <style>
-/* 生民卷暗色主题首页 - 全屏布局，突破 container 限制 */
+/* 隐藏 container 的白框背景，让生民卷全屏 */
+.container {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  max-width: 100% !important;
+}
+
+/* 生民卷暗色主题首页 - 真正全屏 */
 .shengmin-dark-page {
-  min-height: 100vh;
-  width: 100vw;
-  margin: 0 -55px;
+  min-height: calc(100vh - 60px);
+  width: 100%;
+  margin: 0;
   padding: 0;
   background: linear-gradient(180deg, #1a0a0f 0%, #0d0508 100%);
   color: #d4a5a5;
