@@ -173,14 +173,14 @@ title: 生民卷
 .char-item::before {
   content: '';
   position: absolute;
-  top: -30px;
-  left: -15px;
-  right: -15px;
-  bottom: -50px;
-  background: inherit;
+  top: -40px;
+  left: -20px;
+  right: -20px;
+  bottom: -60px;
+  background-image: url('https://relhigh.github.io/hirarchealogy/assets/characters.png');
   background-size: 500% 200%;
-  filter: blur(30px) brightness(0.3);
-  opacity: 0.4;
+  filter: blur(40px) brightness(0.5);
+  opacity: 0.5;
   z-index: -1;
   pointer-events: none;
 }
