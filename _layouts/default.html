@@ -186,15 +186,21 @@
           const container = document.getElementById('trajectory-line');
           if (!container || isHome) return;
           
-          // 获取当前路径并解析层级（保留docs）
+          // 获取当前路径并解析层级
           const path = window.location.pathname.replace('{{ site.baseurl }}', '');
           const parts = path.split('/').filter(p => p);
           
-          // 构建轨迹链：从主题开始到现在
+          // 构建轨迹链：从主题开始到现在（跳过docs）
           let chain = [];
           let linkAcc = '{{ site.baseurl }}';
           
           parts.forEach((part, idx) => {
+            // 累积链接（包括docs）
+            linkAcc += '/' + part;
+            
+            // 跳过docs，不显示在轨迹中
+            if (part === 'docs') return;
+            
             const isMd = part.endsWith('.html');
             const rawName = isMd ? part.replace('.html', '') : part;
             
@@ -203,8 +209,7 @@
             try { displayName = decodeURIComponent(rawName); } catch(e) {}
             if (displayName === '古代旅行') displayName = '旅';
             
-            // 构建正确的链接（保留 docs 路径）
-            linkAcc += '/' + part;
+            // 构建正确的链接
             let url;
             if (isMd) {
               // 节点页：直接是 .html 文件
