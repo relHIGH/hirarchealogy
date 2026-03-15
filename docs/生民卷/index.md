@@ -105,18 +105,28 @@ title: 生民卷
 </div>
 
 <style>
-/* 隐藏 container 的白框背景，让生民卷全屏 */
-.container {
+/* 强制隐藏 container 的所有样式 */
+#content-wrapper .container {
   background: transparent !important;
   box-shadow: none !important;
   padding: 0 !important;
+  margin: 0 !important;
   max-width: 100% !important;
+  width: 100% !important;
+}
+
+#content-wrapper {
+  padding: 0 !important;
+}
+
+#trajectory-line {
+  display: none !important;
 }
 
 /* 生民卷暗色主题首页 - 真正全屏 */
 .shengmin-dark-page {
   min-height: calc(100vh - 60px);
-  width: 100%;
+  width: 100vw;
   margin: 0;
   padding: 0;
   background: linear-gradient(180deg, #1a0a0f 0%, #0d0508 100%);
