@@ -24,7 +24,7 @@
     #sidebar-container {
       position: absolute; top: 0; left: 0; height: 100%; z-index: 1500; width: var(--sidebar-width);
       transform: translateX(calc(-1 * var(--sidebar-width) + var(--sidebar-peek)));
-      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.6s;
       background: rgba(100, 0, 20, 0.65);
       mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L15,0 C5,10 5,20 10,30 C20,40 45,45 45,65 C45,85 20,95 15,100 L0,100 Z" fill="black"/></svg>');
       -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L15,0 C5,10 5,20 10,30 C20,40 45,45 45,65 C45,85 20,95 15,100 L0,100 Z" fill="black"/></svg>');
@@ -32,6 +32,20 @@
       display: flex; flex-direction: column; align-items: flex-start; padding-top: 52vh; padding-left: 20px; gap: 20px;
     }
     #sidebar-container:hover { transform: translateX(0); background: rgba(30, 0, 5, 0.98); }
+    
+    /* 左侧触发区域 - 静默时可见 */
+    #sidebar-trigger {
+      position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+      width: 8px; height: 120px;
+      background: rgba(128, 0, 32, 0.3);
+      border-radius: 0 4px 4px 0;
+      transition: all 0.4s ease;
+      z-index: 1499;
+    }
+    #sidebar-container:hover + #sidebar-trigger,
+    #sidebar-trigger:hover {
+      opacity: 0;
+    }
     .nav-item-wrapper { text-decoration: none; color: rgba(255,255,255,0.5); font-size: 32px; font-family: "Songti SC", serif; transition: 0.4s; letter-spacing: 2px; }
     #sidebar-container:hover .nav-item-wrapper { color: white !important; }
 
@@ -117,6 +131,7 @@
       <a href="{{ site.baseurl }}/docs/饮/" class="nav-item-wrapper">饮</a>
       <a href="{{ site.baseurl }}/docs/感/" class="nav-item-wrapper">感</a>
     </aside>
+    <div id="sidebar-trigger"></div>
 
     <div id="content-wrapper">
       <main class="container">
