@@ -188,19 +188,32 @@
           
           // 获取当前路径并解析层级
           const path = window.location.pathname.replace('{{ site.baseurl }}', '');
-          const parts = path.split('/').filter(p => p && p !== 'docs' && p !== 'index.html');
+          const parts = path.split('/').filter(p => p && p !== 'docs');
           
           // 构建轨迹链：从主题开始到现在
           let chain = [];
-          let linkAcc = '{{ site.baseurl }}/';
+          let linkAcc = '{{ site.baseurl }}';
           
           parts.forEach((part, idx) => {
+            const isLast = idx === parts.length - 1;
             const isMd = part.endsWith('.html');
-            const name = part.replace('.html', '').replace('%E6%97%85', '旅').replace('%E6%88%8F', '戏').replace('%E9%A5%AE', '饮').replace('%E6%84%9F', '感');
-            const displayName = name === '古代旅行' ? '旅' : decodeURIComponent(name);
+            const rawName = isMd ? part.replace('.html', '') : part;
             
-            linkAcc += (idx === 0 ? 'docs/' : '') + part + '/';
-            const url = linkAcc.replace('.html/', '.html').replace(/\/$/, '.html');
+            // 解码并转换显示名称
+            let displayName = rawName;
+            try { displayName = decodeURIComponent(rawName); } catch(e) {}
+            if (displayName === '古代旅行') displayName = '旅';
+            
+            // 构建正确的链接
+            linkAcc += '/' + part;
+            let url;
+            if (isMd) {
+              // 节点页：保持 .html 结尾
+              url = linkAcc;
+            } else {
+              // 分类页：添加 / 结尾
+              url = linkAcc + '/';
+            }
             
             chain.push({
               n: displayName,
