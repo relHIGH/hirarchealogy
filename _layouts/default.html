@@ -53,6 +53,8 @@
     .traj-node-container { display: flex; flex-direction: column; align-items: center; }
     .traj-node { text-decoration: none; color: var(--accent); font-family: "Songti SC", serif; font-size: 14px; letter-spacing: 1px; transition: 0.3s; padding: 2px 8px; }
     .traj-node:hover { background: var(--accent); color: white; border-radius: 2px; }
+    .traj-node.traj-branch { color: #666; font-style: italic; }
+    .traj-node.traj-branch:hover { background: #666; color: white; }
     .traj-mesh-dots { display: flex; gap: 3px; margin-top: 2px; height: 4px; justify-content: center; }
     .mesh-dot { width: 3px; height: 3px; background: var(--accent); border-radius: 50%; opacity: 0.4; }
     .traj-svg { width: 45px; height: 6px; display: flex; align-items: center; margin: 0 5px; }
@@ -157,6 +159,9 @@
         },
         setupRitual: function() {
           if (!isHome) return;
+          // 首页清除轨迹历史
+          sessionStorage.removeItem('hr_traj_history');
+          sessionStorage.removeItem('hr_mesh_nav');
           const sp = document.getElementById('splash-screen');
           if (!sessionStorage.getItem('hr_splashed')) {
             sp.style.display = 'flex';
@@ -186,63 +191,105 @@
           const container = document.getElementById('trajectory-line');
           if (!container || isHome) return;
           
-          // 获取当前路径并解析层级
-          const path = window.location.pathname.replace('{{ site.baseurl }}', '');
-          const parts = path.split('/').filter(p => p);
+          // 获取当前页面信息
+          const currentPath = window.location.pathname;
+          const currentName = container.dataset.name;
+          const currentUrl = container.dataset.url;
           
-          // 构建轨迹链：从主题开始到现在（跳过docs）
-          let chain = [];
-          let linkAcc = '{{ site.baseurl }}';
+          // 从 sessionStorage 读取轨迹历史
+          let trajHistory = JSON.parse(sessionStorage.getItem('hr_traj_history') || '[]');
           
-          parts.forEach((part, idx) => {
-            // 累积链接（包括docs）
-            linkAcc += '/' + part;
+          // 获取当前主题（从路径中提取）
+          const pathMatch = currentPath.match(/\/docs\/([^\/]+)/);
+          const currentTheme = pathMatch ? pathMatch[1] : '';
+          
+          // 判断是否是维度关联跳转（通过检查 referrer 或标记）
+          const isMeshNav = sessionStorage.getItem('hr_mesh_nav') === 'true';
+          sessionStorage.removeItem('hr_mesh_nav'); // 清除标记
+          
+          // 获取上一个节点
+          const lastNode = trajHistory.length > 0 ? trajHistory[trajHistory.length - 1] : null;
+          
+          // 判断当前节点类型
+          let nodeType = 'main'; // main=主线, branch=支线
+          
+          if (lastNode) {
+            // 获取上一个节点的主题
+            const lastMatch = lastNode.u.match(/\/docs\/([^\/]+)/);
+            const lastTheme = lastMatch ? lastMatch[1] : '';
             
-            // 跳过docs，不显示在轨迹中
-            if (part === 'docs') return;
-            
-            const isMd = part.endsWith('.html');
-            const rawName = isMd ? part.replace('.html', '') : part;
-            
-            // 解码并转换显示名称
-            let displayName = rawName;
-            try { displayName = decodeURIComponent(rawName); } catch(e) {}
-            if (displayName === '古代旅行') displayName = '旅';
-            
-            // 构建正确的链接
-            let url;
-            if (isMd) {
-              // 节点页：直接是 .html 文件
-              url = linkAcc;
-            } else {
-              // 分类页：目录以 / 结尾
-              url = linkAcc + '/';
+            if (lastTheme && currentTheme && lastTheme !== currentTheme) {
+              // 主题不同，是支线跳转
+              nodeType = 'branch';
+            } else if (isMeshNav) {
+              // 明确标记为维度关联跳转
+              nodeType = 'branch';
             }
-            
-            chain.push({
-              n: displayName,
-              u: url,
-              type: isMd ? 'node' : 'category'
-            });
-          });
+          }
           
-          // 如果没有有效节点，隐藏轨迹线
-          if (chain.length === 0) {
+          // 添加当前节点到历史（如果不存在或URL不同）
+          const existingIdx = trajHistory.findIndex(n => n.u === currentUrl);
+          if (existingIdx === -1) {
+            // 新节点，添加到末尾
+            trajHistory.push({
+              n: currentName,
+              u: currentUrl,
+              type: nodeType,
+              theme: currentTheme
+            });
+            // 限制最多8个节点
+            if (trajHistory.length > 8) {
+              trajHistory.shift(); // 移除最早的
+            }
+          } else {
+            // 已存在的节点，截断到该位置（用户点击了历史节点）
+            trajHistory = trajHistory.slice(0, existingIdx + 1);
+          }
+          
+          // 保存更新后的历史
+          sessionStorage.setItem('hr_traj_history', JSON.stringify(trajHistory));
+          
+          // 如果没有历史，隐藏轨迹线
+          if (trajHistory.length === 0) {
             container.style.display = 'none';
             return;
           }
           
-          // 渲染轨迹（跳过docs节点）
+          // 渲染轨迹
           let html = "";
-          chain.filter(n => n.n !== 'docs').forEach((node, i, arr) => {
-            const dots = (node.type === 'node') ? '<div class="mesh-dot"></div>' : '<div class="mesh-dot"></div><div class="mesh-dot"></div><div class="mesh-dot"></div>';
-            html += `<div class="traj-node-container"><a href="${node.u}" class="traj-node">${node.n}</a><div class="traj-mesh-dots">${dots}</div></div>`;
-            if (i < arr.length - 1) {
-              const isNode = (arr[i+1].type === 'node');
-              html += `<div class="traj-svg ${isNode?'mesh-link':''}"><svg viewBox="0 0 45 6"><path d="${isNode?'M0,1.5 L45,1.5 M0,4.5 L45,4.5':'M0,3 L45,3'}"></path></svg></div>`;
+          trajHistory.forEach((node, i) => {
+            // 主线：实心点，支线：空心/不同颜色
+            const isMain = node.type === 'main';
+            const dots = isMain 
+              ? '<div class="mesh-dot" style="opacity:1;"></div><div class="mesh-dot" style="opacity:1;"></div><div class="mesh-dot" style="opacity:1;"></div>'
+              : '<div class="mesh-dot" style="opacity:0.3; background:transparent; border:1px solid var(--accent);"></div><div class="mesh-dot" style="opacity:0.3; background:transparent; border:1px solid var(--accent);"></div><div class="mesh-dot" style="opacity:0.3; background:transparent; border:1px solid var(--accent);"></div>';
+            
+            // 当前节点高亮
+            const isCurrent = i === trajHistory.length - 1;
+            const nodeStyle = isCurrent ? 'font-weight:bold; color:var(--accent);' : '';
+            const nodeClass = isMain ? 'traj-node' : 'traj-node traj-branch';
+            
+            html += `<div class="traj-node-container" style="${isCurrent?'opacity:1;':'opacity:0.7;'}" data-idx="${i}"><a href="${node.u}" class="${nodeClass}" style="${nodeStyle}">${node.n}</a><div class="traj-mesh-dots">${dots}</div></div>`;
+            
+            if (i < trajHistory.length - 1) {
+              // 连接线的样式也区分主线/支线
+              const isNextBranch = trajHistory[i+1].type === 'branch';
+              const lineClass = isNextBranch ? 'traj-svg mesh-link' : 'traj-svg';
+              const linePath = isNextBranch ? 'M0,1.5 L45,1.5 M0,4.5 L45,4.5' : 'M0,3 L45,3';
+              html += `<div class="${lineClass}"><svg viewBox="0 0 45 6"><path d="${linePath}"></path></svg></div>`;
             }
           });
           container.innerHTML = html;
+          
+          // 为轨迹节点添加点击事件，用于截断历史
+          container.querySelectorAll('.traj-node-container').forEach(el => {
+            el.addEventListener('click', (e) => {
+              const idx = parseInt(el.dataset.idx);
+              let history = JSON.parse(sessionStorage.getItem('hr_traj_history') || '[]');
+              history = history.slice(0, idx + 1);
+              sessionStorage.setItem('hr_traj_history', JSON.stringify(history));
+            });
+          });
         },
         setupAnimations: function() {
           const orbs = document.querySelectorAll('.portal-orb:not(.ritual-seal)');
@@ -262,7 +309,11 @@
           const md = document.getElementById('markdown-body');
           md.innerHTML = md.innerHTML.replace(/\[\[(.*?)\]\]/g, (m, c) => {
             const f = pgs.find(p => p.n === c.split('|')[0].trim());
-            return f ? `<a class="wiki-link" href="${f.u}">${c.split('|')[1] || c.split('|')[0]}</a>` : `<span>${c}</span>`;
+            if (f) {
+              // 维度关联点击标记为支线导航
+              return `<a class="wiki-link" href="${f.u}" onclick="sessionStorage.setItem('hr_mesh_nav', 'true');">${c.split('|')[1] || c.split('|')[0]}</a>`;
+            }
+            return `<span>${c}</span>`;
           });
         },
         setupDiscovery: function() {
