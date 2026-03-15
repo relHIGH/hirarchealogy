@@ -35,14 +35,16 @@
     
     /* 左侧触发区域 - 静默时可见 */
     #sidebar-trigger {
-      position: absolute; left: 0; top: 50%; transform: translateY(-50%);
-      width: 8px; height: 120px;
-      background: rgba(128, 0, 32, 0.3);
-      border-radius: 0 4px 4px 0;
+      position: fixed; left: 0; top: 50%; transform: translateY(-50%);
+      width: 12px; height: 160px;
+      background: linear-gradient(90deg, rgba(128, 0, 32, 0.15), rgba(128, 0, 32, 0.4));
+      border-radius: 0 6px 6px 0;
       transition: all 0.4s ease;
       z-index: 1499;
+      box-shadow: 2px 0 8px rgba(128, 0, 32, 0.2);
+      cursor: pointer;
     }
-    #sidebar-container:hover + #sidebar-trigger,
+    #sidebar-container:hover ~ #sidebar-trigger,
     #sidebar-trigger:hover {
       opacity: 0;
     }
