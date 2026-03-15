@@ -206,9 +206,10 @@ title: 生民卷
 }
 
 .char-role {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: #c9a86c;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .char-item:hover .char-role {
