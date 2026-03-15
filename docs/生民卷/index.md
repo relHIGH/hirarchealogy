@@ -111,17 +111,16 @@ title: 生民卷
   display: none !important;
 }
 
-/* 生民卷暗色主题首页 */
+/* 生民卷暗色主题首页 - 全屏无白边 */
 .shengmin-dark-page {
-  min-height: calc(100vh - 60px);
-  width: 100%;
+  min-height: 100vh;
+  width: 100vw;
   margin: 0;
   padding: 0;
-  background: linear-gradient(180deg, #1a0a0f 0%, #0d0508 100%);
+  background: #0d0508;
   color: #d4a5a5;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 .shengmin-header {
@@ -149,9 +148,10 @@ title: 生民卷
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 10px;
-  padding: 40px 20px 80px;
+  gap: 30px;
+  padding: 60px 40px 120px;
   overflow-x: auto;
+  min-height: 500px;
 }
 
 .char-item {
@@ -176,11 +176,14 @@ title: 生民卷
   width: 80px;
   height: 300px;
   background-image: url('https://relhigh.github.io/hirarchealogy/assets/characters.png');
-  background-size: 500% 200%;
+  background-size: 560% 220%;
+  background-repeat: no-repeat;
   border: none;
   border-radius: 0;
   background-color: transparent;
   transition: all 0.3s ease;
+  /* 裁剪掉边缘 */
+  clip-path: inset(2% 2% 2% 2%);
 }
 
 .char-item:hover .char-img {
@@ -214,23 +217,26 @@ title: 生民卷
 
 /* 响应式 */
 @media (max-width: 1000px) {
+  .character-row {
+    gap: 25px;
+  }
   .char-img {
     width: 70px;
     height: 262px;
-  }
-  .character-row {
-    gap: 8px;
+    background-size: 560% 220%;
   }
 }
 
 @media (max-width: 800px) {
+  .character-row {
+    gap: 20px;
+    padding: 40px 30px 100px;
+  }
   .char-img {
     width: 60px;
     height: 225px;
+    background-size: 560% 220%;
   }
-  .char-item.offset-1 { margin-top: 30px; }
-  .char-item.offset-2 { margin-top: 60px; }
-  .char-item.offset-3 { margin-top: 90px; }
 }
 
 @media (max-width: 600px) {
@@ -238,9 +244,14 @@ title: 生民卷
     font-size: 1.8rem;
     letter-spacing: 8px;
   }
+  .character-row {
+    gap: 15px;
+    padding: 30px 20px 80px;
+  }
   .char-img {
     width: 50px;
     height: 187px;
+    background-size: 560% 220%;
   }
   .char-info {
     margin-top: 8px;
