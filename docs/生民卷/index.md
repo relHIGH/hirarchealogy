@@ -35,7 +35,7 @@ title: 生民卷
     </a>
     
     <a href="./石兰/" class="char-item offset-3" data-char="石兰">
-      <div class="char-img" style="background-position: 80% 0%;"></div>
+      <div class="char-img" style="background-position: 75% 0%;"></div>
       <div class="char-info">
         <span class="char-dynasty">北魏</span>
         <span class="char-role">云冈石窟女石匠</span>
@@ -43,7 +43,7 @@ title: 生民卷
     </a>
     
     <a href="./月珑/" class="char-item offset-2" data-char="月珑">
-      <div class="char-img" style="background-position: 99% 0%;"></div>
+      <div class="char-img" style="background-position: 100% 0%;"></div>
       <div class="char-info">
         <span class="char-dynasty">唐</span>
         <span class="char-role">长安胡商之妻</span>
@@ -75,7 +75,7 @@ title: 生民卷
     </a>
     
     <a href="./墨岚/" class="char-item offset-2" data-char="墨岚">
-      <div class="char-img" style="background-position: 80% 100%;"></div>
+      <div class="char-img" style="background-position: 75% 100%;"></div>
       <div class="char-info">
         <span class="char-dynasty">西夏</span>
         <span class="char-role">黑水城女文书吏</span>
@@ -83,7 +83,7 @@ title: 生民卷
     </a>
     
     <a href="./茶岑/" class="char-item offset-3" data-char="茶岑">
-      <div class="char-img" style="background-position: 99% 100%;"></div>
+      <div class="char-img" style="background-position: 100% 100%;"></div>
       <div class="char-info">
         <span class="char-dynasty">大理国</span>
         <span class="char-role">茶马古道女商人</span>
