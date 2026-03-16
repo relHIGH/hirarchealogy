@@ -175,26 +175,20 @@ title: 炉青
 /* 滑动容器 */
 .story-slider {
   position: relative;
-  height: 75vh;
-  overflow: hidden;
+  min-height: 80vh;
+  overflow: visible;
 }
 
 .slide-page {
-  position: absolute;
-  top: 0;
-  left: 0;
+  display: none;
   width: 100%;
-  height: 100%;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.5s ease;
+  min-height: 80vh;
   padding: 40px;
   box-sizing: border-box;
 }
 
 .slide-page.active {
-  opacity: 1;
-  visibility: visible;
+  display: block;
 }
 
 /* 页面指示点 */
@@ -206,7 +200,7 @@ title: 炉青
   display: flex;
   flex-direction: column;
   gap: 12px;
-  z-index: 100;
+  z-index: 1000;
 }
 
 .dot {
