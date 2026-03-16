@@ -1,229 +1,388 @@
 ---
-title: 关系图谱
 layout: default
+title: 关系图谱
 ---
 
-<div id="graph-wrapper" style="position: relative; width: 100%; height: 80vh; background: #fdfaf6; border-radius: 12px; border: 1px solid #eee; overflow: hidden;">
-  <div id="graph-loading" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #999; z-index: 10;">正在神经同步中...</div>
-  <div id="graph-container" style="width: 100%; height: 100%;"></div>
-  
-  <!-- 图谱控制台 -->
-  <div id="graph-controls" style="position: absolute; bottom: 20px; left: 20px; background: rgba(255,255,255,0.9); padding: 15px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); z-index: 100; font-size: 13px; border: 1px solid #eee; min-width: 180px;">
-    <div style="font-weight: bold; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;">🛠️ 图谱控制台</div>
-    
-    <div style="margin-bottom: 8px;">
-      <label><input type="checkbox" id="show-labels" checked> 显示文字标签</label>
-    </div>
-    
-    <div style="margin-bottom: 8px;">
-      <label>节点颜色：<input type="color" id="node-color" value="#e67e22" style="width: 40px; height: 20px; border: none; padding: 0;"></label>
-    </div>
-
-    <div style="margin-bottom: 8px;">
-      <label>连线强度：<input type="range" id="link-strength" min="0" max="50" value="20" style="width: 100%;"></label>
-    </div>
-    
-    <div style="margin-bottom: 8px; border-top: 1px solid #eee; padding-top: 8px;">
-      <label><input type="checkbox" id="show-shengmin"> 显示生民卷人物</label>
-    </div>
-
-    <div style="font-size: 11px; color: #999; margin-top: 10px;">滚轮缩放 · 拖拽移动 · 点击跳转</div>
+<div class="graph-page">
+  <div class="graph-tabs">
+    <button class="graph-tab active" onclick="switchGraph('themes')">主题关联</button>
+    <button class="graph-tab" onclick="switchGraph('characters')">人物关系</button>
+    <button class="graph-tab" onclick="switchGraph('network')">全文网络</button>
   </div>
   
-  <!-- 生民卷收藏面板 -->
-  <div id="shengmin-panel" style="position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.95); padding: 20px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); z-index: 100; font-size: 13px; border: 1px solid #eee; width: 250px; display: none;">
-    <div style="font-weight: bold; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; display: flex; align-items: center; gap: 8px;">
-      <span>📜</span>
-      <span>生民卷收藏</span>
+  <div id="graph-container" class="graph-container">
+    <!-- 主题关联图 -->
+    <div id="graph-themes" class="graph-view active">
+      <div class="theme-connections">
+        <div class="theme-node" data-theme="旅">
+          <div class="theme-icon">旅</div>
+          <div class="theme-name">古代旅行</div>
+          <div class="theme-links">行 · 路 · 驿 · 游 · 记</div>
+        </div>
+        <div class="theme-node" data-theme="戏">
+          <div class="theme-icon">戏</div>
+          <div class="theme-name">戏剧艺术</div>
+          <div class="theme-links">曲 · 台 · 伶 · 剧</div>
+        </div>
+        <div class="theme-node" data-theme="饮">
+          <div class="theme-icon">饮</div>
+          <div class="theme-name">饮品礼仪</div>
+          <div class="theme-links">茶 · 酒 · 器 · 礼</div>
+        </div>
+        <div class="theme-node" data-theme="感">
+          <div class="theme-icon">感</div>
+          <div class="theme-name">感知情感</div>
+          <div class="theme-links">情 · 境 · 忆 · 悟</div>
+        </div>
+      </div>
+      
+      <svg class="connection-lines" viewBox="0 0 800 400">
+        <line x1="200" y1="100" x2="600" y2="100" stroke="#800020" stroke-width="1" stroke-dasharray="5,5" opacity="0.3"/>
+        <line x1="200" y1="100" x2="200" y2="300" stroke="#800020" stroke-width="1" stroke-dasharray="5,5" opacity="0.3"/>
+        <line x1="600" y1="100" x2="600" y2="300" stroke="#800020" stroke-width="1" stroke-dasharray="5,5" opacity="0.3"/>
+        <line x1="200" y1="300" x2="600" y2="300" stroke="#800020" stroke-width="1" stroke-dasharray="5,5" opacity="0.3"/>
+        <line x1="200" y1="100" x2="600" y2="300" stroke="#800020" stroke-width="1" stroke-dasharray="5,5" opacity="0.2"/>
+        <line x1="600" y1="100" x2="200" y2="300" stroke="#800020" stroke-width="1" stroke-dasharray="5,5" opacity="0.2"/>
+      </svg>
+      
+      <div class="graph-legend">
+        <p>四大主题相互关联，共同构成古代生活的全景</p>
+        <p class="legend-hint">点击主题节点进入探索 · 虚线表示概念关联</p>
+      </div>
     </div>
     
-    <div id="shengmin-stats" style="margin-bottom: 15px;">
-      <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-        <span style="color: #666;">已探索人物</span>
-        <span id="explored-chars" style="font-weight: bold; color: var(--accent);">0/10</span>
+    <!-- 人物关系图 -->
+    <div id="graph-characters" class="graph-view">
+      <div class="character-timeline">
+        <div class="era-row">
+          <div class="era-label">战国</div>
+          <a href="./docs/生民卷/炉青/" class="char-node">炉青</div>
+        </div>
+        <div class="era-row">
+          <div class="era-label">秦</div>
+          <a href="./docs/生民卷/衡羽/" class="char-node">衡羽</div>
+        </div>
+        <div class="era-row">
+          <div class="era-label">汉</div>
+          <a href="./docs/生民卷/禾宁/" class="char-node">禾宁</div>
+        </div>
+        <div class="era-row">
+          <div class="era-label">北魏</div>
+          <a href="./docs/生民卷/石兰/" class="char-node">石兰</div>
+        </div>
+        <div class="era-row">
+          <div class="era-label">唐</div>
+          <a href="./docs/生民卷/月珑/" class="char-node">月珑</div>
+        </div>
+        <div class="era-row">
+          <div class="era-label">五代十国</div>
+          <a href="./docs/生民卷/潮音/" class="char-node">潮音</div>
+        </div>
+        <div class="era-row">
+          <div class="era-label">宋</div>
+          <a href="./docs/生民卷/清弦/" class="char-node">清弦</div>
+        </div>
+        <div class="era-row">
+          <div class="era-label">辽</div>
+          <a href="./docs/生民卷/骁雪/" class="char-node">骁雪</div>
+        </div>
+        <div class="era-row">
+          <div class="era-label">西夏</div>
+          <a href="./docs/生民卷/墨岚/" class="char-node">墨岚</div>
+        </div>
+        <div class="era-row">
+          <div class="era-label">大理国</div>
+          <a href="./docs/生民卷/茶岑/" class="char-node">茶岑</div>
+        </div>
       </div>
-      <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-        <span style="color: #666;">点亮节点</span>
-        <span id="lit-nodes" style="font-weight: bold; color: var(--accent);">0</span>
-      </div>
-      <div style="display: flex; justify-content: space-between;">
-        <span style="color: #666;">收集文物</span>
-        <span id="collected-relics" style="font-weight: bold; color: #8B4513;">0</span>
+      
+      <div class="graph-legend">
+        <p>十位历史人物，跨越千年时光</p>
+        <p class="legend-hint">按朝代排列 · 点击人物进入故事</p>
       </div>
     </div>
     
-    <div style="border-top: 1px solid #eee; padding-top: 12px;">
-      <div style="font-size: 11px; color: #999; margin-bottom: 10px;">人物间共同节点</div>
-      <div id="character-collisions" style="max-height: 150px; overflow-y: auto;"></div>
-    </div>
     
-    <div style="border-top: 1px solid #eee; padding-top: 12px; margin-top: 12px; display: flex; gap: 8px;">
-      <button onclick="Shengmin.exportImage()" style="flex: 1; padding: 8px; background: var(--accent); color: white; border: none; border-radius: 6px; font-size: 12px; cursor: pointer;">导出证书</button>
-      <button onclick="Shengmin.exportLink()" style="flex: 1; padding: 8px; background: #f0f0f0; color: #666; border: none; border-radius: 6px; font-size: 12px; cursor: pointer;">分享</button>
+    <!-- 全文网络 -->
+    <div id="graph-network" class="graph-view">
+      <div class="network-cloud">
+        <div class="network-category">
+          <h4>旅行交通</h4>
+          <div class="network-tags">
+            <span class="net-tag">行</span><span class="net-tag">路</span><span class="net-tag">驿</span>
+            <span class="net-tag">游</span><span class="net-tag">记</span><span class="net-tag">马</span>
+            <span class="net-tag">车</span><span class="net-tag">舟</span><span class="net-tag">桥</span>
+          </div>
+        </div>
+        
+        <div class="network-category">
+          <h4>戏剧艺术</h4>
+          <div class="network-tags">
+            <span class="net-tag">曲</span><span class="net-tag">台</span><span class="net-tag">伶</span>
+            <span class="net-tag">剧</span><span class="net-tag">昆</span><span class="net-tag">京</span>
+            <span class="net-tag">越</span><span class="net-tag">弹</span><span class="net-tag">谱</span>
+          </div>
+        </div>
+        
+        <div class="network-category">
+          <h4>饮品礼仪</h4>
+          <div class="network-tags">
+            <span class="net-tag">茶</span><span class="net-tag">酒</span><span class="net-tag">器</span>
+            <span class="net-tag">礼</span><span class="net-tag">绿</span><span class="net-tag">红</span>
+            <span class="net-tag">黄</span><span class="net-tag">白</span><span class="net-tag">盏</span>
+          </div>
+        </div>
+        
+        <div class="network-category">
+          <h4>感知情感</h4>
+          <div class="network-tags">
+            <span class="net-tag">情</span><span class="net-tag">境</span><span class="net-tag">忆</span>
+            <span class="net-tag">悟</span><span class="net-tag">乡</span><span class="net-tag">愁</span>
+            <span class="net-tag">豪</span><span class="net-tag">闲</span><span class="net-tag">意</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="graph-legend">
+        <p>全站概念标签云，点击可探索相关条目</p>
+        <p class="legend-hint">持续扩充中 · 各主题间相互交织</p>
+      </div>
     </div>
   </div>
 </div>
 
-<script src="https://unpkg.com/force-graph"></script>
+<style>
+.graph-page {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.graph-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.graph-tab {
+  padding: 10px 24px;
+  background: transparent;
+  border: 1px solid rgba(128,0,32,0.2);
+  border-radius: 20px;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: "Songti SC", serif;
+  font-size: 14px;
+}
+
+.graph-tab:hover,
+.graph-tab.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.graph-container {
+  flex: 1;
+  position: relative;
+}
+
+.graph-view {
+  display: none;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.graph-view.active {
+  display: flex;
+}
+
+/* 主题关联图 */
+.theme-connections {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  position: relative;
+  z-index: 1;
+}
+
+.theme-node {
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  color: inherit;
+}
+
+.theme-node:hover {
+  transform: scale(1.05);
+}
+
+.theme-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-family: "Songti SC", serif;
+  color: var(--accent);
+  margin: 0 auto 15px;
+  transition: all 0.3s;
+}
+
+.theme-node:hover .theme-icon {
+  background: var(--accent);
+  color: white;
+}
+
+.theme-name {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.theme-links {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.connection-lines {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 400px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 人物关系图 */
+.character-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.era-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.era-label {
+  width: 80px;
+  text-align: right;
+  font-size: 0.85rem;
+  color: #888;
+  font-family: "Songti SC", serif;
+}
+
+.char-node {
+  flex: 1;
+  padding: 12px 20px;
+  background: white;
+  border: 1px solid rgba(128,0,32,0.15);
+  border-radius: 8px;
+  text-align: center;
+  font-family: "Songti SC", serif;
+  color: var(--accent);
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.char-node:hover {
+  background: var(--accent);
+  color: white;
+  transform: translateX(10px);
+}
+
+/* 全文网络 */
+.network-cloud {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.network-category h4 {
+  font-family: "Songti SC", serif;
+  color: var(--accent);
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+
+.network-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.net-tag {
+  padding: 6px 12px;
+  background: white;
+  border: 1px solid rgba(128,0,32,0.1);
+  border-radius: 15px;
+  font-size: 0.85rem;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.net-tag:hover {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.graph-legend {
+  margin-top: 40px;
+  text-align: center;
+  color: #666;
+}
+
+.graph-legend p {
+  margin: 5px 0;
+}
+
+.legend-hint {
+  font-size: 0.8rem;
+  color: #999;
+}
+</style>
+
 <script>
-  window.addEventListener("DOMContentLoaded", () => {
-    // 1. 进入图谱页自动收起侧边栏
-    if (window.toggleSidebar) window.toggleSidebar(false);
-    
-    // 2. 加载生民卷收藏数据
-    loadShengminData();
+function switchGraph(type) {
+  document.querySelectorAll('.graph-tab').forEach(tab => tab.classList.remove('active'));
+  document.querySelectorAll('.graph-view').forEach(view => view.classList.remove('active'));
+  
+  event.target.classList.add('active');
+  document.getElementById('graph-' + type).classList.add('active');
+}
 
-    fetch("{{ site.baseurl }}/assets/graph_data.json")
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("graph-loading").style.display = "none";
-        const elem = document.getElementById("graph-container");
-        
-        let showLabels = true;
-        let nodeColor = "#e67e22";
-        let showShengmin = false;
-        
-        // 生民卷人物数据
-        const shengminChars = ['炉青', '衡羽', '禾宁', '石兰', '月珑', '潮音', '清弦', '骁雪', '墨岚', '茶岑'];
-        const shengminColor = "#800020";
-
-        const Graph = ForceGraph()(elem)
-          .graphData(data)
-          .nodeId("id")
-          .nodeLabel(node => showLabels ? null : node.id)
-          .nodeCanvasObject((node, ctx, globalScale) => {
-            // 判断是否是生民卷人物
-            const isShengmin = shengminChars.includes(node.id);
-            const actualColor = (isShengmin && showShengmin) ? shengminColor : nodeColor;
-            
-            // 绘制节点圆点
-            ctx.fillStyle = actualColor;
-            ctx.beginPath();
-            ctx.arc(node.x, node.y, isShengmin ? 8 : 5, 0, 2 * Math.PI, false);
-            ctx.fill();
-            
-            // 如果是生民卷人物，添加光环
-            if (isShengmin && showShengmin) {
-              ctx.strokeStyle = "rgba(128,0,32,0.3)";
-              ctx.lineWidth = 2;
-              ctx.beginPath();
-              ctx.arc(node.x, node.y, 12, 0, 2 * Math.PI, false);
-              ctx.stroke();
-            }
-
-            // 如果开启了显示标签
-            if (showLabels) {
-              const label = node.id;
-              const fontSize = 12/globalScale;
-              ctx.font = `${fontSize}px Sans-Serif`;
-              ctx.textAlign = "center";
-              ctx.textBaseline = "middle";
-              ctx.fillStyle = isShengmin ? "#800020" : "#666";
-              ctx.fillText(label, node.x, node.y + (isShengmin ? 18 : 10));
-            }
-          })
-          .linkColor(() => "#ddd")
-          .linkDirectionalParticles(2)
-          .onNodeClick(node => {
-            const found = pages.find(p => p.name === node.id);
-            if (found) window.location.href = found.url;
-          });
-
-        // 控制台交互逻辑
-        document.getElementById("show-labels").onchange = (e) => {
-          showLabels = e.target.checked;
-          Graph.refresh();
-        };
-
-        document.getElementById("node-color").oninput = (e) => {
-          nodeColor = e.target.value;
-          Graph.refresh();
-        };
-
-        document.getElementById("link-strength").oninput = (e) => {
-          Graph.d3Force("link").distance(parseInt(e.target.value) * 5);
-          Graph.numDimensions(2);
-        };
-        
-        // 生民卷显示切换
-        document.getElementById("show-shengmin").onchange = (e) => {
-          showShengmin = e.target.checked;
-          document.getElementById("shengmin-panel").style.display = showShengmin ? "block" : "none";
-          if (showShengmin) updateShengminPanel();
-          Graph.refresh();
-        };
-
-        window.addEventListener("resize", () => {
-          Graph.width(elem.offsetWidth).height(elem.offsetHeight);
-        });
-      });
-      
-    // 加载生民卷收藏数据
-    function loadShengminData() {
-      const data = localStorage.getItem('hr_shengmin_collections');
-      window.shengminCollections = data ? JSON.parse(data) : {};
-    }
-    
-    // 更新生民卷面板
-    function updateShengminPanel() {
-      const collections = window.shengminCollections || {};
-      const chars = Object.keys(collections);
-      
-      // 统计
-      let totalNodes = 0;
-      let totalRelics = 0;
-      const allNodes = [];
-      
-      chars.forEach(char => {
-        totalNodes += collections[char].nodes?.length || 0;
-        totalRelics += collections[char].relics?.length || 0;
-        allNodes.push(...(collections[char].nodes || []));
-      });
-      
-      document.getElementById('explored-chars').textContent = `${chars.length}/10`;
-      document.getElementById('lit-nodes').textContent = totalNodes;
-      document.getElementById('collected-relics').textContent = totalRelics;
-      
-      // 查找人物间共同节点
-      const collisions = findCharacterCollisions(collections);
-      const collisionDiv = document.getElementById('character-collisions');
-      
-      if (collisions.length === 0) {
-        collisionDiv.innerHTML = '<div style="color: #999; font-size: 11px;">暂无共同访问的节点</div>';
-      } else {
-        collisionDiv.innerHTML = collisions.map(c => `
-          <div style="margin-bottom: 8px; padding: 8px; background: #f9f9f9; border-radius: 6px;">
-            <div style="font-size: 11px; color: #666; margin-bottom: 4px;">
-              ${c.chars.join(' ↔ ')}
-            </div>
-            <div style="font-size: 10px; color: var(--accent);">
-              共同: ${c.common.join(', ')}
-            </div>
-          </div>
-        `).join('');
-      }
-    }
-    
-    // 查找人物间共同节点
-    function findCharacterCollisions(collections) {
-      const chars = Object.keys(collections);
-      const collisions = [];
-      
-      for (let i = 0; i < chars.length; i++) {
-        for (let j = i + 1; j < chars.length; j++) {
-          const char1 = chars[i];
-          const char2 = chars[j];
-          
-          const nodes1 = new Set(collections[char1].nodes || []);
-          const common = (collections[char2].nodes || []).filter(n => nodes1.has(n));
-          
-          if (common.length > 0) {
-            collisions.push({ chars: [char1, char2], common });
-          }
-        }
-      }
-      
-      return collisions;
-    }
+// 主题节点点击
+ document.querySelectorAll('.theme-node').forEach(node => {
+  node.addEventListener('click', () => {
+    const theme = node.dataset.theme;
+    const urls = {
+      '旅': './docs/古代旅行/',
+      '戏': './docs/戏/',
+      '饮': './docs/饮/',
+      '感': './docs/感/'
+    };
+    window.location.href = urls[theme];
   });
+});
 </script>
