@@ -4,385 +4,553 @@ title: 关系图谱
 ---
 
 <div class="graph-page">
-  <div class="graph-tabs">
-    <button class="graph-tab active" onclick="switchGraph('themes')">主题关联</button>
-    <button class="graph-tab" onclick="switchGraph('characters')">人物关系</button>
-    <button class="graph-tab" onclick="switchGraph('network')">全文网络</button>
+  <div class="graph-header">
+    <h2>节点碰撞网络</h2>
+    <p class="graph-desc">人物通过故事中共同提及的主题节点产生关联</p>
   </div>
   
-  <div id="graph-container" class="graph-container">
-    <!-- 主题关联图 -->
-    <div id="graph-themes" class="graph-view active">
-      <div class="theme-connections">
-        <div class="theme-node" data-theme="旅">
-          <div class="theme-icon">旅</div>
-          <div class="theme-name">古代旅行</div>
-          <div class="theme-links">行 · 路 · 驿 · 游 · 记</div>
-        </div>
-        <div class="theme-node" data-theme="戏">
-          <div class="theme-icon">戏</div>
-          <div class="theme-name">戏剧艺术</div>
-          <div class="theme-links">曲 · 台 · 伶 · 剧</div>
-        </div>
-        <div class="theme-node" data-theme="饮">
-          <div class="theme-icon">饮</div>
-          <div class="theme-name">饮品礼仪</div>
-          <div class="theme-links">茶 · 酒 · 器 · 礼</div>
-        </div>
-        <div class="theme-node" data-theme="感">
-          <div class="theme-icon">感</div>
-          <div class="theme-name">感知情感</div>
-          <div class="theme-links">情 · 境 · 忆 · 悟</div>
-        </div>
-      </div>
-      
-      <svg class="connection-lines" viewBox="0 0 800 400">
-        <line x1="200" y1="100" x2="600" y2="100" stroke="#800020" stroke-width="1" stroke-dasharray="5,5" opacity="0.3"/>
-        <line x1="200" y1="100" x2="200" y2="300" stroke="#800020" stroke-width="1" stroke-dasharray="5,5" opacity="0.3"/>
-        <line x1="600" y1="100" x2="600" y2="300" stroke="#800020" stroke-width="1" stroke-dasharray="5,5" opacity="0.3"/>
-        <line x1="200" y1="300" x2="600" y2="300" stroke="#800020" stroke-width="1" stroke-dasharray="5,5" opacity="0.3"/>
-        <line x1="200" y1="100" x2="600" y2="300" stroke="#800020" stroke-width="1" stroke-dasharray="5,5" opacity="0.2"/>
-        <line x1="600" y1="100" x2="200" y2="300" stroke="#800020" stroke-width="1" stroke-dasharray="5,5" opacity="0.2"/>
-      </svg>
-      
-      <div class="graph-legend">
-        <p>四大主题相互关联，共同构成古代生活的全景</p>
-        <p class="legend-hint">点击主题节点进入探索 · 虚线表示概念关联</p>
-      </div>
-    </div>
-    
-    <!-- 人物关系图 -->
-    <div id="graph-characters" class="graph-view">
-      <div class="character-timeline">
-        <div class="era-row">
-          <div class="era-label">战国</div>
-          <a href="./docs/生民卷/炉青/" class="char-node">炉青</div>
-        </div>
-        <div class="era-row">
-          <div class="era-label">秦</div>
-          <a href="./docs/生民卷/衡羽/" class="char-node">衡羽</div>
-        </div>
-        <div class="era-row">
-          <div class="era-label">汉</div>
-          <a href="./docs/生民卷/禾宁/" class="char-node">禾宁</div>
-        </div>
-        <div class="era-row">
-          <div class="era-label">北魏</div>
-          <a href="./docs/生民卷/石兰/" class="char-node">石兰</div>
-        </div>
-        <div class="era-row">
-          <div class="era-label">唐</div>
-          <a href="./docs/生民卷/月珑/" class="char-node">月珑</div>
-        </div>
-        <div class="era-row">
-          <div class="era-label">五代十国</div>
-          <a href="./docs/生民卷/潮音/" class="char-node">潮音</div>
-        </div>
-        <div class="era-row">
-          <div class="era-label">宋</div>
-          <a href="./docs/生民卷/清弦/" class="char-node">清弦</div>
-        </div>
-        <div class="era-row">
-          <div class="era-label">辽</div>
-          <a href="./docs/生民卷/骁雪/" class="char-node">骁雪</div>
-        </div>
-        <div class="era-row">
-          <div class="era-label">西夏</div>
-          <a href="./docs/生民卷/墨岚/" class="char-node">墨岚</div>
-        </div>
-        <div class="era-row">
-          <div class="era-label">大理国</div>
-          <a href="./docs/生民卷/茶岑/" class="char-node">茶岑</div>
-        </div>
-      </div>
-      
-      <div class="graph-legend">
-        <p>十位历史人物，跨越千年时光</p>
-        <p class="legend-hint">按朝代排列 · 点击人物进入故事</p>
-      </div>
-    </div>
-    
-    
-    <!-- 全文网络 -->
-    <div id="graph-network" class="graph-view">
-      <div class="network-cloud">
-        <div class="network-category">
-          <h4>旅行交通</h4>
-          <div class="network-tags">
-            <span class="net-tag">行</span><span class="net-tag">路</span><span class="net-tag">驿</span>
-            <span class="net-tag">游</span><span class="net-tag">记</span><span class="net-tag">马</span>
-            <span class="net-tag">车</span><span class="net-tag">舟</span><span class="net-tag">桥</span>
-          </div>
-        </div>
-        
-        <div class="network-category">
-          <h4>戏剧艺术</h4>
-          <div class="network-tags">
-            <span class="net-tag">曲</span><span class="net-tag">台</span><span class="net-tag">伶</span>
-            <span class="net-tag">剧</span><span class="net-tag">昆</span><span class="net-tag">京</span>
-            <span class="net-tag">越</span><span class="net-tag">弹</span><span class="net-tag">谱</span>
-          </div>
-        </div>
-        
-        <div class="network-category">
-          <h4>饮品礼仪</h4>
-          <div class="network-tags">
-            <span class="net-tag">茶</span><span class="net-tag">酒</span><span class="net-tag">器</span>
-            <span class="net-tag">礼</span><span class="net-tag">绿</span><span class="net-tag">红</span>
-            <span class="net-tag">黄</span><span class="net-tag">白</span><span class="net-tag">盏</span>
-          </div>
-        </div>
-        
-        <div class="network-category">
-          <h4>感知情感</h4>
-          <div class="network-tags">
-            <span class="net-tag">情</span><span class="net-tag">境</span><span class="net-tag">忆</span>
-            <span class="net-tag">悟</span><span class="net-tag">乡</span><span class="net-tag">愁</span>
-            <span class="net-tag">豪</span><span class="net-tag">闲</span><span class="net-tag">意</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="graph-legend">
-        <p>全站概念标签云，点击可探索相关条目</p>
-        <p class="legend-hint">持续扩充中 · 各主题间相互交织</p>
-      </div>
-    </div>
+  <div class="graph-filters">
+    <button class="filter-btn active" data-filter="all">全部</button>
+    <button class="filter-btn" data-filter="旅">旅</button>
+    <button class="filter-btn" data-filter="戏">戏</button>
+    <button class="filter-btn" data-filter="饮">饮</button>
+    <button class="filter-btn" data-filter="感">感</button>
+  </div>
+  
+  <div id="network-graph" class="network-container"></div>
+  
+  <div class="graph-legend">
+    <div class="legend-item"><span class="legend-dot character"></span>历史人物</div>
+    <div class="legend-item"><span class="legend-dot theme-旅"></span>旅主题节点</div>
+    <div class="legend-item"><span class="legend-dot theme-戏"></span>戏主题节点</div>
+    <div class="legend-item"><span class="legend-dot theme-饮"></span>饮主题节点</div>
+    <div class="legend-item"><span class="legend-dot theme-感"></span>感主题节点</div>
   </div>
 </div>
 
 <style>
 .graph-page {
-  height: 70vh;
+  height: 75vh;
   display: flex;
   flex-direction: column;
   padding: 20px;
 }
 
-.graph-tabs {
+.graph-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.graph-header h2 {
+  font-family: "Songti SC", serif;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.graph-desc {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.graph-filters {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
-.graph-tab {
-  padding: 10px 24px;
+.filter-btn {
+  padding: 6px 16px;
   background: transparent;
   border: 1px solid rgba(128,0,32,0.2);
-  border-radius: 20px;
+  border-radius: 15px;
   color: #666;
   cursor: pointer;
   transition: all 0.3s;
-  font-family: "Songti SC", serif;
-  font-size: 14px;
+  font-size: 13px;
 }
 
-.graph-tab:hover,
-.graph-tab.active {
+.filter-btn:hover,
+.filter-btn.active {
   background: var(--accent);
   color: white;
   border-color: var(--accent);
 }
 
-.graph-container {
+.network-container {
   flex: 1;
   position: relative;
+  background: rgba(128,0,32,0.02);
+  border-radius: 12px;
+  overflow: hidden;
 }
 
-.graph-view {
-  display: none;
+.network-container svg {
+  width: 100%;
   height: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
-.graph-view.active {
-  display: flex;
-}
-
-/* 主题关联图 */
-.theme-connections {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  position: relative;
-  z-index: 1;
-}
-
-.theme-node {
-  text-align: center;
+.node {
   cursor: pointer;
   transition: all 0.3s;
-  text-decoration: none;
-  color: inherit;
 }
 
-.theme-node:hover {
-  transform: scale(1.05);
+.node:hover {
+  filter: brightness(1.2);
 }
 
-.theme-icon {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: white;
-  border: 2px solid var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.5rem;
+.node-circle {
+  stroke: white;
+  stroke-width: 2px;
+}
+
+.node-text {
   font-family: "Songti SC", serif;
-  color: var(--accent);
-  margin: 0 auto 15px;
-  transition: all 0.3s;
-}
-
-.theme-node:hover .theme-icon {
-  background: var(--accent);
-  color: white;
-}
-
-.theme-name {
-  font-size: 1.1rem;
-  color: #333;
-  margin-bottom: 5px;
-}
-
-.theme-links {
-  font-size: 0.85rem;
-  color: #888;
-}
-
-.connection-lines {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 800px;
-  height: 400px;
+  font-size: 12px;
+  fill: #333;
+  text-anchor: middle;
+  dominant-baseline: middle;
   pointer-events: none;
-  z-index: 0;
 }
 
-/* 人物关系图 */
-.character-timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100%;
-  max-width: 600px;
+.node.character .node-circle {
+  fill: var(--accent);
 }
 
-.era-row {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+.node.character .node-text {
+  fill: white;
+  font-size: 11px;
 }
 
-.era-label {
-  width: 80px;
-  text-align: right;
-  font-size: 0.85rem;
-  color: #888;
-  font-family: "Songti SC", serif;
-}
+.node.theme-旅 .node-circle { fill: #e8b4b8; }
+.node.theme-戏 .node-circle { fill: #b8d4e8; }
+.node.theme-饮 .node-circle { fill: #d4e8b8; }
+.node.theme-感 .node-circle { fill: #e8d4b8; }
 
-.char-node {
-  flex: 1;
-  padding: 12px 20px;
-  background: white;
-  border: 1px solid rgba(128,0,32,0.15);
-  border-radius: 8px;
-  text-align: center;
-  font-family: "Songti SC", serif;
-  color: var(--accent);
-  text-decoration: none;
+.link {
+  stroke: rgba(128,0,32,0.15);
+  stroke-width: 1.5px;
   transition: all 0.3s;
 }
 
-.char-node:hover {
-  background: var(--accent);
-  color: white;
-  transform: translateX(10px);
+.link.highlight {
+  stroke: var(--accent);
+  stroke-width: 2.5px;
+  opacity: 0.6;
 }
 
-/* 全文网络 */
-.network-cloud {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
-  width: 100%;
-  max-width: 800px;
+.node.dimmed {
+  opacity: 0.2;
 }
 
-.network-category h4 {
-  font-family: "Songti SC", serif;
-  color: var(--accent);
-  margin-bottom: 12px;
-  font-size: 1rem;
-}
-
-.network-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.net-tag {
-  padding: 6px 12px;
-  background: white;
-  border: 1px solid rgba(128,0,32,0.1);
-  border-radius: 15px;
-  font-size: 0.85rem;
-  color: #555;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.net-tag:hover {
-  background: var(--accent);
-  color: white;
-  border-color: var(--accent);
+.link.dimmed {
+  opacity: 0.1;
 }
 
 .graph-legend {
-  margin-top: 40px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
   color: #666;
 }
 
-.graph-legend p {
-  margin: 5px 0;
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
 }
 
-.legend-hint {
-  font-size: 0.8rem;
-  color: #999;
-}
+.legend-dot.character { background: var(--accent); }
+.legend-dot.theme-旅 { background: #e8b4b8; }
+.legend-dot.theme-戏 { background: #b8d4e8; }
+.legend-dot.theme-饮 { background: #d4e8b8; }
+.legend-dot.theme-感 { background: #e8d4b8; }
 </style>
 
 <script>
-function switchGraph(type) {
-  document.querySelectorAll('.graph-tab').forEach(tab => tab.classList.remove('active'));
-  document.querySelectorAll('.graph-view').forEach(view => view.classList.remove('active'));
+// 数据定义
+const nodes = [
+  // 人物节点
+  { id: '炉青', type: 'character', era: '战国' },
+  { id: '衡羽', type: 'character', era: '秦' },
+  { id: '禾宁', type: 'character', era: '汉' },
+  { id: '石兰', type: 'character', era: '北魏' },
+  { id: '月珑', type: 'character', era: '唐' },
+  { id: '潮音', type: 'character', era: '五代十国' },
+  { id: '清弦', type: 'character', era: '宋' },
+  { id: '骁雪', type: 'character', era: '辽' },
+  { id: '墨岚', type: 'character', era: '西夏' },
+  { id: '茶岑', type: 'character', era: '大理国' },
   
-  event.target.classList.add('active');
-  document.getElementById('graph-' + type).classList.add('active');
+  // 旅主题节点
+  { id: '行', type: 'theme-旅' },
+  { id: '路', type: 'theme-旅' },
+  { id: '驿', type: 'theme-旅' },
+  { id: '游', type: 'theme-旅' },
+  { id: '车', type: 'theme-旅' },
+  { id: '马', type: 'theme-旅' },
+  { id: '舟', type: 'theme-旅' },
+  { id: '行路', type: 'theme-旅' },
+  { id: '驿站', type: 'theme-旅' },
+  { id: '行商', type: 'theme-旅' },
+  
+  // 戏主题节点
+  { id: '曲', type: 'theme-戏' },
+  { id: '台', type: 'theme-戏' },
+  { id: '伶', type: 'theme-戏' },
+  { id: '剧', type: 'theme-戏' },
+  { id: '戏', type: 'theme-戏' },
+  { id: '琵琶', type: 'theme-戏' },
+  { id: '杂剧', type: 'theme-戏' },
+  { id: '傀儡戏', type: 'theme-戏' },
+  
+  // 饮主题节点
+  { id: '茶', type: 'theme-饮' },
+  { id: '酒', type: 'theme-饮' },
+  { id: '器', type: 'theme-饮' },
+  { id: '礼', type: 'theme-饮' },
+  { id: '饮品', type: 'theme-饮' },
+  { id: '宴饮', type: 'theme-饮' },
+  { id: '酒器', type: 'theme-饮' },
+  { id: '茶肆', type: 'theme-饮' },
+  
+  // 感主题节点
+  { id: '情', type: 'theme-感' },
+  { id: '境', type: 'theme-感' },
+  { id: '忆', type: 'theme-感' },
+  { id: '悟', type: 'theme-感' },
+  { id: '感', type: 'theme-感' },
+  { id: '节庆', type: 'theme-感' },
+];
+
+// 连接关系（人物与主题节点的关联）
+const links = [
+  // 炉青
+  { source: '炉青', target: '行商' },
+  { source: '炉青', target: '行路' },
+  { source: '炉青', target: '驿' },
+  { source: '炉青', target: '器' },
+  
+  // 衡羽
+  { source: '衡羽', target: '行路' },
+  { source: '衡羽', target: '驿站' },
+  { source: '衡羽', target: '车' },
+  { source: '衡羽', target: '路' },
+  
+  // 禾宁
+  { source: '禾宁', target: '行商' },
+  { source: '禾宁', target: '茶' },
+  { source: '禾宁', target: '酒' },
+  { source: '禾宁', target: '路' },
+  { source: '禾宁', target: '驿' },
+  
+  // 石兰
+  { source: '石兰', target: '情' },
+  { source: '石兰', target: '境' },
+  { source: '石兰', target: '感' },
+  
+  // 月珑
+  { source: '月珑', target: '茶' },
+  { source: '月珑', target: '酒' },
+  { source: '月珑', target: '饮品' },
+  { source: '月珑', target: '礼' },
+  { source: '月珑', target: '宴饮' },
+  { source: '月珑', target: '酒器' },
+  { source: '月珑', target: '感' },
+  
+  // 潮音
+  { source: '潮音', target: '舟' },
+  { source: '潮音', target: '行路' },
+  { source: '潮音', target: '戏' },
+  { source: '潮音', target: '伶' },
+  { source: '潮音', target: '节庆' },
+  { source: '潮音', target: '感' },
+  
+  // 清弦
+  { source: '清弦', target: '曲' },
+  { source: '清弦', target: '戏' },
+  { source: '清弦', target: '琵琶' },
+  { source: '清弦', target: '茶' },
+  { source: '清弦', target: '酒' },
+  { source: '清弦', target: '情' },
+  { source: '清弦', target: '境' },
+  { source: '清弦', target: '忆' },
+  { source: '清弦', target: '感' },
+  
+  // 骁雪
+  { source: '骁雪', target: '行' },
+  { source: '骁雪', target: '马' },
+  { source: '骁雪', target: '路' },
+  { source: '骁雪', target: '节庆' },
+  { source: '骁雪', target: '感' },
+  { source: '骁雪', target: '忆' },
+  { source: '骁雪', target: '境' },
+  
+  // 墨岚
+  { source: '墨岚', target: '茶' },
+  { source: '墨岚', target: '酒' },
+  { source: '墨岚', target: '行商' },
+  { source: '墨岚', target: '感' },
+  { source: '墨岚', target: '境' },
+  { source: '墨岚', target: '忆' },
+  
+  // 茶岑
+  { source: '茶岑', target: '茶' },
+  { source: '茶岑', target: '行' },
+  { source: '茶岑', target: '路' },
+  { source: '茶岑', target: '马' },
+  { source: '茶岑', target: '酒' },
+  { source: '茶岑', target: '礼' },
+  { source: '茶岑', target: '感' },
+];
+
+// 简单的力导向布局实现
+function createNetwork() {
+  const container = document.getElementById('network-graph');
+  const width = container.clientWidth;
+  const height = container.clientHeight;
+  
+  // 创建SVG
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('width', width);
+  svg.setAttribute('height', height);
+  svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+  container.appendChild(svg);
+  
+  // 创建组
+  const linkGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  const nodeGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  svg.appendChild(linkGroup);
+  svg.appendChild(nodeGroup);
+  
+  // 初始化位置（人物在中间，主题节点围绕）
+  const centerX = width / 2;
+  const centerY = height / 2;
+  
+  nodes.forEach((node, i) => {
+    if (node.type === 'character') {
+      // 人物节点分布在中间区域
+      const angle = (i / 10) * Math.PI * 2;
+      node.x = centerX + Math.cos(angle) * 80;
+      node.y = centerY + Math.sin(angle) * 80;
+      node.r = 25;
+    } else {
+      // 主题节点分布在外围
+      const themeIndex = nodes.filter(n => n.type === node.type).indexOf(node);
+      const themeCount = nodes.filter(n => n.type === node.type).length;
+      const typeAngle = {
+        'theme-旅': 0,
+        'theme-戏': Math.PI / 2,
+        'theme-饮': Math.PI,
+        'theme-感': Math.PI * 1.5
+      }[node.type] || 0;
+      
+      const spread = Math.PI / 3;
+      const angle = typeAngle + (themeIndex - themeCount / 2) * spread / themeCount;
+      const distance = Math.min(width, height) * 0.35;
+      
+      node.x = centerX + Math.cos(angle) * distance;
+      node.y = centerY + Math.sin(angle) * distance;
+      node.r = 18;
+    }
+  });
+  
+  // 绘制连线
+  const linkElements = links.map(link => {
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('class', 'link');
+    line.setAttribute('data-source', link.source);
+    line.setAttribute('data-target', link.target);
+    linkGroup.appendChild(line);
+    return { ...link, element: line };
+  });
+  
+  // 绘制节点
+  const nodeElements = nodes.map(node => {
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    g.setAttribute('class', `node ${node.type}`);
+    g.setAttribute('data-id', node.id);
+    g.setAttribute('data-type', node.type);
+    
+    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    circle.setAttribute('class', 'node-circle');
+    circle.setAttribute('r', node.r);
+    
+    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    text.setAttribute('class', 'node-text');
+    text.textContent = node.id;
+    
+    g.appendChild(circle);
+    g.appendChild(text);
+    nodeGroup.appendChild(g);
+    
+    // 悬停效果
+    g.addEventListener('mouseenter', () => highlightNode(node.id));
+    g.addEventListener('mouseleave', () => resetHighlight());
+    
+    // 点击跳转
+    if (node.type === 'character') {
+      g.addEventListener('click', () => {
+        window.location.href = `./docs/生民卷/${node.id}/`;
+      });
+    }
+    
+    return { ...node, element: g };
+  });
+  
+  // 更新位置
+  function updatePositions() {
+    nodeElements.forEach(node => {
+      node.element.setAttribute('transform', `translate(${node.x}, ${node.y})`);
+    });
+    
+    linkElements.forEach(link => {
+      const sourceNode = nodeElements.find(n => n.id === link.source);
+      const targetNode = nodeElements.find(n => n.id === link.target);
+      if (sourceNode && targetNode) {
+        link.element.setAttribute('x1', sourceNode.x);
+        link.element.setAttribute('y1', sourceNode.y);
+        link.element.setAttribute('x2', targetNode.x);
+        link.element.setAttribute('y2', targetNode.y);
+      }
+    });
+  }
+  
+  // 高亮节点及其连接
+  function highlightNode(nodeId) {
+    const connectedNodes = new Set([nodeId]);
+    linkElements.forEach(link => {
+      if (link.source === nodeId || link.target === nodeId) {
+        connectedNodes.add(link.source);
+        connectedNodes.add(link.target);
+        link.element.classList.add('highlight');
+      } else {
+        link.element.classList.add('dimmed');
+      }
+    });
+    
+    nodeElements.forEach(node => {
+      if (connectedNodes.has(node.id)) {
+        node.element.classList.remove('dimmed');
+      } else {
+        node.element.classList.add('dimmed');
+      }
+    });
+  }
+  
+  function resetHighlight() {
+    nodeElements.forEach(node => node.element.classList.remove('dimmed'));
+    linkElements.forEach(link => {
+      link.element.classList.remove('highlight');
+      link.element.classList.remove('dimmed');
+    });
+  }
+  
+  // 简单的物理模拟
+  let iteration = 0;
+  const maxIterations = 100;
+  
+  function simulate() {
+    if (iteration >= maxIterations) return;
+    iteration++;
+    
+    // 斥力
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[j].x - nodes[i].x;
+        const dy = nodes[j].y - nodes[i].y;
+        const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+        const force = 2000 / (dist * dist);
+        const fx = (dx / dist) * force;
+        const fy = (dy / dist) * force;
+        
+        if (nodes[i].type !== 'character') {
+          nodes[i].x -= fx;
+          nodes[i].y -= fy;
+        }
+        if (nodes[j].type !== 'character') {
+          nodes[j].x += fx;
+          nodes[j].y += fy;
+        }
+      }
+    }
+    
+    // 引力（连接的节点）
+    links.forEach(link => {
+      const source = nodes.find(n => n.id === link.source);
+      const target = nodes.find(n => n.id === link.target);
+      if (source && target) {
+        const dx = target.x - source.x;
+        const dy = target.y - source.y;
+        const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+        const force = (dist - 100) * 0.01;
+        const fx = (dx / dist) * force;
+        const fy = (dy / dist) * force;
+        
+        if (source.type !== 'character') {
+          source.x += fx;
+          source.y += fy;
+        }
+        if (target.type !== 'character') {
+          target.x -= fx;
+          target.y -= fy;
+        }
+      }
+    });
+    
+    // 向中心引力（防止跑太远）
+    nodes.forEach(node => {
+      if (node.type !== 'character') {
+        const dx = centerX - node.x;
+        const dy = centerY - node.y;
+        node.x += dx * 0.01;
+        node.y += dy * 0.01;
+      }
+    });
+    
+    updatePositions();
+    requestAnimationFrame(simulate);
+  }
+  
+  updatePositions();
+  simulate();
 }
 
-// 主题节点点击
- document.querySelectorAll('.theme-node').forEach(node => {
-  node.addEventListener('click', () => {
-    const theme = node.dataset.theme;
-    const urls = {
-      '旅': './docs/古代旅行/',
-      '戏': './docs/戏/',
-      '饮': './docs/饮/',
-      '感': './docs/感/'
-    };
-    window.location.href = urls[theme];
+// 筛选功能
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.node').forEach(node => {
+      const type = node.dataset.type;
+      if (filter === 'all' || type === 'character' || type === `theme-${filter}`) {
+        node.style.opacity = '1';
+      } else {
+        node.style.opacity = '0.1';
+      }
+    });
+    
+    document.querySelectorAll('.link').forEach(link => {
+      if (filter === 'all') {
+        link.style.opacity = '1';
+      } else {
+        link.style.opacity = '0.05';
+      }
+    });
   });
 });
+
+// 初始化
+document.addEventListener('DOMContentLoaded', createNetwork);
 </script>
