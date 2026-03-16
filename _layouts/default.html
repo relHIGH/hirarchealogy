@@ -22,12 +22,19 @@
       align-items: center; 
       gap: 8px;
       text-decoration: none; 
-      color: #666;
-      font-size: 13px;
+      color: #555;
+      font-size: 14px;
+      font-family: "Songti SC", serif;
+      letter-spacing: 2px;
       transition: all 0.3s ease;
+      padding: 6px 10px;
+      border-radius: 4px;
     }
-    .header-nav-link:hover { color: var(--accent); }
-    .header-nav-link svg { width: 20px; height: 20px; fill: currentColor; flex-shrink: 0; }
+    .header-nav-link:hover { 
+      color: var(--accent); 
+      background: rgba(128,0,32,0.05);
+    }
+    .header-nav-link svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
     .main-wrapper { display: flex; height: calc(100vh - 60px); position: relative; overflow: hidden; }
     #sidebar-container {
       position: absolute; top: 0; left: 0; height: 100%; z-index: 1500; width: var(--sidebar-width);
