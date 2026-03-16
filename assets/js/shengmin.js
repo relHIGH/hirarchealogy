@@ -76,56 +76,6 @@ const Shengmin = {
     }
   },
   
-  // 导出图片
-  exportImage: function() {
-    // 使用 html-to-image 生成证书
-    const certificate = document.createElement('div');
-    certificate.style.cssText = `
-      width: 800px; padding: 60px; background: linear-gradient(135deg, #f0ede4, #fff);
-      font-family: "Songti SC", serif; text-align: center;
-    `;
-    
-    const collections = this.getCollections();
-    const currentChar = this.storyData?.character;
-    const charData = collections[currentChar] || { nodes: [], relics: [] };
-    
-    certificate.innerHTML = `
-      <h1 style="color: #800020; font-size: 2.5rem; margin-bottom: 20px;">生民卷 · 探索证书</h1>
-      <p style="font-size: 1.2rem; color: #666; margin-bottom: 40px;">
-        通过「${currentChar}」的探索之旅
-      </p>
-      <div style="display: flex; justify-content: center; gap: 60px; margin: 40px 0;">
-        <div>
-          <p style="font-size: 2rem; color: #800020; font-weight: bold;">${charData.nodes.length}</p>
-          <p style="color: #888;">主题节点</p>
-        </div>
-        <div>
-          <p style="font-size: 2rem; color: #8B4513; font-weight: bold;">${charData.relics.length}</p>
-          <p style="color: #888;">历史文物</p>
-        </div>
-      </div>
-      <p style="color: #999; font-size: 0.9rem; margin-top: 40px;">
-        ${new Date().toLocaleDateString('zh-CN')}
-      </p>
-    `;
-    
-    document.body.appendChild(certificate);
-    
-    // 使用 html-to-image 库（需要先引入）
-    if (window.htmlToImage) {
-      htmlToImage.toPng(certificate).then(dataUrl => {
-        const link = document.createElement('a');
-        link.download = `生民卷-${currentChar}-探索证书.png`;
-        link.href = dataUrl;
-        link.click();
-        certificate.remove();
-      });
-    } else {
-      alert('图片生成功能需要加载 html-to-image 库');
-      certificate.remove();
-    }
-  },
-  
   // 导出分享链接
   exportLink: function() {
     const collections = this.getCollections();
