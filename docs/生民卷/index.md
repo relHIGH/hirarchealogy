@@ -117,8 +117,8 @@ title: 生民卷
   width: 100vw;
   margin: 0;
   padding: 0 0 100px 0;
-  background: #0d0508;
-  color: #d4a5a5;
+  background: #d4d0c8;
+  color: #3d3d3d;
   display: flex;
   flex-direction: column;
 }
@@ -131,14 +131,14 @@ title: 生民卷
 .shengmin-header h1 {
   font-family: "Songti SC", serif;
   font-size: 2.5rem;
-  color: #c9a86c;
+  color: #5a4a3a;
   letter-spacing: 16px;
   margin-bottom: 10px;
   font-weight: 400;
 }
 
 .shengmin-header p {
-  color: #8b6b6b;
+  color: #7a6a5a;
   font-size: 0.9rem;
   letter-spacing: 4px;
 }
@@ -170,7 +170,7 @@ title: 生民卷
   transform: translateY(-10px);
 }
 
-/* 黑色遮罩 - 未选中时显示 */
+/* 沙砾色遮罩 - 未选中时显示 */
 .char-item::after {
   content: '';
   position: absolute;
@@ -178,7 +178,7 @@ title: 生民卷
   left: 0;
   width: 100px;
   height: 380px;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(212, 208, 200, 0.4);
   z-index: 3;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -222,19 +222,19 @@ title: 生民卷
 
 .char-dynasty {
   font-size: 0.75rem;
-  color: #8b6b6b;
+  color: #7a6a5a;
   letter-spacing: 2px;
 }
 
 .char-role {
   font-size: 0.9rem;
-  color: #c9a86c;
+  color: #5a4a3a;
   font-weight: 500;
   white-space: nowrap;
 }
 
 .char-item:hover .char-role {
-  color: #e8c88a;
+  color: #3d3d3d;
 }
 
 /* 响应式 */
