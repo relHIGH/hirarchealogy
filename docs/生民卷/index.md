@@ -105,11 +105,11 @@ title: 生民卷
 
 #content-wrapper {
   padding: 0 !important;
-  background: #f1eae3 !important;
+  background: #e1d7c9 !important;
 }
 
 body:has(.shengmin-dark-page) {
-  background: #f1eae3 !important;
+  background: #e1d7c9 !important;
 }
 
 #trajectory-line {
@@ -122,7 +122,7 @@ body:has(.shengmin-dark-page) {
   width: 100vw;
   margin: 0;
   padding: 0;
-  background: #f1eae3;
+  background: #e1d7c9;
   color: #3d3d3d;
   display: flex;
   flex-direction: column;
@@ -185,7 +185,7 @@ body:has(.shengmin-dark-page) {
   left: 0;
   width: 100px;
   height: 380px;
-  background: rgba(241, 234, 227, 0.4);
+  background: rgba(225, 215, 201, 0.4);
   z-index: 3;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -209,8 +209,8 @@ body:has(.shengmin-dark-page) {
   left: 0;
   width: 100px;
   height: 380px;
-  border-left: 4px solid #f1eae3;
-  border-right: 4px solid #f1eae3;
+  border-left: 4px solid #e1d7c9;
+  border-right: 4px solid #e1d7c9;
   pointer-events: none;
   z-index: 4;
 }
