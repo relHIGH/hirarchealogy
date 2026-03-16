@@ -400,7 +400,18 @@ function createNetwork() {
     // 点击跳转
     if (node.type === 'character') {
       g.addEventListener('click', () => {
-        window.location.href = `./docs/生民卷/${node.id}/`;
+        window.location.href = `{{ site.baseurl }}/docs/%E7%94%9F%E6%B0%91%E5%8D%B7/${node.id}/`;
+      });
+    } else if (node.type.startsWith('theme-')) {
+      // 主题节点点击跳转到对应主题页
+      const themeMap = {
+        'theme-旅': '{{ site.baseurl }}/docs/%E5%8F%A4%E4%BB%A3%E6%97%85%E8%A1%8C/',
+        'theme-戏': '{{ site.baseurl }}/docs/%E6%88%8F/',
+        'theme-饮': '{{ site.baseurl }}/docs/%E9%A5%AE/',
+        'theme-感': '{{ site.baseurl }}/docs/%E6%84%9F/'
+      };
+      g.addEventListener('click', () => {
+        window.location.href = themeMap[node.type];
       });
     }
     
