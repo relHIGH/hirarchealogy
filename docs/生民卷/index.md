@@ -201,6 +201,20 @@ body:has(.shengmin-dark-page) {
 .char-item.offset-2 { margin-top: 80px; }
 .char-item.offset-3 { margin-top: 120px; }
 
+/* 用伪元素覆盖边缘 */
+.char-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 380px;
+  border-left: 4px solid #d4d0c8;
+  border-right: 4px solid #d4d0c8;
+  pointer-events: none;
+  z-index: 4;
+}
+
 .char-img {
   width: 100px;
   height: 380px;
@@ -213,10 +227,6 @@ body:has(.shengmin-dark-page) {
   transition: all 0.3s ease;
   position: relative;
   z-index: 2;
-  /* 裁剪边缘 + 对称内边框 */
-  clip-path: inset(0 3px 0 3px);
-  outline: 3px solid #d4d0c8;
-  outline-offset: -3px;
 }
 
 .char-item:hover .char-img {
