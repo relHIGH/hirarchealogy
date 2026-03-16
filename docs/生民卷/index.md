@@ -107,7 +107,7 @@ body:has(.shengmin-dark-page) {
   background: #e1d7c9 !important;
 }
 
-#trajectory-line {
+body:has(.shengmin-dark-page) #trajectory-line {
   display: none !important;
 }
 
