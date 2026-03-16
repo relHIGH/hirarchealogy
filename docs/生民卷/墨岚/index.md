@@ -8,7 +8,7 @@ title: 墨岚
     <div class="char-avatar" style="background-position: 75% 100%;"></div>
     <div class="char-title">
       <h1>墨岚</h1>
-      <p>西夏 · 黑水城女文书吏</p>
+      <p>西夏 · 黑水城文书吏</p>
     </div>
   </div>
   

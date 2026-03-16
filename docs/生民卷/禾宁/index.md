@@ -8,7 +8,7 @@ title: 禾宁
     <div class="char-avatar" style="background-position: 50% 0%;"></div>
     <div class="char-title">
       <h1>禾宁</h1>
-      <p>汉 · 河西屯田女户</p>
+      <p>汉 · 河西屯田农户</p>
     </div>
   </div>
   

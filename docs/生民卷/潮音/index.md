@@ -8,7 +8,7 @@ title: 潮音
     <div class="char-avatar" style="background-position: 0% 100%;"></div>
     <div class="char-title">
       <h1>潮音</h1>
-      <p>五代十国 · 吴越运河船家女</p>
+      <p>五代十国 · 吴越运河船家</p>
     </div>
   </div>
   

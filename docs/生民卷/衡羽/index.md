@@ -8,7 +8,7 @@ title: 衡羽
     <div class="char-avatar" style="background-position: 25% 0%;"></div>
     <div class="char-title">
       <h1>衡羽</h1>
-      <p>秦 · 咸阳驿舍女管事</p>
+      <p>秦 · 咸阳驿舍管事</p>
     </div>
   </div>
   

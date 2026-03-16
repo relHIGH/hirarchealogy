@@ -8,7 +8,7 @@ title: 骁雪
     <div class="char-avatar" style="background-position: 50% 100%;"></div>
     <div class="char-title">
       <h1>骁雪</h1>
-      <p>辽 · 草原牧民信使女</p>
+      <p>辽 · 草原牧民信使</p>
     </div>
   </div>
   

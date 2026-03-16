@@ -8,7 +8,7 @@ title: 石兰
     <div class="char-avatar" style="background-position: 75% 0%;"></div>
     <div class="char-title">
       <h1>石兰</h1>
-      <p>北魏 · 云冈石窟女石匠</p>
+      <p>北魏 · 云冈石窟石匠</p>
     </div>
   </div>
   
