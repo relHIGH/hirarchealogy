@@ -262,8 +262,9 @@
             const lastTheme = lastMatch ? lastMatch[1] : '';
 
             if (lastTheme && currentTheme && lastTheme !== currentTheme) {
-              // 主题不同，是支线跳转
-              nodeType = 'branch';
+              // 主题不同，清空历史重新开始
+              trajHistory = [];
+              nodeType = 'main';
             } else if (isMeshNav) {
               // 明确标记为维度关联跳转
               nodeType = 'branch';
