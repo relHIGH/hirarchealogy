@@ -227,6 +227,7 @@ body:has(.shengmin-dark-page) {
   transition: all 0.3s ease;
   position: relative;
   z-index: 2;
+  transform: scale(1.03);
 }
 
 .char-item:hover .char-img {
