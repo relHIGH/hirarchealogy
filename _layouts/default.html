@@ -20,8 +20,44 @@
     .header-icon { color: #666; text-decoration: none; display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; transition: all 0.3s ease; position: relative; }
     .header-icon:hover { color: var(--accent); transform: scale(1.1); }
     .header-icon svg { width: 20px; height: 20px; fill: currentColor; flex-shrink: 0; }
-    .header-icon-label { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); margin-top: 8px; font-size: 11px; white-space: nowrap; opacity: 0; visibility: hidden; transition: all 0.3s ease; pointer-events: none; color: var(--accent); background: rgba(128,0,32,0.1); padding: 4px 10px; border-radius: 4px; }
     .header-icon:hover .header-icon-label { opacity: 1; visibility: visible; }
+
+    /* 卷轴式竖向标签 */
+    .header-icon-label { 
+      position: absolute; 
+      top: 50%; 
+      left: 50%; 
+      transform: translate(-50%, -50%); 
+      font-size: 12px; 
+      white-space: nowrap; 
+      opacity: 0; 
+      visibility: hidden; 
+      transition: all 0.3s ease; 
+      pointer-events: none; 
+      color: var(--accent); 
+      background: linear-gradient(to bottom, rgba(255,250,240,0.95), rgba(240,230,220,0.95));
+      border: 1px solid rgba(128,0,32,0.15);
+      border-radius: 4px;
+      padding: 12px 6px;
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+      letter-spacing: 4px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      z-index: 100;
+      font-family: "Songti SC", serif;
+    }
+    .header-icon-label::before {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-bottom: 4px solid rgba(255,250,240,0.95);
+    }
 
     .main-wrapper { display: flex; height: calc(100vh - 60px); position: relative; overflow: hidden; }
     #sidebar-container {

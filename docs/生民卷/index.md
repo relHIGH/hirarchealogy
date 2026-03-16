@@ -4,6 +4,11 @@ title: 生民卷
 ---
 
 <div class="shengmin-dark-page">
+  <div class="shengmin-intro">
+    <p>以人物为线索，探索古代生活</p>
+    <p class="shengmin-hint">点击人物，开启时空之旅</p>
+  </div>
+  
   <div class="character-row">
     <a href="./炉青/" class="char-item" data-char="炉青">
       <div class="char-img" style="background-position: 0% 0%;"></div>
@@ -121,6 +126,28 @@ body:has(.shengmin-dark-page) #trajectory-line {
   color: #3d3d3d;
   display: flex;
   flex-direction: column;
+}
+
+/* 引导文字 */
+.shengmin-intro {
+  text-align: center;
+  padding: 30px 20px 10px;
+}
+
+.shengmin-intro p {
+  font-family: "Songti SC", serif;
+  font-size: 1.1rem;
+  color: #5a4a3a;
+  letter-spacing: 4px;
+  margin: 0;
+}
+
+.shengmin-intro .shengmin-hint {
+  font-size: 0.85rem;
+  color: #8a7a6a;
+  letter-spacing: 2px;
+  margin-top: 8px;
+  opacity: 0.8;
 }
 
 .shengmin-header {
