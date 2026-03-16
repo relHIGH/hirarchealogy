@@ -170,6 +170,7 @@ body:has(.shengmin-dark-page) {
   flex-shrink: 0;
   width: 100px;
   position: relative;
+  overflow: hidden;
 }
 
 .char-item:hover {
@@ -204,7 +205,7 @@ body:has(.shengmin-dark-page) {
   width: 100px;
   height: 380px;
   background-image: url('https://relhigh.github.io/hirarchealogy/assets/characters.png');
-  background-size: 500% 200%;
+  background-size: 502% 202%;
   background-repeat: no-repeat;
   border: none;
   border-radius: 0;
@@ -212,6 +213,10 @@ body:has(.shengmin-dark-page) {
   transition: all 0.3s ease;
   position: relative;
   z-index: 2;
+  outline: none;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .char-item:hover .char-img {
