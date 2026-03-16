@@ -213,8 +213,10 @@ body:has(.shengmin-dark-page) {
   transition: all 0.3s ease;
   position: relative;
   z-index: 2;
-  /* 精确裁剪，去除边缘 */
-  clip-path: inset(0 1px 0 1px);
+  /* 裁剪边缘 + 对称内边框 */
+  clip-path: inset(0 3px 0 3px);
+  outline: 3px solid #d4d0c8;
+  outline-offset: -3px;
 }
 
 .char-item:hover .char-img {
