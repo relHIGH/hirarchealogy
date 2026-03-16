@@ -131,23 +131,22 @@ body:has(.shengmin-dark-page) #trajectory-line {
 /* 引导文字 */
 .shengmin-intro {
   text-align: center;
-  padding: 30px 20px 10px;
+  padding: 25px 20px 15px;
 }
 
 .shengmin-intro p {
   font-family: "Songti SC", serif;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #5a4a3a;
-  letter-spacing: 4px;
-  margin: 0;
+  letter-spacing: 3px;
+  margin: 0 0 8px 0;
 }
 
 .shengmin-intro .shengmin-hint {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: #8a7a6a;
   letter-spacing: 2px;
-  margin-top: 8px;
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
 .shengmin-header {
@@ -256,24 +255,27 @@ body:has(.shengmin-dark-page) #trajectory-line {
 }
 
 .char-info {
-  margin-top: 16px;
+  margin-top: 12px;
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
+  width: 100px;
 }
 
 .char-dynasty {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: #7a6a5a;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 
 .char-role {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #5a4a3a;
   font-weight: 500;
-  white-space: nowrap;
+  line-height: 1.3;
+  max-width: 100px;
+  word-wrap: break-word;
 }
 
 .char-item:hover .char-role {
@@ -292,6 +294,13 @@ body:has(.shengmin-dark-page) #trajectory-line {
     width: 85px;
     height: 323px;
   }
+  .char-info {
+    width: 85px;
+  }
+  .char-role {
+    font-size: 0.75rem;
+    max-width: 85px;
+  }
 }
 
 @media (max-width: 800px) {
@@ -306,12 +315,22 @@ body:has(.shengmin-dark-page) #trajectory-line {
     width: 75px;
     height: 285px;
   }
+  .char-info {
+    width: 75px;
+  }
+  .char-role {
+    font-size: 0.7rem;
+    max-width: 75px;
+  }
 }
 
 @media (max-width: 600px) {
-  .shengmin-header h1 {
-    font-size: 1.8rem;
-    letter-spacing: 8px;
+  .shengmin-intro p {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+  }
+  .shengmin-intro .shengmin-hint {
+    font-size: 0.75rem;
   }
   .character-row {
     gap: 15px;
@@ -325,13 +344,15 @@ body:has(.shengmin-dark-page) #trajectory-line {
     height: 228px;
   }
   .char-info {
-    margin-top: 12px;
-  }
-  .char-role {
-    font-size: 0.75rem;
+    width: 60px;
+    margin-top: 8px;
   }
   .char-dynasty {
     font-size: 0.65rem;
+  }
+  .char-role {
+    font-size: 0.65rem;
+    max-width: 60px;
   }
 }
 </style>
