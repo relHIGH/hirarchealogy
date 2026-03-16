@@ -401,11 +401,11 @@ title: 炉青
   display: none;
   gap: 12px;
   margin: 15px 0;
+  flex-wrap: wrap;
 }
 
-.choice-options.active {
-  display: flex;
-  flex-wrap: wrap;
+.choice-options[style*="flex"] {
+  display: flex !important;
 }
 
 .choice-btn {
@@ -445,8 +445,8 @@ title: 炉青
   margin: 10px 0;
 }
 
-.choice-result.active {
-  display: inline-flex;
+.choice-result[style*="flex"] {
+  display: inline-flex !important;
 }
 
 .result-word {
@@ -629,117 +629,127 @@ title: 炉青
 </style>
 
 <script>
-let currentPage = 0;
-const totalPages = 5;
-const answers = { 1: null, 2: null, 3: null };
+document.addEventListener('DOMContentLoaded', function() {
+  let currentPage = 0;
+  const totalPages = 5;
+  const answers = { 1: null, 2: null, 3: null };
 
-function goToPage(page) {
-  currentPage = page;
-  document.querySelectorAll('.slide-page').forEach((p, i) => {
-    p.classList.toggle('active', i === page);
-  });
-  document.querySelectorAll('.dot').forEach((d, i) => {
-    d.classList.toggle('active', i === page);
-  });
-}
+  function goToPage(page) {
+    currentPage = page;
+    document.querySelectorAll('.slide-page').forEach((p, i) => {
+      p.classList.toggle('active', i === page);
+    });
+    document.querySelectorAll('.dot').forEach((d, i) => {
+      d.classList.toggle('active', i === page);
+    });
+  }
 
-// 点击指示点切换
-document.querySelectorAll('.dot').forEach(dot => {
-  dot.addEventListener('click', () => {
-    goToPage(parseInt(dot.dataset.page));
-  });
-});
+  window.goToPage = goToPage;
 
-// 选择题交互
-document.querySelectorAll('.story-choice').forEach(choice => {
-  const prompt = choice.querySelector('.choice-prompt');
-  const options = choice.querySelector('.choice-options');
-  const result = choice.querySelector('.choice-result');
-  const answer = choice.dataset.answer;
-  const qNum = choice.dataset.q;
-  
-  prompt.addEventListener('click', () => {
-    if (answers[qNum]) return;
-    options.classList.add('active');
-    prompt.style.display = 'none';
-  });
-  
-  choice.querySelectorAll('.choice-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (answers[qNum]) return;
-      
-      const value = btn.dataset.value;
-      const isCorrect = value === answer;
-      answers[qNum] = value;
-      
-      // 显示选项结果
-      choice.querySelectorAll('.choice-btn').forEach(b => {
-        if (b.dataset.value === answer) {
-          b.classList.add('correct');
-        } else if (b === btn && !isCorrect) {
-          b.classList.add('wrong');
-        }
-      });
-      
-      // 延迟后显示答案并切换页面
-      setTimeout(() => {
-        options.classList.remove('active');
-        result.classList.add('active');
-        
-        // 更新总结页
-        const summaryItem = document.querySelector(`.answer-item[data-q="${qNum}"] .answer-value`);
-        if (summaryItem) {
-          summaryItem.textContent = answer;
-          summaryItem.classList.add('answered');
-        }
-        
-        // 收藏节点
-        if (typeof Shengmin !== 'undefined') {
-          Shengmin.collectItem(answer, false);
-        }
-        
-        // 自动进入下一页
-        setTimeout(() => {
-          if (currentPage < totalPages - 1) {
-            goToPage(currentPage + 1);
-          }
-        }, 1500);
-        
-      }, 800);
+  // 点击指示点切换
+  document.querySelectorAll('.dot').forEach(dot => {
+    dot.addEventListener('click', () => {
+      goToPage(parseInt(dot.dataset.page));
     });
   });
-});
 
-// 键盘导航
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-    if (currentPage < totalPages - 1) goToPage(currentPage + 1);
-  } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-    if (currentPage > 0) goToPage(currentPage - 1);
-  }
-});
-
-// 触摸滑动支持
-let touchStartY = 0;
-document.addEventListener('touchstart', (e) => {
-  touchStartY = e.touches[0].clientY;
-});
-
-document.addEventListener('touchend', (e) => {
-  const touchEndY = e.changedTouches[0].clientY;
-  const diff = touchStartY - touchEndY;
-  if (Math.abs(diff) > 50) {
-    if (diff > 0 && currentPage < totalPages - 1) {
-      goToPage(currentPage + 1);
-    } else if (diff < 0 && currentPage > 0) {
-      goToPage(currentPage - 1);
+  // 选择题交互
+  document.querySelectorAll('.story-choice').forEach(choice => {
+    const prompt = choice.querySelector('.choice-prompt');
+    const options = choice.querySelector('.choice-options');
+    const result = choice.querySelector('.choice-result');
+    const answer = choice.dataset.answer;
+    const qNum = choice.dataset.q;
+    
+    if (prompt) {
+      prompt.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (answers[qNum]) return;
+        options.style.display = 'flex';
+        prompt.style.display = 'none';
+      });
     }
+    
+    choice.querySelectorAll('.choice-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (answers[qNum]) return;
+        
+        const value = btn.dataset.value;
+        const isCorrect = value === answer;
+        answers[qNum] = value;
+        
+        // 显示选项结果
+        choice.querySelectorAll('.choice-btn').forEach(b => {
+          if (b.dataset.value === answer) {
+            b.classList.add('correct');
+          } else if (b === btn && !isCorrect) {
+            b.classList.add('wrong');
+          }
+        });
+        
+        // 延迟后显示答案并切换页面
+        setTimeout(() => {
+          options.style.display = 'none';
+          result.style.display = 'inline-flex';
+          
+          // 更新总结页
+          const summaryItem = document.querySelector(`.answer-item[data-q="${qNum}"] .answer-value`);
+          if (summaryItem) {
+            summaryItem.textContent = answer;
+            summaryItem.classList.add('answered');
+          }
+          
+          // 收藏节点
+          if (typeof Shengmin !== 'undefined') {
+            Shengmin.collectItem(answer, false);
+          }
+          
+          // 自动进入下一页
+          setTimeout(() => {
+            if (currentPage < totalPages - 1) {
+              goToPage(currentPage + 1);
+            }
+          }, 1500);
+          
+        }, 800);
+      });
+    });
+  });
+
+  // 键盘导航
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+      if (currentPage < totalPages - 1) goToPage(currentPage + 1);
+    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+      if (currentPage > 0) goToPage(currentPage - 1);
+    }
+  });
+
+  // 触摸滑动支持
+  let touchStartY = 0;
+  document.addEventListener('touchstart', (e) => {
+    touchStartY = e.touches[0].clientY;
+  });
+
+  document.addEventListener('touchend', (e) => {
+    const touchEndY = e.changedTouches[0].clientY;
+    const diff = touchStartY - touchEndY;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0 && currentPage < totalPages - 1) {
+        goToPage(currentPage + 1);
+      } else if (diff < 0 && currentPage > 0) {
+        goToPage(currentPage - 1);
+      }
+    }
+  });
+
+  if (typeof Shengmin !== 'undefined') {
+    Shengmin.storyData = {
+      character: '炉青',
+      nodes: ['作坊', '铁矿石', '高炉', '鼓风', '兵器', '冶铁遗址', '生产工具', '行商', '行路', '驿使', '游侠', '驿站', '坩埚', '铁犁', '箭镞'],
+      relics: ['冶铁遗址', '兵器', '生产工具']
+    };
   }
 });
-
-Shengmin.storyData = {
-  character: '炉青',
-  nodes: ['作坊', '铁矿石', '高炉', '鼓风', '兵器', '冶铁遗址', '生产工具', '行商', '行路', '驿使', '游侠', '驿站', '坩埚', '铁犁', '箭镞'],
-  relics: ['冶铁遗址', '兵器', '生产工具']
-};
 </script>
