@@ -105,18 +105,23 @@ title: 生民卷
 
 #content-wrapper {
   padding: 0 !important;
+  background: #d4d0c8 !important;
+}
+
+body:has(.shengmin-dark-page) {
+  background: #d4d0c8 !important;
 }
 
 #trajectory-line {
   display: none !important;
 }
 
-/* 生民卷暗色主题首页 - 全屏无白边 */
+/* 生民卷沙砾主题首页 - 全屏无白边 */
 .shengmin-dark-page {
   min-height: 100vh;
   width: 100vw;
   margin: 0;
-  padding: 0 0 100px 0;
+  padding: 0;
   background: #d4d0c8;
   color: #3d3d3d;
   display: flex;
@@ -149,10 +154,11 @@ title: 生民卷
   justify-content: center;
   align-items: flex-start;
   gap: 30px;
-  padding: 80px 60px 140px;
+  padding: 80px 60px 200px;
   overflow-x: auto;
   overflow-y: visible;
   min-height: 500px;
+  flex: 1;
 }
 
 .char-item {
