@@ -4,11 +4,6 @@ title: 生民卷
 ---
 
 <div class="shengmin-dark-page">
-  <div class="shengmin-header">
-    <h1>生民卷</h1>
-    <p>以人物为线索，探索古代生活</p>
-  </div>
-  
   <div class="character-row">
     <a href="./炉青/" class="char-item" data-char="炉青">
       <div class="char-img" style="background-position: 0% 0%;"></div>
@@ -154,7 +149,7 @@ body:has(.shengmin-dark-page) {
   justify-content: center;
   align-items: flex-start;
   gap: 30px;
-  padding: 80px 60px 200px;
+  padding: 40px 60px 200px;
   overflow-x: auto;
   overflow-y: visible;
   min-height: 500px;
