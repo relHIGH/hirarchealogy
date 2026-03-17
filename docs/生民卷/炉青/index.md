@@ -16,7 +16,7 @@ title: 冶辛
           <div class="char-bio">
             <p>前271年生于上党郡，时年13岁。在炭火与铁锤声中学习冶铁的作坊学徒，从搬运矿石到辨识矿质，在炉火与铁器间见证铁器如何改变农田与生活。</p>
           </div>
-          <p class="click-hint">点击任意处继续 →</p>
+          <button class="next-btn" onclick="goToPage(1)">开始探索 →</button>
         </div>      
         <div class="intro-right">
           <img src="{{ site.baseurl }}/assets/images/scenes/炉青.png" alt="冶辛场景" class="scene-img"/>
@@ -52,7 +52,7 @@ title: 冶辛
           <p>里，再用铁锤反复敲打。</p>        
           <p>院子里堆满黑色的铁渣和碎裂的陶片。很多年后，人们只看到冶铁炉遗址、鼓风管和成堆铁渣，却仍能知道这里曾经有一座忙碌的铁作坊。</p>
         </div>
-        <p class="click-hint">点击任意处继续 →</p>
+        <button class="next-btn" onclick="goToPage(2)">下一页 →</button>
       </div>
     </div>
     
@@ -84,7 +84,7 @@ title: 冶辛
           <p>。</p>        
           <p>农田里的变化很明显。土地被翻得更深，麦子长得更密。她第一次意识到，这些器物正在改变整个村庄的生活。</p>
         </div>
-        <p class="click-hint">点击任意处继续 →</p>
+        <button class="next-btn" onclick="goToPage(3)">下一页 →</button>
       </div>
     </div>
     
@@ -116,7 +116,7 @@ title: 冶辛
           <p>。</p>        
           <p>她逐渐明白，炉火里的铁不仅进入农田，也进入战场。后来出土的兵器、铁渣和冶铁炉遗迹，让人们知道这里曾经是战国时期重要的铁器生产地点。</p>
         </div>
-        <p class="click-hint">点击任意处继续 →</p>
+        <button class="next-btn" onclick="goToPage(4)">下一页 →</button>
       </div>
     </div>
     
@@ -243,13 +243,23 @@ title: 冶辛
   font-size: 0.95rem;
 }
 
-.click-hint {
+.next-btn {
   margin-top: 30px;
-  color: #aaa;
-  font-size: 0.85rem;
-  animation: pulse 2s infinite;
+  padding: 12px 30px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
   cursor: pointer;
-  display: inline-block;
+  transition: all 0.3s;
+  font-family: "Songti SC", serif;
+  letter-spacing: 2px;
+}
+
+.next-btn:hover {
+  transform: translateX(5px);
+  box-shadow: 0 10px 30px rgba(128,0,32,0.3);
 }
 
 .scene-img {
@@ -564,88 +574,47 @@ title: 冶辛
 </style>
 
 <script>
-// 冶辛页面滑动逻辑
-window.storySlider = {
-  currentPage: 0,
-  totalPages: 5,
-  answers: { 1: null, 2: null, 3: null },
-  
-  init: function() {
-    this.sliderTrack = document.getElementById('sliderTrack');
-    if (!this.sliderTrack) return;
-    
-    this.bindEvents();
-    this.setupShengmin();
-  },
-  
-  goToPage: function(page) {
-    if (page < 0 || page >= this.totalPages) return;
-    this.currentPage = page;
-    this.sliderTrack.style.transform = 'translateX(-' + (page * 100) + 'vw)';
+// 冶辛页面逻辑
+(function() {
+  var currentPage = 0;
+  var totalPages = 5;
+  var answers = { 1: null, 2: null, 3: null };
+  var sliderTrack = document.getElementById('sliderTrack');
+
+  // 全局切换函数
+  window.goToPage = function(page) {
+    if (page < 0 || page >= totalPages) return;
+    currentPage = page;
+    if (sliderTrack) {
+      sliderTrack.style.transform = 'translateX(-' + (page * 100) + 'vw)';
+    }
     
     var dots = document.querySelectorAll('.dot');
     for (var i = 0; i < dots.length; i++) {
-      dots[i].classList.toggle('active', i === page);
-    }
-  },
-  
-  bindEvents: function() {
-    var self = this;
-    
-    // 点击页面切换
-    var pages = document.querySelectorAll('.slide-page');
-    for (var i = 0; i < pages.length; i++) {
-      pages[i].addEventListener('click', function(e) {
-        // 排除按钮和选择区域
-        if (e.target.closest('.choice-btn') || 
-            e.target.closest('.choice-options') ||
-            e.target.closest('.choice-result') ||
-            e.target.closest('.share-btn') ||
-            e.target.closest('.restart-btn')) {
-          return;
-        }
-        
-        // 检查是否有未答完的选择题
-        var choice = this.querySelector('.story-choice');
-        if (choice) {
-          var qNum = choice.getAttribute('data-q');
-          if (!self.answers[qNum]) return;
-        }
-        
-        // 切换到下一页
-        if (self.currentPage < self.totalPages - 1) {
-          self.goToPage(self.currentPage + 1);
-        }
-      });
-    }
-    
-    // 点击指示点
-    var dots = document.querySelectorAll('.dot');
-    for (var i = 0; i < dots.length; i++) {
-      dots[i].addEventListener('click', function() {
-        var page = parseInt(this.getAttribute('data-page'));
-        self.goToPage(page);
-      });
-    }
-    
-    // 选择题交互
-    var choices = document.querySelectorAll('.story-choice');
-    for (var i = 0; i < choices.length; i++) {
-      this.setupChoice(choices[i]);
-    }
-    
-    // 键盘导航
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'ArrowRight') {
-        if (self.currentPage < self.totalPages - 1) self.goToPage(self.currentPage + 1);
-      } else if (e.key === 'ArrowLeft') {
-        if (self.currentPage > 0) self.goToPage(self.currentPage - 1);
+      if (i === page) {
+        dots[i].classList.add('active');
+      } else {
+        dots[i].classList.remove('active');
       }
+    }
+  };
+
+  // 点击指示点
+  var dots = document.querySelectorAll('.dot');
+  for (var i = 0; i < dots.length; i++) {
+    dots[i].addEventListener('click', function() {
+      var page = parseInt(this.getAttribute('data-page'));
+      window.goToPage(page);
     });
-  },
-  
-  setupChoice: function(choice) {
-    var self = this;
+  }
+
+  // 选择题交互
+  var choices = document.querySelectorAll('.story-choice');
+  for (var i = 0; i < choices.length; i++) {
+    setupChoice(choices[i]);
+  }
+
+  function setupChoice(choice) {
     var prompt = choice.querySelector('.choice-prompt');
     var options = choice.querySelector('.choice-options');
     var result = choice.querySelector('.choice-result');
@@ -655,29 +624,29 @@ window.storySlider = {
     if (prompt) {
       prompt.addEventListener('click', function(e) {
         e.stopPropagation();
-        if (self.answers[qNum]) return;
+        if (answers[qNum]) return;
         options.classList.add('show');
         prompt.style.display = 'none';
       });
     }
     
     var buttons = choice.querySelectorAll('.choice-btn');
-    for (var i = 0; i < buttons.length; i++) {
-      buttons[i].addEventListener('click', function(e) {
+    for (var j = 0; j < buttons.length; j++) {
+      buttons[j].addEventListener('click', function(e) {
         e.stopPropagation();
-        if (self.answers[qNum]) return;
+        if (answers[qNum]) return;
         
         var value = this.getAttribute('data-value');
         var isCorrect = value === answer;
-        self.answers[qNum] = value;
+        answers[qNum] = value;
         
         // 标记按钮状态
         var allBtns = choice.querySelectorAll('.choice-btn');
-        for (var j = 0; j < allBtns.length; j++) {
-          if (allBtns[j].getAttribute('data-value') === answer) {
-            allBtns[j].classList.add('correct');
-          } else if (allBtns[j] === this && !isCorrect) {
-            allBtns[j].classList.add('wrong');
+        for (var k = 0; k < allBtns.length; k++) {
+          if (allBtns[k].getAttribute('data-value') === answer) {
+            allBtns[k].classList.add('correct');
+          } else if (allBtns[k] === this && !isCorrect) {
+            allBtns[k].classList.add('wrong');
           }
         }
         
@@ -687,11 +656,10 @@ window.storySlider = {
           result.classList.add('show');
           
           // 更新总结页
-          var selector = '.answer-item[data-q="' + qNum + '"] .answer-value';
-          var summaryItem = document.querySelector(selector);
-          if (summaryItem) {
-            summaryItem.textContent = answer;
-            summaryItem.classList.add('answered');
+          var item = document.querySelector('.answer-item[data-q="' + qNum + '"] .answer-value');
+          if (item) {
+            item.textContent = answer;
+            item.classList.add('answered');
           }
           
           // 同步到 Shengmin
@@ -701,28 +669,25 @@ window.storySlider = {
         }, 800);
       });
     }
-  },
-  
-  setupShengmin: function() {
-    // 设置 Shengmin 数据
-    if (typeof window.Shengmin === 'undefined') {
-      window.Shengmin = {};
-    }
-    window.Shengmin.storyData = {
-      character: '冶辛',
-      nodes: ['作坊', '铁矿石', '高炉', '鼓风', '兵器', '冶铁遗址', '生产工具', '行商', '行路', '驿使', '游侠', '驿站', '坩埚', '铁犁', '箭镞'],
-      relics: ['冶铁遗址', '兵器', '生产工具']
-    };
   }
-};
 
-// 全局函数供按钮调用
-window.goToPage = function(page) {
-  window.storySlider.goToPage(page);
-};
+  // 键盘导航
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight') {
+      if (currentPage < totalPages - 1) window.goToPage(currentPage + 1);
+    } else if (e.key === 'ArrowLeft') {
+      if (currentPage > 0) window.goToPage(currentPage - 1);
+    }
+  });
 
-// 初始化
-document.addEventListener('DOMContentLoaded', function() {
-  window.storySlider.init();
-});
+  // 设置 Shengmin 数据
+  if (typeof window.Shengmin === 'undefined') {
+    window.Shengmin = {};
+  }
+  window.Shengmin.storyData = {
+    character: '冶辛',
+    nodes: ['作坊', '铁矿石', '高炉', '鼓风', '兵器', '冶铁遗址', '生产工具', '行商', '行路', '驿使', '游侠', '驿站', '坩埚', '铁犁', '箭镞'],
+    relics: ['冶铁遗址', '兵器', '生产工具']
+  };
+})();
 </script>
