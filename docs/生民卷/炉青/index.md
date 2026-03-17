@@ -1,10 +1,10 @@
 ---
 layout: default
-title: 炉青
+title: 冶辛
 ---
 
 <div class="story-slider" id="storySlider">
-  
+
   <!-- 页面指示器 -->
   <div class="page-dots">
     <span class="dot active" data-page="0"></span>
@@ -13,15 +13,15 @@ title: 炉青
     <span class="dot" data-page="3"></span>
     <span class="dot" data-page="4"></span>
   </div>
-  
+
   <!-- 第1页：信息页 -->
   <div class="slide-page active" data-page="0">
     <div class="info-layout">
       <div class="info-left">
-        <h1 class="char-name">炉青</h1>
-        <p class="char-era">战国 · 冶铁作坊匠人</p>
+        <h1 class="char-name">冶辛</h1>
+        <p class="char-era">战国 · 冶铁作坊学徒</p>
         <div class="char-bio-wide">
-          <p>生于战国末年的邯郸冶铁世家，自幼在炉火与矿石间长大。从搬运矿石到辨识矿质，从锻造农具到铸造兵器，她见证了铁器如何改变农田，又如何走向战场。</p>
+          <p>前271年生于上党郡，时年13岁。在炭火与铁锤声中学习冶铁的作坊学徒，从搬运矿石到辨识矿质，在炉火与铁器间见证铁器如何改变农田与生活。</p>
         </div>
         <button class="start-btn" onclick="goToPage(1)">开始探索 <span class="arrow">→</span></button>
       </div>      
@@ -750,6 +750,10 @@ document.addEventListener('DOMContentLoaded', function() {
       nodes: ['作坊', '铁矿石', '高炉', '鼓风', '兵器', '冶铁遗址', '生产工具', '行商', '行路', '驿使', '游侠', '驿站', '坩埚', '铁犁', '箭镞'],
       relics: ['冶铁遗址', '兵器', '生产工具']
     };
+  }
+});
+</script>
+;
   }
 });
 </script>

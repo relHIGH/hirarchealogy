@@ -1,19 +1,19 @@
 ---
 layout: default
-title: 潮音
+title: 沈大舟
 ---
 
 <div class="story-page story-new">
   <div class="story-layout">
     <div class="story-intro">
-      <h1>潮音</h1>
+      <h1>沈大舟</h1>
       <p class="story-era">五代十国 · 吴越运河船家</p>
       <div class="story-bio">
-        <p>生于杭州城外的运河畔，祖祖辈辈以漕运为生。她自幼在货船上长大，熟悉每一条水闸、每一处码头，听过越剧的悠扬，见过龙井的翠绿。</p>
+        <p>898年生于钱塘，时年27岁。在江南运河上随船运输货物的船家，祖祖辈辈以漕运为生，熟悉每一条水闸、每一处码头，听过越剧的悠扬，见过龙井的翠绿。</p>
       </div>
     </div>
     <div class="story-scene">
-      <img src="{{ site.baseurl }}/assets/images/scenes/潮音.png" alt="潮音场景"/>
+      <img src="{{ site.baseurl }}/assets/images/scenes/潮音.png" alt="沈大舟场景"/>
     </div>
   </div>
   

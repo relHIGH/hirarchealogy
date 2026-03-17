@@ -1,19 +1,19 @@
 ---
 layout: default
-title: 衡羽
+title: 衡路
 ---
 
 <div class="story-page story-new">
   <div class="story-layout">
     <div class="story-intro">
-      <h1>衡羽</h1>
+      <h1>衡路</h1>
       <p class="story-era">秦 · 咸阳驿舍管事</p>
       <div class="story-bio">
-        <p>任职于秦咸阳城东的驿舍，精通律令，负责登记来往文书。她见证了帝国驰道纵横、文书往来的繁华，也经历了秦末动乱中驿站系统的崩溃。</p>
+        <p>前241年生于咸阳，时年25岁。负责驿舍食宿、换马与接待官吏的驿站管事，见证了帝国驰道纵横、文书往来的繁华，也经历了秦末动乱中驿站系统的崩溃。</p>
       </div>
     </div>
     <div class="story-scene">
-      <img src="{{ site.baseurl }}/assets/images/scenes/衡羽.png" alt="衡羽场景"/>
+      <img src="{{ site.baseurl }}/assets/images/scenes/衡羽.png" alt="衡路场景"/>
     </div>
   </div>
   

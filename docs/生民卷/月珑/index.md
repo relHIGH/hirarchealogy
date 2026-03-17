@@ -362,8 +362,12 @@ document.querySelectorAll('.story-choice').forEach(choice => {
 });
 
 Shengmin.storyData = {
-  character: '月珑',
+  character: '安密罗',
   nodes: ['粟特', '长安', '西市', '胡商', '波斯', '宝石', '大食', '香料', '突厥', '皮毛', '汉语', '胡语', '商铺', '玄奘', '上元节', '胡旋舞', '葡萄酒', '货单', '账本', '货物', '茶', '酒', '饮品', '礼', '宴饮', '酒器', '感'],
+  relics: ['宝石', '香料', '货单']
+};
+</script>
+ '宴饮', '酒器', '感'],
   relics: ['宝石', '香料', '货单']
 };
 </script>

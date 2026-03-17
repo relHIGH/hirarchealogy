@@ -362,8 +362,11 @@ document.querySelectorAll('.story-choice').forEach(choice => {
 });
 
 Shengmin.storyData = {
-  character: '石兰',
+  character: '张昙',
   nodes: ['平城', '云冈石窟', '武州山', '石窟', '石材', '雕刻', '飞天', '菩萨', '佛法', '大佛', '壁画', '造像', '行路', '工匠', '情', '境', '感'],
   relics: ['石窟', '造像', '壁画']
+};
+</script>
+壁画']
 };
 </script>
