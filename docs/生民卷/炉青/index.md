@@ -8,7 +8,7 @@ title: 冶辛
   <div class="slider-track" id="sliderTrack">
     
     <!-- 第1页：信息页 -->
-    <div class="slide-page" data-page="0">
+    <div class="slide-page active" data-page="0">
       <div class="intro-layout">
         <div class="intro-left">
           <h1 class="char-name">冶辛</h1>
@@ -40,9 +40,9 @@ title: 冶辛
               <span class="choice-hint">点击选择</span>
             </div>
             <div class="choice-options">
-              <button class="choice-btn" data-value="陶罐" type="button">陶罐</button>
-              <button class="choice-btn" data-value="坩埚" type="button">坩埚</button>
-              <button class="choice-btn" data-value="铁锅" type="button">铁锅</button>
+              <button class="choice-btn" data-value="陶罐">陶罐</button>
+              <button class="choice-btn" data-value="坩埚">坩埚</button>
+              <button class="choice-btn" data-value="铁锅">铁锅</button>
             </div>
             <div class="choice-result">
               <span class="result-word">坩埚</span>
@@ -72,9 +72,9 @@ title: 冶辛
               <span class="choice-hint">点击选择</span>
             </div>
             <div class="choice-options">
-              <button class="choice-btn" data-value="铁剑" type="button">铁剑</button>
-              <button class="choice-btn" data-value="铁犁" type="button">铁犁</button>
-              <button class="choice-btn" data-value="铁斧" type="button">铁斧</button>
+              <button class="choice-btn" data-value="铁剑">铁剑</button>
+              <button class="choice-btn" data-value="铁犁">铁犁</button>
+              <button class="choice-btn" data-value="铁斧">铁斧</button>
             </div>
             <div class="choice-result">
               <span class="result-word">铁犁</span>
@@ -104,9 +104,9 @@ title: 冶辛
               <span class="choice-hint">点击选择</span>
             </div>
             <div class="choice-options">
-              <button class="choice-btn" data-value="箭镞" type="button">箭镞</button>
-              <button class="choice-btn" data-value="矛头" type="button">矛头</button>
-              <button class="choice-btn" data-value="刀鞘" type="button">刀鞘</button>
+              <button class="choice-btn" data-value="箭镞">箭镞</button>
+              <button class="choice-btn" data-value="矛头">矛头</button>
+              <button class="choice-btn" data-value="刀鞘">刀鞘</button>
             </div>
             <div class="choice-result">
               <span class="result-word">箭镞</span>
@@ -152,7 +152,7 @@ title: 冶辛
           </div>      
         </div>      
         <div class="summary-actions">
-          <button class="share-btn" onclick="Shengmin.exportLink()">复制分享链接</button>
+          <button class="share-btn" onclick="if(window.Shengmin)Shengmin.exportLink()">复制分享链接</button>
           <button class="restart-btn" onclick="goToPage(0)">重新探索</button>
         </div>    
       </div>
@@ -174,23 +174,24 @@ title: 冶辛
 .story-slider {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 60px);
   overflow: hidden;
 }
 
 .slider-track {
   display: flex;
-  width: 500%; /* 5页 */
+  width: 500vw;
   height: 100%;
-  transition: transform 0.5s ease;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .slide-page {
-  width: 20%; /* 100% / 5页 */
+  width: 100vw;
   height: 100%;
-  padding: 60px 80px;
+  padding: 40px 60px;
   box-sizing: border-box;
   overflow-y: auto;
+  flex-shrink: 0;
 }
 
 /* 介绍页布局 - 名字左移 */
@@ -198,13 +199,12 @@ title: 冶辛
   display: flex;
   height: 100%;
   align-items: center;
-  gap: 60px;
+  gap: 40px;
 }
 
 .intro-left {
-  flex: 1;
-  padding-left: 0; /* 左移 */
-  max-width: 500px;
+  flex: 0 0 45%;
+  padding-left: 0;
 }
 
 .intro-right {
@@ -216,43 +216,45 @@ title: 冶辛
 
 .char-name {
   font-family: "Songti SC", serif;
-  font-size: 4rem;
+  font-size: 3.5rem;
   color: var(--accent);
   margin: 0 0 10px 0;
   letter-spacing: 8px;
 }
 
 .char-era {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #888;
-  margin: 0 0 30px 0;
-  letter-spacing: 3px;
+  margin: 0 0 25px 0;
+  letter-spacing: 2px;
 }
 
 .char-bio {
   background: rgba(128,0,32,0.03);
-  padding: 25px;
+  padding: 20px;
   border-radius: 12px;
   border-left: 4px solid var(--accent);
 }
 
 .char-bio p {
-  line-height: 1.8;
+  line-height: 1.7;
   color: #555;
   margin: 0;
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
 .click-hint {
-  margin-top: 40px;
+  margin-top: 30px;
   color: #aaa;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   animation: pulse 2s infinite;
+  cursor: pointer;
+  display: inline-block;
 }
 
 .scene-img {
   max-width: 100%;
-  max-height: 70vh;
+  max-height: 60vh;
   border-radius: 12px;
   box-shadow: 0 20px 50px rgba(0,0,0,0.15);
 }
@@ -261,71 +263,67 @@ title: 冶辛
 .chapter-layout {
   max-width: 800px;
   margin: 0 auto;
-  padding-top: 40px;
+  padding-top: 20px;
 }
 
 .chapter-header {
   display: flex;
   align-items: baseline;
-  gap: 15px;
-  margin-bottom: 30px;
+  gap: 12px;
+  margin-bottom: 25px;
 }
 
 .chapter-num {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--accent);
   font-weight: bold;
 }
 
 .chapter-title {
   font-family: "Songti SC", serif;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   color: var(--accent);
   margin: 0;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
 }
 
 .chapter-content {
-  line-height: 2;
+  line-height: 1.9;
   color: #444;
-  font-size: 1.05rem;
+  font-size: 1rem;
 }
 
 .chapter-content p {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   display: inline;
 }
 
 /* 选择题样式 */
 .story-choice {
   display: inline-block;
-  margin: 0 8px;
+  margin: 0 6px;
   vertical-align: middle;
-  position: relative;
-  z-index: 10;
 }
 
 .choice-prompt {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   cursor: pointer;
-  padding: 8px 16px;
+  padding: 6px 12px;
   background: rgba(128,0,32,0.08);
   border-radius: 20px;
   border: 2px dashed var(--accent);
   transition: all 0.3s;
-  user-select: none;
 }
 
 .choice-prompt:hover {
   background: rgba(128,0,32,0.15);
-  transform: scale(1.05);
 }
 
 .choice-q {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background: var(--accent);
   color: white;
@@ -333,37 +331,34 @@ title: 冶辛
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .choice-hint {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: #666;
 }
 
 .choice-options {
   display: none;
-  gap: 12px;
-  margin: 15px 0;
+  gap: 10px;
+  margin: 12px 0;
   flex-wrap: wrap;
 }
 
 .choice-options.show {
-  display: flex !important;
+  display: flex;
 }
 
 .choice-btn {
-  padding: 10px 24px;
+  padding: 8px 20px;
   background: white;
   border: 2px solid rgba(128,0,32,0.2);
-  border-radius: 25px;
+  border-radius: 20px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.95rem;
   transition: all 0.2s;
   font-family: "Songti SC", serif;
-  pointer-events: auto;
-  position: relative;
-  z-index: 20;
 }
 
 .choice-btn:hover {
@@ -386,31 +381,31 @@ title: 冶辛
 .choice-result {
   display: none;
   align-items: center;
-  padding: 10px 20px;
+  padding: 8px 16px;
   background: rgba(128,0,32,0.08);
-  border-radius: 25px;
-  margin: 10px 0;
+  border-radius: 20px;
+  margin: 8px 0;
 }
 
 .choice-result.show {
-  display: inline-flex !important;
+  display: inline-flex;
 }
 
 .result-word {
   font-weight: bold;
   color: var(--accent);
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-family: "Songti SC", serif;
 }
 
 /* 页面指示点 - 底部 */
 .page-dots {
   position: fixed;
-  bottom: 30px;
+  bottom: 25px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 12px;
+  gap: 10px;
   z-index: 1000;
 }
 
@@ -425,62 +420,61 @@ title: 冶辛
 
 .dot.active {
   background: var(--accent);
-  transform: scale(1.3);
+  transform: scale(1.2);
 }
 
 /* 总结页 */
 .summary-layout {
-  max-width: 800px;
+  max-width: 700px;
   margin: 0 auto;
   text-align: center;
-  padding-top: 40px;
+  padding-top: 20px;
 }
 
 .summary-title {
   font-family: "Songti SC", serif;
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: var(--accent);
-  margin-bottom: 40px;
-  letter-spacing: 8px;
+  margin-bottom: 30px;
+  letter-spacing: 6px;
 }
 
 .answers-section {
   background: rgba(128,0,32,0.03);
-  padding: 30px;
+  padding: 25px;
   border-radius: 12px;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .answers-section h4 {
   color: var(--accent);
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   font-family: "Songti SC", serif;
 }
 
 .answers-list {
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 30px;
   flex-wrap: wrap;
 }
 
 .answer-item {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .answer-stage {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: #888;
 }
 
 .answer-value {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: bold;
   color: var(--accent);
   font-family: "Songti SC", serif;
-  min-width: 60px;
 }
 
 .answer-value.answered {
@@ -490,12 +484,12 @@ title: 冶辛
 .summary-sections {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-bottom: 40px;
+  gap: 15px;
+  margin-bottom: 30px;
 }
 
 .summary-box {
-  padding: 25px;
+  padding: 20px;
   border-radius: 12px;
   background: white;
   border: 1px solid rgba(128,0,32,0.1);
@@ -507,29 +501,29 @@ title: 冶辛
 
 .summary-box h4 {
   color: var(--accent);
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   font-family: "Songti SC", serif;
+  font-size: 0.95rem;
 }
 
 .placeholder-text {
   color: #aaa;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .summary-actions {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 15px;
 }
 
 .share-btn, .restart-btn {
-  padding: 14px 40px;
-  border-radius: 30px;
-  font-size: 1rem;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.3s;
   font-family: "Songti SC", serif;
-  pointer-events: auto;
 }
 
 .share-btn {
@@ -538,44 +532,31 @@ title: 冶辛
   border: none;
 }
 
-.share-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(128,0,32,0.3);
-}
-
 .restart-btn {
   background: transparent;
   color: var(--accent);
   border: 2px solid var(--accent);
 }
 
-.restart-btn:hover {
-  background: rgba(128,0,32,0.05);
-}
-
 @keyframes pulse {
-  0%, 100% { opacity: 0.6; }
+  0%, 100% { opacity: 0.5; }
   50% { opacity: 1; }
 }
 
 @media (max-width: 900px) {
   .slide-page {
-    padding: 40px;
+    padding: 30px;
   }
-  
   .intro-layout {
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
   }
-  
   .char-name {
     font-size: 2.5rem;
   }
-  
   .scene-img {
-    max-height: 40vh;
+    max-height: 35vh;
   }
-  
   .summary-sections {
     grid-template-columns: 1fr;
   }
@@ -583,128 +564,165 @@ title: 冶辛
 </style>
 
 <script>
-(function() {
-  let currentPage = 0;
-  const totalPages = 5;
-  const answers = { 1: null, 2: null, 3: null };
-  const sliderTrack = document.getElementById('sliderTrack');
-
-  function goToPage(page) {
-    if (page < 0 || page >= totalPages) return;
-    currentPage = page;
-    sliderTrack.style.transform = 'translateX(-' + (page * 20) + '%)';
-    document.querySelectorAll('.dot').forEach(function(d, i) {
-      d.classList.toggle('active', i === page);
-    });
-  }
-
-  window.goToPage = goToPage;
-
-  // 点击页面切换（排除按钮和选择区域）
-  document.querySelectorAll('.slide-page').forEach(function(page, index) {
-    page.addEventListener('click', function(e) {
-      // 如果点击的是按钮、选择区域或结果，不切换页面
-      if (e.target.closest('.choice-btn') || 
-          e.target.closest('.choice-options') ||
-          e.target.closest('.choice-result') ||
-          e.target.closest('.share-btn') ||
-          e.target.closest('.restart-btn')) {
-        return;
+// 冶辛页面滑动逻辑
+window.storySlider = {
+  currentPage: 0,
+  totalPages: 5,
+  answers: { 1: null, 2: null, 3: null },
+  
+  init: function() {
+    this.sliderTrack = document.getElementById('sliderTrack');
+    if (!this.sliderTrack) return;
+    
+    this.bindEvents();
+    this.setupShengmin();
+  },
+  
+  goToPage: function(page) {
+    if (page < 0 || page >= this.totalPages) return;
+    this.currentPage = page;
+    this.sliderTrack.style.transform = 'translateX(-' + (page * 100) + 'vw)';
+    
+    var dots = document.querySelectorAll('.dot');
+    for (var i = 0; i < dots.length; i++) {
+      dots[i].classList.toggle('active', i === page);
+    }
+  },
+  
+  bindEvents: function() {
+    var self = this;
+    
+    // 点击页面切换
+    var pages = document.querySelectorAll('.slide-page');
+    for (var i = 0; i < pages.length; i++) {
+      pages[i].addEventListener('click', function(e) {
+        // 排除按钮和选择区域
+        if (e.target.closest('.choice-btn') || 
+            e.target.closest('.choice-options') ||
+            e.target.closest('.choice-result') ||
+            e.target.closest('.share-btn') ||
+            e.target.closest('.restart-btn')) {
+          return;
+        }
+        
+        // 检查是否有未答完的选择题
+        var choice = this.querySelector('.story-choice');
+        if (choice) {
+          var qNum = choice.getAttribute('data-q');
+          if (!self.answers[qNum]) return;
+        }
+        
+        // 切换到下一页
+        if (self.currentPage < self.totalPages - 1) {
+          self.goToPage(self.currentPage + 1);
+        }
+      });
+    }
+    
+    // 点击指示点
+    var dots = document.querySelectorAll('.dot');
+    for (var i = 0; i < dots.length; i++) {
+      dots[i].addEventListener('click', function() {
+        var page = parseInt(this.getAttribute('data-page'));
+        self.goToPage(page);
+      });
+    }
+    
+    // 选择题交互
+    var choices = document.querySelectorAll('.story-choice');
+    for (var i = 0; i < choices.length; i++) {
+      this.setupChoice(choices[i]);
+    }
+    
+    // 键盘导航
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowRight') {
+        if (self.currentPage < self.totalPages - 1) self.goToPage(self.currentPage + 1);
+      } else if (e.key === 'ArrowLeft') {
+        if (self.currentPage > 0) self.goToPage(self.currentPage - 1);
       }
-      
-      // 如果有未回答的选择题，不自动切换
-      const currentChoice = page.querySelector('.story-choice');
-      if (currentChoice) {
-        const qNum = currentChoice.dataset.q;
-        if (!answers[qNum]) return; // 还没答完，不切换
-      }
-      
-      // 切换到下一页
-      if (currentPage < totalPages - 1) {
-        goToPage(currentPage + 1);
-      }
     });
-  });
-
-  // 点击指示点切换
-  document.querySelectorAll('.dot').forEach(function(dot) {
-    dot.addEventListener('click', function() {
-      goToPage(parseInt(dot.dataset.page));
-    });
-  });
-
-  // 选择题交互
-  document.querySelectorAll('.story-choice').forEach(function(choice) {
-    const prompt = choice.querySelector('.choice-prompt');
-    const options = choice.querySelector('.choice-options');
-    const result = choice.querySelector('.choice-result');
-    const answer = choice.dataset.answer;
-    const qNum = choice.dataset.q;
+  },
+  
+  setupChoice: function(choice) {
+    var self = this;
+    var prompt = choice.querySelector('.choice-prompt');
+    var options = choice.querySelector('.choice-options');
+    var result = choice.querySelector('.choice-result');
+    var answer = choice.getAttribute('data-answer');
+    var qNum = choice.getAttribute('data-q');
     
     if (prompt) {
       prompt.addEventListener('click', function(e) {
         e.stopPropagation();
-        if (answers[qNum]) return;
+        if (self.answers[qNum]) return;
         options.classList.add('show');
         prompt.style.display = 'none';
       });
     }
     
-    choice.querySelectorAll('.choice-btn').forEach(function(btn) {
-      btn.addEventListener('click', function(e) {
+    var buttons = choice.querySelectorAll('.choice-btn');
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener('click', function(e) {
         e.stopPropagation();
-        if (answers[qNum]) return;
+        if (self.answers[qNum]) return;
         
-        const value = btn.dataset.value;
-        const isCorrect = value === answer;
-        answers[qNum] = value;
+        var value = this.getAttribute('data-value');
+        var isCorrect = value === answer;
+        self.answers[qNum] = value;
         
-        // 显示选项结果
-        choice.querySelectorAll('.choice-btn').forEach(function(b) {
-          if (b.dataset.value === answer) {
-            b.classList.add('correct');
-          } else if (b === btn && !isCorrect) {
-            b.classList.add('wrong');
+        // 标记按钮状态
+        var allBtns = choice.querySelectorAll('.choice-btn');
+        for (var j = 0; j < allBtns.length; j++) {
+          if (allBtns[j].getAttribute('data-value') === answer) {
+            allBtns[j].classList.add('correct');
+          } else if (allBtns[j] === this && !isCorrect) {
+            allBtns[j].classList.add('wrong');
           }
-        });
+        }
         
-        // 延迟后显示答案
+        // 显示结果
         setTimeout(function() {
           options.classList.remove('show');
           result.classList.add('show');
           
           // 更新总结页
-          const summaryItem = document.querySelector('.answer-item[data-q="' + qNum + '"] .answer-value');
+          var selector = '.answer-item[data-q="' + qNum + '"] .answer-value';
+          var summaryItem = document.querySelector(selector);
           if (summaryItem) {
             summaryItem.textContent = answer;
             summaryItem.classList.add('answered');
           }
           
-          // 收藏节点
-          if (typeof Shengmin !== 'undefined') {
-            Shengmin.collectItem(answer, false);
+          // 同步到 Shengmin
+          if (window.Shengmin && window.Shengmin.collectItem) {
+            window.Shengmin.collectItem(answer, false);
           }
         }, 800);
       });
-    });
-  });
-
-  // 键盘导航
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'ArrowRight') {
-      if (currentPage < totalPages - 1) goToPage(currentPage + 1);
-    } else if (e.key === 'ArrowLeft') {
-      if (currentPage > 0) goToPage(currentPage - 1);
     }
-  });
-
-  // 初始化 Shengmin 数据
-  if (typeof Shengmin !== 'undefined') {
-    Shengmin.storyData = {
+  },
+  
+  setupShengmin: function() {
+    // 设置 Shengmin 数据
+    if (typeof window.Shengmin === 'undefined') {
+      window.Shengmin = {};
+    }
+    window.Shengmin.storyData = {
       character: '冶辛',
       nodes: ['作坊', '铁矿石', '高炉', '鼓风', '兵器', '冶铁遗址', '生产工具', '行商', '行路', '驿使', '游侠', '驿站', '坩埚', '铁犁', '箭镞'],
       relics: ['冶铁遗址', '兵器', '生产工具']
     };
   }
-})();
+};
+
+// 全局函数供按钮调用
+window.goToPage = function(page) {
+  window.storySlider.goToPage(page);
+};
+
+// 初始化
+document.addEventListener('DOMContentLoaded', function() {
+  window.storySlider.init();
+});
 </script>
