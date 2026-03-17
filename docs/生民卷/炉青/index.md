@@ -4,9 +4,6 @@ title: 冶辛
 ---
 
 <div class="story-wrapper" id="storyWrapper">
-  <!-- 左右点击区域 -->
-  <div class="click-zone left-zone" onclick="prevPage()"></div>
-  <div class="click-zone right-zone" onclick="nextPage()"></div>
   
   <!-- 页面容器 -->
   <div class="pages-container" id="pagesContainer">
@@ -180,35 +177,12 @@ title: 冶辛
   position: relative;
   width: 100%;
   min-height: calc(100vh - 60px);
-  background: #faf8f5;
-}
-
-/* 左右点击区域 */
-.click-zone {
-  position: fixed;
-  top: 60px;
-  bottom: 0;
-  width: 80px;
-  z-index: 100;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.click-zone:hover {
-  background: rgba(128,0,32,0.03);
-}
-
-.left-zone {
-  left: 0;
-}
-
-.right-zone {
-  right: 0;
+  background: #f5f3f0;
 }
 
 .pages-container {
   width: 100%;
-  padding: 40px 100px;
+  padding: 40px 80px;
   box-sizing: border-box;
 }
 
@@ -216,7 +190,7 @@ title: 冶辛
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
-  background: #fdfcfa;
+  background: #faf8f5;
   border-radius: 12px;
   padding: 40px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.04);
