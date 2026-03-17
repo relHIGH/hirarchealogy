@@ -172,6 +172,9 @@ title: 冶辛
 </div>
 
 <style>
+/* 覆盖默认布局：去掉白色卡片背景 */
+.container { background: transparent !important; box-shadow: none !important; padding: 0 !important; max-width: 100% !important; margin: 0 !important; }
+
 /* 暖白色背景，去除纯白 */
 .story-wrapper {
   position: relative;
