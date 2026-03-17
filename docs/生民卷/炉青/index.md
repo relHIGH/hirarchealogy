@@ -186,6 +186,9 @@ header { background: #fdfcfa !important; }
   background: #faf6ee;
   margin-top: 20px;
   padding-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .pages-container {
