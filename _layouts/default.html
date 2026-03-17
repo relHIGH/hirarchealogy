@@ -123,6 +123,8 @@
 
     #content-wrapper { flex-grow: 1; overflow-y: auto; padding: 0 55px; background: var(--bg-main); }
     .container { max-width: 850px; margin: 3rem auto; background: var(--card-bg); padding: 5rem 4rem; box-shadow: 0 20px 80px rgba(0,0,0,0.06); border-radius: 2px; position: relative; }
+    /* 人物详情页：去掉白色卡片背景 */
+    .container:has(.story-wrapper) { background: transparent; box-shadow: none; padding: 0; }
     #markdown-body { font-size: 15px; color: #333; line-height: 1.8; }
     #markdown-body h1 { font-size: 1.8rem; color: var(--accent); margin-bottom: 2.5rem; text-align: center; font-family: "Songti SC", serif; }
     .wiki-link { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(128,0,32,0.2); }
