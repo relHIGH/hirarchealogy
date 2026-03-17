@@ -196,7 +196,7 @@ header { background: #fdfcfa !important; }
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
-  padding: 40px;
+  padding: 20px 40px 40px 0;
 }
 
 /* 介绍页 - 名字左移 */
@@ -210,6 +210,7 @@ header { background: #fdfcfa !important; }
 .intro-left {
   flex: 0 0 40%;
   padding-left: 0;
+  text-align: left;
 }
 
 .intro-right {
@@ -219,14 +220,15 @@ header { background: #fdfcfa !important; }
   align-items: center;
 }
 
-/* 名字+篇，与身份左对齐，加大 */
+/* 名字+篇，严格左对齐 */
 .char-name {
   font-family: "Songti SC", serif;
   font-size: 4rem;
   color: var(--accent);
   margin: 0 0 8px 0;
-  letter-spacing: 8px;
+  letter-spacing: 2px;
   text-align: left;
+  padding-left: 0;
 }
 
 .char-era {
@@ -235,6 +237,7 @@ header { background: #fdfcfa !important; }
   margin: 0 0 20px 0;
   letter-spacing: 2px;
   text-align: left;
+  padding-left: 0;
 }
 
 .char-bio {
