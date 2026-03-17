@@ -1,13 +1,13 @@
 ---
 layout: default
-title: 骁雪
+title: 萧骐
 ---
 
 <div class="story-page">
   <div class="story-header">
     <div class="char-avatar" style="background-position: 50% 100%;"></div>
     <div class="char-title">
-      <h1>骁雪</h1>
+      <h1>萧骐</h1>
       <p>辽 · 草原牧民信使</p>
     </div>
   </div>

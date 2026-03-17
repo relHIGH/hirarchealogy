@@ -1,12 +1,12 @@
 ---
 layout: default
-title: 石兰
+title: 张昙
 ---
 
 <div class="story-page story-new">
   <div class="story-layout">
     <div class="story-intro">
-      <h1>石兰</h1>
+      <h1>张昙</h1>
       <p class="story-era">北魏 · 云冈石窟石匠</p>
       <div class="story-bio">
         <p>生于平城郊外石匠世家，随父亲参与云冈石窟开凿。她从搬运石材做起，渐习得雕刻技艺，在飞天衣带与菩萨莲座中寄托情思。</p>

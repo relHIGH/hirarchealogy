@@ -362,7 +362,7 @@ document.querySelectorAll('.story-choice').forEach(choice => {
 });
 
 Shengmin.storyData = {
-  character: '衡羽',
+  character: '衡路',
   nodes: ['咸阳', '驿舍', '律令', '传食', '官吏', '驰道', '文书', '政令', '军报', '封泥', '简牍', '交通', '驿路', '驿使', '车', '行路', '路', '驿站', '旅途'],
   relics: ['简牍', '封泥']
 };

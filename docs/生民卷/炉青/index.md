@@ -746,7 +746,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (typeof Shengmin !== 'undefined') {
     Shengmin.storyData = {
-      character: '炉青',
+      character: '冶辛',
       nodes: ['作坊', '铁矿石', '高炉', '鼓风', '兵器', '冶铁遗址', '生产工具', '行商', '行路', '驿使', '游侠', '驿站', '坩埚', '铁犁', '箭镞'],
       relics: ['冶铁遗址', '兵器', '生产工具']
     };

@@ -1,13 +1,13 @@
 ---
 layout: default
-title: 清弦
+title: 柳边声
 ---
 
 <div class="story-page">
   <div class="story-header">
     <div class="char-avatar" style="background-position: 25% 100%;"></div>
     <div class="char-title">
-      <h1>清弦</h1>
+      <h1>柳边声</h1>
       <p>宋 · 汴梁瓦舍艺人</p>
     </div>
   </div>

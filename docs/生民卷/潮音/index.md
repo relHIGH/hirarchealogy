@@ -362,7 +362,7 @@ document.querySelectorAll('.story-choice').forEach(choice => {
 });
 
 Shengmin.storyData = {
-  character: '潮音',
+  character: '沈大舟',
   nodes: ['杭州', '运河', '漕运', '江南运河', '货船', '水闸', '码头', '行商', '船', '水路', '钱镠', '航道', '漕船', '稻米', '丝绸', '茶叶', '越剧', '龙井', '节庆', '戏', '橹', '钱塘江', '感', '舟', '伶'],
   relics: ['丝绸', '茶叶']
 };

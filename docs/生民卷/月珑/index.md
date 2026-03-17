@@ -1,12 +1,12 @@
 ---
 layout: default
-title: 月珑
+title: 安密罗
 ---
 
 <div class="story-page story-new">
   <div class="story-layout">
     <div class="story-intro">
-      <h1>月珑</h1>
+      <h1>安密罗</h1>
       <p class="story-era">唐 · 长安胡商</p>
       <div class="story-bio">
         <p>来自粟特，定居长安西市。她操着流利的汉语和胡语，打理商铺，学会了辨认波斯的宝石、大食的香料，见证了盛唐的繁华与变迁。</p>
