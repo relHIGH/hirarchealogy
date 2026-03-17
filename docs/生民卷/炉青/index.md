@@ -188,23 +188,23 @@ header { background: #fdfcfa !important; }
 
 .pages-container {
   width: 100%;
-  padding: 20px 80px 40px;
+  padding: 15px 60px 30px;
   box-sizing: border-box;
 }
 
 .page {
   width: 100%;
   margin: 0;
-  padding: 20px 0 40px 80px;
+  padding: 15px 0 30px 60px;
 }
 
 /* 介绍页 - 名字左对齐 */
 .intro-layout {
   display: flex;
-  min-height: calc(100vh - 200px);
+  min-height: calc(100vh - 180px);
   align-items: flex-start;
-  gap: 40px;
-  padding-top: 60px;
+  gap: 30px;
+  padding-top: 40px;
 }
 
 .intro-left {
@@ -227,18 +227,18 @@ header { background: #fdfcfa !important; }
 #markdown-body .char-name,
 .char-name {
   font-family: "Songti SC", serif;
-  font-size: 4rem;
+  font-size: 2.8rem;
   color: var(--accent);
-  margin: 0 0 8px 0;
+  margin: 0 0 6px 0;
   letter-spacing: 2px;
   text-align: left;
   align-self: flex-start;
 }
 
 .char-era {
-  font-size: 1rem;
+  font-size: 0.85rem;
   color: #888;
-  margin: 0 0 20px 0;
+  margin: 0 0 12px 0;
   letter-spacing: 2px;
   text-align: left;
   padding-left: 0;
@@ -246,26 +246,26 @@ header { background: #fdfcfa !important; }
 
 .char-bio {
   background: #f5f3f0;
-  padding: 16px 20px;
+  padding: 12px 16px;
   border-radius: 8px;
   border-left: 3px solid var(--accent);
 }
 
 .char-bio p {
-  line-height: 1.6;
+  line-height: 1.5;
   color: #555;
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .nav-btn {
-  margin-top: 25px;
-  padding: 10px 25px;
+  margin-top: 18px;
+  padding: 8px 20px;
   background: var(--accent);
   color: white;
   border: none;
-  border-radius: 20px;
-  font-size: 0.95rem;
+  border-radius: 16px;
+  font-size: 0.85rem;
   cursor: pointer;
   transition: all 0.3s;
   font-family: "Songti SC", serif;
@@ -278,10 +278,10 @@ header { background: #fdfcfa !important; }
 }
 
 .scene-img {
-  max-width: 85%;
-  max-height: 45vh;
+  max-width: 70%;
+  max-height: 35vh;
   border-radius: 10px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 /* 章节页 */
