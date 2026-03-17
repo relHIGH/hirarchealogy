@@ -190,10 +190,8 @@ title: 冶辛
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
-  background: #faf8f5;
   border-radius: 12px;
   padding: 40px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
 }
 
 /* 介绍页 - 名字左移 */
