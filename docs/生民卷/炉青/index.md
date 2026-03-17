@@ -182,12 +182,10 @@ header { background: #fdfcfa !important; }
 .story-wrapper {
   position: relative;
   width: 100%;
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 60px);
   background: #faf6ee;
   margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  padding-bottom: 100px;
 }
 
 .pages-container {
@@ -208,7 +206,7 @@ header { background: #fdfcfa !important; }
   min-height: auto;
   align-items: center;
   gap: 30px;
-  padding-top: 0;
+  padding: 40px 0;
 }
 
 .intro-left {
