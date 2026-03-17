@@ -184,7 +184,7 @@ header { background: #fdfcfa !important; }
   width: 100%;
   min-height: auto;
   background: #faf6ee;
-  margin-top: 20px;
+  margin-top: 40px;
   padding: 60px 0 40px;
   display: flex;
   flex-direction: column;
