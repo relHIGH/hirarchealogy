@@ -188,7 +188,7 @@ header { background: #fdfcfa !important; }
 
 .pages-container {
   width: 100%;
-  padding: 40px 60px 30px;
+  padding: 60px 60px 30px;
   box-sizing: border-box;
 }
 
@@ -204,7 +204,7 @@ header { background: #fdfcfa !important; }
   min-height: calc(100vh - 160px);
   align-items: flex-start;
   gap: 30px;
-  padding-top: 60px;
+  padding-top: 20px;
 }
 
 .intro-left {
