@@ -188,7 +188,7 @@ header { background: #fdfcfa !important; }
 
 .pages-container {
   width: 100%;
-  padding: 15px 60px 30px;
+  padding: 40px 60px 30px;
   box-sizing: border-box;
 }
 
@@ -201,10 +201,10 @@ header { background: #fdfcfa !important; }
 /* 介绍页 - 名字左对齐 */
 .intro-layout {
   display: flex;
-  min-height: calc(100vh - 180px);
+  min-height: calc(100vh - 160px);
   align-items: flex-start;
   gap: 30px;
-  padding-top: 40px;
+  padding-top: 60px;
 }
 
 .intro-left {
