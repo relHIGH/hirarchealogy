@@ -182,10 +182,10 @@ header { background: #fdfcfa !important; }
 .story-wrapper {
   position: relative;
   width: 100%;
-  min-height: calc(100vh - 60px);
+  min-height: auto;
   background: #faf6ee;
   margin-top: 20px;
-  padding-bottom: 100px;
+  padding: 60px 0 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -209,7 +209,7 @@ header { background: #fdfcfa !important; }
   min-height: auto;
   align-items: center;
   gap: 30px;
-  padding: 40px 0;
+  padding: 20px 0;
 }
 
 .intro-left {
