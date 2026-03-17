@@ -285,6 +285,7 @@ header { background: #fdfcfa !important; }
   border-radius: 10px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
   opacity: 0.75;
+  filter: sepia(20%) saturate(80%) hue-rotate(-10deg);
 }
 
 /* 章节页 */
