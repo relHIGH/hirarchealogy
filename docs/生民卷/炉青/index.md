@@ -199,12 +199,13 @@ header { background: #fdfcfa !important; }
   padding: 20px 40px 40px 0;
 }
 
-/* 介绍页 - 名字左移 */
+/* 介绍页 - 名字左对齐 */
 .intro-layout {
   display: flex;
   min-height: calc(100vh - 200px);
-  align-items: center;
+  align-items: flex-start;
   gap: 40px;
+  padding-top: 60px;
 }
 
 .intro-left {
