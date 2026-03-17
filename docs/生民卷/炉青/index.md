@@ -451,6 +451,12 @@ header { background: #fdfcfa !important; }
   max-width: 600px;
   margin: 0 auto;
   text-align: center;
+  padding-left: 0;
+}
+
+/* 第5页（总结页）去掉左侧padding */
+#page-4 {
+  padding-left: 0;
 }
 
 .summary-title {
