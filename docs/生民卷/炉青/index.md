@@ -264,7 +264,7 @@ header { background: #fdfcfa !important; }
 }
 
 .nav-btn {
-  margin-top: 40px;
+  margin-top: 60px;
   padding: 8px 20px;
   background: var(--accent);
   color: white;
