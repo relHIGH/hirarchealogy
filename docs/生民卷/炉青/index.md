@@ -194,9 +194,8 @@ header { background: #fdfcfa !important; }
 
 .page {
   width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px 40px 40px 0;
+  margin: 0;
+  padding: 20px 0 40px 80px;
 }
 
 /* 介绍页 - 名字左对齐 */
