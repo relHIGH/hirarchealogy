@@ -230,10 +230,8 @@ header { background: #fdfcfa !important; }
   color: var(--accent);
   margin: 0 0 8px 0;
   letter-spacing: 2px;
-  text-align: left !important;
-  padding-left: 0;
-  display: block;
-  width: 100%;
+  text-align: left;
+  align-self: flex-start;
 }
 
 .char-era {
