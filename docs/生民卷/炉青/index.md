@@ -184,11 +184,12 @@ header { background: #fdfcfa !important; }
   width: 100%;
   min-height: calc(100vh - 60px);
   background: #faf6ee;
+  margin-top: 40px;
 }
 
 .pages-container {
   width: 100%;
-  padding: 100px 60px 30px;
+  padding: 60px 60px 30px;
   box-sizing: border-box;
 }
 
