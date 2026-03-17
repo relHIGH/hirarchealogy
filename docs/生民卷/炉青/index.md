@@ -223,7 +223,8 @@ header { background: #fdfcfa !important; }
   align-items: center;
 }
 
-/* 名字+篇，严格左对齐 */
+/* 名字+篇，严格左对齐，覆盖全局居中 */
+#markdown-body .char-name,
 .char-name {
   font-family: "Songti SC", serif;
   font-size: 4rem;
