@@ -177,7 +177,6 @@ title: 冶辛
   position: relative;
   width: 100%;
   min-height: calc(100vh - 60px);
-  background: #f5f3f0;
 }
 
 .pages-container {
@@ -190,7 +189,6 @@ title: 冶辛
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
-  border-radius: 12px;
   padding: 40px;
 }
 
