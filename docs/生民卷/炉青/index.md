@@ -227,7 +227,7 @@ header { background: #fdfcfa !important; }
 #markdown-body .char-name,
 .char-name {
   font-family: "Songti SC", serif;
-  font-size: 2.8rem;
+  font-size: 2.2rem;
   color: var(--accent);
   margin: 0 0 6px 0;
   letter-spacing: 2px;
@@ -236,9 +236,9 @@ header { background: #fdfcfa !important; }
 }
 
 .char-era {
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: #888;
-  margin: 0 0 12px 0;
+  margin: 0 0 16px 0;
   letter-spacing: 2px;
   text-align: left;
   padding-left: 0;
@@ -246,20 +246,20 @@ header { background: #fdfcfa !important; }
 
 .char-bio {
   background: #f5f3f0;
-  padding: 12px 16px;
+  padding: 14px 18px;
   border-radius: 8px;
   border-left: 3px solid var(--accent);
 }
 
 .char-bio p {
-  line-height: 1.5;
+  line-height: 1.6;
   color: #555;
   margin: 0;
-  font-size: 0.8rem;
+  font-size: 0.95rem;
 }
 
 .nav-btn {
-  margin-top: 18px;
+  margin-top: 40px;
   padding: 8px 20px;
   background: var(--accent);
   color: white;
@@ -278,8 +278,8 @@ header { background: #fdfcfa !important; }
 }
 
 .scene-img {
-  max-width: 70%;
-  max-height: 35vh;
+  max-width: 55%;
+  max-height: 28vh;
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
