@@ -175,16 +175,20 @@ title: 冶辛
 /* 覆盖默认布局：去掉白色卡片背景 */
 .container { background: transparent !important; box-shadow: none !important; padding: 0 !important; max-width: 100% !important; margin: 0 !important; }
 
-/* 暖白色背景，去除纯白 */
+/* 顶栏改为浅米色，与内容区不同 */
+header { background: #fdfcfa !important; }
+
+/* 暖沙色背景 */
 .story-wrapper {
   position: relative;
   width: 100%;
   min-height: calc(100vh - 60px);
+  background: #faf6ee;
 }
 
 .pages-container {
   width: 100%;
-  padding: 40px 80px;
+  padding: 20px 80px 40px;
   box-sizing: border-box;
 }
 
@@ -215,13 +219,13 @@ title: 冶辛
   align-items: center;
 }
 
-/* 名字+篇，与身份左对齐 */
+/* 名字+篇，与身份左对齐，加大 */
 .char-name {
   font-family: "Songti SC", serif;
-  font-size: 3rem;
+  font-size: 4rem;
   color: var(--accent);
   margin: 0 0 8px 0;
-  letter-spacing: 6px;
+  letter-spacing: 8px;
   text-align: left;
 }
 
@@ -267,8 +271,8 @@ title: 冶辛
 }
 
 .scene-img {
-  max-width: 100%;
-  max-height: 55vh;
+  max-width: 85%;
+  max-height: 45vh;
   border-radius: 10px;
   box-shadow: 0 15px 40px rgba(0,0,0,0.12);
 }
