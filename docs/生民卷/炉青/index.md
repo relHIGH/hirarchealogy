@@ -182,14 +182,17 @@ header { background: #fdfcfa !important; }
 .story-wrapper {
   position: relative;
   width: 100%;
-  min-height: calc(100vh - 60px);
+  min-height: calc(100vh - 100px);
   background: #faf6ee;
-  margin-top: 40px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .pages-container {
   width: 100%;
-  padding: 60px 60px 30px;
+  padding: 20px 60px 40px;
   box-sizing: border-box;
 }
 
@@ -202,10 +205,10 @@ header { background: #fdfcfa !important; }
 /* 介绍页 - 名字左对齐 */
 .intro-layout {
   display: flex;
-  min-height: calc(100vh - 160px);
-  align-items: flex-start;
+  min-height: auto;
+  align-items: center;
   gap: 30px;
-  padding-top: 20px;
+  padding-top: 0;
 }
 
 .intro-left {
