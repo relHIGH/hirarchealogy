@@ -188,7 +188,7 @@ header { background: #fdfcfa !important; }
 
 .pages-container {
   width: 100%;
-  padding: 60px 60px 30px;
+  padding: 100px 60px 30px;
   box-sizing: border-box;
 }
 
