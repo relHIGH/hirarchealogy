@@ -3,12 +3,12 @@ layout: default
 title: 冶辛
 ---
 
-<div class="story-slider" id="storySlider">
-  <!-- 横向滑动容器 -->
-  <div class="slider-track" id="sliderTrack">
+<div class="story-wrapper">
+  <!-- 页面容器 -->
+  <div class="pages-container" id="pagesContainer">
     
-    <!-- 第1页：信息页 -->
-    <div class="slide-page active" data-page="0">
+    <!-- 第1页 -->
+    <div class="page" id="page-0">
       <div class="intro-layout">
         <div class="intro-left">
           <h1 class="char-name">冶辛</h1>
@@ -16,7 +16,7 @@ title: 冶辛
           <div class="char-bio">
             <p>前271年生于上党郡，时年13岁。在炭火与铁锤声中学习冶铁的作坊学徒，从搬运矿石到辨识矿质，在炉火与铁器间见证铁器如何改变农田与生活。</p>
           </div>
-          <button class="next-btn" onclick="goToPage(1)">开始探索 →</button>
+          <button class="nav-btn" onclick="showPage(1)">开始探索 →</button>
         </div>      
         <div class="intro-right">
           <img src="{{ site.baseurl }}/assets/images/scenes/炉青.png" alt="冶辛场景" class="scene-img"/>
@@ -24,8 +24,8 @@ title: 冶辛
       </div>
     </div>
     
-    <!-- 第2页：第一章 -->
-    <div class="slide-page" data-page="1">
+    <!-- 第2页 -->
+    <div class="page" id="page-1" style="display:none">
       <div class="chapter-layout">
         <div class="chapter-header">
           <span class="chapter-num">01</span>
@@ -35,16 +35,16 @@ title: 冶辛
           <p>她出生在山地矿区。村子旁边就是一处冶铁作坊。每天清晨，矿石从山坡被运下来，堆在院子的角落。她小时候的任务只是把矿石搬到炉旁，再把木炭添进炉口。</p>        
           <p>炉火一旦点燃，就会持续整夜。风箱推动空气进入炉中，铁水慢慢在高温里融化。父亲把铁水从炉口引出，倒进</p>        
           <div class="story-choice" data-answer="坩埚" data-q="1">
-            <div class="choice-prompt">
+            <div class="choice-prompt" onclick="showChoices(1)">
               <span class="choice-q">?</span>
               <span class="choice-hint">点击选择</span>
             </div>
-            <div class="choice-options">
-              <button class="choice-btn" data-value="陶罐">陶罐</button>
-              <button class="choice-btn" data-value="坩埚">坩埚</button>
-              <button class="choice-btn" data-value="铁锅">铁锅</button>
+            <div class="choice-options" id="choices-1">
+              <button class="choice-btn" onclick="selectAnswer(1, '陶罐', false)">陶罐</button>
+              <button class="choice-btn" onclick="selectAnswer(1, '坩埚', true)">坩埚</button>
+              <button class="choice-btn" onclick="selectAnswer(1, '铁锅', false)">铁锅</button>
             </div>
-            <div class="choice-result">
+            <div class="choice-result" id="result-1">
               <span class="result-word">坩埚</span>
             </div>
           </div>        
@@ -52,12 +52,12 @@ title: 冶辛
           <p>里，再用铁锤反复敲打。</p>        
           <p>院子里堆满黑色的铁渣和碎裂的陶片。很多年后，人们只看到冶铁炉遗址、鼓风管和成堆铁渣，却仍能知道这里曾经有一座忙碌的铁作坊。</p>
         </div>
-        <button class="next-btn" onclick="goToPage(2)">下一页 →</button>
+        <button class="nav-btn" onclick="showPage(2)">下一页 →</button>
       </div>
     </div>
     
-    <!-- 第3页：第二章 -->
-    <div class="slide-page" data-page="2">
+    <!-- 第3页 -->
+    <div class="page" id="page-2" style="display:none">
       <div class="chapter-layout">
         <div class="chapter-header">
           <span class="chapter-num">02</span>
@@ -67,16 +67,16 @@ title: 冶辛
           <p>随着年龄增长，她学会辨认矿石。敲开矿石，看到暗色金属光泽，她就知道这一炉可能成功。</p>        
           <p>村子里的农人越来越多地来到作坊。他们拿旧器具来换新的农具。作坊木架上挂着铁镰、铁锤，还有一排刚锻造出来的</p>        
           <div class="story-choice" data-answer="铁犁" data-q="2">
-            <div class="choice-prompt">
+            <div class="choice-prompt" onclick="showChoices(2)">
               <span class="choice-q">?</span>
               <span class="choice-hint">点击选择</span>
             </div>
-            <div class="choice-options">
-              <button class="choice-btn" data-value="铁剑">铁剑</button>
-              <button class="choice-btn" data-value="铁犁">铁犁</button>
-              <button class="choice-btn" data-value="铁斧">铁斧</button>
+            <div class="choice-options" id="choices-2">
+              <button class="choice-btn" onclick="selectAnswer(2, '铁剑', false)">铁剑</button>
+              <button class="choice-btn" onclick="selectAnswer(2, '铁犁', true)">铁犁</button>
+              <button class="choice-btn" onclick="selectAnswer(2, '铁斧', false)">铁斧</button>
             </div>
-            <div class="choice-result">
+            <div class="choice-result" id="result-2">
               <span class="result-word">铁犁</span>
             </div>
           </div>        
@@ -84,12 +84,12 @@ title: 冶辛
           <p>。</p>        
           <p>农田里的变化很明显。土地被翻得更深，麦子长得更密。她第一次意识到，这些器物正在改变整个村庄的生活。</p>
         </div>
-        <button class="next-btn" onclick="goToPage(3)">下一页 →</button>
+        <button class="nav-btn" onclick="showPage(3)">下一页 →</button>
       </div>
     </div>
     
-    <!-- 第4页：第三章 -->
-    <div class="slide-page" data-page="3">
+    <!-- 第4页 -->
+    <div class="page" id="page-3" style="display:none">
       <div class="chapter-layout">
         <div class="chapter-header">
           <span class="chapter-num">03</span>
@@ -99,16 +99,16 @@ title: 冶辛
           <p>几年之后，作坊开始接到更多兵器订单。士兵来取货时，会把一捆捆兵器背在肩上离开。</p>        
           <p>木架另一侧摆满锋利的武器。最常见的是铁矛和成束的</p>        
           <div class="story-choice" data-answer="箭镞" data-q="3">
-            <div class="choice-prompt">
+            <div class="choice-prompt" onclick="showChoices(3)">
               <span class="choice-q">?</span>
               <span class="choice-hint">点击选择</span>
             </div>
-            <div class="choice-options">
-              <button class="choice-btn" data-value="箭镞">箭镞</button>
-              <button class="choice-btn" data-value="矛头">矛头</button>
-              <button class="choice-btn" data-value="刀鞘">刀鞘</button>
+            <div class="choice-options" id="choices-3">
+              <button class="choice-btn" onclick="selectAnswer(3, '箭镞', true)">箭镞</button>
+              <button class="choice-btn" onclick="selectAnswer(3, '矛头', false)">矛头</button>
+              <button class="choice-btn" onclick="selectAnswer(3, '刀鞘', false)">刀鞘</button>
             </div>
-            <div class="choice-result">
+            <div class="choice-result" id="result-3">
               <span class="result-word">箭镞</span>
             </div>
           </div>        
@@ -116,28 +116,28 @@ title: 冶辛
           <p>。</p>        
           <p>她逐渐明白，炉火里的铁不仅进入农田，也进入战场。后来出土的兵器、铁渣和冶铁炉遗迹，让人们知道这里曾经是战国时期重要的铁器生产地点。</p>
         </div>
-        <button class="next-btn" onclick="goToPage(4)">下一页 →</button>
+        <button class="nav-btn" onclick="showPage(4)">下一页 →</button>
       </div>
     </div>
     
-    <!-- 第5页：总结页 -->
-    <div class="slide-page" data-page="4">
+    <!-- 第5页 -->
+    <div class="page" id="page-4" style="display:none">
       <div class="summary-layout">
         <h2 class="summary-title">探索完成</h2>      
         <div class="answers-section">
           <h4>你的选择</h4>
           <div class="answers-list">          
-            <div class="answer-item" data-q="1">
+            <div class="answer-item">
               <span class="answer-stage">矿山与炉火</span>
-              <span class="answer-value">—</span>
+              <span class="answer-value" id="ans-1">—</span>
             </div>          
-            <div class="answer-item" data-q="2">
+            <div class="answer-item">
               <span class="answer-stage">铁器与农田</span>
-              <span class="answer-value">—</span>
+              <span class="answer-value" id="ans-2">—</span>
             </div>          
-            <div class="answer-item" data-q="3">
+            <div class="answer-item">
               <span class="answer-stage">战争的影子</span>
-              <span class="answer-value">—</span>
+              <span class="answer-value" id="ans-3">—</span>
             </div>        
           </div>
         </div>      
@@ -152,59 +152,53 @@ title: 冶辛
           </div>      
         </div>      
         <div class="summary-actions">
-          <button class="share-btn" onclick="if(window.Shengmin)Shengmin.exportLink()">复制分享链接</button>
-          <button class="restart-btn" onclick="goToPage(0)">重新探索</button>
+          <button class="share-btn" onclick="alert('分享链接功能开发中')">复制分享链接</button>
+          <button class="restart-btn" onclick="showPage(0)">重新探索</button>
         </div>    
       </div>
     </div>
+    
   </div>
   
   <!-- 页面指示器 -->
   <div class="page-dots">
-    <span class="dot active" data-page="0"></span>
-    <span class="dot" data-page="1"></span>
-    <span class="dot" data-page="2"></span>
-    <span class="dot" data-page="3"></span>
-    <span class="dot" data-page="4"></span>
+    <span class="dot active" onclick="showPage(0)"></span>
+    <span class="dot" onclick="showPage(1)"></span>
+    <span class="dot" onclick="showPage(2)"></span>
+    <span class="dot" onclick="showPage(3)"></span>
+    <span class="dot" onclick="showPage(4)"></span>
   </div>
 </div>
 
 <style>
-/* 横向滑动容器 */
-.story-slider {
+.story-wrapper {
   position: relative;
   width: 100%;
-  height: calc(100vh - 60px);
-  overflow: hidden;
+  min-height: calc(100vh - 60px);
 }
 
-.slider-track {
-  display: flex;
-  width: 500vw;
-  height: 100%;
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.slide-page {
-  width: 100vw;
-  height: 100%;
+.pages-container {
+  width: 100%;
   padding: 40px 60px;
   box-sizing: border-box;
-  overflow-y: auto;
-  flex-shrink: 0;
 }
 
-/* 介绍页布局 - 名字左移 */
+.page {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* 介绍页 */
 .intro-layout {
   display: flex;
-  height: 100%;
+  height: calc(100vh - 140px);
   align-items: center;
   gap: 40px;
 }
 
 .intro-left {
   flex: 0 0 45%;
-  padding-left: 0;
 }
 
 .intro-right {
@@ -243,7 +237,7 @@ title: 冶辛
   font-size: 0.95rem;
 }
 
-.next-btn {
+.nav-btn {
   margin-top: 30px;
   padding: 12px 30px;
   background: var(--accent);
@@ -257,7 +251,7 @@ title: 冶辛
   letter-spacing: 2px;
 }
 
-.next-btn:hover {
+.nav-btn:hover {
   transform: translateX(5px);
   box-shadow: 0 10px 30px rgba(128,0,32,0.3);
 }
@@ -269,7 +263,7 @@ title: 冶辛
   box-shadow: 0 20px 50px rgba(0,0,0,0.15);
 }
 
-/* 章节页布局 */
+/* 章节页 */
 .chapter-layout {
   max-width: 800px;
   margin: 0 auto;
@@ -308,7 +302,7 @@ title: 冶辛
   display: inline;
 }
 
-/* 选择题样式 */
+/* 选择题 */
 .story-choice {
   display: inline-block;
   margin: 0 6px;
@@ -324,11 +318,6 @@ title: 冶辛
   background: rgba(128,0,32,0.08);
   border-radius: 20px;
   border: 2px dashed var(--accent);
-  transition: all 0.3s;
-}
-
-.choice-prompt:hover {
-  background: rgba(128,0,32,0.15);
 }
 
 .choice-q {
@@ -353,7 +342,6 @@ title: 冶辛
   display: none;
   gap: 10px;
   margin: 12px 0;
-  flex-wrap: wrap;
 }
 
 .choice-options.show {
@@ -367,7 +355,6 @@ title: 冶辛
   border-radius: 20px;
   cursor: pointer;
   font-size: 0.95rem;
-  transition: all 0.2s;
   font-family: "Songti SC", serif;
 }
 
@@ -385,7 +372,6 @@ title: 冶辛
 .choice-btn.wrong {
   background: #ddd;
   color: #888;
-  border-color: #ddd;
 }
 
 .choice-result {
@@ -408,7 +394,7 @@ title: 冶辛
   font-family: "Songti SC", serif;
 }
 
-/* 页面指示点 - 底部 */
+/* 页面指示点 */
 .page-dots {
   position: fixed;
   bottom: 25px;
@@ -487,10 +473,6 @@ title: 冶辛
   font-family: "Songti SC", serif;
 }
 
-.answer-value.answered {
-  color: var(--accent);
-}
-
 .summary-sections {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -548,146 +530,112 @@ title: 冶辛
   border: 2px solid var(--accent);
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
-}
-
 @media (max-width: 900px) {
-  .slide-page {
-    padding: 30px;
-  }
-  .intro-layout {
-    flex-direction: column;
-    gap: 20px;
-  }
-  .char-name {
-    font-size: 2.5rem;
-  }
-  .scene-img {
-    max-height: 35vh;
-  }
-  .summary-sections {
-    grid-template-columns: 1fr;
-  }
+  .pages-container { padding: 30px; }
+  .intro-layout { flex-direction: column; gap: 20px; height: auto; }
+  .char-name { font-size: 2.5rem; }
+  .scene-img { max-height: 35vh; }
+  .summary-sections { grid-template-columns: 1fr; }
 }
 </style>
 
 <script>
-// 冶辛页面逻辑
-(function() {
-  var currentPage = 0;
-  var totalPages = 5;
-  var answers = { 1: null, 2: null, 3: null };
-  var sliderTrack = document.getElementById('sliderTrack');
+// 当前页码
+var currentPage = 0;
+var totalPages = 5;
 
-  // 全局切换函数
-  window.goToPage = function(page) {
-    if (page < 0 || page >= totalPages) return;
-    currentPage = page;
-    if (sliderTrack) {
-      sliderTrack.style.transform = 'translateX(-' + (page * 100) + 'vw)';
+// 显示指定页面
+function showPage(pageNum) {
+  // 隐藏所有页面
+  for (var i = 0; i < totalPages; i++) {
+    var page = document.getElementById('page-' + i);
+    if (page) {
+      page.style.display = 'none';
     }
-    
-    var dots = document.querySelectorAll('.dot');
-    for (var i = 0; i < dots.length; i++) {
-      if (i === page) {
-        dots[i].classList.add('active');
-      } else {
-        dots[i].classList.remove('active');
-      }
-    }
-  };
-
-  // 点击指示点
+  }
+  
+  // 显示目标页面
+  var targetPage = document.getElementById('page-' + pageNum);
+  if (targetPage) {
+    targetPage.style.display = 'block';
+  }
+  
+  // 更新当前页码
+  currentPage = pageNum;
+  
+  // 更新圆点状态
   var dots = document.querySelectorAll('.dot');
   for (var i = 0; i < dots.length; i++) {
-    dots[i].addEventListener('click', function() {
-      var page = parseInt(this.getAttribute('data-page'));
-      window.goToPage(page);
-    });
-  }
-
-  // 选择题交互
-  var choices = document.querySelectorAll('.story-choice');
-  for (var i = 0; i < choices.length; i++) {
-    setupChoice(choices[i]);
-  }
-
-  function setupChoice(choice) {
-    var prompt = choice.querySelector('.choice-prompt');
-    var options = choice.querySelector('.choice-options');
-    var result = choice.querySelector('.choice-result');
-    var answer = choice.getAttribute('data-answer');
-    var qNum = choice.getAttribute('data-q');
-    
-    if (prompt) {
-      prompt.addEventListener('click', function(e) {
-        e.stopPropagation();
-        if (answers[qNum]) return;
-        options.classList.add('show');
-        prompt.style.display = 'none';
-      });
-    }
-    
-    var buttons = choice.querySelectorAll('.choice-btn');
-    for (var j = 0; j < buttons.length; j++) {
-      buttons[j].addEventListener('click', function(e) {
-        e.stopPropagation();
-        if (answers[qNum]) return;
-        
-        var value = this.getAttribute('data-value');
-        var isCorrect = value === answer;
-        answers[qNum] = value;
-        
-        // 标记按钮状态
-        var allBtns = choice.querySelectorAll('.choice-btn');
-        for (var k = 0; k < allBtns.length; k++) {
-          if (allBtns[k].getAttribute('data-value') === answer) {
-            allBtns[k].classList.add('correct');
-          } else if (allBtns[k] === this && !isCorrect) {
-            allBtns[k].classList.add('wrong');
-          }
-        }
-        
-        // 显示结果
-        setTimeout(function() {
-          options.classList.remove('show');
-          result.classList.add('show');
-          
-          // 更新总结页
-          var item = document.querySelector('.answer-item[data-q="' + qNum + '"] .answer-value');
-          if (item) {
-            item.textContent = answer;
-            item.classList.add('answered');
-          }
-          
-          // 同步到 Shengmin
-          if (window.Shengmin && window.Shengmin.collectItem) {
-            window.Shengmin.collectItem(answer, false);
-          }
-        }, 800);
-      });
+    if (i === pageNum) {
+      dots[i].classList.add('active');
+    } else {
+      dots[i].classList.remove('active');
     }
   }
+  
+  // 滚动到顶部
+  window.scrollTo(0, 0);
+}
 
-  // 键盘导航
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'ArrowRight') {
-      if (currentPage < totalPages - 1) window.goToPage(currentPage + 1);
-    } else if (e.key === 'ArrowLeft') {
-      if (currentPage > 0) window.goToPage(currentPage - 1);
-    }
-  });
-
-  // 设置 Shengmin 数据
-  if (typeof window.Shengmin === 'undefined') {
-    window.Shengmin = {};
+// 显示选择题选项
+function showChoices(qNum) {
+  var choicesDiv = document.getElementById('choices-' + qNum);
+  var promptDiv = document.querySelector('#page-' + currentPage + ' .story-choice[data-q="' + qNum + '"] .choice-prompt');
+  
+  if (choicesDiv) {
+    choicesDiv.classList.add('show');
   }
-  window.Shengmin.storyData = {
-    character: '冶辛',
-    nodes: ['作坊', '铁矿石', '高炉', '鼓风', '兵器', '冶铁遗址', '生产工具', '行商', '行路', '驿使', '游侠', '驿站', '坩埚', '铁犁', '箭镞'],
-    relics: ['冶铁遗址', '兵器', '生产工具']
-  };
-})();
+  if (promptDiv) {
+    promptDiv.style.display = 'none';
+  }
+}
+
+// 选择答案
+function selectAnswer(qNum, answer, isCorrect) {
+  var choicesDiv = document.getElementById('choices-' + qNum);
+  var resultDiv = document.getElementById('result-' + qNum);
+  var ansSpan = document.getElementById('ans-' + qNum);
+  
+  // 标记按钮
+  var buttons = document.querySelectorAll('#choices-' + qNum + ' .choice-btn');
+  for (var i = 0; i < buttons.length; i++) {
+    var btn = buttons[i];
+    var btnAnswer = btn.getAttribute('onclick').match(/'([^']+)'/)[1];
+    if (btnAnswer === getCorrectAnswer(qNum)) {
+      btn.classList.add('correct');
+    } else if (btn === event.target && !isCorrect) {
+      btn.classList.add('wrong');
+    }
+  }
+  
+  // 显示结果
+  setTimeout(function() {
+    if (choicesDiv) choicesDiv.classList.remove('show');
+    if (resultDiv) resultDiv.classList.add('show');
+    if (ansSpan) {
+      ansSpan.textContent = getCorrectAnswer(qNum);
+      ansSpan.classList.add('answered');
+    }
+  }, 500);
+}
+
+// 获取正确答案
+function getCorrectAnswer(qNum) {
+  var answers = { 1: '坩埚', 2: '铁犁', 3: '箭镞' };
+  return answers[qNum];
+}
+
+// 键盘导航
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+    if (currentPage < totalPages - 1) showPage(currentPage + 1);
+  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+    if (currentPage > 0) showPage(currentPage - 1);
+  }
+});
+
+// 初始化第一页
+document.addEventListener('DOMContentLoaded', function() {
+  showPage(0);
+});
 </script>
