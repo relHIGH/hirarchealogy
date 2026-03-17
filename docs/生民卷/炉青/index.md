@@ -210,7 +210,10 @@ header { background: #fdfcfa !important; }
 .intro-left {
   flex: 0 0 40%;
   padding-left: 0;
-  text-align: left;
+  text-align: left !important;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .intro-right {
@@ -227,8 +230,10 @@ header { background: #fdfcfa !important; }
   color: var(--accent);
   margin: 0 0 8px 0;
   letter-spacing: 2px;
-  text-align: left;
+  text-align: left !important;
   padding-left: 0;
+  display: block;
+  width: 100%;
 }
 
 .char-era {
