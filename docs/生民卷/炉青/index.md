@@ -592,8 +592,8 @@ title: 冶辛
   function goToPage(page) {
     if (page < 0 || page >= totalPages) return;
     currentPage = page;
-    sliderTrack.style.transform = `translateX(-${page * 20}%)`;
-    document.querySelectorAll('.dot').forEach((d, i) => {
+    sliderTrack.style.transform = 'translateX(-' + (page * 20) + '%)';
+    document.querySelectorAll('.dot').forEach(function(d, i) {
       d.classList.toggle('active', i === page);
     });
   }
@@ -601,8 +601,8 @@ title: 冶辛
   window.goToPage = goToPage;
 
   // 点击页面切换（排除按钮和选择区域）
-  document.querySelectorAll('.slide-page').forEach((page, index) => {
-    page.addEventListener('click', (e) => {
+  document.querySelectorAll('.slide-page').forEach(function(page, index) {
+    page.addEventListener('click', function(e) {
       // 如果点击的是按钮、选择区域或结果，不切换页面
       if (e.target.closest('.choice-btn') || 
           e.target.closest('.choice-options') ||
@@ -627,14 +627,14 @@ title: 冶辛
   });
 
   // 点击指示点切换
-  document.querySelectorAll('.dot').forEach(dot => {
-    dot.addEventListener('click', () => {
+  document.querySelectorAll('.dot').forEach(function(dot) {
+    dot.addEventListener('click', function() {
       goToPage(parseInt(dot.dataset.page));
     });
   });
 
   // 选择题交互
-  document.querySelectorAll('.story-choice').forEach(choice => {
+  document.querySelectorAll('.story-choice').forEach(function(choice) {
     const prompt = choice.querySelector('.choice-prompt');
     const options = choice.querySelector('.choice-options');
     const result = choice.querySelector('.choice-result');
@@ -642,7 +642,7 @@ title: 冶辛
     const qNum = choice.dataset.q;
     
     if (prompt) {
-      prompt.addEventListener('click', (e) => {
+      prompt.addEventListener('click', function(e) {
         e.stopPropagation();
         if (answers[qNum]) return;
         options.classList.add('show');
@@ -650,8 +650,8 @@ title: 冶辛
       });
     }
     
-    choice.querySelectorAll('.choice-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+    choice.querySelectorAll('.choice-btn').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
         e.stopPropagation();
         if (answers[qNum]) return;
         
@@ -660,7 +660,7 @@ title: 冶辛
         answers[qNum] = value;
         
         // 显示选项结果
-        choice.querySelectorAll('.choice-btn').forEach(b => {
+        choice.querySelectorAll('.choice-btn').forEach(function(b) {
           if (b.dataset.value === answer) {
             b.classList.add('correct');
           } else if (b === btn && !isCorrect) {
@@ -669,12 +669,12 @@ title: 冶辛
         });
         
         // 延迟后显示答案
-        setTimeout(() => {
+        setTimeout(function() {
           options.classList.remove('show');
           result.classList.add('show');
           
           // 更新总结页
-          const summaryItem = document.querySelector(`.answer-item[data-q="${qNum}"] .answer-value`);
+          const summaryItem = document.querySelector('.answer-item[data-q="' + qNum + '"] .answer-value');
           if (summaryItem) {
             summaryItem.textContent = answer;
             summaryItem.classList.add('answered');
@@ -690,7 +690,7 @@ title: 冶辛
   });
 
   // 键盘导航
-  document.addEventListener('keydown', (e) => {
+  document.addEventListener('keydown', function(e) {
     if (e.key === 'ArrowRight') {
       if (currentPage < totalPages - 1) goToPage(currentPage + 1);
     } else if (e.key === 'ArrowLeft') {
