@@ -35,7 +35,7 @@ title: 冶辛
         <div class="chapter-content">
           <p>上党这地方，山多得像谁随手撒了一把石头。冶辛家就蹲在其中一座山的半山腰，旁边是个冶铁作坊——说白了就是几间破草房围着一座土炉子，常年冒着黑烟，远看像山神在抽烟。</p>
           <p>她从小就在这烟火气里长大。六岁时，爹让她往炉子里添炭，她差点把头发烧了；八岁时，她能分辨出哪种石头敲开是铁的，哪种是废石——"铁的沉，废石轻，敲起来声音不一样，"爹说，"像挑瓜，熟的和生的拍两下就知道。"</p>
-          <p>作坊不大，但人来来往往。最忙的时候，炉火三天三夜不灭，风箱呼哧呼哧像头老牛。冶辛最烦上夜班——不是怕累，是怕犯困时把铁水倒错地方。她见过一个学徒手抖，把铁水泼在地上，结果那块石头从此多了个黑印子。</p>
+          <p>作坊不大，但人来来往往。最忙的时候，<a href="#" class="node-tag" data-node="炉火" data-theme="感" onclick="collectNode('炉火', '感'); return false;">炉火</a>三天三夜不灭，风箱呼哧呼哧像头老牛。冶辛最烦上夜班——不是怕累，是怕犯困时把<a href="#" class="node-tag" data-node="铁水" data-theme="感" onclick="collectNode('铁水', '感'); return false;">铁水</a>倒错地方。她见过一个学徒手抖，把铁水泼在地上，结果那块石头从此多了个黑印子。</p>
           <p>铁水从炉口流出来时，红得发亮，像岩浆。爹总是稳稳地接住，倒进</p>
           <div class="story-choice" data-answer="坩埚" data-q="1">
             <div class="choice-prompt" onclick="showChoices(1)">
@@ -51,9 +51,9 @@ title: 冶辛
               <span class="result-word">坩埚</span>
             </div>
           </div>
-          <p>——一种用耐火土烧制的厚壁陶罐，烧坏了不知道多少个。铁水在里面冷静片刻，再倒出来锤打，就能成型。她知道这东西的名字，却不知道怎么写——那个年代，谁会写这玩意儿？</p>
-          <p>作坊院子里永远堆着两堆东西：黑色的铁渣，和碎裂的陶片。前者是矿石的骸骨，后者是容器的尸体。下雨的时候，铁渣堆会渗出黄绿色的锈水，她后来才知道那叫"矾水"，能染布入药，但那时候只觉得它脏。</p>
-          <p>很多年后，考古的人挖开这片山，指着那些炉渣、陶范、红褐色的铁块，兴奋地说："战国冶铁遗址！"冶辛听不懂这些词。但如果她能看到，大概会指着那些铁渣说："哦，那是我们倒掉的。"</p>
+          <p>——一种用耐火土烧制的厚壁陶罐，烧坏了不知道多少个。<a href="#" class="relic-tag" data-relic="坩埚残片" onclick="collectRelic('坩埚残片'); return false;"></a>铁水在里面冷静片刻，再倒出来锤打，就能成型。她知道这东西的名字，却不知道怎么写——那个年代，谁会写这玩意儿？</p>
+          <p>作坊院子里永远堆着两堆东西：黑色的<a href="#" class="node-tag" data-node="铁渣" data-theme="感" onclick="collectNode('铁渣', '感'); return false;">铁渣</a>，和碎裂的陶片。前者是矿石的骸骨，后者是容器的尸体。下雨的时候，铁渣堆会渗出黄绿色的锈水，她后来才知道那叫"矾水"，能染布入药，但那时候只觉得它脏。</p>
+          <p>很多年后，考古的人挖开这片山，指着那些炉渣、陶范、红褐色的铁块，兴奋地说："<a href="#" class="relic-tag" data-relic="战国冶铁炉遗址" onclick="collectRelic('战国冶铁炉遗址'); return false;">战国冶铁遗址</a>！"冶辛听不懂这些词。但如果她能看到，大概会指着那些铁渣说："哦，那是我们倒掉的。"</p>
         </div>
         <button class="nav-btn" onclick="nextPage()">下一页 →</button>
       </div>
@@ -69,7 +69,7 @@ title: 冶辛
         <div class="chapter-content">
           <p>冶辛十五岁那年，发现来作坊的农人越来越多，而且话都变少了——不是不想聊，是手里攥着钱，急着换东西。</p>
           <p>那时她才知道，上党郡外头正在打仗。秦国人往东打，赵国人往西顶，两边死磕。农人急着翻地、急着收成、急着在征兵令下来之前多攒点粮食。铁器成了抢手货，比铜钱还硬。</p>
-          <p>她亲眼见过一个老农，牵着牛走了一天山路，就为换一把新犁。老农说："地太硬，木犁扛不住，铁犁能翻半尺深。"冶辛不懂翻半尺深是什么概念，但她知道，那把铁犁在炉子里锤了整整三个时辰。</p>
+          <p>她亲眼见过一个老农，牵着牛走了一天山路，就为<a href="#" class="node-tag" data-node="换犁" data-theme="旅" onclick="collectNode('换犁', '旅'); return false;">换一把新犁</a>。老农说："地太硬，木犁扛不住，铁犁能翻半尺深。"冶辛不懂翻半尺深是什么概念，但她知道，那把<a href="#" class="relic-tag" data-relic="铁犁铧" onclick="collectRelic('铁犁铧'); return false;">铁犁</a>在炉子里锤了整整三个时辰。</p>
           <p>作坊里渐渐多了她没见过的东西：铁镰、铁锤，还有那种三角形、前端弯弯的</p>        
           <div class="story-choice" data-answer="铁犁" data-q="2">
             <div class="choice-prompt" onclick="showChoices(2)">
@@ -104,7 +104,7 @@ title: 冶辛
           <p>爹没敢接。不是不想赚钱，是知道这意味着什么——农具得让路，炉火得改配方。做犁要韧，做剑要硬。她跟着爹学了很久，怎么掺碳、怎么淬火，才能把铁变成钢。</p>
           <p>最忙的时候，作坊像个军营。士兵来取货时，把成捆的矛、成袋的箭头往肩上一扛，转身就走。冶辛数过，一个箭袋能装五十支，一个士兵背四袋。她不知道这些箭最后射向了谁，但她知道每一支都经过她的手。</p>
           <p>后来她才听说，那年长平之战，赵国输了四十万人。她坐在炉子边，想着那些铁器去了哪里，是不是和骨头一起锈成了土。</p>
-          <p>她做的最后一批货，是那种三棱的、能射穿皮甲的</p>
+          <p>她做的最后一批货，是那种三棱的、能射穿皮甲的<a href="#" class="node-tag" data-node="箭镞" data-theme="感" onclick="collectNode('箭镞', '感'); return false;"></a></p>
           <div class="story-choice" data-answer="箭镞" data-q="3">
             <div class="choice-prompt" onclick="showChoices(3)">
               <span class="choice-q">?</span>
@@ -119,7 +119,7 @@ title: 冶辛
               <span class="result-word">箭镞</span>
             </div>
           </div>
-          <p>——一种她闭着眼睛都能认出来的小东西。两千多年后，秦始皇陵挖出了成捆的这种东西，整整齐齐码在地下，专家说为了"保卫来世"。冶辛要是知道，大概会翻个白眼："活着都守不住，死了能顶什么用？"</p>
+          <p>——一种她闭着眼睛都能认出来的小东西。两千多年后，秦始皇陵挖出了成捆的<a href="#" class="relic-tag" data-relic="三棱铁箭镞" onclick="collectRelic('三棱铁箭镞'); return false;">这种</a>东西，整整齐齐码在地下，专家说为了"保卫来世"。冶辛要是知道，大概会翻个白眼："活着都守不住，死了能顶什么用？"</p>
           <p>她做了一辈子的铁。农具、兵器、锅碗瓢盆——炉火不息，铁水照面。她知道每块铁的来处，却永远猜不到它们的归途。</p>
         </div>
         <button class="nav-btn" onclick="nextPage()">下一页 →</button>
@@ -148,13 +148,24 @@ title: 冶辛
           </div>
         </div>      
         <div class="summary-sections">        
-          <div class="summary-box placeholder">
+          <div class="summary-box" id="nodes-box">
             <h4>主题节点</h4>
-            <p class="placeholder-text">探索收集的主题节点将在此展示</p>
+            <div class="nodes-list" id="nodes-list">
+              <span class="node-item" data-node="炉火" data-theme="感">炉火</span>
+              <span class="node-item" data-node="铁水" data-theme="感">铁水</span>
+              <span class="node-item" data-node="铁渣" data-theme="感">铁渣</span>
+              <span class="node-item" data-node="换犁" data-theme="旅">换犁</span>
+              <span class="node-item" data-node="箭镞" data-theme="感">箭镞</span>
+            </div>
           </div>        
-          <div class="summary-box placeholder">
+          <div class="summary-box" id="relics-box">
             <h4>历史文物</h4>
-            <p class="placeholder-text">故事中提及的文物将在此展示</p>
+            <div class="relics-list" id="relics-list">
+              <span class="relic-item" data-relic="坩埚残片">坩埚残片</span>
+              <span class="relic-item" data-relic="战国冶铁炉遗址">战国冶铁炉遗址</span>
+              <span class="relic-item" data-relic="铁犁铧">铁犁铧</span>
+              <span class="relic-item" data-relic="三棱铁箭镞">三棱铁箭镞</span>
+            </div>
           </div>      
         </div>      
         <div class="summary-actions">
@@ -427,7 +438,52 @@ header { background: #fdfcfa !important; }
   font-family: "Songti SC", serif;
 }
 
-/* 页面指示点 */
+/* 节点标签样式 */
+.node-tag, .relic-tag {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--accent);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.node-tag:hover, .relic-tag:hover {
+  background: rgba(128,0,32,0.1);
+  border-bottom-style: solid;
+}
+.node-tag.collected, .relic-tag.collected {
+  background: rgba(128,0,32,0.15);
+  border-bottom-style: solid;
+  font-weight: bold;
+}
+
+/* 总结页节点列表 */
+.nodes-list, .relics-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+.node-item, .relic-item {
+  padding: 6px 12px;
+  background: #f0ede8;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  color: #888;
+  border: 1px dashed #ccc;
+  transition: all 0.3s;
+}
+.node-item.lit, .relic-item.lit {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+  border-style: solid;
+}
+.node-item[data-theme="旅"].lit {
+  background: #8B4513;
+}
+.node-item[data-theme="感"].lit {
+  background: #800020;
+}
 .page-dots {
   position: fixed;
   bottom: 20px;
@@ -569,6 +625,13 @@ header { background: #fdfcfa !important; }
   border: 1.5px solid var(--accent);
 }
 
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  20% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  80% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+}
+
 @media (max-width: 900px) {
   .pages-container { padding: 30px 60px; }
   .click-zone { width: 40px; }
@@ -642,5 +705,83 @@ function selectAnswer(qNum, answer, isCorrect) {
 
 document.addEventListener('DOMContentLoaded', function() {
   showPage(0);
+  initCollection();
 });
+
+// 收藏系统
+var charName = '冶辛';
+var storageKey = 'hr_shengmin_' + charName;
+
+function initCollection() {
+  var collections = getCollections();
+  // 高亮已收集的节点
+  document.querySelectorAll('.node-tag, .relic-tag').forEach(function(tag) {
+    var node = tag.dataset.node;
+    var relic = tag.dataset.relic;
+    var key = node || relic;
+    if (collections[key]) {
+      tag.classList.add('collected');
+    }
+  });
+  // 更新总结页
+  updateSummary();
+}
+
+function getCollections() {
+  var data = localStorage.getItem(storageKey);
+  return data ? JSON.parse(data) : {};
+}
+
+function saveCollections(collections) {
+  localStorage.setItem(storageKey, JSON.stringify(collections));
+}
+
+function collectNode(nodeName, theme) {
+  var collections = getCollections();
+  if (!collections[nodeName]) {
+    collections[nodeName] = { type: 'node', theme: theme };
+    saveCollections(collections);
+    // 视觉反馈
+    event.target.classList.add('collected');
+    showToast('已点亮节点：' + nodeName);
+    updateSummary();
+  }
+}
+
+function collectRelic(relicName) {
+  var collections = getCollections();
+  if (!collections[relicName]) {
+    collections[relicName] = { type: 'relic' };
+    saveCollections(collections);
+    event.target.classList.add('collected');
+    showToast('已收集文物：' + relicName);
+    updateSummary();
+  }
+}
+
+function updateSummary() {
+  var collections = getCollections();
+  // 更新节点显示
+  document.querySelectorAll('.node-item').forEach(function(item) {
+    var node = item.dataset.node;
+    if (collections[node]) {
+      item.classList.add('lit');
+    }
+  });
+  // 更新文物显示
+  document.querySelectorAll('.relic-item').forEach(function(item) {
+    var relic = item.dataset.relic;
+    if (collections[relic]) {
+      item.classList.add('lit');
+    }
+  });
+}
+
+function showToast(message) {
+  var toast = document.createElement('div');
+  toast.textContent = message;
+  toast.style.cssText = 'position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:rgba(128,0,32,0.9);color:white;padding:10px 20px;border-radius:20px;font-size:0.85rem;z-index:1000;animation:fadeInOut 2s forwards;';
+  document.body.appendChild(toast);
+  setTimeout(function() { toast.remove(); }, 2000);
+}
 </script>
