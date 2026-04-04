@@ -3,784 +3,843 @@ layout: default
 title: 冶辛
 ---
 
-<div class="story-wrapper" id="storyWrapper">
+<div class="vn-wrapper" id="vnWrapper">
   
-  <!-- 页面容器 -->
-  <div class="pages-container" id="pagesContainer">
-    
-    <!-- 第1页 -->
-    <div class="page" id="page-0">
-      <div class="intro-layout">
-        <div class="intro-left">
-          <h1 class="char-name">冶辛篇</h1>
-          <p class="char-era">战国 · 冶铁作坊学徒</p>
-          <div class="char-bio">
-            <p>前271年生于上党郡，一个被山包围、被炉火照亮的冶铁作坊里。从往炉子里添炭的学徒，到能辨认矿石、控制火候的匠人——她的青春期是在铁渣堆和陶范碎片中度过的。没见过外面的世界，但她的手知道铁的温度。</p>
-          </div>
-          <button class="nav-btn" onclick="nextPage()">开始探索 →</button>
-        </div>      
-        <div class="intro-right">
-          <img src="{{ site.baseurl }}/assets/images/scenes/炉青.png" alt="冶辛场景" class="scene-img"/>
-        </div>
-      </div>
-    </div>
-    
-    <!-- 第2页 -->
-    <div class="page" id="page-1" style="display:none">
-      <div class="chapter-layout">
-        <div class="chapter-header">
-          <span class="chapter-num">01</span>
-          <h3 class="chapter-title">矿山与炉火</h3>
-        </div>
-        <div class="chapter-content">
-          <p>上党这地方，山多得像谁随手撒了一把石头。冶辛家就蹲在其中一座山的半山腰，旁边是个冶铁作坊——说白了就是几间破草房围着一座土炉子，常年冒着黑烟，远看像山神在抽烟。</p>
-          <p>她从小就在这烟火气里长大。六岁时，爹让她往炉子里添炭，她差点把头发烧了；八岁时，她能分辨出哪种石头敲开是铁的，哪种是废石——"铁的沉，废石轻，敲起来声音不一样，"爹说，"像挑瓜，熟的和生的拍两下就知道。"</p>
-          <p>作坊不大，但人来来往往。最忙的时候，<a href="#" class="node-tag" data-node="炉火" data-theme="感" onclick="collectNode('炉火', '感'); return false;">炉火</a>三天三夜不灭，风箱呼哧呼哧像头老牛。冶辛最烦上夜班——不是怕累，是怕犯困时把<a href="#" class="node-tag" data-node="铁水" data-theme="感" onclick="collectNode('铁水', '感'); return false;">铁水</a>倒错地方。她见过一个学徒手抖，把铁水泼在地上，结果那块石头从此多了个黑印子。</p>
-          <p>铁水从炉口流出来时，红得发亮，像岩浆。爹总是稳稳地接住，倒进</p>
-          <div class="story-choice" data-answer="坩埚" data-q="1">
-            <div class="choice-prompt" onclick="showChoices(1)">
-              <span class="choice-q">?</span>
-              <span class="choice-hint">点击选择</span>
-            </div>
-            <div class="choice-options" id="choices-1">
-              <button class="choice-btn" onclick="selectAnswer(1, '陶罐', false)">陶罐</button>
-              <button class="choice-btn" onclick="selectAnswer(1, '坩埚', true)">坩埚</button>
-              <button class="choice-btn" onclick="selectAnswer(1, '铁锅', false)">铁锅</button>
-            </div>
-            <div class="choice-result" id="result-1">
-              <span class="result-word">坩埚</span>
-            </div>
-          </div>
-          <p>——一种用耐火土烧制的厚壁陶罐，烧坏了不知道多少个。<a href="#" class="relic-tag" data-relic="坩埚残片" onclick="collectRelic('坩埚残片'); return false;"></a>铁水在里面冷静片刻，再倒出来锤打，就能成型。她知道这东西的名字，却不知道怎么写——那个年代，谁会写这玩意儿？</p>
-          <p>作坊院子里永远堆着两堆东西：黑色的<a href="#" class="node-tag" data-node="铁渣" data-theme="感" onclick="collectNode('铁渣', '感'); return false;">铁渣</a>，和碎裂的陶片。前者是矿石的骸骨，后者是容器的尸体。下雨的时候，铁渣堆会渗出黄绿色的锈水，她后来才知道那叫"矾水"，能染布入药，但那时候只觉得它脏。</p>
-          <p>很多年后，考古的人挖开这片山，指着那些炉渣、陶范、红褐色的铁块，兴奋地说："<a href="#" class="relic-tag" data-relic="战国冶铁炉遗址" onclick="collectRelic('战国冶铁炉遗址'); return false;">战国冶铁遗址</a>！"冶辛听不懂这些词。但如果她能看到，大概会指着那些铁渣说："哦，那是我们倒掉的。"</p>
-        </div>
-        <button class="nav-btn" onclick="nextPage()">下一页 →</button>
-      </div>
-    </div>
-    
-    <!-- 第3页 -->
-    <div class="page" id="page-2" style="display:none">
-      <div class="chapter-layout">
-        <div class="chapter-header">
-          <span class="chapter-num">02</span>
-          <h3 class="chapter-title">铁器与农田</h3>
-        </div>
-        <div class="chapter-content">
-          <p>冶辛十五岁那年，发现来作坊的农人越来越多，而且话都变少了——不是不想聊，是手里攥着钱，急着换东西。</p>
-          <p>那时她才知道，上党郡外头正在打仗。秦国人往东打，赵国人往西顶，两边死磕。农人急着翻地、急着收成、急着在征兵令下来之前多攒点粮食。铁器成了抢手货，比铜钱还硬。</p>
-          <p>她亲眼见过一个老农，牵着牛走了一天山路，就为<a href="#" class="node-tag" data-node="换犁" data-theme="旅" onclick="collectNode('换犁', '旅'); return false;">换一把新犁</a>。老农说："地太硬，木犁扛不住，铁犁能翻半尺深。"冶辛不懂翻半尺深是什么概念，但她知道，那把<a href="#" class="relic-tag" data-relic="铁犁铧" onclick="collectRelic('铁犁铧'); return false;">铁犁</a>在炉子里锤了整整三个时辰。</p>
-          <p>作坊里渐渐多了她没见过的东西：铁镰、铁锤，还有那种三角形、前端弯弯的</p>        
-          <div class="story-choice" data-answer="铁犁" data-q="2">
-            <div class="choice-prompt" onclick="showChoices(2)">
-              <span class="choice-q">?</span>
-              <span class="choice-hint">点击选择</span>
-            </div>
-            <div class="choice-options" id="choices-2">
-              <button class="choice-btn" onclick="selectAnswer(2, '铁剑', false)">铁剑</button>
-              <button class="choice-btn" onclick="selectAnswer(2, '铁犁', true)">铁犁</button>
-              <button class="choice-btn" onclick="selectAnswer(2, '铁斧', false)">铁斧</button>
-            </div>
-            <div class="choice-result" id="result-2">
-              <span class="result-word">铁犁</span>
-            </div>
-          </div>        
-          <p>这些铁家伙比木头的贵三倍，但农人还是抢着要。冶辛问过爹为什么，爹说："一亩地用木犁，两个人一天翻一亩；用铁犁，一个人一天翻两亩。你算算。"</p>
-          <p>她算了算，没算明白，但她看到农人脸上的表情——那种攥着新铁器、像攥着希望的表情。虽然那时候她还不知道，两千年后的人会管这叫"农业革命"。</p>
-        </div>
-        <button class="nav-btn" onclick="nextPage()">下一页 →</button>
-      </div>
-    </div>
-    
-    <!-- 第4页 -->
-    <div class="page" id="page-3" style="display:none">
-      <div class="chapter-layout">
-        <div class="chapter-header">
-          <span class="chapter-num">03</span>
-          <h3 class="chapter-title">战争的影子</h3>
-        </div>
-        <div class="chapter-content">
-          <p>战争这东西，像季风，说来就来。冶辛十八岁那年，作坊来了个穿皮甲的军官，开口就要"百套兵器，月底交货"。</p>
-          <p>爹没敢接。不是不想赚钱，是知道这意味着什么——农具得让路，炉火得改配方。做犁要韧，做剑要硬。她跟着爹学了很久，怎么掺碳、怎么淬火，才能把铁变成钢。</p>
-          <p>最忙的时候，作坊像个军营。士兵来取货时，把成捆的矛、成袋的箭头往肩上一扛，转身就走。冶辛数过，一个箭袋能装五十支，一个士兵背四袋。她不知道这些箭最后射向了谁，但她知道每一支都经过她的手。</p>
-          <p>后来她才听说，那年长平之战，赵国输了四十万人。她坐在炉子边，想着那些铁器去了哪里，是不是和骨头一起锈成了土。</p>
-          <p>她做的最后一批货，是那种三棱的、能射穿皮甲的<a href="#" class="node-tag" data-node="箭镞" data-theme="感" onclick="collectNode('箭镞', '感'); return false;"></a></p>
-          <div class="story-choice" data-answer="箭镞" data-q="3">
-            <div class="choice-prompt" onclick="showChoices(3)">
-              <span class="choice-q">?</span>
-              <span class="choice-hint">点击选择</span>
-            </div>
-            <div class="choice-options" id="choices-3">
-              <button class="choice-btn" onclick="selectAnswer(3, '箭镞', true)">箭镞</button>
-              <button class="choice-btn" onclick="selectAnswer(3, '矛头', false)">矛头</button>
-              <button class="choice-btn" onclick="selectAnswer(3, '刀鞘', false)">刀鞘</button>
-            </div>
-            <div class="choice-result" id="result-3">
-              <span class="result-word">箭镞</span>
-            </div>
-          </div>
-          <p>——一种她闭着眼睛都能认出来的小东西。两千多年后，秦始皇陵挖出了成捆的<a href="#" class="relic-tag" data-relic="三棱铁箭镞" onclick="collectRelic('三棱铁箭镞'); return false;">这种</a>东西，整整齐齐码在地下，专家说为了"保卫来世"。冶辛要是知道，大概会翻个白眼："活着都守不住，死了能顶什么用？"</p>
-          <p>她做了一辈子的铁。农具、兵器、锅碗瓢盆——炉火不息，铁水照面。她知道每块铁的来处，却永远猜不到它们的归途。</p>
-        </div>
-        <button class="nav-btn" onclick="nextPage()">下一页 →</button>
-      </div>
-    </div>
-    
-    <!-- 第5页 -->
-    <div class="page" id="page-4" style="display:none">
-      <div class="summary-layout">
-        <h2 class="summary-title">探索完成</h2>      
-        <div class="answers-section">
-          <h4>你的选择</h4>
-          <div class="answers-list">          
-            <div class="answer-item">
-              <span class="answer-stage">矿山与炉火</span>
-              <span class="answer-value" id="ans-1">—</span>
-            </div>          
-            <div class="answer-item">
-              <span class="answer-stage">铁器与农田</span>
-              <span class="answer-value" id="ans-2">—</span>
-            </div>          
-            <div class="answer-item">
-              <span class="answer-stage">战争的影子</span>
-              <span class="answer-value" id="ans-3">—</span>
-            </div>        
-          </div>
-        </div>      
-        <div class="summary-sections">        
-          <div class="summary-box" id="nodes-box">
-            <h4>主题节点</h4>
-            <div class="nodes-list" id="nodes-list">
-              <span class="node-item" data-node="炉火" data-theme="感">炉火</span>
-              <span class="node-item" data-node="铁水" data-theme="感">铁水</span>
-              <span class="node-item" data-node="铁渣" data-theme="感">铁渣</span>
-              <span class="node-item" data-node="换犁" data-theme="旅">换犁</span>
-              <span class="node-item" data-node="箭镞" data-theme="感">箭镞</span>
-            </div>
-          </div>        
-          <div class="summary-box" id="relics-box">
-            <h4>历史文物</h4>
-            <div class="relics-list" id="relics-list">
-              <span class="relic-item" data-relic="坩埚残片">坩埚残片</span>
-              <span class="relic-item" data-relic="战国冶铁炉遗址">战国冶铁炉遗址</span>
-              <span class="relic-item" data-relic="铁犁铧">铁犁铧</span>
-              <span class="relic-item" data-relic="三棱铁箭镞">三棱铁箭镞</span>
-            </div>
-          </div>      
-        </div>      
-        <div class="summary-actions">
-          <button class="share-btn" onclick="alert('分享链接功能开发中')">复制分享链接</button>
-          <button class="restart-btn" onclick="showPage(0)">重新探索</button>
-        </div>    
-      </div>
-    </div>
-    
+  <!-- 视觉层：场景图 -->
+  <div class="vn-scene" id="vnScene">
+    <div class="scene-bg" id="sceneBg"></div>
+    <!-- 可交互物品层 -->
+    <div class="scene-objects" id="sceneObjects"></div>
   </div>
   
-  <!-- 页面指示器 -->
-  <div class="page-dots">
-    <span class="dot active" onclick="showPage(0)"></span>
-    <span class="dot" onclick="showPage(1)"></span>
-    <span class="dot" onclick="showPage(2)"></span>
-    <span class="dot" onclick="showPage(3)"></span>
-    <span class="dot" onclick="showPage(4)"></span>
+  <!-- UI层：对话/叙述 -->
+  <div class="vn-ui">
+    <!-- 角色名 -->
+    <div class="vn-name" id="charName"></div>
+    
+    <!-- 文本框 -->
+    <div class="vn-textbox" id="textBox" onclick="advance()">
+      <div class="vn-text" id="vnText"></div>
+      <div class="vn-next" id="nextIndicator">▼</div>
+    </div>
+    
+    <!-- 选项菜单 -->
+    <div class="vn-choices" id="vnChoices"></div>
+    
+    <!-- 底部控制栏 -->
+    <div class="vn-controls">
+      <div class="vn-progress">
+        <span id="pageNum">1</span> / <span id="totalNum">12</span>
+      </div>
+      <div class="vn-buttons">
+        <button onclick="toggleCollection()" title="收集品">📦</button>
+        <button onclick="toggleLog()" title="历史">📜</button>
+        <button onclick="skipToSummary()" title="跳过">⏩</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 收集品面板 -->
+  <div class="vn-panel" id="collectionPanel">
+    <div class="panel-header">
+      <h3>探索收获</h3>
+      <button onclick="toggleCollection()">✕</button>
+    </div>
+    <div class="panel-content">
+      <div class="collection-section">
+        <h4>主题节点</h4>
+        <div class="collection-grid" id="nodesGrid"></div>
+      </div>
+      <div class="collection-section">
+        <h4>历史文物</h4>
+        <div class="collection-grid" id="relicsGrid"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 历史记录面板 -->
+  <div class="vn-panel" id="logPanel">
+    <div class="panel-header">
+      <h3>回顾</h3>
+      <button onclick="toggleLog()">✕</button>
+    </div>
+    <div class="panel-content" id="logContent"></div>
+  </div>
+  
+  <!-- 总结页 -->
+  <div class="vn-summary" id="summaryScreen" style="display:none">
+    <h2>探索完成</h2>
+    <div class="summary-stats">
+      <div class="stat-item">
+        <span class="stat-num" id="nodeCount">0</span>
+        <span class="stat-label">主题节点</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" id="relicCount">0</span>
+        <span class="stat-label">历史文物</span>
+      </div>
+    </div>
+    <div class="summary-collection" id="summaryCollection"></div>
+    <div class="summary-actions">
+      <button class="btn-primary" onclick="restart()">重新探索</button>
+      <button onclick="exportProgress()">分享</button>
+    </div>
   </div>
 </div>
 
 <style>
-/* 覆盖默认布局：去掉白色卡片背景 */
-.container { background: transparent !important; box-shadow: none !important; padding: 0 !important; max-width: 100% !important; margin: 0 !important; }
+/* 重置容器 */
+.container { 
+  background: transparent !important; 
+  box-shadow: none !important; 
+  padding: 0 !important; 
+  max-width: 100% !important; 
+  margin: 0 !important; 
+}
+#content-wrapper { padding: 0 !important; }
+header { display: none !important; }
 
-/* 顶栏改为浅米色，与内容区不同 */
-header { background: #fdfcfa !important; }
-
-/* 暖沙色背景 */
-.story-wrapper {
-  position: relative;
-  width: 100%;
-  min-height: auto;
-  background: #faf6ee;
-  margin-top: 40px;
-  padding: 60px 0 40px;
+/* 文游主容器 */
+.vn-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #1a1a1a;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  overflow: hidden;
 }
 
-.pages-container {
-  width: 100%;
-  padding: 20px 60px 40px;
-  box-sizing: border-box;
-}
-
-.page {
-  width: 100%;
-  margin: 0;
-  padding: 15px 0 30px 60px;
-}
-
-/* 介绍页 - 名字左对齐 */
-.intro-layout {
-  display: flex;
-  min-height: auto;
-  align-items: center;
-  gap: 30px;
-  padding: 20px 0;
-}
-
-.intro-left {
-  flex: 0 0 40%;
-  padding-left: 0;
-  text-align: left !important;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.intro-right {
+/* 场景层 */
+.vn-scene {
   flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.scene-bg {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #2d1f1f 0%, #1a1515 50%, #0d0d0d 100%);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
-/* 名字+篇，严格左对齐，覆盖全局居中 */
-#markdown-body .char-name,
-.char-name {
+/* 场景占位符 */
+.scene-bg::before {
+  content: attr(data-scene);
+  color: rgba(255,255,255,0.1);
+  font-size: 4rem;
   font-family: "Songti SC", serif;
-  font-size: 2.2rem;
-  color: var(--accent);
-  margin: 0 0 6px 0;
-  letter-spacing: 2px;
-  text-align: left;
-  align-self: flex-start;
+  letter-spacing: 1rem;
 }
 
-.char-era {
-  font-size: 1rem;
-  color: #888;
-  margin: 0 0 16px 0;
-  letter-spacing: 2px;
-  text-align: left;
-  padding-left: 0;
+/* 可交互物品 */
+.scene-objects {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
-.char-bio {
-  background: #f5f3f0;
-  padding: 14px 18px;
-  border-radius: 8px;
-  border-left: 3px solid var(--accent);
-}
-
-.char-bio p {
-  line-height: 1.6;
-  color: #555;
-  margin: 0;
-  font-size: 0.95rem;
-}
-
-.nav-btn {
-  margin-top: 60px;
-  padding: 8px 20px;
-  background: var(--accent);
-  color: white;
-  border: none;
-  border-radius: 16px;
-  font-size: 0.85rem;
+.scene-object {
+  position: absolute;
   cursor: pointer;
+  pointer-events: auto;
   transition: all 0.3s;
+}
+
+.scene-object:hover {
+  transform: scale(1.1);
+}
+
+.scene-object::after {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 2px dashed rgba(128,0,32,0.5);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+/* UI层 */
+.vn-ui {
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 60%, transparent 100%);
+  padding: 20px 40px 30px;
+  position: relative;
+}
+
+/* 角色名 */
+.vn-name {
+  color: var(--accent);
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
   font-family: "Songti SC", serif;
+  min-height: 1.2em;
+}
+
+/* 文本框 */
+.vn-textbox {
+  background: rgba(20,15,15,0.9);
+  border: 1px solid rgba(128,0,32,0.3);
+  border-radius: 8px;
+  padding: 20px 25px;
+  min-height: 100px;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.3s;
+}
+
+.vn-textbox:hover {
+  border-color: rgba(128,0,32,0.6);
+}
+
+.vn-text {
+  color: #e8e0d8;
+  font-size: 1rem;
+  line-height: 1.8;
+  font-family: "Songti SC", serif;
+}
+
+.vn-next {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  color: var(--accent);
+  font-size: 0.8rem;
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
+}
+
+/* 选项 */
+.vn-choices {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.vn-choices.active {
+  display: flex;
+}
+
+.vn-choice-btn {
+  background: rgba(128,0,32,0.2);
+  border: 1px solid rgba(128,0,32,0.4);
+  color: #e8e0d8;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+  font-family: "Songti SC", serif;
+  transition: all 0.3s;
+}
+
+.vn-choice-btn:hover {
+  background: rgba(128,0,32,0.4);
+  border-color: var(--accent);
+  padding-left: 25px;
+}
+
+/* 控制栏 */
+.vn-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.vn-progress {
+  color: #666;
+  font-size: 0.75rem;
   letter-spacing: 2px;
 }
 
-.nav-btn:hover {
-  transform: translateX(3px);
-  box-shadow: 0 8px 20px rgba(128,0,32,0.25);
+.vn-buttons button {
+  background: transparent;
+  border: none;
+  color: #888;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: color 0.3s;
 }
 
-.scene-img {
-  max-width: 45%;
-  max-height: 22vh;
-  border-radius: 10px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  opacity: 0.75;
-  filter: sepia(20%) saturate(80%) hue-rotate(-10deg);
+.vn-buttons button:hover {
+  color: var(--accent);
 }
 
-/* 章节页 */
-.chapter-layout {
-  max-width: 700px;
-  margin: 0 auto;
+/* 面板 */
+.vn-panel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  width: 80%;
+  max-width: 500px;
+  max-height: 70vh;
+  background: rgba(20,15,15,0.98);
+  border: 1px solid rgba(128,0,32,0.3);
+  border-radius: 12px;
+  display: none;
+  flex-direction: column;
+  opacity: 0;
+  transition: all 0.3s;
+  z-index: 1000;
 }
 
-.chapter-header {
+.vn-panel.active {
   display: flex;
-  align-items: baseline;
-  gap: 12px;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid rgba(128,0,32,0.2);
+}
+
+.panel-header h3 {
+  color: var(--accent);
+  font-family: "Songti SC", serif;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.panel-header button {
+  background: transparent;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.panel-content {
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.collection-section {
   margin-bottom: 20px;
 }
 
-.chapter-num {
-  font-size: 0.8rem;
-  color: var(--accent);
-  font-weight: bold;
-}
-
-.chapter-title {
-  font-family: "Songti SC", serif;
-  font-size: 1.5rem;
-  color: var(--accent);
-  margin: 0;
-  letter-spacing: 3px;
-}
-
-.chapter-content {
-  line-height: 1.8;
-  color: #444;
-  font-size: 0.95rem;
-}
-
-.chapter-content p {
-  margin-bottom: 1.2em;
-  text-indent: 2em;
-  display: block;
-}
-
-/* 选择题 */
-.story-choice {
-  display: inline-block;
-  margin: 0 5px;
-  vertical-align: middle;
-}
-
-.choice-prompt {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  cursor: pointer;
-  padding: 5px 10px;
-  background: #f0ede8;
-  border-radius: 15px;
-  border: 1.5px dashed var(--accent);
-}
-
-.choice-q {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--accent);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 12px;
-}
-
-.choice-hint {
-  font-size: 0.75rem;
-  color: #666;
-}
-
-.choice-options {
-  display: none;
-  gap: 8px;
-  margin: 10px 0;
-}
-
-.choice-options.show {
-  display: flex;
-}
-
-.choice-btn {
-  padding: 6px 16px;
-  background: #fdfcfa;
-  border: 1.5px solid rgba(128,0,32,0.2);
-  border-radius: 15px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  font-family: "Songti SC", serif;
-}
-
-.choice-btn:hover {
-  background: #f5f3f0;
-  border-color: var(--accent);
-}
-
-.choice-btn.correct {
-  background: var(--accent);
-  color: white;
-  border-color: var(--accent);
-}
-
-.choice-btn.wrong {
-  background: #ddd;
+.collection-section h4 {
   color: #888;
-}
-
-.choice-result {
-  display: none;
-  align-items: center;
-  padding: 6px 14px;
-  background: #f0ede8;
-  border-radius: 15px;
-  margin: 6px 0;
-}
-
-.choice-result.show {
-  display: inline-flex;
-}
-
-.result-word {
-  font-weight: bold;
-  color: var(--accent);
-  font-size: 0.95rem;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
   font-family: "Songti SC", serif;
 }
 
-/* 节点标签样式 */
-.node-tag, .relic-tag {
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px dashed var(--accent);
-  cursor: pointer;
-  transition: all 0.3s;
-}
-.node-tag:hover, .relic-tag:hover {
-  background: rgba(128,0,32,0.1);
-  border-bottom-style: solid;
-}
-.node-tag.collected, .relic-tag.collected {
-  background: rgba(128,0,32,0.15);
-  border-bottom-style: solid;
-  font-weight: bold;
-}
-
-/* 总结页节点列表 */
-.nodes-list, .relics-list {
+.collection-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  justify-content: center;
-}
-.node-item, .relic-item {
-  padding: 6px 12px;
-  background: #f0ede8;
-  border-radius: 15px;
-  font-size: 0.85rem;
-  color: #888;
-  border: 1px dashed #ccc;
-  transition: all 0.3s;
-}
-.node-item.lit, .relic-item.lit {
-  background: var(--accent);
-  color: white;
-  border-color: var(--accent);
-  border-style: solid;
-}
-.node-item[data-theme="旅"].lit {
-  background: #8B4513;
-}
-.node-item[data-theme="感"].lit {
-  background: #800020;
-}
-.page-dots {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-  z-index: 200;
 }
 
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+.collection-item {
+  padding: 8px 14px;
   background: rgba(128,0,32,0.15);
-  cursor: pointer;
-  transition: all 0.3s;
+  border: 1px dashed rgba(128,0,32,0.3);
+  border-radius: 15px;
+  font-size: 0.8rem;
+  color: #666;
+  font-family: "Songti SC", serif;
 }
 
-.dot.active {
+.collection-item.collected {
   background: var(--accent);
-  transform: scale(1.2);
+  border-style: solid;
+  color: white;
 }
 
 /* 总结页 */
-.summary-layout {
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
-  padding-left: 0;
-}
-
-/* 第5页（总结页）去掉左侧padding */
-#page-4 {
-  padding-left: 0;
-}
-
-.summary-title {
-  font-family: "Songti SC", serif;
-  font-size: 1.8rem;
-  color: var(--accent);
-  margin-bottom: 25px;
-  letter-spacing: 5px;
-}
-
-.answers-section {
-  background: #f5f3f0;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-}
-
-.answers-section h4 {
-  color: var(--accent);
-  margin-bottom: 12px;
-  font-family: "Songti SC", serif;
-  font-size: 0.95rem;
-}
-
-.answers-list {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  flex-wrap: wrap;
-}
-
-.answer-item {
+.vn-summary {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10,8,8,0.98);
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
 }
 
-.answer-stage {
-  font-size: 0.75rem;
+.vn-summary h2 {
+  color: var(--accent);
+  font-family: "Songti SC", serif;
+  font-size: 2rem;
+  letter-spacing: 5px;
+  margin-bottom: 40px;
+}
+
+.summary-stats {
+  display: flex;
+  gap: 60px;
+  margin-bottom: 40px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-num {
+  font-size: 3rem;
+  color: var(--accent);
+  font-family: "Songti SC", serif;
+}
+
+.stat-label {
   color: #888;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
 }
 
-.answer-value {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: var(--accent);
-  font-family: "Songti SC", serif;
-}
-
-.summary-sections {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 25px;
-}
-
-.summary-box {
-  padding: 16px;
-  border-radius: 10px;
-  background: #fdfcfa;
-  border: 1px solid rgba(128,0,32,0.08);
-}
-
-.summary-box.placeholder {
-  background: #f8f6f3;
-}
-
-.summary-box h4 {
-  color: var(--accent);
-  margin-bottom: 8px;
-  font-family: "Songti SC", serif;
-  font-size: 0.9rem;
-}
-
-.placeholder-text {
-  color: #999;
-  font-size: 0.8rem;
+.summary-collection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  max-width: 600px;
+  margin-bottom: 40px;
 }
 
 .summary-actions {
   display: flex;
-  justify-content: center;
-  gap: 12px;
+  gap: 15px;
 }
 
-.share-btn, .restart-btn {
-  padding: 10px 24px;
+.summary-actions button {
+  padding: 12px 30px;
   border-radius: 20px;
-  font-size: 0.85rem;
+  font-family: "Songti SC", serif;
   cursor: pointer;
   transition: all 0.3s;
-  font-family: "Songti SC", serif;
 }
 
-.share-btn {
+.btn-primary {
   background: var(--accent);
-  color: white;
   border: none;
+  color: white;
 }
 
-.restart-btn {
+.summary-actions button:not(.btn-primary) {
   background: transparent;
-  color: var(--accent);
-  border: 1.5px solid var(--accent);
+  border: 1px solid rgba(128,0,32,0.4);
+  color: #888;
 }
 
-@keyframes fadeInOut {
-  0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
-  20% { opacity: 1; transform: translateX(-50%) translateY(0); }
-  80% { opacity: 1; transform: translateX(-50%) translateY(0); }
-  100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+/* 打字光标 */
+.typing::after {
+  content: '|';
+  animation: blink 1s infinite;
 }
 
-@media (max-width: 900px) {
-  .pages-container { padding: 30px 60px; }
-  .click-zone { width: 40px; }
-  .intro-layout { flex-direction: column; gap: 20px; min-height: auto; }
-  .char-name { font-size: 2.2rem; }
-  .scene-img { max-height: 30vh; }
-  .page { padding: 25px; }
-  .summary-sections { grid-template-columns: 1fr; }
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .vn-ui { padding: 15px 20px 20px; }
+  .vn-textbox { padding: 15px; min-height: 80px; }
+  .vn-text { font-size: 0.9rem; }
+  .summary-stats { gap: 40px; }
+  .stat-num { font-size: 2.5rem; }
 }
 </style>
 
 <script>
-var currentPage = 0;
-var totalPages = 5;
-
-function showPage(pageNum) {
-  for (var i = 0; i < totalPages; i++) {
-    var page = document.getElementById('page-' + i);
-    if (page) page.style.display = 'none';
-  }
-  var target = document.getElementById('page-' + pageNum);
-  if (target) target.style.display = 'block';
-  currentPage = pageNum;
-  
-  var dots = document.querySelectorAll('.dot');
-  for (var i = 0; i < dots.length; i++) {
-    if (i === pageNum) dots[i].classList.add('active');
-    else dots[i].classList.remove('active');
-  }
-  window.scrollTo(0, 0);
-}
-
-function nextPage() {
-  if (currentPage < totalPages - 1) showPage(currentPage + 1);
-}
-
-function prevPage() {
-  if (currentPage > 0) showPage(currentPage - 1);
-}
-
-function showChoices(qNum) {
-  var choices = document.getElementById('choices-' + qNum);
-  var prompt = document.querySelector('#page-' + currentPage + ' .story-choice[data-q="' + qNum + '"] .choice-prompt');
-  if (choices) choices.classList.add('show');
-  if (prompt) prompt.style.display = 'none';
-}
-
-function selectAnswer(qNum, answer, isCorrect) {
-  var choices = document.getElementById('choices-' + qNum);
-  var result = document.getElementById('result-' + qNum);
-  var ansSpan = document.getElementById('ans-' + qNum);
-  var correctAnswers = { 1: '坩埚', 2: '铁犁', 3: '箭镞' };
-  var correct = correctAnswers[qNum];
-  
-  var btns = document.querySelectorAll('#choices-' + qNum + ' .choice-btn');
-  for (var i = 0; i < btns.length; i++) {
-    var btnText = btns[i].textContent;
-    if (btnText === correct) btns[i].classList.add('correct');
-    else if (btns[i] === event.target && btnText !== correct) btns[i].classList.add('wrong');
-  }
-  
-  setTimeout(function() {
-    if (choices) choices.classList.remove('show');
-    if (result) result.classList.add('show');
-    if (ansSpan) {
-      ansSpan.textContent = correct;
-      ansSpan.classList.add('answered');
+// 游戏数据
+var storyData = [
+  { 
+    id: 1, 
+    name: "", 
+    text: "前271年，上党郡。\n你被山包围，被炉火照亮。",
+    scene: "矿山",
+    objects: []
+  },
+  { 
+    id: 2, 
+    name: "冶辛", 
+    text: "六岁。爹让我往炉子里添炭，差点把头发烧了。",
+    scene: "工坊",
+    objects: [{name: "炉火", x: 60, y: 40, node: "炉火", theme: "感"}]
+  },
+  { 
+    id: 3, 
+    name: "冶辛", 
+    text: "八岁。我能分辨矿石了——铁的沉，废石轻，敲起来声音不一样。",
+    scene: "矿山",
+    objects: [{name: "矿石", x: 30, y: 70, node: "矿石", theme: "旅"}]
+  },
+  { 
+    id: 4, 
+    name: "父亲", 
+    text: ""像挑瓜，熟的和生的拍两下就知道。"",
+    scene: "工坊",
+    objects: []
+  },
+  { 
+    id: 5, 
+    name: "", 
+    text: "铁水从炉口流出来，红得发亮，像岩浆。爹稳稳接住，倒进——",
+    scene: "工坊",
+    objects: [{name: "铁水", x: 50, y: 50, node: "铁水", theme: "感"}],
+    choice: {
+      question: "铁水倒进什么容器？",
+      options: ["陶罐", "坩埚", "铁锅"],
+      answer: "坩埚",
+      correct: "坩埚是一种用耐火土烧制的厚壁陶罐。",
+      wrong: "不对，再想一下。"
     }
-  }, 500);
-}
+  },
+  { 
+    id: 6, 
+    name: "冶辛", 
+    text: "作坊院子里永远堆着两堆东西：黑色的铁渣，和碎裂的陶片。",
+    scene: "工坊",
+    objects: [{name: "铁渣", x: 20, y: 80, node: "铁渣", theme: "感"}]
+  },
+  { 
+    id: 7, 
+    name: "", 
+    text: "十五岁那年，来作坊的农人越来越多。秦赵两国正在打仗，农人急着翻地、收成。",
+    scene: "村口",
+    objects: []
+  },
+  { 
+    id: 8, 
+    name: "老农", 
+    text: ""地太硬，木犁扛不住。铁犁能翻半尺深。"",
+    scene: "村口",
+    objects: [{name: "铁犁", x: 70, y: 60, relic: "铁犁铧"}]
+  },
+  { 
+    id: 9, 
+    name: "冶辛", 
+    text: "我问爹，为什么铁器比木头贵三倍，农人还抢着要？",
+    scene: "村口",
+    objects: [],
+    choice: {
+      question: "用铁犁的效率是木犁的几倍？",
+      options: ["两倍", "三倍", "四倍"],
+      answer: "两倍",
+      correct: "一亩地用木犁，两个人一天翻一亩；用铁犁，一个人一天翻两亩。",
+      wrong: "再算算看。"
+    }
+  },
+  { 
+    id: 10, 
+    name: "", 
+    text: "十八岁。作坊来了个穿皮甲的军官，开口就要"百套兵器，月底交货"。",
+    scene: "工坊",
+    objects: []
+  },
+  { 
+    id: 11, 
+    name: "冶辛", 
+    text: "最忙的时候，作坊像个军营。士兵来取货，把成捆的矛、成袋的箭头往肩上一扛。",
+    scene: "工坊",
+    objects: [{name: "箭镞", x: 40, y: 50, node: "箭镞", theme: "感"}]
+  },
+  { 
+    id: 12, 
+    name: "", 
+    text: "后来我听说，那年长平之战，赵国输了四十万人。\n\n我做了一辈子的铁。知道每块铁的来处，却永远猜不到它们的归途。",
+    scene: "矿山",
+    objects: [{name: "遗址", x: 50, y: 40, relic: "战国冶铁炉遗址"}],
+    end: true
+  }
+];
 
+// 状态
+var currentIdx = 0;
+var isTyping = false;
+var collections = { nodes: {}, relics: {} };
+var log = [];
+
+// 初始化
 document.addEventListener('DOMContentLoaded', function() {
-  showPage(0);
-  initCollection();
+  loadProgress();
+  showScene(0);
 });
 
-// 收藏系统
-var charName = '冶辛';
-var storageKey = 'hr_shengmin_' + charName;
+// 显示场景
+function showScene(idx) {
+  currentIdx = idx;
+  var data = storyData[idx];
+  
+  // 更新场景
+  document.getElementById('sceneBg').setAttribute('data-scene', data.scene);
+  document.getElementById('pageNum').textContent = idx + 1;
+  document.getElementById('totalNum').textContent = storyData.length;
+  
+  // 角色名
+  document.getElementById('charName').textContent = data.name;
+  
+  // 打字效果显示文本
+  typeText(data.text);
+  
+  // 记录日志
+  log.push({ name: data.name, text: data.text });
+  
+  // 生成可交互物品
+  renderObjects(data.objects);
+  
+  // 处理选项
+  var choicesDiv = document.getElementById('vnChoices');
+  if (data.choice) {
+    document.getElementById('nextIndicator').style.display = 'none';
+    choicesDiv.innerHTML = '';
+    data.choice.options.forEach(function(opt) {
+      var btn = document.createElement('button');
+      btn.className = 'vn-choice-btn';
+      btn.textContent = opt;
+      btn.onclick = function() { selectChoice(opt, data.choice); };
+      choicesDiv.appendChild(btn);
+    });
+  } else {
+    choicesDiv.classList.remove('active');
+    document.getElementById('nextIndicator').style.display = 'block';
+  }
+  
+  // 保存进度
+  saveProgress();
+}
 
-function initCollection() {
-  var collections = getCollections();
-  // 高亮已收集的节点
-  document.querySelectorAll('.node-tag, .relic-tag').forEach(function(tag) {
-    var node = tag.dataset.node;
-    var relic = tag.dataset.relic;
-    var key = node || relic;
-    if (collections[key]) {
-      tag.classList.add('collected');
+// 打字效果
+function typeText(text) {
+  isTyping = true;
+  var el = document.getElementById('vnText');
+  el.textContent = '';
+  el.classList.add('typing');
+  
+  var chars = text.split('');
+  var i = 0;
+  
+  function type() {
+    if (i < chars.length) {
+      el.textContent += chars[i];
+      i++;
+      setTimeout(type, 30);
+    } else {
+      isTyping = false;
+      el.classList.remove('typing');
+      // 如果有选项，显示选项
+      var data = storyData[currentIdx];
+      if (data.choice) {
+        document.getElementById('vnChoices').classList.add('active');
+      }
+      // 如果是结尾，显示总结按钮
+      if (data.end) {
+        document.getElementById('nextIndicator').textContent = '探索完成';
+        setTimeout(showSummary, 2000);
+      }
     }
-  });
-  // 更新总结页
-  updateSummary();
+  }
+  
+  type();
 }
 
-function getCollections() {
-  var data = localStorage.getItem(storageKey);
-  return data ? JSON.parse(data) : {};
-}
-
-function saveCollections(collections) {
-  localStorage.setItem(storageKey, JSON.stringify(collections));
-}
-
-function collectNode(nodeName, theme) {
-  var collections = getCollections();
-  if (!collections[nodeName]) {
-    collections[nodeName] = { type: 'node', theme: theme };
-    saveCollections(collections);
-    // 视觉反馈
-    event.target.classList.add('collected');
-    showToast('已点亮节点：' + nodeName);
-    updateSummary();
+// 推进
+function advance() {
+  if (isTyping) {
+    // 跳过打字
+    var data = storyData[currentIdx];
+    document.getElementById('vnText').textContent = data.text;
+    document.getElementById('vnText').classList.remove('typing');
+    isTyping = false;
+    if (data.choice) {
+      document.getElementById('vnChoices').classList.add('active');
+    }
+    return;
+  }
+  
+  var data = storyData[currentIdx];
+  if (data.choice) return; // 有选项时不能推进
+  if (data.end) {
+    showSummary();
+    return;
+  }
+  
+  if (currentIdx < storyData.length - 1) {
+    showScene(currentIdx + 1);
   }
 }
 
-function collectRelic(relicName) {
-  var collections = getCollections();
-  if (!collections[relicName]) {
-    collections[relicName] = { type: 'relic' };
-    saveCollections(collections);
-    event.target.classList.add('collected');
-    showToast('已收集文物：' + relicName);
-    updateSummary();
+// 渲染可交互物品
+function renderObjects(objects) {
+  var container = document.getElementById('sceneObjects');
+  container.innerHTML = '';
+  
+  objects.forEach(function(obj) {
+    var el = document.createElement('div');
+    el.className = 'scene-object';
+    el.style.left = obj.x + '%';
+    el.style.top = obj.y + '%';
+    el.title = obj.name;
+    el.onclick = function(e) {
+      e.stopPropagation();
+      collectObject(obj);
+    };
+    container.appendChild(el);
+  });
+}
+
+// 收集物品
+function collectObject(obj) {
+  if (obj.node) {
+    if (!collections.nodes[obj.node]) {
+      collections.nodes[obj.node] = { theme: obj.theme };
+      showToast('点亮节点：' + obj.node);
+      updateCollectionUI();
+    }
+  }
+  if (obj.relic) {
+    if (!collections.relics[obj.relic]) {
+      collections.relics[obj.relic] = true;
+      showToast('收集文物：' + obj.relic);
+      updateCollectionUI();
+    }
   }
 }
 
-function updateSummary() {
-  var collections = getCollections();
-  // 更新节点显示
-  document.querySelectorAll('.node-item').forEach(function(item) {
-    var node = item.dataset.node;
-    if (collections[node]) {
-      item.classList.add('lit');
+// 选择题
+function selectChoice(selected, choice) {
+  var isCorrect = selected === choice.answer;
+  
+  // 显示结果
+  var resultText = isCorrect ? choice.correct : choice.wrong;
+  document.getElementById('vnText').textContent = resultText;
+  document.getElementById('vnChoices').classList.remove('active');
+  document.getElementById('nextIndicator').style.display = 'block';
+  
+  // 延迟后推进
+  setTimeout(function() {
+    if (currentIdx < storyData.length - 1) {
+      showScene(currentIdx + 1);
     }
-  });
-  // 更新文物显示
-  document.querySelectorAll('.relic-item').forEach(function(item) {
-    var relic = item.dataset.relic;
-    if (collections[relic]) {
-      item.classList.add('lit');
-    }
-  });
+  }, 2000);
 }
 
-function showToast(message) {
+// 切换收集面板
+function toggleCollection() {
+  document.getElementById('collectionPanel').classList.toggle('active');
+  document.getElementById('logPanel').classList.remove('active');
+}
+
+// 切换日志面板
+function toggleLog() {
+  document.getElementById('logPanel').classList.toggle('active');
+  document.getElementById('collectionPanel').classList.remove('active');
+  
+  // 渲染日志
+  var content = document.getElementById('logContent');
+  content.innerHTML = log.map(function(entry) {
+    return '<div class="log-entry"><strong>' + (entry.name || '叙述') + '</strong><p>' + entry.text + '</p></div>';
+  }).join('');
+}
+
+// 更新收集UI
+function updateCollectionUI() {
+  var nodesGrid = document.getElementById('nodesGrid');
+  var relicsGrid = document.getElementById('relicsGrid');
+  
+  nodesGrid.innerHTML = Object.keys(collections.nodes).map(function(node) {
+    return '<span class="collection-item collected">' + node + '</span>';
+  }).join('');
+  
+  relicsGrid.innerHTML = Object.keys(collections.relics).map(function(relic) {
+    return '<span class="collection-item collected">' + relic + '</span>';
+  }).join('');
+}
+
+// 显示总结
+function showSummary() {
+  document.getElementById('summaryScreen').style.display = 'flex';
+  document.getElementById('nodeCount').textContent = Object.keys(collections.nodes).length;
+  document.getElementById('relicCount').textContent = Object.keys(collections.relics).length;
+  
+  var container = document.getElementById('summaryCollection');
+  var allItems = Object.keys(collections.nodes).concat(Object.keys(collections.relics));
+  container.innerHTML = allItems.map(function(item) {
+    return '<span class="collection-item collected">' + item + '</span>';
+  }).join('');
+}
+
+// 跳过到总结
+function skipToSummary() {
+  showSummary();
+}
+
+// 重新开始
+function restart() {
+  currentIdx = 0;
+  collections = { nodes: {}, relics: {} };
+  log = [];
+  document.getElementById('summaryScreen').style.display = 'none';
+  localStorage.removeItem('hr_yexin_progress');
+  showScene(0);
+}
+
+// 保存进度
+function saveProgress() {
+  var data = {
+    idx: currentIdx,
+    collections: collections,
+    log: log
+  };
+  localStorage.setItem('hr_yexin_progress', JSON.stringify(data));
+}
+
+// 加载进度
+function loadProgress() {
+  var saved = localStorage.getItem('hr_yexin_progress');
+  if (saved) {
+    var data = JSON.parse(saved);
+    collections = data.collections || { nodes: {}, relics: {} };
+    log = data.log || [];
+  }
+}
+
+// 导出进度
+function exportProgress() {
+  alert('分享功能开发中');
+}
+
+// Toast提示
+function showToast(msg) {
   var toast = document.createElement('div');
-  toast.textContent = message;
-  toast.style.cssText = 'position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:rgba(128,0,32,0.9);color:white;padding:10px 20px;border-radius:20px;font-size:0.85rem;z-index:1000;animation:fadeInOut 2s forwards;';
+  toast.textContent = msg;
+  toast.style.cssText = 'position:fixed;top:100px;left:50%;transform:translateX(-50%);background:rgba(128,0,32,0.9);color:white;padding:10px 20px;border-radius:20px;font-size:0.85rem;z-index:3000;';
   document.body.appendChild(toast);
   setTimeout(function() { toast.remove(); }, 2000);
 }
