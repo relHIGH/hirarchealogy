@@ -90,6 +90,10 @@ title: 生民卷
       </div>
     </a>
   </div>
+
+  <div class="storage-notice">
+    <p>📌 访问记录存储在浏览器本地，不会同步到其他设备</p>
+  </div>
 </div>
 
 <style>
@@ -354,5 +358,19 @@ body:has(.shengmin-dark-page) #trajectory-line {
     font-size: 0.65rem;
     max-width: 60px;
   }
+}
+
+/* 数据存储提示 */
+.storage-notice {
+  text-align: center;
+  padding: 20px;
+  margin-top: auto;
+}
+
+.storage-notice p {
+  font-size: 0.75rem;
+  color: #9a8a7a;
+  letter-spacing: 1px;
+  opacity: 0.8;
 }
 </style>
