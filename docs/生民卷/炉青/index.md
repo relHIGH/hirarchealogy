@@ -19,7 +19,7 @@ title: 冶辛
           <button class="nav-btn" onclick="nextPage()">开始探索 →</button>
         </div>      
         <div class="intro-right">
-          <div class="scene-placeholder"><span>矿山</span></div>
+          <img src="{{ site.baseurl }}/assets/images/yexin/yexin_main.png" alt="冶辛" class="scene-img"/>
         </div>
       </div>
     </div>
@@ -33,7 +33,7 @@ title: 冶辛
         </div>
         <div class="scene-with-text">
           <div class="scene-side">
-            <div class="scene-placeholder"><span>炉火</span></div>
+            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&h=400&fit=crop" alt="炉火" class="scene-img-small"/>
             <div class="interact-hint">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
               <span>点击场景中的光点</span>
@@ -94,7 +94,7 @@ title: 冶辛
         </div>
         <div class="scene-with-text">
           <div class="scene-side">
-            <div class="scene-placeholder"><span>铁水</span></div>
+            <img src="https://images.unsplash.com/photo-1565626424178-c699f6601afd?w=600&h=400&fit=crop" alt="铁水" class="scene-img-small"/>
           </div>
           <div class="text-side">
             <p>铁水从炉口流出来，红得发亮，像岩浆。</p>
@@ -143,7 +143,7 @@ title: 冶辛
         </div>
         
         <div class="scene-wide">
-          <div class="scene-placeholder"><span>铁渣堆</span></div>
+          <img src="https://images.unsplash.com/photo-1590486143969-0945071c2042?w=800&h=300&fit=crop" alt="铁渣堆" class="scene-img-wide"/>
         </div>
         
         <button class="nav-btn" onclick="nextPage()">下一页 →</button>
@@ -192,7 +192,7 @@ title: 冶辛
             <p>秦赵两国正在打仗，农人急着翻地、收成。</p>
           </div>
           <div class="scene-side">
-            <div class="scene-placeholder"><span>农田</span></div>
+            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&h=400&fit=crop" alt="农田" class="scene-img-small"/>
           </div>
         </div>
         
@@ -272,7 +272,7 @@ title: 冶辛
         
         <div class="scene-with-text">
           <div class="scene-side">
-            <div class="scene-placeholder"><span>军营</span></div>
+            <img src="https://images.unsplash.com/photo-1559598467-f8b76c8155d0?w=600&h=400&fit=crop" alt="军营" class="scene-img-small"/>
           </div>
           <div class="text-side">
             <p>十八岁。作坊来个穿皮甲的军官。</p>
@@ -301,7 +301,7 @@ title: 冶辛
         
         <div class="artifact-showcase" onclick="collectNode('箭镞', '感', this); collectRelic('三棱铁箭镞', this);">
           <div class="artifact-visual">
-            <div class="scene-placeholder small"><span>箭镞</span></div>
+            <img src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?w=200&h=150&fit=crop" alt="箭镞" class="scene-img-small"/>
           </div>
           <div class="artifact-info">
             <span class="pulse-dot"></span>
@@ -581,6 +581,33 @@ header { background: #fdfcfa !important; }
 .scene-placeholder.small {
   width: 120px;
   height: 80px;
+}
+
+.scene-img {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  filter: sepia(20%) saturate(80%) hue-rotate(-10deg);
+}
+
+.scene-img-small {
+  width: 280px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  filter: sepia(20%) saturate(80%) hue-rotate(-10deg);
+}
+
+.scene-img-wide {
+  width: 100%;
+  max-width: 600px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  filter: sepia(20%) saturate(80%) hue-rotate(-10deg);
 }
 
 .scene-wide {
