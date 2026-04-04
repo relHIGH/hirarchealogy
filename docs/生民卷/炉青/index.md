@@ -33,7 +33,7 @@ title: 冶辛
         </div>
         <div class="scene-with-text">
           <div class="scene-side">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Iron_furnace_-_Bahrain.jpg/640px-Iron_furnace_-_Bahrain.jpg" alt="冶铁炉" class="scene-img-small"/>
+            <div class="scene-placeholder"><span>炉火</span></div>
             <div class="interact-hint">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
               <span>点击场景中的光点</span>
@@ -94,7 +94,7 @@ title: 冶辛
         </div>
         <div class="scene-with-text">
           <div class="scene-side">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Blast_furnace_operation.jpg/640px-Blast_furnace_operation.jpg" alt="铁水" class="scene-img-small"/>
+            <div class="scene-placeholder"><span>铁水</span></div>
           </div>
           <div class="text-side">
             <p>铁水从炉口流出来，红得发亮，像岩浆。</p>
@@ -143,7 +143,7 @@ title: 冶辛
         </div>
         
         <div class="scene-wide">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Slag_from_iron_smelting.jpg/640px-Slag_from_iron_smelting.jpg" alt="铁渣堆" class="scene-img-wide"/>
+          <div class="scene-placeholder wide"><span>铁渣堆</span></div>
         </div>
         
         <button class="nav-btn" onclick="nextPage()">下一页 →</button>
@@ -192,7 +192,7 @@ title: 冶辛
             <p>秦赵两国正在打仗，农人急着翻地、收成。</p>
           </div>
           <div class="scene-side">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Rice_paddies_in_Cihu.jpg/640px-Rice_paddies_in_Cihu.jpg" alt="农田" class="scene-img-small"/>
+            <div class="scene-placeholder"><span>农田</span></div>
           </div>
         </div>
         
@@ -272,7 +272,7 @@ title: 冶辛
         
         <div class="scene-with-text">
           <div class="scene-side">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/ Terracotta_Army%2C_View_of_Pit_1.jpg/640px-Terracotta_Army%2C_View_of_Pit_1.jpg" alt="秦军" class="scene-img-small"/>
+            <div class="scene-placeholder"><span>秦军</span></div>
           </div>
           <div class="text-side">
             <p>十八岁。作坊来个穿皮甲的军官。</p>
@@ -301,7 +301,7 @@ title: 冶辛
         
         <div class="artifact-showcase" onclick="collectNode('箭镞', '感', this); collectRelic('三棱铁箭镞', this);">
           <div class="artifact-visual">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Ancient_arrowheads.jpg/640px-Ancient_arrowheads.jpg" alt="箭镞" class="scene-img-small"/>
+            <div class="scene-placeholder small"><span>箭镞</span></div>
           </div>
           <div class="artifact-info">
             <span class="pulse-dot"></span>
@@ -586,25 +586,6 @@ header { background: #fdfcfa !important; }
 .scene-img {
   max-width: 100%;
   max-height: 300px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  filter: sepia(20%) saturate(80%) hue-rotate(-10deg);
-}
-
-.scene-img-small {
-  width: 280px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  filter: sepia(20%) saturate(80%) hue-rotate(-10deg);
-}
-
-.scene-img-wide {
-  width: 100%;
-  max-width: 600px;
-  height: 250px;
-  object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
   filter: sepia(20%) saturate(80%) hue-rotate(-10deg);
