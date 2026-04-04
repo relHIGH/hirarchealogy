@@ -1176,8 +1176,8 @@ header { background: #fdfcfa !important; }
 /* 浮动工具栏 */
 .floating-toolbar {
   position: fixed;
-  bottom: 100px;
-  left: 30px;
+  bottom: 80px;
+  right: 80px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -1224,21 +1224,21 @@ header { background: #fdfcfa !important; }
 .collection-panel {
   position: fixed;
   top: 50%;
-  left: -320px;
-  transform: translateY(-50%);
+  right: 80px;
+  transform: translateY(-50%) translateX(120%);
   width: 280px;
   max-height: 70vh;
   background: white;
-  border-radius: 0 16px 16px 0;
-  box-shadow: 5px 0 30px rgba(0,0,0,0.1);
-  transition: left 0.3s;
+  border-radius: 16px;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.15);
+  transition: transform 0.3s;
   z-index: 200;
   display: flex;
   flex-direction: column;
 }
 
 .collection-panel.active {
-  left: 0;
+  transform: translateY(-50%) translateX(0);
 }
 
 .panel-header {
