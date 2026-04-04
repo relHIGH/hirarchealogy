@@ -33,7 +33,7 @@ title: 冶辛
         </div>
         <div class="scene-with-text">
           <div class="scene-side">
-            <div class="scene-placeholder"><span>炉火</span></div>
+            <img src="{{ site.baseurl }}/assets/images/yexin/forge.png" alt="炉火" class="scene-img"/>
             <div class="interact-hint">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
               <span>点击场景中的光点</span>
@@ -94,7 +94,7 @@ title: 冶辛
         </div>
         <div class="scene-with-text">
           <div class="scene-side">
-            <div class="scene-placeholder"><span>铁水</span></div>
+            <img src="{{ site.baseurl }}/assets/images/yexin/molten.png" alt="铁水" class="scene-img"/>
           </div>
           <div class="text-side">
             <p>铁水从炉口流出来，红得发亮，像岩浆。</p>
@@ -588,6 +588,14 @@ header { background: #fdfcfa !important; }
   max-height: 300px;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  filter: sepia(20%) saturate(80%) hue-rotate(-10deg);
+}
+
+.scene-img-small {
+  max-width: 150px;
+  max-height: 120px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   filter: sepia(20%) saturate(80%) hue-rotate(-10deg);
 }
 
