@@ -21,6 +21,5 @@ title: 首页
   
   <div style="margin-top: 80px; text-align: center;">
     <h1 style="font-family: 'Songti SC', serif; letter-spacing: 12px; color: var(--accent); opacity: 0.6; font-size: 1.2rem;">ANTI CHUO</h1>
-    <p style="font-size: 0.7rem; color: #bbb; letter-spacing: 5px; text-transform: uppercase;">古戳戳</p>
   </div>
 </div>
