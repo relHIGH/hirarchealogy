@@ -141,6 +141,7 @@
 
     <div id="content-wrapper">
       <main class="container">
+        {% if page.url == "/dimensions.html" %}
         <div id="trajectory-line" data-name="{{ page.title | default: page.name | remove: '.md' }}" data-url="{{ page.url | relative_url }}">
           {% assign path_parts = page.path | split: "/" %}
           {% assign clean_nodes = "" | split: "" %}
@@ -156,6 +157,7 @@
             {% unless forloop.last %}<div class="traj-svg"><svg viewBox="0 0 45 6"><path d="M0,3 L45,3"></path></svg></div>{% endunless %}
           {% endfor %}
         </div>
+        {% endif %}
         <div id="markdown-body">{{ content }}</div>
         {% if page.url != "/" and page.url != "/index.html" %}<div id="discovery-section" style="margin-top: 80px;"><div id="discovery-nodes" class="orb-grid" style="gap:25px;"></div></div>{% endif %}
       </main>
@@ -191,7 +193,8 @@
         },
         setupTrajectory: function() {
           const container = document.getElementById('trajectory-line');
-          if (!container || isHome) return;
+          const isDimensions = window.location.pathname.includes('dimensions');
+          if (!container || !isDimensions) return;
           let chain = JSON.parse(sessionStorage.getItem('hr_nav_chain') || "[]");
           const cur = { n: container.dataset.name, u: container.dataset.url, type: sessionStorage.getItem('hr_last_nav_type') || 'hierarchical' };
           if (chain.length === 0) { container.querySelectorAll('.traj-node-container').forEach(node => chain.push({ n: node.dataset.name, u: node.dataset.url, type: 'hierarchical' })); }
