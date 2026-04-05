@@ -4,7 +4,7 @@
 
 ## 访问
 
-https://relhigh.github.io/antichuo
+https://relhigh.github.io/Antichuo
 
 ## 本地开发
 
