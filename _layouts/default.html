@@ -98,11 +98,6 @@
     #splash-screen.active { display: flex; }
     #splash-screen.hidden { transform: translateY(-100%); opacity: 0; pointer-events: none; }
     .splash-hint { color: white !important; font-size: 0.9rem; letter-spacing: 4px; font-family: sans-serif; opacity: 0.8; }
-    #ritual-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: none; justify-content: center; align-items: center; background: var(--bg-main); z-index: 1000; }
-    .ritual-seal { width: 200px; height: 200px; background: #fff; border: 1.5px solid var(--accent); display: flex; justify-content: center; align-items: center; cursor: pointer; transition: 0.4s; position: relative; }
-    .ritual-seal::after { content: ''; position: absolute; top: 6px; left: 6px; right: 6px; bottom: 6px; border: 0.5px solid rgba(128,0,32,0.3); }
-    .ritual-seal.locked { border: 4px solid var(--accent) !important; transform: scale(1.05); }
-    #ritual-text { color: var(--accent) !important; font-weight: bold; font-size: 4rem; font-family: "Songti SC", serif; }
 
     #content-wrapper { flex-grow: 1; overflow-y: auto; padding: 0 55px; background: var(--bg-main); }
     .container { max-width: 850px; margin: 3rem auto; background: var(--card-bg); padding: 5rem 4rem; box-shadow: 0 20px 80px rgba(0,0,0,0.06); border-radius: 2px; position: relative; }
@@ -114,14 +109,17 @@
 </head>
 <body data-path="{{ page.path }}">
   <div id="splash-screen"><div class="splash-hint">EXPLORE THE DEPTHS</div></div>
-  <div id="ritual-container"><div class="ritual-seal" id="ritual-trigger"><div id="ritual-text">旅</div></div></div>
 
   <header>
     <a href="{{ site.baseurl }}/" class="header-logo">ANTICHUO</a>
     <nav class="header-nav">
+      <a href="{{ site.baseurl }}/dimensions.html" class="header-nav-link">
+        <svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5" fill="currentColor"/><circle cx="18" cy="6" r="2.5" fill="currentColor"/><circle cx="6" cy="18" r="2.5" fill="currentColor"/><circle cx="18" cy="18" r="2.5" fill="currentColor"/><path d="M6 8.5v7M18 8.5v7M8.5 6h7M8.5 18h7" stroke="currentColor" stroke-width="1.2"/></svg>
+        <span>维度</span>
+      </a>
       <a href="{{ site.baseurl }}/graph.html" class="header-nav-link">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.5" fill="currentColor"/><circle cx="5" cy="12" r="2.5" fill="currentColor"/><circle cx="19" cy="12" r="2.5" fill="currentColor"/><circle cx="12" cy="19" r="2.5" fill="currentColor"/><path d="M11 6.5L6 11M13 6.5L18 11M6 13L11 17.5M18 13L13 17.5" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
-        <span>关系图谱</span>
+        <span>星图</span>
       </a>
       <a href="{{ site.baseurl }}/docs/生民卷/" class="header-nav-link">
         <svg viewBox="0 0 24 24"><path d="M6 4h12v16H6z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 7h8M8 10.5h8M8 14h5" stroke="currentColor" stroke-width="1.2"/><circle cx="15" cy="16" r="2.5" fill="currentColor" opacity="0.7"/></svg>
@@ -132,12 +130,14 @@
 
   <div class="main-wrapper">
     <div id="right-sidebar-trigger" onclick="window.history.back()"><div class="back-text">回</div></div>
+    {% if page.url == "/dimensions.html" %}
     <aside id="sidebar-container">
       <a href="{{ site.baseurl }}/docs/古代旅行/" class="nav-item-wrapper">旅</a>
       <a href="{{ site.baseurl }}/docs/戏/" class="nav-item-wrapper">戏</a>
       <a href="{{ site.baseurl }}/docs/饮/" class="nav-item-wrapper">饮</a>
       <a href="{{ site.baseurl }}/docs/感/" class="nav-item-wrapper">感</a>
     </aside>
+    {% endif %}
 
     <div id="content-wrapper">
       <main class="container">
@@ -183,27 +183,11 @@
           const sp = document.getElementById('splash-screen');
           if (!sessionStorage.getItem('hr_splashed')) {
             sp.style.display = 'flex';
-            sp.onclick = () => { sp.classList.add('hidden'); sessionStorage.setItem('hr_splashed', 'true'); if(!sessionStorage.getItem('hr_ritual_done')) this.startSeal(); else this.setupAnimations(); };
-          } else if (!sessionStorage.getItem('hr_ritual_done')) { this.startSeal(); }
-          else { this.setupAnimations(); }
-        },
-        startSeal: function() {
-          const rc = document.getElementById('ritual-container'); rc.style.display = 'flex';
-          const th = [{char:'旅',u:'/docs/古代旅行/'},{char:'戏',u:'/docs/戏/'},{char:'饮',u:'/docs/饮/'},{char:'感',u:'/docs/感/'}];
-          let ci=0, count=0;
-          const tick = () => {
-            document.getElementById('ritual-text').textContent = th[ci%4].char; ci++; count++;
-            if (count < 12) setTimeout(tick, 50 + (count * count * 2));
-            else {
-              const tri = document.getElementById('ritual-trigger'); tri.classList.add('locked');
-              tri.onclick = () => { 
-                sessionStorage.setItem('hr_ritual_done','true'); 
-                // 关键修正：确保在“进入主题”的瞬间，布局已准备好
-                window.location.href = "{{site.baseurl}}" + th[(ci-1)%4].u; 
-              };
-            }
-          };
-          setTimeout(tick, 800);
+            sp.onclick = () => { 
+              sp.classList.add('hidden'); 
+              sessionStorage.setItem('hr_splashed', 'true');
+            };
+          }
         },
         setupTrajectory: function() {
           const container = document.getElementById('trajectory-line');
