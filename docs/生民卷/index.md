@@ -243,7 +243,7 @@ body:has(.shengmin-dark-page) #trajectory-line {
 .char-img {
   width: 100px;
   height: 380px;
-  background-image: url('https://relhigh.github.io/hirarchealogy/assets/characters.png');
+  background-image: url('{{ site.baseurl }}/assets/characters.png');
   background-size: 500% 200%;
   background-repeat: no-repeat;
   border: none;
