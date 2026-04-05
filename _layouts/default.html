@@ -183,18 +183,38 @@
         setupRitual: function() {
           if (!isHome) return;
           const sp = document.getElementById('splash-screen');
+          // 每次访问大门首页视为新会话，清空轨迹
+          sessionStorage.removeItem('hr_session_start');
+          sessionStorage.removeItem('hr_nav_chain');
           if (!sessionStorage.getItem('hr_splashed')) {
             sp.style.display = 'flex';
             sp.onclick = () => { 
               sp.classList.add('hidden'); 
               sessionStorage.setItem('hr_splashed', 'true');
+              sessionStorage.setItem('hr_session_start', Date.now().toString());
             };
+          } else {
+            sessionStorage.setItem('hr_session_start', Date.now().toString());
           }
         },
         setupTrajectory: function() {
           const container = document.getElementById('trajectory-line');
-          const isDimensions = window.location.pathname.includes('dimensions');
-          if (!container || !isDimensions) return;
+          if (!container) return;
+          // 只在维度相关页面记录轨迹
+          const path = window.location.pathname;
+          const isDimensionsPage = path.includes('dimensions') || 
+                                   path.includes('/docs/古代旅行/') || 
+                                   path.includes('/docs/戏/') || 
+                                   path.includes('/docs/饮/') || 
+                                   path.includes('/docs/感/');
+          if (!isDimensionsPage) return;
+          
+          // 刷新网站时清空轨迹（通过检查页面加载时间）
+          if (!sessionStorage.getItem('hr_session_start')) {
+            sessionStorage.setItem('hr_session_start', Date.now().toString());
+            sessionStorage.removeItem('hr_nav_chain');
+          }
+          
           let chain = JSON.parse(sessionStorage.getItem('hr_nav_chain') || "[]");
           const cur = { n: container.dataset.name, u: container.dataset.url, type: sessionStorage.getItem('hr_last_nav_type') || 'hierarchical' };
           if (chain.length === 0) { container.querySelectorAll('.traj-node-container').forEach(node => chain.push({ n: node.dataset.name, u: node.dataset.url, type: 'hierarchical' })); }
