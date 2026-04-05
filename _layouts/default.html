@@ -200,7 +200,8 @@
         setupTrajectory: function() {
           const container = document.getElementById('trajectory-line');
           if (!container) return;
-          // 只在维度相关页面记录轨迹
+          
+          // 只在维度相关页面记录和显示轨迹
           const path = window.location.pathname;
           const isDimensionsPage = path.includes('dimensions') || 
                                    path.includes('/docs/古代旅行/') || 
@@ -209,17 +210,31 @@
                                    path.includes('/docs/感/');
           if (!isDimensionsPage) return;
           
-          // 刷新网站时清空轨迹（通过检查页面加载时间）
+          // 刷新网站时清空轨迹
           if (!sessionStorage.getItem('hr_session_start')) {
             sessionStorage.setItem('hr_session_start', Date.now().toString());
             sessionStorage.removeItem('hr_nav_chain');
           }
           
+          // 过滤只保留维度内的轨迹
+          const isDimensionNode = (url) => url.includes('dimensions') || 
+                                            url.includes('/docs/古代旅行/') || 
+                                            url.includes('/docs/戏/') || 
+                                            url.includes('/docs/饮/') || 
+                                            url.includes('/docs/感/');
+          
           let chain = JSON.parse(sessionStorage.getItem('hr_nav_chain') || "[]");
+          chain = chain.filter(node => isDimensionNode(node.u));
+          
           const cur = { n: container.dataset.name, u: container.dataset.url, type: sessionStorage.getItem('hr_last_nav_type') || 'hierarchical' };
           if (chain.length === 0) { container.querySelectorAll('.traj-node-container').forEach(node => chain.push({ n: node.dataset.name, u: node.dataset.url, type: 'hierarchical' })); }
           else if (chain[chain.length-1].u !== cur.u) { chain.push(cur); }
+          
           sessionStorage.setItem('hr_nav_chain', JSON.stringify(chain));
+          
+          // 如果没有维度内轨迹，不显示
+          if (chain.length === 0) { container.innerHTML = ''; return; }
+          
           let html = "";
           chain.forEach((node, i) => {
             const dots = (node.type === 'mesh') ? '<div class="mesh-dot"></div>' : '<div class="mesh-dot"></div><div class="mesh-dot"></div><div class="mesh-dot"></div>';
