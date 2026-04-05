@@ -1,0 +1,15 @@
+{
+  "name": "openspec-a2a",
+  "version": "1.0.0",
+  "description": "跨 Agent 任务状态共享与接力（基于 A2A 协议规范）",
+  "main": "openspec-a2a.js",
+  "bin": {
+    "openspec-a2a": "./openspec-a2a.js"
+  },
+  "scripts": {
+    "test": "node openspec-a2a.js --help"
+  },
+  "keywords": ["a2a", "agent", "openspec", "openclaw", "task", "checkpoint"],
+  "author": "",
+  "license": "MIT"
+}

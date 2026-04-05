@@ -36,11 +36,11 @@
 2. **维度关联** - 已更新为同分类内节点关联
 
 ## 文件位置
-- 工作目录：`/Users/Shared/openclaw-hirarchealogy/`
+- 工作目录：`/Users/Shared/kimicode-antichuo/`
 - 人物图：`assets/characters.png`
 - 生民卷页面：`docs/生民卷/`
 - 生民卷样式：`assets/css/shengmin.css`
 - 生民卷脚本：`assets/js/shengmin.js`
 
 ## 网站地址
-https://relhigh.github.io/hirarchealogy/
+https://relhigh.github.io/Antichuo/

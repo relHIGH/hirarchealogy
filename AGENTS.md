@@ -141,7 +141,7 @@ JS 处理代码在 `_layouts/default.html` 的 `setupWikiLinks` 函数中。
 ```css
 /* assets/css/shengmin.css */
 .char-portrait {
-  background-image: url('https://relhigh.github.io/hirarchealogy/assets/characters.png');
+  background-image: url('{{ site.baseurl }}/assets/characters.png');
   background-size: 500% 200%; /* 5列 x 2行 = 10个人物 */
   width: 100px;
   height: 143px;
