@@ -1247,14 +1247,19 @@ header { background: #fdfcfa !important; }
   background: white;
   border-radius: 16px;
   box-shadow: 0 5px 30px rgba(0,0,0,0.15);
-  transition: transform 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
   z-index: 200;
-  display: flex;
+  display: none;
   flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .collection-panel.active {
+  display: flex;
   transform: translateY(-50%) translateX(0);
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .panel-header {
