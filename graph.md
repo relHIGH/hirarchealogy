@@ -180,7 +180,7 @@ title: 关系图谱
 // 数据定义
 const nodes = [
   // 人物节点
-  { id: '炉青', type: 'character', era: '战国' },
+  { id: '冶辛', type: 'character', era: '战国' },
   { id: '衡羽', type: 'character', era: '秦' },
   { id: '禾宁', type: 'character', era: '汉' },
   { id: '石兰', type: 'character', era: '北魏' },
@@ -234,11 +234,11 @@ const nodes = [
 
 // 连接关系（人物与主题节点的关联）
 const links = [
-  // 炉青
-  { source: '炉青', target: '行商' },
-  { source: '炉青', target: '行路' },
-  { source: '炉青', target: '驿' },
-  { source: '炉青', target: '器' },
+  // 冶辛
+  { source: '冶辛', target: '行商' },
+  { source: '冶辛', target: '行路' },
+  { source: '冶辛', target: '驿' },
+  { source: '冶辛', target: '器' },
   
   // 衡羽
   { source: '衡羽', target: '行路' },
