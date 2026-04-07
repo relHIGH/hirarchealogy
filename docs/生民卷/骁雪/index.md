@@ -13,7 +13,7 @@ title: 萧骐
           <h1 class="char-name">萧骐篇</h1>
           <p class="char-era">辽 · 草原牧民信使</p>
           <div class="char-bio">
-            <p>生于辽国上京附近的草原，父亲是部落信使。她从小骑着马，在广袤的蒙古高原上奔驰，熟悉契丹的毡帐。</p>
+            <p>生于辽国上京附近的草原，父亲是部落信使。她从小骑着马，在广袤的蒙古高原上奔驰，熟悉契丹的毡帐，见证着草原与中原的往来。</p>
           </div>
           <button class="nav-btn" onclick="nextPage()">开始探索 →</button>
         </div>      
@@ -23,196 +23,271 @@ title: 萧骐
       </div>
     </div>
     
-
-    <!-- 第2页：章节1上 -->
+    <!-- 第2页：草原 -->
     <div class="page" id="page-1" style="display:none">
       <div class="chapter-layout">
         <div class="chapter-header">
           <span class="chapter-num">01</span>
-          <h3 class="chapter-title">第1章</h3>
+          <h3 class="chapter-title">草原长调</h3>
         </div>
-        <div class="text-block">
-          <p>这是萧骐故事的第1章内容。在这里，你可以了解辽时期草原牧民信使的生活与工作。</p>
-          <div class="clickable-text" onclick="collectNode('辽', '旅', this)">
-            <span class="pulse-dot"></span>
-            <span><strong>辽</strong></span>
+        <div class="scene-with-text">
+          <div class="scene-side">
+            <img src="{{ site.baseurl }}/assets/images/scenes/骁雪.png" alt="草原" class="scene-img"/>
+          </div>
+          <div class="text-side">
+            <p>萧骐生于
+            <div class="clickable-text inline" onclick="collectNode('辽', '旅', this)">
+              <span class="pulse-dot"></span>
+              <span><strong>辽</strong></span>
+            </div>
+            国上京附近的
+            <div class="clickable-text inline" onclick="collectNode('草原', '旅', this)">
+              <span class="pulse-dot"></span>
+              <span><strong>草原</strong></span>
+            </div>
+            ，父亲是部落
+            <div class="clickable-text inline" onclick="collectNode('信使', '旅', this)">
+              <span class="pulse-dot"></span>
+              <span><strong>信使</strong></span>
+            </div>
+            。</p>
+            <p>她从小骑着马，在广袤的
+            <div class="clickable-text inline" onclick="collectNode('蒙古高原', '旅', this)">
+              <span class="pulse-dot"></span>
+              <span><strong>蒙古高原</strong></span>
+            </div>
+            上奔驰，熟悉契丹的毡帐，听得懂鹰的啸叫。</p>
           </div>
         </div>
         <button class="nav-btn" onclick="nextPage()">下一页 →</button>
       </div>
     </div>
     
-    <!-- 第3页：章节1下 -->
+    <!-- 第3页：马匹 -->
     <div class="page" id="page-2" style="display:none">
       <div class="chapter-layout">
         <div class="chapter-header">
           <span class="chapter-num">01</span>
-          <h3 class="chapter-title">第1章</h3>
+          <h3 class="chapter-title">草原长调</h3>
         </div>
-        <div class="dialogue-box">
-          <div class="dialogue-avatar"></div>
-          <div class="dialogue-content">
-            <span class="speaker">历史人物</span>
-            <div class="clickable-item" onclick="collectRelic('马镫', this)">
-              <span class="pulse-dot"></span>
-              <strong>"马镫"</strong>
-            </div>
+        
+        <div class="text-block">
+          <p>在草原上，
+          <div class="clickable-text inline" onclick="collectNode('马', '旅', this)">
+            <span class="pulse-dot"></span>
+            <span><strong>马</strong></span>
+          </div>
+          是最重要的伙伴。</p>
+          <p>萧骐三岁时就有了自己的小马驹，八岁能骑马射箭，十二岁就能独自骑马传递消息。</p>
+        </div>
+        
+        <div class="artifact-showcase" onclick="collectRelic('马镫', this)">
+          <div class="artifact-visual">
+            <div class="scene-placeholder small"><span>马镫</span></div>
+          </div>
+          <div class="artifact-info">
+            <span class="pulse-dot"></span>
+            <p>辽代铁铸<strong>马镫</strong></p>
+            <p class="sub">契丹骑兵的标准装备</p>
           </div>
         </div>
+        
         <button class="nav-btn" onclick="nextPage()">下一页 →</button>
       </div>
     </div>
-
-    <!-- 第4页：章节2上 -->
+    
+    <!-- 第4页：驿路 -->
     <div class="page" id="page-3" style="display:none">
       <div class="chapter-layout">
         <div class="chapter-header">
           <span class="chapter-num">02</span>
-          <h3 class="chapter-title">第2章</h3>
+          <h3 class="chapter-title">驿路风尘</h3>
         </div>
-        <div class="text-block">
-          <p>这是萧骐故事的第2章内容。在这里，你可以了解辽时期草原牧民信使的生活与工作。</p>
-          <div class="clickable-text" onclick="collectNode('草原', '旅', this)">
-            <span class="pulse-dot"></span>
-            <span><strong>草原</strong></span>
+        
+        <div class="scene-with-text">
+          <div class="text-side">
+            <p>辽国实行
+            <div class="clickable-text inline" onclick="collectNode('南北面官', '旅', this)">
+              <span class="pulse-dot"></span>
+              <span><strong>南北面官</strong></span>
+            </div>
+            制度，萧骐经常往返于契丹旧俗与汉地农耕之间。</p>
+            <p>她传递诏令，运送贡品，在
+            <div class="clickable-text inline" onclick="collectNode('驿路', '旅', this)">
+              <span class="pulse-dot"></span>
+              <span><strong>驿路</strong></span>
+            </div>
+            上奔驰，见证着五京的繁华。</p>
+          </div>
+          <div class="scene-side">
+            <div class="scene-placeholder"><span>驿路</span></div>
           </div>
         </div>
+        
+        <div class="dialogue-box">
+          <div class="dialogue-avatar"></div>
+          <div class="dialogue-content">
+            <span class="speaker">部落长老</span>
+            <p>"一个合格的信使，要能日行三百里，要能辨别方向，还要能在野外生存。"</p>
+          </div>
+        </div>
+        
+        <div class="clickable-text" onclick="collectRelic('驿符牌', this)">
+          <span class="pulse-dot"></span>
+          <span>萧骐随身携带的<strong>驿符牌</strong></span>
+        </div>
+        
         <button class="nav-btn" onclick="nextPage()">下一页 →</button>
       </div>
     </div>
     
-    <!-- 第5页：章节2下 -->
+    <!-- 第5页：捺钵 -->
     <div class="page" id="page-4" style="display:none">
       <div class="chapter-layout">
         <div class="chapter-header">
           <span class="chapter-num">02</span>
-          <h3 class="chapter-title">第2章</h3>
+          <h3 class="chapter-title">驿路风尘</h3>
         </div>
-        <div class="dialogue-box">
-          <div class="dialogue-avatar"></div>
-          <div class="dialogue-content">
-            <span class="speaker">历史人物</span>
-            <div class="clickable-item" onclick="collectRelic('驿符牌', this)">
-              <span class="pulse-dot"></span>
-              <strong>"驿符牌"</strong>
-            </div>
+        
+        <div class="text-block">
+          <p>辽国皇帝实行捺钵制度，四季巡狩。</p>
+          <p>萧骐随皇室巡行，在冰上捕鱼，在草原上围猎。行路千里，只为传递一纸文书。</p>
+        </div>
+        
+        <div class="mini-choice">
+          <p>辽国皇帝的行宫叫什么？</p>
+          <div class="mini-options">
+            <button onclick="selectMiniChoice(this, '宫殿', false)">宫殿</button>
+            <button onclick="selectMiniChoice(this, '捺钵', true)">捺钵</button>
+            <button onclick="selectMiniChoice(this, '毡帐', false)">毡帐</button>
           </div>
+          <div class="mini-result" id="mini-result-1"></div>
         </div>
-        <button class="nav-btn" onclick="nextPage()">下一页 →</button>
+        
+        <div class="clickable-text" onclick="collectRelic('马鞍', this)">
+          <span class="pulse-dot"></span>
+          <span>精制<strong>马鞍</strong>，皇帝的赏赐</span>
+        </div>
+        
+        <button class="nav-btn" id="btn-page4" onclick="nextPage()" disabled>下一页 →</button>
       </div>
     </div>
-
-    <!-- 第6页：章节3上 -->
+    
+    <!-- 第6页：游牧 -->
     <div class="page" id="page-5" style="display:none">
       <div class="chapter-layout">
         <div class="chapter-header">
           <span class="chapter-num">03</span>
-          <h3 class="chapter-title">第3章</h3>
+          <h3 class="chapter-title">白马青牛</h3>
         </div>
+        
         <div class="text-block">
-          <p>这是萧骐故事的第3章内容。在这里，你可以了解辽时期草原牧民信使的生活与工作。</p>
-          <div class="clickable-text" onclick="collectNode('马', '旅', this)">
+          <p>岁月如草原上的风，萧骐渐渐老去。</p>
+          <p>她给孙子讲述着
+          <div class="clickable-text inline" onclick="collectNode('游牧', '旅', this)">
             <span class="pulse-dot"></span>
-            <span><strong>马</strong></span>
+            <span><strong>游牧</strong></span>
+          </div>
+          的故事，那白马青牛的传说，仍在草原上传唱。</p>
+        </div>
+        
+        <div class="reveal-card" onclick="revealText(this)">
+          <div class="reveal-front">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+            </svg>
+            <span>萧骐的珍藏</span>
+          </div>
+          <div class="reveal-back">
+            <div class="highlight-text" onclick="collectRelic('狼牙棒', this)">
+              <span class="pulse-dot"></span>
+              <strong>契丹狼牙棒</strong>
+            </div>
+            <p>这是萧骐年轻时使用的武器，见证了她无数次穿越草原的艰险旅程。</p>
           </div>
         </div>
+        
         <button class="nav-btn" onclick="nextPage()">下一页 →</button>
       </div>
     </div>
     
-    <!-- 第7页：章节3下 -->
+    <!-- 第7页：尾声 -->
     <div class="page" id="page-6" style="display:none">
       <div class="chapter-layout">
         <div class="chapter-header">
-          <span class="chapter-num">03</span>
-          <h3 class="chapter-title">第3章</h3>
+          <span class="chapter-num">04</span>
+          <h3 class="chapter-title">草原回响</h3>
         </div>
-        <div class="dialogue-box">
-          <div class="dialogue-avatar"></div>
-          <div class="dialogue-content">
-            <span class="speaker">历史人物</span>
-            <div class="clickable-item" onclick="collectRelic('马鞍', this)">
-              <span class="pulse-dot"></span>
-              <strong>"马鞍"</strong>
-            </div>
-          </div>
+        
+        <div class="ending-text">
+          <p>萧骐一生都在马上度过，走过的路能绕草原三圈。</p>
+          <p>她见证了辽国的兴衰，也见证了草原的永恒。</p>
+          <div class="divider"></div>
+          <p class="final">她忆起年少时驰骋的马背，</p>
+          <p class="final">那是她最珍贵的境界。</p>
+          <p class="final">草原是家，</p>
+          <p class="final">马匹是命，</p>
+          <p class="final">信使是责。</p>
         </div>
-        <button class="nav-btn" onclick="nextPage()">下一页 →</button>
+        
+        <button class="nav-btn" onclick="showSummary()">探索完成 →</button>
       </div>
     </div>
-
-    <!-- 第8页：章节4上 -->
+    
+    <!-- 第8页：总结 -->
     <div class="page" id="page-7" style="display:none">
-      <div class="chapter-layout">
-        <div class="chapter-header">
-          <span class="chapter-num">04</span>
-          <h3 class="chapter-title">第4章</h3>
-        </div>
-        <div class="text-block">
-          <p>这是萧骐故事的第4章内容。在这里，你可以了解辽时期草原牧民信使的生活与工作。</p>
-          <div class="clickable-text" onclick="collectNode('契丹', '旅', this)">
-            <span class="pulse-dot"></span>
-            <span><strong>契丹</strong></span>
-          </div>
-        </div>
-        <button class="nav-btn" onclick="nextPage()">下一页 →</button>
-      </div>
-    </div>
-    
-    <!-- 第9页：章节4下 -->
-    <div class="page" id="page-8" style="display:none">
-      <div class="chapter-layout">
-        <div class="chapter-header">
-          <span class="chapter-num">04</span>
-          <h3 class="chapter-title">第4章</h3>
-        </div>
-        <div class="dialogue-box">
-          <div class="dialogue-avatar"></div>
-          <div class="dialogue-content">
-            <span class="speaker">历史人物</span>
-            <div class="clickable-item" onclick="collectRelic('狼牙棒', this)">
-              <span class="pulse-dot"></span>
-              <strong>"狼牙棒"</strong>
-            </div>
-          </div>
-        </div>
-        <button class="nav-btn" onclick="nextPage()">下一页 →</button>
-      </div>
-    </div>
-
-    
-    <!-- 总结页 -->
-    <div class="page" id="page-9" style="display:none">
       <div class="summary-layout">
         <h2 class="summary-title">探索完成</h2>
+        
         <div class="stats-row">
           <div class="stat-box">
-            <span class="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/></svg></span>
+            <span class="stat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6m4.22-10.22l4.24-4.24M6.34 17.66l-4.24 4.24M23 12h-6m-6 0H1m20.24 4.24l-4.24-4.24M6.34 6.34L2.1 2.1"/>
+              </svg>
+            </span>
             <span class="stat-num" id="summary-node-count">0</span>
             <span class="stat-label">主题节点</span>
           </div>
+          
           <div class="stat-box">
-            <span class="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="3" width="15" height="14" rx="2"/></svg></span>
+            <span class="stat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><rect x="6" y="3" width="15" height="14" rx="2"/>
+              </svg>
+            </span>
             <span class="stat-num" id="summary-relic-count">0</span>
             <span class="stat-label">历史文物</span>
           </div>
         </div>
+        
         <div class="collection-showcase">
-          <div class="showcase-section"><h4>主题节点</h4><div class="showcase-list" id="summary-nodes"></div></div>
-          <div class="showcase-section"><h4>历史文物</h4><div class="showcase-list" id="summary-relics"></div></div>
+          <div class="showcase-section">
+            <h4>主题节点</h4>
+            <div class="showcase-list" id="summary-nodes"></div>
+          </div>
+          
+          <div class="showcase-section">
+            <h4>历史文物</h4>
+            <div class="showcase-list" id="summary-relics"></div>
+          </div>
         </div>
+        
         <div class="summary-actions">
           <button class="btn-primary" onclick="restart()">重新探索</button>
           <button onclick="exportProgress()">复制分享链接</button>
         </div>
       </div>
     </div>
+    
   </div>
   
   <!-- 浮动工具栏 -->
   <div class="floating-toolbar">
     <button class="toolbar-btn" onclick="toggleCollectionPanel()" title="收集品">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+      </svg>
       <span class="toolbar-badge" id="collection-badge">0</span>
     </button>
   </div>
@@ -222,18 +297,27 @@ title: 萧骐
     <div class="panel-header">
       <h4>探索收获</h4>
       <button onclick="toggleCollectionPanel()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
       </button>
     </div>
     <div class="panel-body">
-      <div class="panel-section"><h5>主题节点</h5><div class="panel-grid" id="panel-nodes"></div></div>
-      <div class="panel-section"><h5>历史文物</h5><div class="panel-grid" id="panel-relics"></div></div>
+      <div class="panel-section">
+        <h5>主题节点</h5>
+        <div class="panel-grid" id="panel-nodes"></div>
+      </div>
+      
+      <div class="panel-section">
+        <h5>历史文物</h5>
+        <div class="panel-grid" id="panel-relics"></div>
+      </div>
     </div>
   </div>
   
   <!-- 页面指示器 -->
   <div class="page-dots">
-    <span class="dot active" onclick="if(isPageUnlocked(0)) showPage(0)"></span>
+    <span class="dot active" onclick="showPage(0)"></span>
     <span class="dot" onclick="if(isPageUnlocked(1)) showPage(1)"></span>
     <span class="dot" onclick="if(isPageUnlocked(2)) showPage(2)"></span>
     <span class="dot" onclick="if(isPageUnlocked(3)) showPage(3)"></span>
@@ -241,13 +325,12 @@ title: 萧骐
     <span class="dot" onclick="if(isPageUnlocked(5)) showPage(5)"></span>
     <span class="dot" onclick="if(isPageUnlocked(6)) showPage(6)"></span>
     <span class="dot" onclick="if(isPageUnlocked(7)) showPage(7)"></span>
-    <span class="dot" onclick="if(isPageUnlocked(8)) showPage(8)"></span>
-    <span class="dot" onclick="if(isPageUnlocked(9)) showPage(9)"></span>
   </div>
+  
 </div>
 
 <style>
-/* 样式与冶辛页面相同 */
+/* 样式与茶岑页面相同 */
 .story-wrapper { max-width: 900px; margin: 0 auto; padding: 20px; }
 .pages-container { position: relative; }
 .page { animation: fadeIn 0.5s ease; }
@@ -295,6 +378,7 @@ title: 萧骐
 .mini-result.show { color: var(--accent); }
 .artifact-showcase { display: flex; gap: 20px; background: rgba(139,69,19,0.05); border: 1px solid rgba(139,69,19,0.2); border-radius: 12px; padding: 20px; margin: 30px 0; cursor: pointer; transition: all 0.3s; }
 .artifact-showcase:hover { background: rgba(139,69,19,0.08); }
+.artifact-info .sub { font-size: 0.85rem; color: #888; }
 .item-row { display: flex; align-items: center; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
 .text-block { line-height: 1.8; margin-bottom: 30px; }
 .ending-text { text-align: center; padding: 40px 20px; }
@@ -322,9 +406,8 @@ title: 萧骐
 .scene-placeholder { background: rgba(128,0,32,0.05); border: 2px dashed rgba(128,0,32,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #888; font-size: 0.9rem; min-height: 200px; }
 .scene-placeholder.small { min-height: 100px; width: 100px; }
 .toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); color: white; padding: 12px 24px; border-radius: 30px; font-size: 0.9rem; z-index: 1000; animation: fadeIn 0.3s ease; }
-@media (max-width: 768px) { .intro-layout, .scene-with-text { grid-template-columns: 1fr; gap: 30px; } .char-name { font-size: 2rem; } .stats-row { gap: 20px; } .stat-num { font-size: 2rem; } }
 
-/* 浮动工具栏样式 */
+/* 浮动工具栏 */
 .floating-toolbar { position: fixed; bottom: 80px; right: 80px; display: flex; flex-direction: column; gap: 10px; z-index: 100; }
 .toolbar-btn { width: 44px; height: 44px; background: white; border: 1px solid rgba(128,0,32,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--accent); transition: all 0.3s; position: relative; }
 .toolbar-btn:hover { background: var(--accent); color: white; border-color: var(--accent); }
@@ -341,11 +424,13 @@ title: 萧骐
 .panel-item { padding: 6px 12px; background: rgba(128,0,32,0.05); border: 1px solid rgba(128,0,32,0.1); border-radius: 15px; font-size: 0.8rem; color: #666; cursor: pointer; transition: all 0.3s; }
 .panel-item:hover { background: rgba(128,0,32,0.1); }
 .panel-item.collected { background: var(--accent); color: white; border-color: var(--accent); }
+
+@media (max-width: 768px) { .intro-layout, .scene-with-text { grid-template-columns: 1fr; gap: 30px; } .char-name { font-size: 2rem; } .stats-row { gap: 20px; } .stat-num { font-size: 2rem; } .floating-toolbar { right: 20px; bottom: 20px; } .collection-panel { right: 20px; width: calc(100vw - 40px); max-width: 300px; } }
 </style>
 
 <script>
 var currentPage = 0;
-var totalPages = 10;
+var totalPages = 8;
 var unlockedPages = [0];
 var collections = { nodes: {}, relics: {} };
 
@@ -397,7 +482,7 @@ function toggleCollectionPanel() {
 
 function updateCollectionPanel() {
   var nodesGrid = document.getElementById('panel-nodes');
-  var allNodes = ['辽', '上京', '草原', '信使', '马', '蒙古高原', '契丹', '毡帐', '鹰', '南北面官'];
+  var allNodes = ['辽', '草原', '信使', '马', '蒙古高原', '驿路', '南北面官', '游牧'];
   nodesGrid.innerHTML = allNodes.map(function(n) {
     var collected = collections.nodes[n] ? 'collected' : '';
     return '<span class="panel-item ' + collected + '" onclick="collectNode(\'' + n + '\', \'旅\', this)">' + n + '</span>';
@@ -410,6 +495,22 @@ function updateCollectionPanel() {
   }).join('');
 }
 
+function selectMiniChoice(el, answer, isCorrect) {
+  var parent = el.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) { b.classList.remove('correct', 'wrong'); });
+  var result = document.getElementById('mini-result-1');
+  if (isCorrect) {
+    el.classList.add('correct');
+    result.textContent = '正确！辽国皇帝实行捺钵制度，四季巡狩于草原。';
+    result.classList.add('show');
+    document.getElementById('btn-page4').disabled = false;
+  } else {
+    el.classList.add('wrong');
+    result.textContent = '不对，再想想。';
+    result.classList.add('show');
+  }
+}
+
 function revealText(el) { el.classList.add('revealed'); }
 
 function showSummary() {
@@ -418,7 +519,7 @@ function showSummary() {
   document.getElementById('summary-node-count').textContent = nodeCount;
   document.getElementById('summary-relic-count').textContent = relicCount;
   var nodesList = document.getElementById('summary-nodes');
-  var allNodes = ['辽', '上京', '草原', '信使', '马', '蒙古高原', '契丹', '毡帐', '鹰', '南北面官'];
+  var allNodes = ['辽', '草原', '信使', '马', '蒙古高原', '驿路', '南北面官', '游牧'];
   nodesList.innerHTML = allNodes.map(function(n) {
     var collected = collections.nodes[n] ? 'collected' : '';
     return '<span class="item ' + collected + '">' + n + '</span>';
@@ -429,14 +530,16 @@ function showSummary() {
     var collected = collections.relics[r] ? 'collected' : '';
     return '<span class="item ' + collected + '">' + r + '</span>';
   }).join('');
-  unlockedPages.push(9);
-  showPage(9);
+  unlockedPages.push(7);
+  showPage(7);
 }
 
 function restart() {
   currentPage = 0; collections = { nodes: {}, relics: {} }; unlockedPages = [0];
   document.querySelectorAll('.collected').forEach(function(el) { el.classList.remove('collected'); });
   document.querySelectorAll('.revealed').forEach(function(el) { el.classList.remove('revealed'); });
+  document.querySelectorAll('.correct, .wrong').forEach(function(el) { el.classList.remove('correct', 'wrong'); });
+  document.querySelectorAll('.mini-result').forEach(function(el) { el.classList.remove('show'); el.textContent = ''; });
   updateBadge(); updateCollectionPanel(); showPage(0);
 }
 

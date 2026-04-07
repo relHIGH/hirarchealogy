@@ -13,7 +13,7 @@ title: 段洱青
           <h1 class="char-name">段洱青篇</h1>
           <p class="char-era">大理国 · 茶马古道商人</p>
           <div class="char-bio">
-            <p>生于大理国苍洱之间。这里是茶马古道的起点，普洱茶从这里走向雪域高原。她继承了家族的马帮，带领骡马队翻山越岭。</p>
+            <p>生于大理国苍洱之间。这里是茶马古道的起点，普洱茶从这里走向雪域高原。她继承了家族的马帮，带领骡马队翻山越岭，用茶叶换取藏区的马匹、药材和皮毛。</p>
           </div>
           <button class="nav-btn" onclick="nextPage()">开始探索 →</button>
         </div>      
@@ -23,196 +23,286 @@ title: 段洱青
       </div>
     </div>
     
-
-    <!-- 第2页：章节1上 -->
+    <!-- 第2页：苍洱之间 -->
     <div class="page" id="page-1" style="display:none">
       <div class="chapter-layout">
         <div class="chapter-header">
           <span class="chapter-num">01</span>
-          <h3 class="chapter-title">第1章</h3>
+          <h3 class="chapter-title">苍洱之间</h3>
         </div>
-        <div class="text-block">
-          <p>这是段洱青故事的第1章内容。在这里，你可以了解大理国时期茶马古道商人的生活与工作。</p>
-          <div class="clickable-text" onclick="collectNode('大理国', '饮', this)">
-            <span class="pulse-dot"></span>
-            <span><strong>大理国</strong></span>
+        <div class="scene-with-text">
+          <div class="scene-side">
+            <img src="{{ site.baseurl }}/assets/images/scenes/茶岑.png" alt="大理风光" class="scene-img"/>
+          </div>
+          <div class="text-side">
+            <p>段洱青生在
+            <div class="clickable-text inline" onclick="collectNode('大理国', '饮', this)">
+              <span class="pulse-dot"></span>
+              <span><strong>大理国</strong></span>
+            </div>
+            ，长在苍山脚下、洱海之滨。</p>
+            <p>这里是茶马古道的起点，每年春天，茶农们把晒好的普洱茶装上马背，沿着蜿蜒的山路走向西藏。</p>
+            <p>洱青从小跟着父亲走
+            <div class="clickable-text inline" onclick="collectNode('茶马古道', '饮', this)">
+              <span class="pulse-dot"></span>
+              <span><strong>茶马古道</strong></span>
+            </div>
+            ，熟悉每一条山路、每一个驿站。</p>
           </div>
         </div>
         <button class="nav-btn" onclick="nextPage()">下一页 →</button>
       </div>
     </div>
     
-    <!-- 第3页：章节1下 -->
+    <!-- 第3页：普洱茶 -->
     <div class="page" id="page-2" style="display:none">
       <div class="chapter-layout">
         <div class="chapter-header">
           <span class="chapter-num">01</span>
-          <h3 class="chapter-title">第1章</h3>
+          <h3 class="chapter-title">苍洱之间</h3>
         </div>
-        <div class="dialogue-box">
-          <div class="dialogue-avatar"></div>
-          <div class="dialogue-content">
-            <span class="speaker">历史人物</span>
-            <div class="clickable-item" onclick="collectRelic('普洱茶砖', this)">
-              <span class="pulse-dot"></span>
-              <strong>"普洱茶砖"</strong>
-            </div>
+        
+        <div class="text-block">
+          <p>大理的茶叶以
+          <div class="clickable-text inline" onclick="collectNode('普洱茶', '饮', this)">
+            <span class="pulse-dot"></span>
+            <span><strong>普洱茶</strong></span>
+          </div>
+          最为著名。茶饼压得紧实，便于马帮长途运输，越陈越香。</p>
+          <p>洱青家世代经营茶叶，她能从茶汤的颜色分辨出茶叶的年份和产地。</p>
+        </div>
+        
+        <div class="artifact-showcase" onclick="collectRelic('普洱茶砖', this)">
+          <div class="artifact-visual">
+            <div class="scene-placeholder small"><span>茶砖</span></div>
+          </div>
+          <div class="artifact-info">
+            <span class="pulse-dot"></span>
+            <p>祖传<strong>普洱茶砖</strong></p>
+            <p class="sub">压制于三十年前，价值连城</p>
           </div>
         </div>
+        
         <button class="nav-btn" onclick="nextPage()">下一页 →</button>
       </div>
     </div>
-
-    <!-- 第4页：章节2上 -->
+    
+    <!-- 第4页：马帮 -->
     <div class="page" id="page-3" style="display:none">
       <div class="chapter-layout">
         <div class="chapter-header">
           <span class="chapter-num">02</span>
-          <h3 class="chapter-title">第2章</h3>
+          <h3 class="chapter-title">马帮铃声</h3>
         </div>
-        <div class="text-block">
-          <p>这是段洱青故事的第2章内容。在这里，你可以了解大理国时期茶马古道商人的生活与工作。</p>
-          <div class="clickable-text" onclick="collectNode('洱海', '饮', this)">
-            <span class="pulse-dot"></span>
-            <span><strong>洱海</strong></span>
+        
+        <div class="scene-with-text">
+          <div class="text-side">
+            <p>洱青二十岁那年，正式接管了家族的
+            <div class="clickable-text inline" onclick="collectNode('马帮', '饮', this)">
+              <span class="pulse-dot"></span>
+              <span><strong>马帮</strong></span>
+            </div>
+            。</p>
+            <p>二十匹骡马，十个赶马人，载着两吨茶叶，这就是她的全部家当。</p>
+            <p>每次出发，马铃声响彻山谷，那是商人最动听的音乐。</p>
+          </div>
+          <div class="scene-side">
+            <div class="scene-placeholder"><span>马帮</span></div>
           </div>
         </div>
+        
+        <div class="dialogue-box">
+          <div class="dialogue-avatar"></div>
+          <div class="dialogue-content">
+            <span class="speaker">老赶马人</span>
+            <p>"马帮有三宝：好马、好茶、好向导。洱青姑娘占了前两样，这第三样，得靠经验积累。"</p>
+          </div>
+        </div>
+        
+        <div class="clickable-text" onclick="collectRelic('马铃铛', this)">
+          <span class="pulse-dot"></span>
+          <span>祖传<strong>马铃铛</strong>，每一声都是家族的回响</span>
+        </div>
+        
         <button class="nav-btn" onclick="nextPage()">下一页 →</button>
       </div>
     </div>
     
-    <!-- 第5页：章节2下 -->
+    <!-- 第5页：滇藏之路 -->
     <div class="page" id="page-4" style="display:none">
       <div class="chapter-layout">
         <div class="chapter-header">
           <span class="chapter-num">02</span>
-          <h3 class="chapter-title">第2章</h3>
+          <h3 class="chapter-title">马帮铃声</h3>
         </div>
-        <div class="dialogue-box">
-          <div class="dialogue-avatar"></div>
-          <div class="dialogue-content">
-            <span class="speaker">历史人物</span>
-            <div class="clickable-item" onclick="collectRelic('马铃铛', this)">
-              <span class="pulse-dot"></span>
-              <strong>"马铃铛"</strong>
-            </div>
+        
+        <div class="text-block">
+          <p>从大理到拉萨，要走四十五天。途经丽江、中甸、德钦，翻越梅里雪山，才能到达雪域高原。</p>
+          <p>一路上，洱青见识了各个民族的风情：白族的三道茶、纳西族的东巴文、藏族的酥油茶。</p>
+        </div>
+        
+        <div class="mini-choice">
+          <p>茶马古道上，马帮用什么交换藏区的马匹？</p>
+          <div class="mini-options">
+            <button onclick="selectMiniChoice(this, '金银', false)">金银</button>
+            <button onclick="selectMiniChoice(this, '茶叶', true)">茶叶</button>
+            <button onclick="selectMiniChoice(this, '丝绸', false)">丝绸</button>
           </div>
+          <div class="mini-result" id="mini-result-1"></div>
         </div>
-        <button class="nav-btn" onclick="nextPage()">下一页 →</button>
+        
+        <button class="nav-btn" id="btn-page4" onclick="nextPage()" disabled>下一页 →</button>
       </div>
     </div>
-
-    <!-- 第6页：章节3上 -->
+    
+    <!-- 第6页：交易 -->
     <div class="page" id="page-5" style="display:none">
       <div class="chapter-layout">
         <div class="chapter-header">
           <span class="chapter-num">03</span>
-          <h3 class="chapter-title">第3章</h3>
+          <h3 class="chapter-title">以茶易马</h3>
         </div>
-        <div class="text-block">
-          <p>这是段洱青故事的第3章内容。在这里，你可以了解大理国时期茶马古道商人的生活与工作。</p>
-          <div class="clickable-text" onclick="collectNode('普洱茶', '饮', this)">
-            <span class="pulse-dot"></span>
-            <span><strong>普洱茶</strong></span>
+        
+        <div class="scene-with-text">
+          <div class="scene-side">
+            <div class="scene-placeholder"><span>集市</span></div>
+          </div>
+          <div class="text-side">
+            <p>拉萨的八廓街是茶马交易的中心。</p>
+            <p>洱青用一驮普洱茶，可以换一匹
+            <div class="clickable-text inline" onclick="collectNode('藏区', '饮', this)">
+              <span class="pulse-dot"></span>
+              <span><strong>藏区</strong></span>
+            </div>
+            的良马。</p>
+            <p>除了马匹，她还带回藏红花、麝香、皮毛，在大理能卖出高价。</p>
           </div>
         </div>
+        
+        <div class="item-row">
+          <div class="clickable-item" onclick="collectRelic('银饰', this)">
+            <span class="pulse-dot"></span>
+            <span>藏族<strong>银饰</strong></span>
+          </div>
+          <span>——这是她用一块茶饼换来的宝贝</span>
+        </div>
+        
         <button class="nav-btn" onclick="nextPage()">下一页 →</button>
       </div>
     </div>
     
-    <!-- 第7页：章节3下 -->
+    <!-- 第7页：酥油茶 -->
     <div class="page" id="page-6" style="display:none">
       <div class="chapter-layout">
         <div class="chapter-header">
           <span class="chapter-num">03</span>
-          <h3 class="chapter-title">第3章</h3>
+          <h3 class="chapter-title">以茶易马</h3>
         </div>
-        <div class="dialogue-box">
-          <div class="dialogue-avatar"></div>
-          <div class="dialogue-content">
-            <span class="speaker">历史人物</span>
-            <div class="clickable-item" onclick="collectRelic('银饰', this)">
+        
+        <div class="text-block">
+          <p>藏民最爱喝酥油茶，而做酥油茶必须用普洱茶。</p>
+          <p>茶叶在高原上煮得浓浓的，加入酥油和盐，是藏民每日必备的饮品。</p>
+          <p>洱青学会了打酥油茶，藏民都说她的手艺比当地人还好。</p>
+        </div>
+        
+        <div class="reveal-card" onclick="revealText(this)">
+          <div class="reveal-front">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+              <line x1="6" y1="1" x2="6" y2="4"/>
+              <line x1="10" y1="1" x2="10" y2="4"/>
+              <line x1="14" y1="1" x2="14" y2="4"/>
+            </svg>
+            <span>看看洱青的收藏</span>
+          </div>
+          <div class="reveal-back">
+            <div class="highlight-text" onclick="collectRelic('茶盏', this)">
               <span class="pulse-dot"></span>
-              <strong>"银饰"</strong>
+              <strong>大理窑茶盏</strong>
             </div>
+            <p>这是洱青最珍爱的器物，每次喝茶都用它。</p>
           </div>
         </div>
+        
         <button class="nav-btn" onclick="nextPage()">下一页 →</button>
       </div>
     </div>
-
-    <!-- 第8页：章节4上 -->
+    
+    <!-- 第8页：尾声 -->
     <div class="page" id="page-7" style="display:none">
       <div class="chapter-layout">
         <div class="chapter-header">
           <span class="chapter-num">04</span>
-          <h3 class="chapter-title">第4章</h3>
+          <h3 class="chapter-title">茶香万里</h3>
         </div>
-        <div class="text-block">
-          <p>这是段洱青故事的第4章内容。在这里，你可以了解大理国时期茶马古道商人的生活与工作。</p>
-          <div class="clickable-text" onclick="collectNode('骡马', '饮', this)">
-            <span class="pulse-dot"></span>
-            <span><strong>骡马</strong></span>
-          </div>
+        
+        <div class="ending-text">
+          <p>段洱青最终定居拉萨，开设了商号。</p>
+          <p>来自云南的普洱茶，经过她的手，成为高原上酥油茶的珍贵原料。</p>
+          <div class="divider"></div>
+          <p class="final">她感叹人生如茶，</p>
+          <p class="final">苦涩之后自有回甘；</p>
+          <p class="final">行路虽远，终有归处。</p>
         </div>
-        <button class="nav-btn" onclick="nextPage()">下一页 →</button>
+        
+        <button class="nav-btn" onclick="showSummary()">探索完成 →</button>
       </div>
     </div>
     
-    <!-- 第9页：章节4下 -->
+    <!-- 第9页：总结 -->
     <div class="page" id="page-8" style="display:none">
-      <div class="chapter-layout">
-        <div class="chapter-header">
-          <span class="chapter-num">04</span>
-          <h3 class="chapter-title">第4章</h3>
-        </div>
-        <div class="dialogue-box">
-          <div class="dialogue-avatar"></div>
-          <div class="dialogue-content">
-            <span class="speaker">历史人物</span>
-            <div class="clickable-item" onclick="collectRelic('茶盏', this)">
-              <span class="pulse-dot"></span>
-              <strong>"茶盏"</strong>
-            </div>
-          </div>
-        </div>
-        <button class="nav-btn" onclick="nextPage()">下一页 →</button>
-      </div>
-    </div>
-
-    
-    <!-- 总结页 -->
-    <div class="page" id="page-9" style="display:none">
       <div class="summary-layout">
         <h2 class="summary-title">探索完成</h2>
+        
         <div class="stats-row">
           <div class="stat-box">
-            <span class="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/></svg></span>
+            <span class="stat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6m4.22-10.22l4.24-4.24M6.34 17.66l-4.24 4.24M23 12h-6m-6 0H1m20.24 4.24l-4.24-4.24M6.34 6.34L2.1 2.1"/>
+              </svg>
+            </span>
             <span class="stat-num" id="summary-node-count">0</span>
             <span class="stat-label">主题节点</span>
           </div>
+          
           <div class="stat-box">
-            <span class="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="3" width="15" height="14" rx="2"/></svg></span>
+            <span class="stat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><rect x="6" y="3" width="15" height="14" rx="2"/>
+              </svg>
+            </span>
             <span class="stat-num" id="summary-relic-count">0</span>
             <span class="stat-label">历史文物</span>
           </div>
         </div>
+        
         <div class="collection-showcase">
-          <div class="showcase-section"><h4>主题节点</h4><div class="showcase-list" id="summary-nodes"></div></div>
-          <div class="showcase-section"><h4>历史文物</h4><div class="showcase-list" id="summary-relics"></div></div>
+          <div class="showcase-section">
+            <h4>主题节点</h4>
+            <div class="showcase-list" id="summary-nodes"></div>
+          </div>
+          
+          <div class="showcase-section">
+            <h4>历史文物</h4>
+            <div class="showcase-list" id="summary-relics"></div>
+          </div>
         </div>
+        
         <div class="summary-actions">
           <button class="btn-primary" onclick="restart()">重新探索</button>
           <button onclick="exportProgress()">复制分享链接</button>
         </div>
       </div>
     </div>
+    
   </div>
   
   <!-- 浮动工具栏 -->
   <div class="floating-toolbar">
     <button class="toolbar-btn" onclick="toggleCollectionPanel()" title="收集品">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+      </svg>
       <span class="toolbar-badge" id="collection-badge">0</span>
     </button>
   </div>
@@ -222,18 +312,27 @@ title: 段洱青
     <div class="panel-header">
       <h4>探索收获</h4>
       <button onclick="toggleCollectionPanel()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
       </button>
     </div>
     <div class="panel-body">
-      <div class="panel-section"><h5>主题节点</h5><div class="panel-grid" id="panel-nodes"></div></div>
-      <div class="panel-section"><h5>历史文物</h5><div class="panel-grid" id="panel-relics"></div></div>
+      <div class="panel-section">
+        <h5>主题节点</h5>
+        <div class="panel-grid" id="panel-nodes"></div>
+      </div>
+      
+      <div class="panel-section">
+        <h5>历史文物</h5>
+        <div class="panel-grid" id="panel-relics"></div>
+      </div>
     </div>
   </div>
   
   <!-- 页面指示器 -->
   <div class="page-dots">
-    <span class="dot active" onclick="if(isPageUnlocked(0)) showPage(0)"></span>
+    <span class="dot active" onclick="showPage(0)"></span>
     <span class="dot" onclick="if(isPageUnlocked(1)) showPage(1)"></span>
     <span class="dot" onclick="if(isPageUnlocked(2)) showPage(2)"></span>
     <span class="dot" onclick="if(isPageUnlocked(3)) showPage(3)"></span>
@@ -242,12 +341,12 @@ title: 段洱青
     <span class="dot" onclick="if(isPageUnlocked(6)) showPage(6)"></span>
     <span class="dot" onclick="if(isPageUnlocked(7)) showPage(7)"></span>
     <span class="dot" onclick="if(isPageUnlocked(8)) showPage(8)"></span>
-    <span class="dot" onclick="if(isPageUnlocked(9)) showPage(9)"></span>
   </div>
+  
 </div>
 
 <style>
-/* 样式与冶辛页面相同 */
+/* 故事页样式 */
 .story-wrapper { max-width: 900px; margin: 0 auto; padding: 20px; }
 .pages-container { position: relative; }
 .page { animation: fadeIn 0.5s ease; }
@@ -295,6 +394,7 @@ title: 段洱青
 .mini-result.show { color: var(--accent); }
 .artifact-showcase { display: flex; gap: 20px; background: rgba(139,69,19,0.05); border: 1px solid rgba(139,69,19,0.2); border-radius: 12px; padding: 20px; margin: 30px 0; cursor: pointer; transition: all 0.3s; }
 .artifact-showcase:hover { background: rgba(139,69,19,0.08); }
+.artifact-info .sub { font-size: 0.85rem; color: #888; }
 .item-row { display: flex; align-items: center; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
 .text-block { line-height: 1.8; margin-bottom: 30px; }
 .ending-text { text-align: center; padding: 40px 20px; }
@@ -322,9 +422,8 @@ title: 段洱青
 .scene-placeholder { background: rgba(128,0,32,0.05); border: 2px dashed rgba(128,0,32,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #888; font-size: 0.9rem; min-height: 200px; }
 .scene-placeholder.small { min-height: 100px; width: 100px; }
 .toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); color: white; padding: 12px 24px; border-radius: 30px; font-size: 0.9rem; z-index: 1000; animation: fadeIn 0.3s ease; }
-@media (max-width: 768px) { .intro-layout, .scene-with-text { grid-template-columns: 1fr; gap: 30px; } .char-name { font-size: 2rem; } .stats-row { gap: 20px; } .stat-num { font-size: 2rem; } }
 
-/* 浮动工具栏样式 */
+/* 浮动工具栏 */
 .floating-toolbar { position: fixed; bottom: 80px; right: 80px; display: flex; flex-direction: column; gap: 10px; z-index: 100; }
 .toolbar-btn { width: 44px; height: 44px; background: white; border: 1px solid rgba(128,0,32,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--accent); transition: all 0.3s; position: relative; }
 .toolbar-btn:hover { background: var(--accent); color: white; border-color: var(--accent); }
@@ -341,11 +440,13 @@ title: 段洱青
 .panel-item { padding: 6px 12px; background: rgba(128,0,32,0.05); border: 1px solid rgba(128,0,32,0.1); border-radius: 15px; font-size: 0.8rem; color: #666; cursor: pointer; transition: all 0.3s; }
 .panel-item:hover { background: rgba(128,0,32,0.1); }
 .panel-item.collected { background: var(--accent); color: white; border-color: var(--accent); }
+
+@media (max-width: 768px) { .intro-layout, .scene-with-text { grid-template-columns: 1fr; gap: 30px; } .char-name { font-size: 2rem; } .stats-row { gap: 20px; } .stat-num { font-size: 2rem; } .floating-toolbar { right: 20px; bottom: 20px; } .collection-panel { right: 20px; width: calc(100vw - 40px); max-width: 300px; } }
 </style>
 
 <script>
 var currentPage = 0;
-var totalPages = 10;
+var totalPages = 9;
 var unlockedPages = [0];
 var collections = { nodes: {}, relics: {} };
 
@@ -397,7 +498,7 @@ function toggleCollectionPanel() {
 
 function updateCollectionPanel() {
   var nodesGrid = document.getElementById('panel-nodes');
-  var allNodes = ['大理国', '苍山', '洱海', '茶马古道', '普洱茶', '马帮', '骡马', '茶叶', '藏区', '马匹'];
+  var allNodes = ['大理国', '茶马古道', '普洱茶', '马帮', '藏区'];
   nodesGrid.innerHTML = allNodes.map(function(n) {
     var collected = collections.nodes[n] ? 'collected' : '';
     return '<span class="panel-item ' + collected + '" onclick="collectNode(\'' + n + '\', \'饮\', this)">' + n + '</span>';
@@ -410,6 +511,22 @@ function updateCollectionPanel() {
   }).join('');
 }
 
+function selectMiniChoice(el, answer, isCorrect) {
+  var parent = el.parentElement;
+  parent.querySelectorAll('button').forEach(function(b) { b.classList.remove('correct', 'wrong'); });
+  var result = document.getElementById('mini-result-1');
+  if (isCorrect) {
+    el.classList.add('correct');
+    result.textContent = '正确！茶马古道上，云南的茶叶是最重要的交换物资。';
+    result.classList.add('show');
+    document.getElementById('btn-page4').disabled = false;
+  } else {
+    el.classList.add('wrong');
+    result.textContent = '不对，再想想。';
+    result.classList.add('show');
+  }
+}
+
 function revealText(el) { el.classList.add('revealed'); }
 
 function showSummary() {
@@ -418,7 +535,7 @@ function showSummary() {
   document.getElementById('summary-node-count').textContent = nodeCount;
   document.getElementById('summary-relic-count').textContent = relicCount;
   var nodesList = document.getElementById('summary-nodes');
-  var allNodes = ['大理国', '苍山', '洱海', '茶马古道', '普洱茶', '马帮', '骡马', '茶叶', '藏区', '马匹'];
+  var allNodes = ['大理国', '茶马古道', '普洱茶', '马帮', '藏区'];
   nodesList.innerHTML = allNodes.map(function(n) {
     var collected = collections.nodes[n] ? 'collected' : '';
     return '<span class="item ' + collected + '">' + n + '</span>';
@@ -429,14 +546,16 @@ function showSummary() {
     var collected = collections.relics[r] ? 'collected' : '';
     return '<span class="item ' + collected + '">' + r + '</span>';
   }).join('');
-  unlockedPages.push(9);
-  showPage(9);
+  unlockedPages.push(8);
+  showPage(8);
 }
 
 function restart() {
   currentPage = 0; collections = { nodes: {}, relics: {} }; unlockedPages = [0];
   document.querySelectorAll('.collected').forEach(function(el) { el.classList.remove('collected'); });
   document.querySelectorAll('.revealed').forEach(function(el) { el.classList.remove('revealed'); });
+  document.querySelectorAll('.correct, .wrong').forEach(function(el) { el.classList.remove('correct', 'wrong'); });
+  document.querySelectorAll('.mini-result').forEach(function(el) { el.classList.remove('show'); el.textContent = ''; });
   updateBadge(); updateCollectionPanel(); showPage(0);
 }
 
