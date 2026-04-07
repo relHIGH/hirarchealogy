@@ -806,6 +806,10 @@ header { background: #fdfcfa !important; }
   margin: 20px 0;
 }
 
+.reveal-card:hover {
+  background: rgba(128,0,32,0.08);
+}
+
 .reveal-front {
   display: flex;
   flex-direction: column;

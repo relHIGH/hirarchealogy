@@ -372,11 +372,11 @@ title: 段洱青
 .clickable-text.inline { display: inline-flex; margin: 0 5px; }
 .pulse-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
 @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } }
-.dialogue-box { display: flex; gap: 20px; background: rgba(128,0,32,0.03); padding: 25px; border-radius: 12px; margin: 30px 0; }
+.dialogue-box { display: flex; gap: 20px; background: #f5f3f0; padding: 25px; border-radius: 12px; margin: 30px 0; }
 .dialogue-avatar { width: 50px; height: 50px; background: rgba(128,0,32,0.1); border-radius: 50%; flex-shrink: 0; }
 .dialogue-content { flex: 1; }
 .speaker { font-size: 0.85rem; color: var(--accent); font-weight: 600; margin-bottom: 8px; display: block; }
-.reveal-card { background: rgba(128,0,32,0.05); border: 2px dashed rgba(128,0,32,0.2); border-radius: 12px; padding: 40px; text-align: center; cursor: pointer; transition: all 0.3s; margin: 30px 0; }
+.reveal-card { background: #f5f3f0; border-radius: 12px; padding: 30px; text-align: center; cursor: pointer; transition: all 0.3s; margin: 20px 0; }
 .reveal-card:hover { background: rgba(128,0,32,0.08); }
 .reveal-card.revealed { border-style: solid; background: white; }
 .reveal-front { display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--accent); }
@@ -384,7 +384,7 @@ title: 段洱青
 .reveal-card.revealed .reveal-front { display: none; }
 .reveal-card.revealed .reveal-back { display: block; }
 .highlight-text { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: rgba(128,0,32,0.1); border-radius: 20px; margin: 15px 0; cursor: pointer; }
-.mini-choice { margin: 30px 0; padding: 20px; background: rgba(128,0,32,0.03); border-radius: 12px; }
+.mini-choice { margin: 30px 0; padding: 20px; background: #f5f3f0; border-radius: 12px; }
 .mini-options { display: flex; gap: 10px; flex-wrap: wrap; }
 .mini-options button { padding: 8px 20px; background: white; border: 1px solid rgba(128,0,32,0.2); border-radius: 20px; cursor: pointer; transition: all 0.3s; }
 .mini-options button:hover { background: rgba(128,0,32,0.05); }
@@ -392,8 +392,8 @@ title: 段洱青
 .mini-options button.wrong { background: #f8d7da; border-color: #dc3545; }
 .mini-result { margin-top: 15px; color: #555; min-height: 24px; }
 .mini-result.show { color: var(--accent); }
-.artifact-showcase { display: flex; gap: 20px; background: rgba(139,69,19,0.05); border: 1px solid rgba(139,69,19,0.2); border-radius: 12px; padding: 20px; margin: 30px 0; cursor: pointer; transition: all 0.3s; }
-.artifact-showcase:hover { background: rgba(139,69,19,0.08); }
+.artifact-showcase { display: flex; gap: 20px; background: #f5f3f0; border-radius: 12px; padding: 20px; margin: 20px 0; cursor: pointer; transition: all 0.3s; }
+.artifact-showcase:hover { background: #f0ece8; }
 .artifact-info .sub { font-size: 0.85rem; color: #888; }
 .item-row { display: flex; align-items: center; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
 .text-block { line-height: 1.8; margin-bottom: 30px; }
@@ -407,7 +407,7 @@ title: 段洱青
 .stat-icon { color: var(--accent); }
 .stat-num { font-size: 2.5rem; font-weight: 600; color: var(--accent); }
 .stat-label { color: #888; font-size: 0.9rem; }
-.collection-showcase { background: rgba(128,0,32,0.03); border-radius: 12px; padding: 30px; margin-bottom: 40px; text-align: left; }
+.collection-showcase { background: #f5f3f0; border-radius: 12px; padding: 30px; margin-bottom: 40px; text-align: left; }
 .showcase-section { margin-bottom: 25px; }
 .showcase-section h4 { color: #888; font-size: 0.85rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
 .showcase-list { display: flex; flex-wrap: wrap; gap: 10px; }

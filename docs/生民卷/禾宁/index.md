@@ -590,8 +590,6 @@ header { background: #fdfcfa !important; }
   align-items: center;
   gap: 8px;
   padding: 8px 12px;
-  background: rgba(128,0,32,0.05);
-  border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s;
   margin: 10px 0;
@@ -772,8 +770,6 @@ header { background: #fdfcfa !important; }
 .mini-result {
   margin-top: 15px;
   padding: 10px;
-  background: rgba(128,0,32,0.05);
-  border-radius: 8px;
   color: #555;
   display: none;
 }

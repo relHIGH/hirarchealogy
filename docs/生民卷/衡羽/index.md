@@ -567,7 +567,7 @@ title: 衡羽
 .dialogue-box {
   display: flex;
   gap: 20px;
-  background: rgba(128,0,32,0.03);
+  background: #f5f3f0;
   padding: 25px;
   border-radius: 12px;
   margin: 30px 0;
@@ -576,7 +576,7 @@ title: 衡羽
 .dialogue-avatar {
   width: 50px;
   height: 50px;
-  background: rgba(128,0,32,0.1);
+  background: linear-gradient(135deg, #d0c8c0, #c0b8b0);
   border-radius: 50%;
   flex-shrink: 0;
 }
@@ -601,7 +601,7 @@ title: 衡羽
 
 /* 交互区 */
 .interaction-area {
-  background: rgba(128,0,32,0.03);
+  background: #f5f3f0;
   padding: 30px;
   border-radius: 12px;
   margin: 30px 0;
@@ -653,14 +653,13 @@ title: 衡羽
 
 /* 揭示卡片 */
 .reveal-card {
-  background: rgba(128,0,32,0.05);
-  border: 2px dashed rgba(128,0,32,0.2);
+  background: #f5f3f0;
   border-radius: 12px;
-  padding: 40px;
+  padding: 30px;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s;
-  margin: 30px 0;
+  margin: 20px 0;
 }
 
 .reveal-card:hover {
@@ -719,7 +718,7 @@ title: 衡羽
 .mini-choice {
   margin: 30px 0;
   padding: 20px;
-  background: rgba(128,0,32,0.03);
+  background: #f5f3f0;
   border-radius: 12px;
 }
 
@@ -770,17 +769,16 @@ title: 衡羽
 .artifact-showcase {
   display: flex;
   gap: 20px;
-  background: rgba(139,69,19,0.05);
-  border: 1px solid rgba(139,69,19,0.2);
+  background: #f5f3f0;
   border-radius: 12px;
   padding: 20px;
-  margin: 30px 0;
+  margin: 20px 0;
   cursor: pointer;
   transition: all 0.3s;
 }
 
 .artifact-showcase:hover {
-  background: rgba(139,69,19,0.08);
+  background: #f0ece8;
 }
 
 .artifact-visual {
@@ -879,7 +877,7 @@ title: 衡羽
 }
 
 .collection-showcase {
-  background: rgba(128,0,32,0.03);
+  background: #f5f3f0;
   border-radius: 12px;
   padding: 30px;
   margin-bottom: 40px;
