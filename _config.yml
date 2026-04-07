@@ -3,7 +3,7 @@ description: 戳一下，探古趣
 baseurl: /Antichuo
 url: https://relHIGH.github.io
 layout: default
-cache_bust: 1775560500 # 强制全站缓存更新
+cache_bust: 1775560800 # 强制全站缓存更新
 
 defaults:
   - scope:

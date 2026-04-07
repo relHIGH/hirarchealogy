@@ -346,7 +346,7 @@ title: 细封简兰
 
 header { background: #fdfcfa !important; }
 /* 样式与茶岑页面相同 */
-.story-wrapper { max-width: 900px; margin: 0 auto; padding: 20px; }
+.story-wrapper { max-width: 900px; margin: 0 auto; padding: 20px; background: #faf6ee; }
 .pages-container { position: relative; }
 .page { animation: fadeIn 0.5s ease; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
