@@ -325,6 +325,14 @@ title: 柳边声
 </div>
 
 <style>
+.container { 
+  background: transparent !important; 
+  box-shadow: none !important; 
+  padding: 0 !important; 
+  max-width: 100% !important; 
+  margin: 0 !important; 
+}
+header { background: #fdfcfa !important; }
 /* 样式与茶岑页面相同 */
 .story-wrapper { max-width: 900px; margin: 0 auto; padding: 20px; }
 .pages-container { position: relative; }
