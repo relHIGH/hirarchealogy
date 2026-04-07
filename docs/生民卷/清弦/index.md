@@ -357,7 +357,7 @@ title: 柳边声
 .speaker { font-size: 0.85rem; color: var(--accent); font-weight: 600; margin-bottom: 8px; display: block; }
 .reveal-card { background: #f5f3f0; border-radius: 12px; padding: 30px; text-align: center; cursor: pointer; transition: all 0.3s; margin: 20px 0; }
 .reveal-card:hover { background: rgba(128,0,32,0.08); }
-.reveal-card.revealed { border-style: solid; background: white; }
+.reveal-card.revealed { border-style: solid; }
 .reveal-front { display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--accent); }
 .reveal-back { display: none; text-align: left; }
 .reveal-card.revealed .reveal-front { display: none; }

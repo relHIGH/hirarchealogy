@@ -668,7 +668,6 @@ title: 衡羽
 
 .reveal-card.revealed {
   border-style: solid;
-  background: white;
 }
 
 .reveal-front {
