@@ -346,10 +346,15 @@ title: 段洱青
 </div>
 
 <style>
+/* 覆盖默认布局 */
 .container { 
-  background: #fdfcfa !important; 
-  box-shadow: 0 20px 80px rgba(0,0,0,0.06) !important; 
+  background: transparent !important; 
+  box-shadow: none !important; 
+  padding: 0 !important; 
+  max-width: 100% !important; 
+  margin: 0 !important; 
 }
+
 header { background: #fdfcfa !important; }
 /* 故事页样式 */
 .story-wrapper { max-width: 900px; margin: 0 auto; padding: 20px; }
