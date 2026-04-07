@@ -10,7 +10,7 @@ title: 生民卷
   </div>
   
   <div class="character-row">
-    <a href="./炉青/" class="char-item" data-char="冶辛">
+    <a href="./冶辛/" class="char-item" data-char="冶辛">
       <div class="char-img" style="background-position: 0% 0%;"></div>
       <div class="char-info">
         <span class="char-dynasty">战国</span>
