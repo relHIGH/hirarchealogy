@@ -336,11 +336,8 @@ title: 细封简兰
 
 <style>
 .container { 
-  background: transparent !important; 
-  box-shadow: none !important; 
-  padding: 0 !important; 
-  max-width: 100% !important; 
-  margin: 0 !important; 
+  background: #fdfcfa !important; 
+  box-shadow: 0 20px 80px rgba(0,0,0,0.06) !important; 
 }
 header { background: #fdfcfa !important; }
 /* 样式与茶岑页面相同 */

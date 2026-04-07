@@ -347,11 +347,8 @@ title: 段洱青
 
 <style>
 .container { 
-  background: transparent !important; 
-  box-shadow: none !important; 
-  padding: 0 !important; 
-  max-width: 100% !important; 
-  margin: 0 !important; 
+  background: #fdfcfa !important; 
+  box-shadow: 0 20px 80px rgba(0,0,0,0.06) !important; 
 }
 header { background: #fdfcfa !important; }
 /* 故事页样式 */
