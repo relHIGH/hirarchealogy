@@ -142,7 +142,7 @@ title: 首页
     </div>
   </div>
   <div class="footer-copyright">
-    <p>© 2025 Anti Chuo Project</p>
+    <p>© 2026 Anti Chuo Project</p>
   </div>
 </footer>
 

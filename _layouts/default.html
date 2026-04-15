@@ -161,7 +161,9 @@
         <div id="markdown-body">{{ content }}</div>
         {% if page.url != "/" and page.url != "/index.html" %}<div id="discovery-section" style="margin-top: 80px;"><div id="discovery-nodes" class="orb-grid" style="gap:25px;"></div></div>{% endif %}
       </main>
+      {% if page.url != "/" and page.url != "/index.html" %}
       <footer>ANTI CHUO &copy; {{ site.time | date: "%Y" }}</footer>
+      {% endif %}
     </div>
   </div>
 
