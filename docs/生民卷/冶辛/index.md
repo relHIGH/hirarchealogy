@@ -1222,6 +1222,141 @@ header { background: #fdfcfa !important; }
   background: rgba(128,0,32,0.3);
 }
 
+/* 浮动工具栏 */
+.floating-toolbar {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 100;
+}
+
+.floating-toolbar .toolbar-btn {
+  width: 50px;
+  height: 50px;
+  background: var(--accent);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  box-shadow: 0 4px 15px rgba(128,0,32,0.3);
+  transition: all 0.3s;
+  position: relative;
+}
+
+.floating-toolbar .toolbar-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(128,0,32,0.4);
+}
+
+.toolbar-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 20px;
+  height: 20px;
+  background: #d4a574;
+  color: white;
+  font-size: 0.7rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 收集面板 */
+.collection-panel {
+  position: fixed;
+  top: 50%;
+  right: 40px;
+  transform: translateY(-50%) translateX(120%);
+  width: 280px;
+  max-height: 70vh;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.15);
+  transition: transform 0.3s, opacity 0.3s;
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.collection-panel.active {
+  transform: translateY(-50%) translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #f0ede8;
+}
+
+.panel-header h4 {
+  margin: 0;
+  font-family: "Songti SC", serif;
+  color: var(--accent);
+}
+
+.panel-header button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #999;
+  padding: 4px;
+}
+
+.panel-body {
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.panel-section {
+  margin-bottom: 20px;
+}
+
+.panel-section h5 {
+  font-size: 0.8rem;
+  color: #999;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.panel-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.panel-item {
+  padding: 6px 12px;
+  background: rgba(128,0,32,0.05);
+  border: 1px solid rgba(128,0,32,0.1);
+  border-radius: 15px;
+  font-size: 0.8rem;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.panel-item:hover {
+  background: rgba(128,0,32,0.1);
+}
+
+.panel-item.collected {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
 /* Toast */
 .toast {
   position: fixed;
