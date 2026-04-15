@@ -839,6 +839,32 @@ title: 衡羽
   flex-wrap: wrap;
 }
 
+/* 可点击文本 */
+.clickable-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: rgba(128,0,32,0.05);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin: 10px 0;
+}
+
+.clickable-text:hover {
+  background: rgba(128,0,32,0.1);
+}
+
+.clickable-text.collected {
+  background: rgba(128,0,32,0.2);
+}
+
+.clickable-text.inline {
+  display: inline-flex;
+  margin: 0;
+}
+
 /* 文本块 */
 .text-block {
   line-height: 1.8;
