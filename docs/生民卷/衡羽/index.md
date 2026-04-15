@@ -767,7 +767,7 @@ title: 衡羽
 .mini-options button {
   padding: 8px 20px;
   background: white;
-  border: 1px solid rgba(128,0,32,0.2);
+  border: 1px solid #d0c8c0;
   border-radius: 20px;
   cursor: pointer;
   transition: all 0.3s;
@@ -938,12 +938,12 @@ title: 衡羽
 }
 
 .showcase-list .item {
-  padding: 8px 16px;
-  background: white;
-  border: 1px solid rgba(128,0,32,0.2);
-  border-radius: 20px;
-  font-size: 0.9rem;
-  color: #666;
+  padding: 6px 14px;
+  background: #f0ede8;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  color: #888;
+  border: 1px dashed #ccc;
 }
 
 .showcase-list .item.collected {
