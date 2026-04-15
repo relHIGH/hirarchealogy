@@ -373,6 +373,17 @@ title: 衡羽
 </div>
 
 <style>
+/* 覆盖默认布局 */
+.container { 
+  background: transparent !important; 
+  box-shadow: none !important; 
+  padding: 0 !important; 
+  max-width: 100% !important; 
+  margin: 0 !important; 
+}
+
+header { background: #fdfcfa !important; }
+
 /* 暖沙色背景 */
 .story-wrapper {
   position: relative;
