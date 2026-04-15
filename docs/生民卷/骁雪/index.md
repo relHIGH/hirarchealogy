@@ -341,25 +341,131 @@ title: 萧骐
 
 header { background: #fdfcfa !important; }
 /* 样式与茶岑页面相同 */
-.story-wrapper { max-width: 900px; margin: 0 auto; padding: 20px; background: #faf6ee; }
-.pages-container { position: relative; }
-.page { animation: fadeIn 0.5s ease; }
+.story-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: auto;
+  background: #faf6ee;
+  margin-top: 40px;
+  padding: 40px 0 60px;
+}
+.pages-container {
+  width: 100%;
+  padding: 20px 60px 40px;
+  box-sizing: border-box;
+}
+.page {
+  width: 100%;
+  margin: 0;
+  padding: 15px 0 30px 60px;
+  animation: fadeIn 0.5s ease;
+}
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-.intro-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; min-height: 60vh; }
-.char-name { font-family: "Songti SC", serif; font-size: 2.5rem; color: var(--accent); margin-bottom: 10px; }
-.char-era { color: #888; font-size: 1rem; margin-bottom: 30px; letter-spacing: 2px; }
-.char-bio { line-height: 1.8; color: #555; margin-bottom: 40px; }
-.nav-btn { padding: 12px 32px; background: var(--accent); color: white; border: none; border-radius: 30px; font-size: 1rem; cursor: pointer; transition: all 0.3s; font-family: inherit; }
-.nav-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(128,0,32,0.3); }
-.nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-.intro-right .scene-img { width: 100%; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
+.intro-layout {
+  display: flex;
+  min-height: auto;
+  align-items: center;
+  gap: 40px;
+  padding: 20px 0;
+}
+.intro-left {
+  flex: 0 0 45%;
+  padding-left: 0;
+  text-align: left !important;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.intro-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.char-name {
+  font-family: "Songti SC", serif;
+  font-size: 2.2rem;
+  color: var(--accent);
+  margin: 0 0 6px 0;
+  letter-spacing: 2px;
+  text-align: left;
+}
+.char-era {
+  font-size: 1rem;
+  color: #888;
+  margin: 0 0 16px 0;
+  letter-spacing: 2px;
+}
+.char-bio {
+  background: #f5f3f0;
+  padding: 14px 18px;
+  border-radius: 8px;
+  border-left: 3px solid var(--accent);
+  line-height: 1.6;
+  color: #555;
+  margin: 0 0 30px 0;
+  font-size: 0.95rem;
+}
+.nav-btn {
+  margin-top: 40px;
+  padding: 10px 24px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: "Songti SC", serif;
+  letter-spacing: 2px;
+}
+.nav-btn:hover:not(:disabled) {
+  transform: translateX(3px);
+  box-shadow: 0 8px 20px rgba(128,0,32,0.25);
+}
+.nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.intro-right .scene-img {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  filter: sepia(20%) saturate(80%) hue-rotate(-10deg);
+}
+.scene-img {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  filter: sepia(20%) saturate(80%) hue-rotate(-10deg);
+}
 .chapter-layout { max-width: 700px; margin: 0 auto; }
 .chapter-header { display: flex; align-items: baseline; gap: 15px; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid rgba(128,0,32,0.1); }
 .chapter-num { font-family: "Songti SC", serif; font-size: 0.9rem; color: var(--accent); opacity: 0.6; }
 .chapter-title { font-family: "Songti SC", serif; font-size: 1.5rem; color: var(--accent); margin: 0; }
-.scene-with-text { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-.scene-img { width: 100%; border-radius: 12px; }
-.text-side p, .text-block p { line-height: 1.8; color: #444; margin-bottom: 15px; }
+.scene-with-text {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+  align-items: flex-start;
+}
+.scene-side {
+  flex: 0 0 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.text-side {
+  flex: 1;
+}
+.text-side p {
+  line-height: 1.9;
+  color: #444;
+  margin-bottom: 1em;
+  font-size: 0.95rem;
+}
 .clickable-text, .clickable-item { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(128,0,32,0.05); border: 1px solid rgba(128,0,32,0.2); border-radius: 20px; cursor: pointer; transition: all 0.3s; margin: 10px 0; }
 .clickable-text:hover, .clickable-item:hover { background: rgba(128,0,32,0.1); }
 .clickable-text.collected, .clickable-item.collected { background: var(--accent); color: white; border-color: var(--accent); }
@@ -390,7 +496,13 @@ header { background: #fdfcfa !important; }
 .artifact-showcase:hover { background: #f0ece8; }
 .artifact-info .sub { font-size: 0.85rem; color: #888; }
 .item-row { display: flex; align-items: center; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
-.text-block { line-height: 1.8; margin-bottom: 30px; }
+.text-block { margin-bottom: 20px; }
+.text-block > p {
+  line-height: 1.9;
+  color: #444;
+  margin-bottom: 1em;
+  font-size: 0.95rem;
+}
 .ending-text { text-align: center; padding: 40px 20px; }
 .ending-text .final { font-size: 1.1rem; color: #444; margin-bottom: 15px; line-height: 1.8; }
 .divider { width: 60px; height: 1px; background: rgba(128,0,32,0.2); margin: 30px auto; }
@@ -435,7 +547,18 @@ header { background: #fdfcfa !important; }
 .panel-item:hover { background: rgba(128,0,32,0.1); }
 .panel-item.collected { background: var(--accent); color: white; border-color: var(--accent); }
 
-@media (max-width: 768px) { .intro-layout, .scene-with-text { grid-template-columns: 1fr; gap: 30px; } .char-name { font-size: 2rem; } .stats-row { gap: 20px; } .stat-num { font-size: 2rem; } .floating-toolbar { right: 20px; bottom: 20px; } .collection-panel { right: 20px; width: calc(100vw - 40px); max-width: 300px; } }
+@media (max-width: 900px) {
+  .pages-container { padding: 20px 30px 40px; }
+  .page { padding-left: 30px; }
+  .intro-layout { flex-direction: column; }
+  .intro-left { flex: none; width: 100%; }
+  .scene-with-text { flex-direction: column; }
+  .scene-side { flex: none; }
+  .choice-cards { flex-direction: column; align-items: center; }
+  .stats-row { flex-direction: column; gap: 15px; }
+  .floating-toolbar { right: 20px; bottom: 20px; }
+  .collection-panel { right: 20px; width: calc(100vw - 40px); max-width: 300px; }
+}
 </style>
 
 <script>

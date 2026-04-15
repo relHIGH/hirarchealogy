@@ -346,11 +346,13 @@ title: 细封简兰
 
 header { background: #fdfcfa !important; }
 /* 样式与茶岑页面相同 */
-.story-wrapper { max-width: 900px; margin: 0 auto; padding: 20px; background: #faf6ee; }
-.pages-container { position: relative; }
-.page { animation: fadeIn 0.5s ease; }
+.story-wrapper { position: relative; width: 100%; min-height: auto; background: #faf6ee; margin-top: 40px; padding: 40px 0 60px; }
+.pages-container { width: 100%; padding: 20px 60px 40px; box-sizing: border-box; }
+.page { width: 100%; margin: 0; padding: 15px 0 30px 60px; animation: fadeIn 0.5s ease; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-.intro-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; min-height: 60vh; }
+.intro-layout { display: flex; min-height: auto; align-items: center; gap: 40px; padding: 20px 0; }
+.intro-left { flex: 0 0 45%; padding-left: 0; text-align: left !important; }
+.intro-right { flex: 1; }
 .char-name { font-family: "Songti SC", serif; font-size: 2.5rem; color: var(--accent); margin-bottom: 10px; }
 .char-era { color: #888; font-size: 1rem; margin-bottom: 30px; letter-spacing: 2px; }
 .char-bio { line-height: 1.8; color: #555; margin-bottom: 40px; }

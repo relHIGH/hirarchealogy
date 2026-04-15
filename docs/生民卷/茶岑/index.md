@@ -1,16 +1,17 @@
 ---
 layout: default
-title: 段洱青
+title: 茶岑
 ---
 
 <div class="story-wrapper" id="storyWrapper">
+  
   <div class="pages-container" id="pagesContainer">
     
     <!-- 第1页：介绍 -->
     <div class="page" id="page-0">
       <div class="intro-layout">
         <div class="intro-left">
-          <h1 class="char-name">段洱青篇</h1>
+          <h1 class="char-name">茶岑篇</h1>
           <p class="char-era">大理国 · 茶马古道商人</p>
           <div class="char-bio">
             <p>生于大理国苍洱之间。这里是茶马古道的起点，普洱茶从这里走向雪域高原。她继承了家族的马帮，带领骡马队翻山越岭，用茶叶换取藏区的马匹、药材和皮毛。</p>
@@ -18,7 +19,7 @@ title: 段洱青
           <button class="nav-btn" onclick="nextPage()">开始探索 →</button>
         </div>      
         <div class="intro-right">
-          <img src="{{ site.baseurl }}/assets/images/scenes/茶岑.png" alt="段洱青" class="scene-img"/>
+          <img src="{{ site.baseurl }}/assets/images/scenes/茶岑.png" alt="茶岑" class="scene-img"/>
         </div>
       </div>
     </div>
@@ -33,21 +34,15 @@ title: 段洱青
         <div class="scene-with-text">
           <div class="scene-side">
             <img src="{{ site.baseurl }}/assets/images/scenes/茶岑.png" alt="大理风光" class="scene-img"/>
+            <div class="interact-hint">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+              <span>点击场景中的光点</span>
+            </div>
           </div>
           <div class="text-side">
-            <p>段洱青生在
-            <div class="clickable-text inline" onclick="collectNode('大理国', '饮', this)">
-              <span class="pulse-dot"></span>
-              <span><strong>大理国</strong></span>
-            </div>
-            ，长在苍山脚下、洱海之滨。</p>
+            <p>茶岑生在<span class="clickable-text inline" onclick="collectNode('大理国', '饮', this)"><span class="pulse-dot"></span><strong>大理国</strong></span>，长在苍山脚下、洱海之滨。</p>
             <p>这里是茶马古道的起点，每年春天，茶农们把晒好的普洱茶装上马背，沿着蜿蜒的山路走向西藏。</p>
-            <p>洱青从小跟着父亲走
-            <div class="clickable-text inline" onclick="collectNode('茶马古道', '饮', this)">
-              <span class="pulse-dot"></span>
-              <span><strong>茶马古道</strong></span>
-            </div>
-            ，熟悉每一条山路、每一个驿站。</p>
+            <p>她从小跟着父亲走<span class="clickable-text inline" onclick="collectNode('茶马古道', '饮', this)"><span class="pulse-dot"></span><strong>茶马古道</strong></span>，熟悉每一条山路、每一个驿站。</p>
           </div>
         </div>
         <button class="nav-btn" onclick="nextPage()">下一页 →</button>
@@ -63,13 +58,8 @@ title: 段洱青
         </div>
         
         <div class="text-block">
-          <p>大理的茶叶以
-          <div class="clickable-text inline" onclick="collectNode('普洱茶', '饮', this)">
-            <span class="pulse-dot"></span>
-            <span><strong>普洱茶</strong></span>
-          </div>
-          最为著名。茶饼压得紧实，便于马帮长途运输，越陈越香。</p>
-          <p>洱青家世代经营茶叶，她能从茶汤的颜色分辨出茶叶的年份和产地。</p>
+          <p>大理的茶叶以<span class="clickable-text inline" onclick="collectNode('普洱茶', '饮', this)"><span class="pulse-dot"></span><strong>普洱茶</strong></span>最为著名。茶饼压得紧实，便于马帮长途运输，越陈越香。</p>
+          <p>她家世代经营茶叶，她能从茶汤的颜色分辨出茶叶的年份和产地。</p>
         </div>
         
         <div class="artifact-showcase" onclick="collectRelic('普洱茶砖', this)">
@@ -97,12 +87,7 @@ title: 段洱青
         
         <div class="scene-with-text">
           <div class="text-side">
-            <p>洱青二十岁那年，正式接管了家族的
-            <div class="clickable-text inline" onclick="collectNode('马帮', '饮', this)">
-              <span class="pulse-dot"></span>
-              <span><strong>马帮</strong></span>
-            </div>
-            。</p>
+            <p>她二十岁那年，正式接管了家族的<span class="clickable-text inline" onclick="collectNode('马帮', '饮', this)"><span class="pulse-dot"></span><strong>马帮</strong></span>。</p>
             <p>二十匹骡马，十个赶马人，载着两吨茶叶，这就是她的全部家当。</p>
             <p>每次出发，马铃声响彻山谷，那是商人最动听的音乐。</p>
           </div>
@@ -115,7 +100,7 @@ title: 段洱青
           <div class="dialogue-avatar"></div>
           <div class="dialogue-content">
             <span class="speaker">老赶马人</span>
-            <p>"马帮有三宝：好马、好茶、好向导。洱青姑娘占了前两样，这第三样，得靠经验积累。"</p>
+            <p>"马帮有三宝：好马、好茶、好向导。姑娘占了前两样，这第三样，得靠经验积累。"</p>
           </div>
         </div>
         
@@ -138,7 +123,7 @@ title: 段洱青
         
         <div class="text-block">
           <p>从大理到拉萨，要走四十五天。途经丽江、中甸、德钦，翻越梅里雪山，才能到达雪域高原。</p>
-          <p>一路上，洱青见识了各个民族的风情：白族的三道茶、纳西族的东巴文、藏族的酥油茶。</p>
+          <p>一路上，她见识了各个民族的风情：白族的三道茶、纳西族的东巴文、藏族的酥油茶。</p>
         </div>
         
         <div class="mini-choice">
@@ -169,12 +154,7 @@ title: 段洱青
           </div>
           <div class="text-side">
             <p>拉萨的八廓街是茶马交易的中心。</p>
-            <p>洱青用一驮普洱茶，可以换一匹
-            <div class="clickable-text inline" onclick="collectNode('藏区', '饮', this)">
-              <span class="pulse-dot"></span>
-              <span><strong>藏区</strong></span>
-            </div>
-            的良马。</p>
+            <p>她用一驮普洱茶，可以换一匹<span class="clickable-text inline" onclick="collectNode('藏区', '饮', this)"><span class="pulse-dot"></span><strong>藏区</strong></span>的良马。</p>
             <p>除了马匹，她还带回藏红花、麝香、皮毛，在大理能卖出高价。</p>
           </div>
         </div>
@@ -202,7 +182,7 @@ title: 段洱青
         <div class="text-block">
           <p>藏民最爱喝酥油茶，而做酥油茶必须用普洱茶。</p>
           <p>茶叶在高原上煮得浓浓的，加入酥油和盐，是藏民每日必备的饮品。</p>
-          <p>洱青学会了打酥油茶，藏民都说她的手艺比当地人还好。</p>
+          <p>她学会了打酥油茶，藏民都说她的手艺比当地人还好。</p>
         </div>
         
         <div class="reveal-card" onclick="revealText(this)">
@@ -213,14 +193,14 @@ title: 段洱青
               <line x1="10" y1="1" x2="10" y2="4"/>
               <line x1="14" y1="1" x2="14" y2="4"/>
             </svg>
-            <span>看看洱青的收藏</span>
+            <span>看看她的收藏</span>
           </div>
           <div class="reveal-back">
             <div class="highlight-text" onclick="collectRelic('茶盏', this)">
               <span class="pulse-dot"></span>
               <strong>大理窑茶盏</strong>
             </div>
-            <p>这是洱青最珍爱的器物，每次喝茶都用它。</p>
+            <p>这是她最珍爱的器物，每次喝茶都用它。</p>
           </div>
         </div>
         
@@ -237,7 +217,7 @@ title: 段洱青
         </div>
         
         <div class="ending-text">
-          <p>段洱青最终定居拉萨，开设了商号。</p>
+          <p>她最终定居拉萨，开设了商号。</p>
           <p>来自云南的普洱茶，经过她的手，成为高原上酥油茶的珍贵原料。</p>
           <div class="divider"></div>
           <p class="final">她感叹人生如茶，</p>
@@ -340,7 +320,7 @@ title: 段洱青
     <span class="dot" onclick="if(isPageUnlocked(5)) showPage(5)"></span>
     <span class="dot" onclick="if(isPageUnlocked(6)) showPage(6)"></span>
     <span class="dot" onclick="if(isPageUnlocked(7)) showPage(7)"></span>
-    <span class="dot" onclick="if(isPageUnlocked(8)) showPage(8)"></span>
+    <span class="dot final" onclick="if(isPageUnlocked(8)) showPage(8)"></span>
   </div>
   
 </div>
@@ -356,102 +336,809 @@ title: 段洱青
 }
 
 header { background: #fdfcfa !important; }
-/* 故事页样式 */
-.story-wrapper { max-width: 900px; margin: 0 auto; padding: 20px; background: #faf6ee; }
-.pages-container { position: relative; }
-.page { animation: fadeIn 0.5s ease; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-.intro-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; min-height: 60vh; }
-.char-name { font-family: "Songti SC", serif; font-size: 2.5rem; color: var(--accent); margin-bottom: 10px; }
-.char-era { color: #888; font-size: 1rem; margin-bottom: 30px; letter-spacing: 2px; }
-.char-bio { line-height: 1.8; color: #555; margin-bottom: 40px; }
-.nav-btn { padding: 12px 32px; background: var(--accent); color: white; border: none; border-radius: 30px; font-size: 1rem; cursor: pointer; transition: all 0.3s; font-family: inherit; }
-.nav-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(128,0,32,0.3); }
-.nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-.intro-right .scene-img { width: 100%; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
-.chapter-layout { max-width: 700px; margin: 0 auto; }
-.chapter-header { display: flex; align-items: baseline; gap: 15px; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid rgba(128,0,32,0.1); }
-.chapter-num { font-family: "Songti SC", serif; font-size: 0.9rem; color: var(--accent); opacity: 0.6; }
-.chapter-title { font-family: "Songti SC", serif; font-size: 1.5rem; color: var(--accent); margin: 0; }
-.scene-with-text { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-.scene-img { width: 100%; border-radius: 12px; }
-.text-side p, .text-block p { line-height: 1.8; color: #444; margin-bottom: 15px; }
-.clickable-text, .clickable-item { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(128,0,32,0.05); border: 1px solid rgba(128,0,32,0.2); border-radius: 20px; cursor: pointer; transition: all 0.3s; margin: 10px 0; }
-.clickable-text:hover, .clickable-item:hover { background: rgba(128,0,32,0.1); }
-.clickable-text.collected, .clickable-item.collected { background: var(--accent); color: white; border-color: var(--accent); }
-.clickable-text.inline { display: inline-flex; margin: 0 5px; }
-.pulse-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
-@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } }
-.dialogue-box { display: flex; gap: 20px; background: #f5f3f0; padding: 25px; border-radius: 12px; margin: 30px 0; }
-.dialogue-avatar { width: 50px; height: 50px; background: rgba(128,0,32,0.1); border-radius: 50%; flex-shrink: 0; }
-.dialogue-content { flex: 1; }
-.speaker { font-size: 0.85rem; color: var(--accent); font-weight: 600; margin-bottom: 8px; display: block; }
-.reveal-card { background: #f5f3f0; border-radius: 12px; padding: 30px; text-align: center; cursor: pointer; transition: all 0.3s; margin: 20px 0; }
-.reveal-card:hover { background: rgba(128,0,32,0.08); }
-.reveal-card.revealed { border-style: solid; }
-.reveal-front { display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--accent); }
-.reveal-back { display: none; text-align: left; }
-.reveal-card.revealed .reveal-front { display: none; }
-.reveal-card.revealed .reveal-back { display: block; }
-.highlight-text { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: rgba(128,0,32,0.1); border-radius: 20px; margin: 15px 0; cursor: pointer; }
-.mini-choice { margin: 30px 0; padding: 20px; background: #f5f3f0; border-radius: 12px; }
-.mini-options { display: flex; gap: 10px; flex-wrap: wrap; }
-.mini-options button { padding: 8px 20px; background: white; border: 1px solid rgba(128,0,32,0.2); border-radius: 20px; cursor: pointer; transition: all 0.3s; }
-.mini-options button:hover { background: rgba(128,0,32,0.05); }
-.mini-options button.correct { background: #d4edda; border-color: #28a745; }
-.mini-options button.wrong { background: #f8d7da; border-color: #dc3545; }
-.mini-result { margin-top: 15px; color: #555; min-height: 24px; }
-.mini-result.show { color: var(--accent); }
-.artifact-showcase { display: flex; gap: 20px; background: #f5f3f0; border-radius: 12px; padding: 20px; margin: 20px 0; cursor: pointer; transition: all 0.3s; }
-.artifact-showcase:hover { background: #f0ece8; }
-.artifact-info .sub { font-size: 0.85rem; color: #888; }
-.item-row { display: flex; align-items: center; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
-.text-block { line-height: 1.8; margin-bottom: 30px; }
-.ending-text { text-align: center; padding: 40px 20px; }
-.ending-text .final { font-size: 1.1rem; color: #444; margin-bottom: 15px; line-height: 1.8; }
-.divider { width: 60px; height: 1px; background: rgba(128,0,32,0.2); margin: 30px auto; }
-.summary-layout { text-align: center; padding: 40px 20px; }
-.summary-title { font-family: "Songti SC", serif; font-size: 2rem; color: var(--accent); margin-bottom: 40px; }
-.stats-row { display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; }
-.stat-box { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-.stat-icon { color: var(--accent); }
-.stat-num { font-size: 2.5rem; font-weight: 600; color: var(--accent); }
-.stat-label { color: #888; font-size: 0.9rem; }
-.collection-showcase { background: #f5f3f0; border-radius: 12px; padding: 30px; margin-bottom: 40px; text-align: left; }
-.showcase-section { margin-bottom: 25px; }
-.showcase-section h4 { color: #888; font-size: 0.85rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
-.showcase-list { display: flex; flex-wrap: wrap; gap: 10px; }
-.showcase-list .item { padding: 8px 16px; background: white; border: 1px solid rgba(128,0,32,0.2); border-radius: 20px; font-size: 0.9rem; color: #666; }
-.showcase-list .item.collected { background: var(--accent); color: white; border-color: var(--accent); }
-.summary-actions { display: flex; justify-content: center; gap: 20px; }
-.btn-primary { padding: 12px 30px; background: var(--accent); color: white; border: none; border-radius: 30px; cursor: pointer; font-size: 0.95rem; transition: all 0.3s; }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(128,0,32,0.3); }
-.page-dots { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 100; }
-.dot { width: 8px; height: 8px; background: rgba(128,0,32,0.2); border-radius: 50%; cursor: pointer; transition: all 0.3s; }
-.dot.active { background: var(--accent); transform: scale(1.2); }
-.scene-placeholder { background: rgba(128,0,32,0.05); border: 2px dashed rgba(128,0,32,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #888; font-size: 0.9rem; min-height: 200px; }
-.scene-placeholder.small { min-height: 100px; width: 100px; }
-.toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); color: white; padding: 12px 24px; border-radius: 30px; font-size: 0.9rem; z-index: 1000; animation: fadeIn 0.3s ease; }
+
+/* 暖沙色背景 */
+.story-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: auto;
+  background: #faf6ee;
+  margin-top: 40px;
+  padding: 40px 0 60px;
+}
+
+.pages-container {
+  width: 100%;
+  padding: 20px 60px 40px;
+  box-sizing: border-box;
+}
+
+.page {
+  width: 100%;
+  margin: 0;
+  padding: 15px 0 30px 60px;
+}
+
+/* 介绍页 - 与冶辛一致 */
+.intro-layout {
+  display: flex;
+  min-height: auto;
+  align-items: center;
+  gap: 40px;
+  padding: 20px 0;
+}
+
+.intro-left {
+  flex: 0 0 45%;
+  padding-left: 0;
+  text-align: left !important;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.intro-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.char-name {
+  font-family: "Songti SC", serif;
+  font-size: 2.2rem;
+  color: var(--accent);
+  margin: 0 0 6px 0;
+  letter-spacing: 2px;
+  text-align: left;
+}
+
+.char-era {
+  font-size: 1rem;
+  color: #888;
+  margin: 0 0 16px 0;
+  letter-spacing: 2px;
+}
+
+.char-bio {
+  background: #f5f3f0;
+  padding: 14px 18px;
+  border-radius: 8px;
+  border-left: 3px solid var(--accent);
+}
+
+.char-bio p {
+  line-height: 1.6;
+  color: #555;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.nav-btn {
+  margin-top: 40px;
+  padding: 10px 24px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: "Songti SC", serif;
+  letter-spacing: 2px;
+}
+
+.nav-btn:hover:not(:disabled) {
+  transform: translateX(3px);
+  box-shadow: 0 8px 20px rgba(128,0,32,0.25);
+}
+
+.nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 场景图片 */
+.scene-img {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  filter: sepia(20%) saturate(80%) hue-rotate(-10deg);
+}
+
+/* 章节布局 */
+.chapter-layout {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.chapter-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.chapter-num {
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.chapter-title {
+  font-family: "Songti SC", serif;
+  font-size: 1.5rem;
+  color: var(--accent);
+  margin: 0;
+  letter-spacing: 3px;
+}
+
+/* 图文并排 */
+.scene-with-text {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+  align-items: flex-start;
+}
+
+.scene-side {
+  flex: 0 0 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.text-side {
+  flex: 1;
+}
+
+.text-side p, .text-block p {
+  line-height: 1.9;
+  color: #444;
+  margin-bottom: 1em;
+  font-size: 0.95rem;
+}
+
+.interact-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #999;
+  font-size: 0.75rem;
+}
+
+.interact-hint svg {
+  animation: pulse 2s infinite;
+}
+
+/* 可点击文本 */
+.clickable-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: rgba(128,0,32,0.05);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin: 10px 0;
+}
+
+.clickable-text:hover {
+  background: rgba(128,0,32,0.1);
+}
+
+.clickable-text.collected {
+  background: rgba(128,0,32,0.2);
+}
+
+.clickable-text.inline {
+  display: inline-flex;
+  margin: 0 5px;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.3); opacity: 1; }
+}
+
+/* 对话框 */
+.dialogue-box {
+  display: flex;
+  gap: 15px;
+  background: #f5f3f0;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.dialogue-avatar {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #d0c8c0, #c0b8b0);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dialogue-content {
+  flex: 1;
+}
+
+.speaker {
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.dialogue-content p {
+  margin: 0;
+  line-height: 1.7;
+  color: #444;
+}
+
+/* 迷你选择 */
+.mini-choice {
+  background: #f5f3f0;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.mini-choice > p {
+  margin: 0 0 15px 0;
+  color: #555;
+}
+
+.mini-options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.mini-options button {
+  padding: 8px 20px;
+  background: white;
+  border: 1.5px solid #d0c8c0;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: "Songti SC", serif;
+  transition: all 0.3s;
+}
+
+.mini-options button:hover {
+  border-color: var(--accent);
+}
+
+.mini-options button.correct {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.mini-options button.wrong {
+  background: #ddd;
+  border-color: #ccc;
+  color: #888;
+}
+
+.mini-result {
+  margin-top: 15px;
+  padding: 10px;
+  background: rgba(128,0,32,0.05);
+  border-radius: 8px;
+  color: #555;
+  display: none;
+}
+
+.mini-result.show {
+  display: block;
+}
+
+/* 文本块 */
+.text-block {
+  margin-bottom: 20px;
+}
+
+.text-block > p {
+  line-height: 1.9;
+  color: #444;
+  margin-bottom: 1em;
+}
+
+.item-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 15px 0;
+  flex-wrap: wrap;
+}
+
+.clickable-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  background: rgba(128,0,32,0.05);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.clickable-item:hover {
+  background: rgba(128,0,32,0.1);
+}
+
+/* 揭示卡片 */
+.reveal-card {
+  background: #f5f3f0;
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin: 20px 0;
+}
+
+.reveal-card:hover {
+  background: rgba(128,0,32,0.08);
+}
+
+.reveal-front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #888;
+}
+
+.reveal-front svg {
+  opacity: 0.5;
+}
+
+.reveal-back {
+  display: none;
+  text-align: left;
+}
+
+.reveal-card.revealed .reveal-front {
+  display: none;
+}
+
+.reveal-card.revealed .reveal-back {
+  display: block;
+}
+
+.highlight-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  background: rgba(128,0,32,0.1);
+  border-radius: 8px;
+  margin: 15px 0;
+  cursor: pointer;
+  color: var(--accent);
+}
+
+/* 文物展示 */
+.artifact-showcase {
+  display: flex;
+  gap: 20px;
+  background: #f5f3f0;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.artifact-showcase:hover {
+  background: #f0ece8;
+}
+
+.artifact-visual {
+  flex-shrink: 0;
+}
+
+.artifact-info {
+  flex: 1;
+}
+
+.artifact-info > p {
+  margin: 0 0 5px 0;
+  color: #444;
+}
+
+.artifact-info .sub {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+/* 场景占位图 */
+.scene-placeholder {
+  width: 280px;
+  height: 200px;
+  background: linear-gradient(135deg, #e8e0d8 0%, #d8d0c8 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.scene-placeholder::before {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  border: 2px dashed rgba(128,0,32,0.15);
+  border-radius: 8px;
+}
+
+.scene-placeholder span {
+  color: rgba(128,0,32,0.3);
+  font-family: "Songti SC", serif;
+  font-size: 1.5rem;
+  letter-spacing: 4px;
+}
+
+.scene-placeholder.small {
+  width: 120px;
+  height: 80px;
+}
+
+/* 结尾文字 */
+.ending-text {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.ending-text > p {
+  line-height: 2;
+  color: #444;
+  margin-bottom: 0.5em;
+  font-size: 1rem;
+}
+
+.ending-text .divider {
+  width: 60px;
+  height: 1px;
+  background: var(--accent);
+  margin: 30px auto;
+}
+
+.ending-text .final {
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+
+/* 总结页 */
+.summary-layout {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.summary-title {
+  font-family: "Songti SC", serif;
+  font-size: 1.8rem;
+  color: var(--accent);
+  margin-bottom: 30px;
+  letter-spacing: 5px;
+}
+
+.stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 30px;
+  background: #f5f3f0;
+  border-radius: 12px;
+  min-width: 100px;
+}
+
+.stat-icon {
+  color: var(--accent);
+}
+
+.stat-num {
+  font-size: 2rem;
+  color: var(--accent);
+  font-family: "Songti SC", serif;
+}
+
+.stat-label {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+.collection-showcase {
+  margin-bottom: 30px;
+}
+
+.showcase-section {
+  margin-bottom: 20px;
+}
+
+.showcase-section h4 {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  font-family: "Songti SC", serif;
+}
+
+.showcase-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.showcase-list .item {
+  padding: 6px 14px;
+  background: #f0ede8;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  color: #888;
+  border: 1px dashed #ccc;
+}
+
+.showcase-list .item.collected {
+  background: var(--accent);
+  color: white;
+  border-style: solid;
+}
+
+.summary-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.summary-actions button {
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: "Songti SC", serif;
+}
+
+.btn-primary {
+  background: var(--accent);
+  border: none;
+  color: white;
+}
+
+.summary-actions button:not(.btn-primary) {
+  background: transparent;
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
+}
+
+/* 页面指示器 */
+.page-dots {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 200;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(128,0,32,0.15);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.dot.active {
+  background: var(--accent);
+  transform: scale(1.3);
+}
+
+.dot.final {
+  background: rgba(128,0,32,0.3);
+}
 
 /* 浮动工具栏 */
-.floating-toolbar { position: fixed; bottom: 80px; right: 80px; display: flex; flex-direction: column; gap: 10px; z-index: 100; }
-.toolbar-btn { width: 44px; height: 44px; background: white; border: 1px solid rgba(128,0,32,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--accent); transition: all 0.3s; position: relative; }
-.toolbar-btn:hover { background: var(--accent); color: white; border-color: var(--accent); }
-.toolbar-badge { position: absolute; top: -2px; right: -2px; width: 18px; height: 18px; background: var(--accent); color: white; font-size: 0.7rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-.collection-panel { position: fixed; top: 50%; right: 80px; transform: translateY(-50%) translateX(120%); width: 280px; max-height: 70vh; background: white; border-radius: 16px; box-shadow: 0 5px 30px rgba(0,0,0,0.15); transition: transform 0.3s, opacity 0.3s; z-index: 200; display: none; flex-direction: column; opacity: 0; pointer-events: none; }
-.collection-panel.active { display: flex; transform: translateY(-50%) translateX(0); opacity: 1; pointer-events: auto; }
-.panel-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-bottom: 1px solid #f0ede8; }
-.panel-header h4 { margin: 0; font-family: "Songti SC", serif; color: var(--accent); }
-.panel-header button { background: none; border: none; cursor: pointer; color: #999; padding: 4px; }
-.panel-body { padding: 20px; overflow-y: auto; }
-.panel-section { margin-bottom: 20px; }
-.panel-section h5 { font-size: 0.8rem; color: #999; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
-.panel-grid { display: flex; flex-wrap: wrap; gap: 8px; }
-.panel-item { padding: 6px 12px; background: rgba(128,0,32,0.05); border: 1px solid rgba(128,0,32,0.1); border-radius: 15px; font-size: 0.8rem; color: #666; cursor: pointer; transition: all 0.3s; }
-.panel-item:hover { background: rgba(128,0,32,0.1); }
-.panel-item.collected { background: var(--accent); color: white; border-color: var(--accent); }
+.floating-toolbar {
+  position: fixed;
+  bottom: 60px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 100;
+}
 
-@media (max-width: 768px) { .intro-layout, .scene-with-text { grid-template-columns: 1fr; gap: 30px; } .char-name { font-size: 2rem; } .stats-row { gap: 20px; } .stat-num { font-size: 2rem; } .floating-toolbar { right: 20px; bottom: 20px; } .collection-panel { right: 20px; width: calc(100vw - 40px); max-width: 300px; } }
+.toolbar-btn {
+  width: 44px;
+  height: 44px;
+  background: white;
+  border: 1px solid rgba(128,0,32,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--accent);
+  transition: all 0.3s;
+  position: relative;
+}
+
+.toolbar-btn:hover {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.toolbar-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 18px;
+  height: 18px;
+  background: var(--accent);
+  color: white;
+  font-size: 0.7rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 收集面板 */
+.collection-panel {
+  position: fixed;
+  top: 50%;
+  right: 40px;
+  transform: translateY(-50%) translateX(120%);
+  width: 280px;
+  max-height: 70vh;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.15);
+  transition: transform 0.3s, opacity 0.3s;
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.collection-panel.active {
+  transform: translateY(-50%) translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #f0ede8;
+}
+
+.panel-header h4 {
+  margin: 0;
+  font-family: "Songti SC", serif;
+  color: var(--accent);
+}
+
+.panel-header button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #999;
+  padding: 4px;
+}
+
+.panel-body {
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.panel-section {
+  margin-bottom: 20px;
+}
+
+.panel-section h5 {
+  font-size: 0.8rem;
+  color: #999;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.panel-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.panel-item {
+  padding: 6px 12px;
+  background: rgba(128,0,32,0.05);
+  border: 1px solid rgba(128,0,32,0.1);
+  border-radius: 15px;
+  font-size: 0.8rem;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.panel-item:hover {
+  background: rgba(128,0,32,0.1);
+}
+
+.panel-item.collected {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(128,0,32,0.9);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  z-index: 1000;
+  animation: fadeInOut 2s forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  20% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  80% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+}
+
+/* 响应式 */
+@media (max-width: 900px) {
+  .pages-container { padding: 20px 30px 40px; }
+  .page { padding-left: 30px; }
+  .intro-layout { flex-direction: column; }
+  .intro-left { flex: none; width: 100%; }
+  .scene-with-text { flex-direction: column; }
+  .scene-side { flex: none; }
+  .stats-row { flex-direction: column; gap: 15px; }
+  .floating-toolbar { right: 20px; bottom: 20px; }
+  .collection-panel { right: 20px; width: calc(100vw - 40px); max-width: 300px; }
+}
 </style>
 
 <script>
@@ -460,22 +1147,39 @@ var totalPages = 9;
 var unlockedPages = [0];
 var collections = { nodes: {}, relics: {} };
 
-function showPage(n) {
-  if (!unlockedPages.includes(n)) return;
-  document.querySelectorAll('.page').forEach(function(page, i) { page.style.display = i === n ? 'block' : 'none'; });
-  document.querySelectorAll('.dot').forEach(function(dot, i) { dot.classList.toggle('active', i === n); });
-  currentPage = n;
+function showPage(pageNum) {
+  if (!unlockedPages.includes(pageNum)) return;
+  
+  for (var i = 0; i < totalPages; i++) {
+    var page = document.getElementById('page-' + i);
+    if (page) page.style.display = 'none';
+  }
+  
+  var target = document.getElementById('page-' + pageNum);
+  if (target) target.style.display = 'block';
+  
+  currentPage = pageNum;
+  
+  var dots = document.querySelectorAll('.dot');
+  for (var i = 0; i < dots.length; i++) {
+    dots[i].classList.toggle('active', i === pageNum);
+  }
+  
   window.scrollTo(0, 0);
+}
+
+function isPageUnlocked(pageNum) {
+  return unlockedPages.includes(pageNum);
 }
 
 function nextPage() {
   if (currentPage < totalPages - 1) {
-    unlockedPages.push(currentPage + 1);
+    if (!unlockedPages.includes(currentPage + 1)) {
+      unlockedPages.push(currentPage + 1);
+    }
     showPage(currentPage + 1);
   }
 }
-
-function isPageUnlocked(n) { return unlockedPages.includes(n); }
 
 function collectNode(nodeName, theme, el) {
   if (!collections.nodes[nodeName]) {
@@ -483,7 +1187,7 @@ function collectNode(nodeName, theme, el) {
     if (el) el.classList.add('collected');
     updateBadge();
     updateCollectionPanel();
-    showToast('收集节点：' + nodeName);
+    showToast('已点亮节点：' + nodeName);
   }
 }
 
@@ -493,13 +1197,14 @@ function collectRelic(relicName, el) {
     if (el) el.classList.add('collected');
     updateBadge();
     updateCollectionPanel();
-    showToast('收集文物：' + relicName);
+    showToast('已收集文物：' + relicName);
   }
 }
 
 function updateBadge() {
   var count = Object.keys(collections.nodes).length + Object.keys(collections.relics).length;
-  document.getElementById('collection-badge').textContent = count;
+  var badge = document.getElementById('collection-badge');
+  if (badge) badge.textContent = count;
 }
 
 function toggleCollectionPanel() {
@@ -509,72 +1214,141 @@ function toggleCollectionPanel() {
 function updateCollectionPanel() {
   var nodesGrid = document.getElementById('panel-nodes');
   var allNodes = ['大理国', '茶马古道', '普洱茶', '马帮', '藏区'];
-  nodesGrid.innerHTML = allNodes.map(function(n) {
-    var collected = collections.nodes[n] ? 'collected' : '';
-    return '<span class="panel-item ' + collected + '" onclick="collectNode(\'' + n + '\', \'饮\', this)">' + n + '</span>';
-  }).join('');
+  if (nodesGrid) {
+    nodesGrid.innerHTML = allNodes.map(function(n) {
+      var collected = collections.nodes[n] ? 'collected' : '';
+      return '<span class="panel-item ' + collected + '" onclick="collectNode(\'' + n + '\', \'饮\', this)">' + n + '</span>';
+    }).join('');
+  }
+  
   var relicsGrid = document.getElementById('panel-relics');
   var allRelics = ['普洱茶砖', '马铃铛', '银饰', '茶盏'];
-  relicsGrid.innerHTML = allRelics.map(function(r) {
-    var collected = collections.relics[r] ? 'collected' : '';
-    return '<span class="panel-item ' + collected + '" onclick="collectRelic(\'' + r + '\', this)">' + r + '</span>';
-  }).join('');
+  if (relicsGrid) {
+    relicsGrid.innerHTML = allRelics.map(function(r) {
+      var collected = collections.relics[r] ? 'collected' : '';
+      return '<span class="panel-item ' + collected + '" onclick="collectRelic(\'' + r + '\', this)">' + r + '</span>';
+    }).join('');
+  }
 }
 
 function selectMiniChoice(el, answer, isCorrect) {
   var parent = el.parentElement;
-  parent.querySelectorAll('button').forEach(function(b) { b.classList.remove('correct', 'wrong'); });
+  var buttons = parent.querySelectorAll('button');
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].classList.remove('correct', 'wrong');
+  }
+  
   var result = document.getElementById('mini-result-1');
+  
   if (isCorrect) {
     el.classList.add('correct');
-    result.textContent = '正确！茶马古道上，云南的茶叶是最重要的交换物资。';
-    result.classList.add('show');
-    document.getElementById('btn-page4').disabled = false;
+    if (result) {
+      result.textContent = '正确！茶马古道上，云南的茶叶是最重要的交换物资。';
+      result.classList.add('show');
+    }
+    var btn = document.getElementById('btn-page4');
+    if (btn) btn.disabled = false;
   } else {
     el.classList.add('wrong');
-    result.textContent = '不对，再想想。';
-    result.classList.add('show');
+    if (result) {
+      result.textContent = '不对，再想想。';
+      result.classList.add('show');
+    }
   }
 }
 
-function revealText(el) { el.classList.add('revealed'); }
+function revealText(el) {
+  el.classList.add('revealed');
+}
 
 function showSummary() {
   var nodeCount = Object.keys(collections.nodes).length;
   var relicCount = Object.keys(collections.relics).length;
-  document.getElementById('summary-node-count').textContent = nodeCount;
-  document.getElementById('summary-relic-count').textContent = relicCount;
+  
+  var nodeCountEl = document.getElementById('summary-node-count');
+  var relicCountEl = document.getElementById('summary-relic-count');
+  
+  if (nodeCountEl) nodeCountEl.textContent = nodeCount;
+  if (relicCountEl) relicCountEl.textContent = relicCount;
+  
   var nodesList = document.getElementById('summary-nodes');
   var allNodes = ['大理国', '茶马古道', '普洱茶', '马帮', '藏区'];
-  nodesList.innerHTML = allNodes.map(function(n) {
-    var collected = collections.nodes[n] ? 'collected' : '';
-    return '<span class="item ' + collected + '">' + n + '</span>';
-  }).join('');
+  if (nodesList) {
+    nodesList.innerHTML = allNodes.map(function(n) {
+      var collected = collections.nodes[n] ? 'collected' : '';
+      return '<span class="item ' + collected + '">' + n + '</span>';
+    }).join('');
+  }
+  
   var relicsList = document.getElementById('summary-relics');
   var allRelics = ['普洱茶砖', '马铃铛', '银饰', '茶盏'];
-  relicsList.innerHTML = allRelics.map(function(r) {
-    var collected = collections.relics[r] ? 'collected' : '';
-    return '<span class="item ' + collected + '">' + r + '</span>';
-  }).join('');
-  unlockedPages.push(8);
+  if (relicsList) {
+    relicsList.innerHTML = allRelics.map(function(r) {
+      var collected = collections.relics[r] ? 'collected' : '';
+      return '<span class="item ' + collected + '">' + r + '</span>';
+    }).join('');
+  }
+  
+  if (!unlockedPages.includes(8)) {
+    unlockedPages.push(8);
+  }
   showPage(8);
 }
 
 function restart() {
-  currentPage = 0; collections = { nodes: {}, relics: {} }; unlockedPages = [0];
-  document.querySelectorAll('.collected').forEach(function(el) { el.classList.remove('collected'); });
-  document.querySelectorAll('.revealed').forEach(function(el) { el.classList.remove('revealed'); });
-  document.querySelectorAll('.correct, .wrong').forEach(function(el) { el.classList.remove('correct', 'wrong'); });
-  document.querySelectorAll('.mini-result').forEach(function(el) { el.classList.remove('show'); el.textContent = ''; });
-  updateBadge(); updateCollectionPanel(); showPage(0);
+  currentPage = 0;
+  collections = { nodes: {}, relics: {} };
+  unlockedPages = [0];
+  
+  var collected = document.querySelectorAll('.collected');
+  for (var i = 0; i < collected.length; i++) {
+    collected[i].classList.remove('collected');
+  }
+  
+  var revealed = document.querySelectorAll('.revealed');
+  for (var i = 0; i < revealed.length; i++) {
+    revealed[i].classList.remove('revealed');
+  }
+  
+  var correctWrong = document.querySelectorAll('.correct, .wrong');
+  for (var i = 0; i < correctWrong.length; i++) {
+    correctWrong[i].classList.remove('correct', 'wrong');
+  }
+  
+  var miniResults = document.querySelectorAll('.mini-result');
+  for (var i = 0; i < miniResults.length; i++) {
+    miniResults[i].classList.remove('show');
+    miniResults[i].textContent = '';
+  }
+  
+  var navBtns = document.querySelectorAll('.nav-btn');
+  for (var i = 0; i < navBtns.length; i++) {
+    if (navBtns[i].id && navBtns[i].id.indexOf('btn-page') === 0) {
+      navBtns[i].disabled = true;
+    }
+  }
+  
+  updateBadge();
+  updateCollectionPanel();
+  showPage(0);
 }
 
-function exportProgress() { alert('分享功能开发中'); }
+function exportProgress() {
+  alert('分享功能开发中');
+}
 
 function showToast(msg) {
-  var toast = document.createElement('div'); toast.className = 'toast'; toast.textContent = msg;
-  document.body.appendChild(toast); setTimeout(function() { toast.remove(); }, 2000);
+  var toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = msg;
+  document.body.appendChild(toast);
+  setTimeout(function() { 
+    if (toast.parentNode) toast.parentNode.removeChild(toast);
+  }, 2000);
 }
 
-document.addEventListener('DOMContentLoaded', function() { showPage(0); updateCollectionPanel(); });
+document.addEventListener('DOMContentLoaded', function() {
+  showPage(0);
+  updateCollectionPanel();
+});
 </script>

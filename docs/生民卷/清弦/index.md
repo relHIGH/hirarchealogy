@@ -335,76 +335,560 @@ title: 柳边声
 }
 
 header { background: #fdfcfa !important; }
-/* 样式与茶岑页面相同 */
-.story-wrapper { max-width: 900px; margin: 0 auto; padding: 20px; background: #faf6ee; }
-.pages-container { position: relative; }
-.page { animation: fadeIn 0.5s ease; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-.intro-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; min-height: 60vh; }
-.char-name { font-family: "Songti SC", serif; font-size: 2.5rem; color: var(--accent); margin-bottom: 10px; }
-.char-era { color: #888; font-size: 1rem; margin-bottom: 30px; letter-spacing: 2px; }
-.char-bio { line-height: 1.8; color: #555; margin-bottom: 40px; }
-.nav-btn { padding: 12px 32px; background: var(--accent); color: white; border: none; border-radius: 30px; font-size: 1rem; cursor: pointer; transition: all 0.3s; font-family: inherit; }
-.nav-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(128,0,32,0.3); }
-.nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-.intro-right .scene-img { width: 100%; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
-.chapter-layout { max-width: 700px; margin: 0 auto; }
-.chapter-header { display: flex; align-items: baseline; gap: 15px; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid rgba(128,0,32,0.1); }
-.chapter-num { font-family: "Songti SC", serif; font-size: 0.9rem; color: var(--accent); opacity: 0.6; }
-.chapter-title { font-family: "Songti SC", serif; font-size: 1.5rem; color: var(--accent); margin: 0; }
-.scene-with-text { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-.scene-img { width: 100%; border-radius: 12px; }
-.text-side p, .text-block p { line-height: 1.8; color: #444; margin-bottom: 15px; }
-.clickable-text, .clickable-item { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(128,0,32,0.05); border: 1px solid rgba(128,0,32,0.2); border-radius: 20px; cursor: pointer; transition: all 0.3s; margin: 10px 0; }
-.clickable-text:hover, .clickable-item:hover { background: rgba(128,0,32,0.1); }
-.clickable-text.collected, .clickable-item.collected { background: var(--accent); color: white; border-color: var(--accent); }
-.clickable-text.inline { display: inline-flex; margin: 0 5px; }
-.pulse-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
-@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } }
-.dialogue-box { display: flex; gap: 20px; background: #f5f3f0; padding: 25px; border-radius: 12px; margin: 30px 0; }
-.dialogue-avatar { width: 50px; height: 50px; background: rgba(128,0,32,0.1); border-radius: 50%; flex-shrink: 0; }
-.dialogue-content { flex: 1; }
-.speaker { font-size: 0.85rem; color: var(--accent); font-weight: 600; margin-bottom: 8px; display: block; }
+
+/* 暖沙色背景 */
+.story-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: auto;
+  background: #faf6ee;
+  margin-top: 40px;
+  padding: 40px 0 60px;
+}
+
+.pages-container {
+  width: 100%;
+  padding: 20px 60px 40px;
+  box-sizing: border-box;
+}
+
+.page {
+  width: 100%;
+  margin: 0;
+  padding: 15px 0 30px 60px;
+}
+
+/* 介绍页 */
+.intro-layout {
+  display: flex;
+  min-height: auto;
+  align-items: center;
+  gap: 40px;
+  padding: 20px 0;
+}
+
+.intro-left {
+  flex: 0 0 45%;
+  padding-left: 0;
+  text-align: left !important;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.intro-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.char-name {
+  font-family: "Songti SC", serif;
+  font-size: 2.2rem;
+  color: var(--accent);
+  margin: 0 0 6px 0;
+  letter-spacing: 2px;
+  text-align: left;
+}
+
+.char-era {
+  font-size: 1rem;
+  color: #888;
+  margin: 0 0 16px 0;
+  letter-spacing: 2px;
+}
+
+.char-bio {
+  background: #f5f3f0;
+  padding: 14px 18px;
+  border-radius: 8px;
+  border-left: 3px solid var(--accent);
+}
+
+.char-bio p {
+  line-height: 1.6;
+  color: #555;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.nav-btn {
+  margin-top: 40px;
+  padding: 10px 24px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: "Songti SC", serif;
+  letter-spacing: 2px;
+}
+
+.nav-btn:hover:not(:disabled) {
+  transform: translateX(3px);
+  box-shadow: 0 8px 20px rgba(128,0,32,0.25);
+}
+
+.nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 场景图片 */
+.scene-img {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  filter: sepia(20%) saturate(80%) hue-rotate(-10deg);
+}
+
+.intro-right .scene-img {
+  max-width: 100%;
+  max-height: 300px;
+}
+
+/* 场景占位图 */
+.scene-placeholder {
+  width: 280px;
+  height: 200px;
+  background: linear-gradient(135deg, #e8e0d8 0%, #d8d0c8 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.scene-placeholder::before {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  border: 2px dashed rgba(128,0,32,0.15);
+  border-radius: 8px;
+}
+
+.scene-placeholder span {
+  color: rgba(128,0,32,0.3);
+  font-family: "Songti SC", serif;
+  font-size: 1.5rem;
+  letter-spacing: 4px;
+}
+
+.scene-placeholder.small {
+  width: 120px;
+  height: 80px;
+}
+
+/* 章节布局 */
+.chapter-layout {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.chapter-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.chapter-num {
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.chapter-title {
+  font-family: "Songti SC", serif;
+  font-size: 1.5rem;
+  color: var(--accent);
+  margin: 0;
+  letter-spacing: 3px;
+}
+
+/* 图文并排 */
+.scene-with-text {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+  align-items: flex-start;
+}
+
+.scene-side {
+  flex: 0 0 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.text-side {
+  flex: 1;
+}
+
+.text-side p {
+  line-height: 1.9;
+  color: #444;
+  margin-bottom: 1em;
+  font-size: 0.95rem;
+}
+
+/* 对话框 */
+.dialogue-box {
+  display: flex;
+  gap: 15px;
+  background: #f5f3f0;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.dialogue-avatar {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #d0c8c0, #c0b8b0);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dialogue-content {
+  flex: 1;
+}
+
+.speaker {
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.dialogue-content p {
+  margin: 0;
+  line-height: 1.7;
+  color: #444;
+}
 .reveal-card { background: #f5f3f0; border-radius: 12px; padding: 30px; text-align: center; cursor: pointer; transition: all 0.3s; margin: 20px 0; }
 .reveal-card:hover { background: rgba(128,0,32,0.08); }
 .reveal-card.revealed { border-style: solid; }
 .reveal-front { display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--accent); }
 .reveal-back { display: none; text-align: left; }
-.reveal-card.revealed .reveal-front { display: none; }
-.reveal-card.revealed .reveal-back { display: block; }
-.highlight-text { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: rgba(128,0,32,0.1); border-radius: 20px; margin: 15px 0; cursor: pointer; }
-.mini-choice { margin: 30px 0; padding: 20px; background: #f5f3f0; border-radius: 12px; }
-.mini-options { display: flex; gap: 10px; flex-wrap: wrap; }
-.mini-options button { padding: 8px 20px; background: white; border: 1px solid rgba(128,0,32,0.2); border-radius: 20px; cursor: pointer; transition: all 0.3s; }
-.mini-options button:hover { background: rgba(128,0,32,0.05); }
-.mini-options button.correct { background: #d4edda; border-color: #28a745; }
-.mini-options button.wrong { background: #f8d7da; border-color: #dc3545; }
-.mini-result { margin-top: 15px; color: #555; min-height: 24px; }
-.mini-result.show { color: var(--accent); }
-.artifact-showcase { display: flex; gap: 20px; background: #f5f3f0; border-radius: 12px; padding: 20px; margin: 20px 0; cursor: pointer; transition: all 0.3s; }
-.artifact-showcase:hover { background: #f0ece8; }
-.artifact-info .sub { font-size: 0.85rem; color: #888; }
-.item-row { display: flex; align-items: center; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
-.text-block { line-height: 1.8; margin-bottom: 30px; }
-.ending-text { text-align: center; padding: 40px 20px; }
-.ending-text .final { font-size: 1.1rem; color: #444; margin-bottom: 15px; line-height: 1.8; }
-.divider { width: 60px; height: 1px; background: rgba(128,0,32,0.2); margin: 30px auto; }
-.summary-layout { text-align: center; padding: 40px 20px; }
-.summary-title { font-family: "Songti SC", serif; font-size: 2rem; color: var(--accent); margin-bottom: 40px; }
-.stats-row { display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; }
-.stat-box { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-.stat-icon { color: var(--accent); }
-.stat-num { font-size: 2.5rem; font-weight: 600; color: var(--accent); }
-.stat-label { color: #888; font-size: 0.9rem; }
-.collection-showcase { background: #f5f3f0; border-radius: 12px; padding: 30px; margin-bottom: 40px; text-align: left; }
-.showcase-section { margin-bottom: 25px; }
-.showcase-section h4 { color: #888; font-size: 0.85rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
-.showcase-list { display: flex; flex-wrap: wrap; gap: 10px; }
-.showcase-list .item { padding: 8px 16px; background: white; border: 1px solid rgba(128,0,32,0.2); border-radius: 20px; font-size: 0.9rem; color: #666; }
-.showcase-list .item.collected { background: var(--accent); color: white; border-color: var(--accent); }
-.summary-actions { display: flex; justify-content: center; gap: 20px; }
-.btn-primary { padding: 12px 30px; background: var(--accent); color: white; border: none; border-radius: 30px; cursor: pointer; font-size: 0.95rem; transition: all 0.3s; }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(128,0,32,0.3); }
+/* 揭示卡片 */
+.reveal-card {
+  background: #f5f3f0;
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin: 20px 0;
+}
+
+.reveal-card:hover {
+  background: rgba(128,0,32,0.08);
+}
+
+.reveal-front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #888;
+}
+
+.reveal-front svg {
+  opacity: 0.5;
+}
+
+.reveal-back {
+  display: none;
+  text-align: left;
+}
+
+.reveal-card.revealed .reveal-front {
+  display: none;
+}
+
+.reveal-card.revealed .reveal-back {
+  display: block;
+}
+
+.highlight-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  background: rgba(128,0,32,0.1);
+  border-radius: 8px;
+  margin: 15px 0;
+  cursor: pointer;
+  color: var(--accent);
+}
+
+.aside {
+  color: #999;
+  font-size: 0.85rem;
+  font-style: italic;
+  margin-top: 15px;
+}
+
+/* 迷你选择 */
+.mini-choice {
+  background: #f5f3f0;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.mini-choice > p {
+  margin: 0 0 15px 0;
+  color: #555;
+}
+
+.mini-options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.mini-options button {
+  padding: 8px 20px;
+  background: white;
+  border: 1.5px solid #d0c8c0;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: "Songti SC", serif;
+  transition: all 0.3s;
+}
+
+.mini-options button:hover {
+  border-color: var(--accent);
+}
+
+.mini-options button.correct {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.mini-options button.wrong {
+  background: #ddd;
+  border-color: #ccc;
+  color: #888;
+}
+
+.mini-result {
+  margin-top: 15px;
+  padding: 10px;
+  background: rgba(128,0,32,0.05);
+  border-radius: 8px;
+  color: #555;
+  display: none;
+}
+
+.mini-result.show {
+  display: block;
+}
+
+/* 文物展示 */
+.artifact-showcase {
+  display: flex;
+  gap: 20px;
+  background: #f5f3f0;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.artifact-showcase:hover {
+  background: #f0ece8;
+}
+
+.artifact-visual {
+  flex-shrink: 0;
+}
+
+.artifact-info {
+  flex: 1;
+}
+
+.artifact-info > p {
+  margin: 0 0 5px 0;
+  color: #444;
+}
+
+.artifact-info .sub {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+/* 文本块 */
+.text-block {
+  margin-bottom: 20px;
+}
+
+.text-block > p {
+  line-height: 1.9;
+  color: #444;
+  margin-bottom: 1em;
+}
+
+.item-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 15px 0;
+  flex-wrap: wrap;
+}
+
+.sub-text {
+  color: #888;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+/* 结尾文字 */
+.ending-text {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.ending-text > p {
+  line-height: 2;
+  color: #444;
+  margin-bottom: 0.5em;
+  font-size: 1rem;
+}
+
+.ending-text .divider {
+  width: 60px;
+  height: 1px;
+  background: var(--accent);
+  margin: 30px auto;
+}
+
+.ending-text .final {
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+
+/* 总结页 */
+.summary-layout {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  padding-left: 0;
+}
+
+.summary-title {
+  font-family: "Songti SC", serif;
+  font-size: 1.8rem;
+  color: var(--accent);
+  margin-bottom: 30px;
+  letter-spacing: 5px;
+}
+
+.stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 30px;
+  background: #f5f3f0;
+  border-radius: 12px;
+  min-width: 100px;
+}
+
+.stat-icon {
+  color: var(--accent);
+}
+
+.stat-num {
+  font-size: 2rem;
+  color: var(--accent);
+  font-family: "Songti SC", serif;
+}
+
+.stat-label {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+.collection-showcase {
+  margin-bottom: 30px;
+}
+
+.showcase-section {
+  margin-bottom: 20px;
+}
+
+.showcase-section h4 {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  font-family: "Songti SC", serif;
+}
+
+.showcase-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.showcase-list .item {
+  padding: 6px 14px;
+  background: #f0ede8;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  color: #888;
+  border: 1px dashed #ccc;
+}
+
+.showcase-list .item.collected {
+  background: var(--accent);
+  color: white;
+  border-style: solid;
+}
+
+.summary-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.summary-actions button {
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: "Songti SC", serif;
+}
+
+.btn-primary {
+  background: var(--accent);
+  border: none;
+  color: white;
+}
+
+.summary-actions button:not(.btn-primary) {
+  background: transparent;
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
+}
 .page-dots { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 100; }
 .dot { width: 8px; height: 8px; background: rgba(128,0,32,0.2); border-radius: 50%; cursor: pointer; transition: all 0.3s; }
 .dot.active { background: var(--accent); transform: scale(1.2); }
