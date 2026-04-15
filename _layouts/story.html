@@ -1,4 +1,27 @@
-<!-- 生民卷故事页通用结构 -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ page.title | default: page.name | remove: ".md" }} | Anti Chuo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/shengmin.css">
+  <style>
+    :root { 
+      --sidebar-width: 310px; --sidebar-peek: 55px; 
+      --accent: #800020; --bg-main: #f0ede4; --card-bg: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: "Georgia", "Times New Roman", "Songti SC", serif; 
+      background: var(--bg-main); 
+      color: #333; 
+      height: 100vh; 
+      overflow: hidden; 
+    }
+  </style>
+</head>
+<body data-path="{{ page.path }}">
+
 {% assign char_id = page.name | remove: ".md" %}
 
 <div class="story-wrapper" id="storyWrapper">
@@ -54,3 +77,6 @@ var STORY_CONFIG = {
   totalPages: {{ page.total_pages | default: 1 }}
 };
 </script>
+
+</body>
+</html>
