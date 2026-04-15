@@ -277,14 +277,17 @@ title: 茶岑
     
   </div>
   
-  <!-- 浮动工具栏 -->
-  <div class="floating-toolbar">
-    <button class="toolbar-btn" onclick="toggleCollectionPanel()" title="收集品">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-      </svg>
-      <span class="toolbar-badge" id="collection-badge">0</span>
-    </button>
+  <!-- 底部收集工具栏 -->
+  <div class="bottom-toolbar">
+    <div class="toolbar-content">
+      <span class="toolbar-label">探索收获</span>
+      <button class="toolbar-btn" onclick="toggleCollectionPanel()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+        </svg>
+        <span class="toolbar-badge" id="collection-badge">0</span>
+      </button>
+    </div>
   </div>
   
   <!-- 收集面板 -->
@@ -967,45 +970,61 @@ header { background: #fdfcfa !important; }
   background: rgba(128,0,32,0.3);
 }
 
-/* 浮动工具栏 */
-.floating-toolbar {
+/* 底部工具栏 */
+.bottom-toolbar {
   position: fixed;
-  bottom: 60px;
-  right: 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  bottom: 0;
+  left: 0;
+  right: 120px;
+  height: 60px;
+  background: white;
+  border-top: 1px solid #e8e0d8;
   z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 40px;
+}
+
+.toolbar-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.toolbar-label {
+  color: #888;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
 }
 
 .toolbar-btn {
   width: 44px;
   height: 44px;
-  background: white;
-  border: 1px solid rgba(128,0,32,0.2);
+  background: var(--accent);
+  border: none;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: var(--accent);
+  color: white;
   transition: all 0.3s;
   position: relative;
 }
 
 .toolbar-btn:hover {
-  background: var(--accent);
-  color: white;
-  border-color: var(--accent);
+  background: #600020;
+  transform: scale(1.05);
 }
 
 .toolbar-badge {
   position: absolute;
-  top: -2px;
-  right: -2px;
-  width: 18px;
-  height: 18px;
-  background: var(--accent);
+  top: -4px;
+  right: -4px;
+  width: 20px;
+  height: 20px;
+  background: #d4a574;
   color: white;
   font-size: 0.7rem;
   border-radius: 50%;
@@ -1105,6 +1124,19 @@ header { background: #fdfcfa !important; }
   border-color: var(--accent);
 }
 
+/* 响应式调整 */
+@media (max-width: 900px) {
+  .bottom-toolbar {
+    right: 55px;
+    padding: 0 20px;
+  }
+  .collection-panel {
+    right: 20px;
+    width: calc(100vw - 40px);
+    max-width: 300px;
+  }
+}
+
 /* Toast */
 .toast {
   position: fixed;
@@ -1136,8 +1168,6 @@ header { background: #fdfcfa !important; }
   .scene-with-text { flex-direction: column; }
   .scene-side { flex: none; }
   .stats-row { flex-direction: column; gap: 15px; }
-  .floating-toolbar { right: 20px; bottom: 20px; }
-  .collection-panel { right: 20px; width: calc(100vw - 40px); max-width: 300px; }
 }
 </style>
 
