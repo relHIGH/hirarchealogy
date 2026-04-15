@@ -1,322 +1,395 @@
 ---
-layout: story
+layout: default
 title: 月珑
-nodes:
-  - name: 长安
-    theme: 旅
-  - name: 西市
-    theme: 旅
-  - name: 胡商
-    theme: 旅
-  - name: 香料
-    theme: 旅
-  - name: 丝路
-    theme: 旅
-relics:
-  - 香料囊
-  - 开元通宝
-  - 波斯银币
-  - 骆驼俑
-total_pages: 10
 ---
 
-<!-- 第1页：介绍 -->
-<div class="page" id="page-0">
-  <div class="intro-layout">
-    <div class="intro-left">
-      <h1 class="char-name">月珑篇</h1>
-      <p class="char-era">唐 · 长安胡商</p>
-      <div class="char-bio">
-        <p>生于波斯，长于长安。开元年间经营香料铺于西市，是丝路贸易中的一个微小节点。她的故事，是东西方交汇的缩影。</p>
-      </div>
-      <button class="nav-btn" onclick="nextPage()">开始探索 →</button>
-    </div>      
-    <div class="intro-right">
-      <div class="scene-placeholder"><span>长安西市</span></div>
-    </div>
-  </div>
-</div>
-
-<!-- 第2页：长安 -->
-<div class="page" id="page-1">
-  <div class="chapter-layout">
-    <div class="chapter-header">
-      <span class="chapter-num">01</span>
-      <h3 class="chapter-title">大唐长安</h3>
-    </div>
-    <div class="scene-with-text">
-      <div class="scene-side">
-        <div class="scene-placeholder"><span>长安城</span></div>
-        <div class="interact-hint">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
-          <span>点击场景中的光点</span>
+<div class="story-wrapper" id="storyWrapper">
+  
+  <div class="pages-container" id="pagesContainer">
+    
+    <!-- 第1页：介绍 -->
+    <div class="page" id="page-0">
+      <div class="intro-layout">
+        <div class="intro-left">
+          <h1 class="char-name">月珑篇</h1>
+          <p class="char-era">唐 · 长安胡商</p>
+          <div class="char-bio">
+            <p>生于波斯，长于长安。开元年间经营香料铺于西市，是丝路贸易中的一个微小节点。她的故事，是东西方交汇的缩影。</p>
+          </div>
+          <button class="nav-btn" onclick="nextPage()">开始探索 →</button>
+        </div>      
+        <div class="intro-right">
+          <div class="scene-placeholder"><span>长安西市</span></div>
         </div>
       </div>
-      <div class="text-side">
-        <p>月珑的父亲是波斯商人，母亲是长安歌姬。</p>
-        <p>她从小在西市长大，说得一口流利的唐言和波斯语。</p>
-        <div class="clickable-text" onclick="collectNode('长安', '旅', this)">
+    </div>
+    
+    <!-- 第2页：长安 -->
+    <div class="page" id="page-1" style="display:none">
+      <div class="chapter-layout">
+        <div class="chapter-header">
+          <span class="chapter-num">01</span>
+          <h3 class="chapter-title">大唐长安</h3>
+        </div>
+        <div class="scene-with-text">
+          <div class="scene-side">
+            <div class="scene-placeholder"><span>长安城</span></div>
+            <div class="interact-hint">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+              <span>点击场景中的光点</span>
+            </div>
+          </div>
+          <div class="text-side">
+            <p>月珑的父亲是波斯商人，母亲是长安歌姬。</p>
+            <p>她从小在西市长大，说得一口流利的唐言和波斯语。</p>
+            <div class="clickable-text" onclick="collectNode('长安', '旅', this)">
+              <span class="pulse-dot"></span>
+              <span><strong>长安</strong>是世界的中心，每天有成千上万的人从这里经过。</span>
+            </div>
+          </div>
+        </div>
+        <button class="nav-btn" onclick="nextPage()">下一页 →</button>
+      </div>
+    </div>
+    
+    <!-- 第3页：西市 -->
+    <div class="page" id="page-2" style="display:none">
+      <div class="chapter-layout">
+        <div class="chapter-header">
+          <span class="chapter-num">01</span>
+          <h3 class="chapter-title">大唐长安</h3>
+        </div>
+        <div class="dialogue-box">
+          <div class="dialogue-avatar"></div>
+          <div class="dialogue-content">
+            <span class="speaker">父亲</span>
+            <p>"西市是胡商的天下，你要学会和所有人打交道。"</p>
+          </div>
+        </div>
+        <div class="text-block">
+          <p>西市有两百多行，四万多家店铺。</p>
+          <div class="clickable-text" onclick="collectNode('西市', '旅', this)">
+            <span class="pulse-dot"></span>
+            <span>丝绸、香料、珠宝、药材……<strong>西市</strong>应有尽有。</span>
+          </div>
+        </div>
+        
+        <div class="mini-choice">
+          <p>唐代长安的东市主要卖什么？</p>
+          <div class="mini-options">
+            <button onclick="selectMiniChoice(this, '奢侈品', false)">奢侈品</button>
+            <button onclick="selectMiniChoice(this, '本地货物', true)">本地货物</button>
+            <button onclick="selectMiniChoice(this, '外国商品', false)">外国商品</button>
+          </div>
+          <div class="mini-result" id="mini-result-1"></div>
+        </div>
+        
+        <button class="nav-btn" id="btn-page2" onclick="nextPage()" disabled>下一页 →</button>
+      </div>
+    </div>
+    
+    <!-- 第4页：胡商 -->
+    <div class="page" id="page-3" style="display:none">
+      <div class="chapter-layout">
+        <div class="chapter-header">
+          <span class="chapter-num">01</span>
+          <h3 class="chapter-title">大唐长安</h3>
+        </div>
+        <div class="text-block">
+          <p>月珑二十岁那年，父亲病逝，她接手了香料铺。</p>
+          <p>作为<strong>胡商</strong>，她有自己的优势——懂得异域香料，会说多种语言。</p>
+        </div>
+        <div class="scene-wide">
+          <div class="scene-placeholder wide"><span>香料铺</span></div>
+        </div>
+        <div class="clickable-text" onclick="collectNode('胡商', '旅', this)">
           <span class="pulse-dot"></span>
-          <span><strong>长安</strong>是世界的中心，每天有成千上万的人从这里经过。</span>
+          <span>但她也要面对歧视和猜忌，毕竟不是"自己人"。</span>
+        </div>
+        
+        <button class="nav-btn" onclick="nextPage()">下一页 →</button>
+      </div>
+    </div>
+    
+    <!-- 第5页：丝路 -->
+    <div class="page" id="page-4" style="display:none">
+      <div class="chapter-layout">
+        <div class="chapter-header">
+          <span class="chapter-num">02</span>
+          <h3 class="chapter-title">丝路漫漫</h3>
+        </div>
+        <div class="scene-with-text">
+          <div class="text-side">
+            <p>香料从波斯运来，要经过漫长的<strong>丝路</strong>。</p>
+            <p>骆驼队要走半年，穿越沙漠、翻越高山。</p>
+            <div class="clickable-text" onclick="collectNode('丝路', '旅', this)">
+              <span class="pulse-dot"></span>
+              <span>每一颗香料，都沾着风沙和汗水。</span>
+            </div>
+          </div>
+          <div class="scene-side">
+            <div class="scene-placeholder"><span>驼队</span></div>
+          </div>
+        </div>
+        
+        <button class="nav-btn" onclick="nextPage()">下一页 →</button>
+      </div>
+    </div>
+    
+    <!-- 第6页：香料 -->
+    <div class="page" id="page-5" style="display:none">
+      <div class="chapter-layout">
+        <div class="chapter-header">
+          <span class="chapter-num">02</span>
+          <h3 class="chapter-title">丝路漫漫</h3>
+        </div>
+        <div class="dialogue-box">
+          <div class="dialogue-avatar"></div>
+          <div class="dialogue-content">
+            <span class="speaker">顾客</span>
+            <p>"这龙涎香是真的吗？听说价比黄金。"</p>
+          </div>
+        </div>
+        <div class="text-block">
+          <div class="clickable-text" onclick="collectNode('香料', '旅', this); collectRelic('香料囊', this);">
+            <span class="pulse-dot"></span>
+            <span><strong>香料</strong>不只是调味品，还是药材、香水、祭祀用品。</span>
+          </div>
+          <p>月珑最骄傲的是，她能分辨上百种香料的真假。</p>
+        </div>
+        
+        <div class="interaction-area">
+          <p class="instruction">以下哪种不是唐代常见的进口香料？</p>
+          <div class="choice-cards">
+            <div class="choice-card" onclick="selectChoice(this, '胡椒', false)">
+              <div class="card-icon spice"></div>
+              <span>胡椒</span>
+            </div>
+            <div class="choice-card" onclick="selectChoice(this, '咖啡', true)">
+              <div class="card-icon bean"></div>
+              <span>咖啡</span>
+            </div>
+          </div>
+          <div class="feedback" id="choice-feedback"></div>
+        </div>
+        
+        <button class="nav-btn" id="btn-page5" onclick="nextPage()" disabled>下一页 →</button>
+      </div>
+    </div>
+    
+    <!-- 第7页：货币 -->
+    <div class="page" id="page-6" style="display:none">
+      <div class="chapter-layout">
+        <div class="chapter-header">
+          <span class="chapter-num">02</span>
+          <h3 class="chapter-title">丝路漫漫</h3>
+        </div>
+        <div class="reveal-card" onclick="revealText(this)">
+          <div class="reveal-front">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            <span>交易的秘密</span>
+          </div>
+          <div class="reveal-back">
+            <p>胡商做生意，要用好几种货币。</p>
+            <div class="highlight-text" onclick="collectRelic('开元通宝', this)">
+              <span class="pulse-dot"></span>
+              <strong>开元通宝</strong>——大唐的铜钱，流通最广。
+            </div>
+            <div class="highlight-text" onclick="collectRelic('波斯银币', this)">
+              <span class="pulse-dot"></span>
+              <strong>波斯银币</strong>——来自遥远的萨珊王朝。
+            </div>
+            <p class="aside">月珑的钱匣里，装着整个丝绸之路。</p>
+          </div>
+        </div>
+        
+        <button class="nav-btn" onclick="nextPage()">下一页 →</button>
+      </div>
+    </div>
+    
+    <!-- 第8页：骆驼 -->
+    <div class="page" id="page-7" style="display:none">
+      <div class="chapter-layout">
+        <div class="chapter-header">
+          <span class="chapter-num">03</span>
+          <h3 class="chapter-title">异域风情</h3>
+        </div>
+        
+        <div class="scene-with-text">
+          <div class="scene-side">
+            <div class="scene-placeholder"><span>骆驼俑</span></div>
+          </div>
+          <div class="text-side">
+            <p>月珑的铺子里，除了香料，还卖一些异域工艺品。</p>
+            <p>最受长安贵族欢迎的是<strong>骆驼俑</strong>——丝路商队的象征。</p>
+            <div class="clickable-text" onclick="collectRelic('骆驼俑', this)">
+              <span class="pulse-dot"></span>
+              <span>唐三彩的骆驼，载着乐伎和货物，是身份的象征。</span>
+            </div>
+          </div>
+        </div>
+        
+        <button class="nav-btn" onclick="nextPage()">下一页 →</button>
+      </div>
+    </div>
+    
+    <!-- 第9页：结尾 -->
+    <div class="page" id="page-8" style="display:none">
+      <div class="chapter-layout">
+        <div class="chapter-header">
+          <span class="chapter-num">03</span>
+          <h3 class="chapter-title">尾声</h3>
+        </div>
+        
+        <div class="ending-text">
+          <p>天宝年间，安史之乱爆发，长安陷入战火。</p>
+          <p>月珑带着积蓄和货物，跟随商队向西返回波斯。</p>
+          <div class="divider"></div>
+          <p class="final">她走了一辈子的丝路，</p>
+          <p class="final">终于踏上了回家的路，</p>
+          <p class="final">却不知道还能不能再回来。</p>
+        </div>
+        
+        <button class="nav-btn" onclick="showSummary()">探索完成 →</button>
+      </div>
+    </div>
+    
+    <!-- 第10页：总结 -->
+    <div class="page" id="page-9" style="display:none">
+      <div class="summary-layout">
+        <h2 class="summary-title">探索完成</h2>
+        
+        <div class="stats-row">
+          <div class="stat-box">
+            <span class="stat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6m4.22-10.22l4.24-4.24M6.34 17.66l-4.24 4.24M23 12h-6m-6 0H1m20.24 4.24l-4.24-4.24M6.34 6.34L2.1 2.1"/>
+              </svg>
+            </span>
+            <span class="stat-num" id="summary-node-count">0</span>
+            <span class="stat-label">主题节点</span>
+          </div>
+          
+          <div class="stat-box">
+            <span class="stat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><rect x="6" y="3" width="15" height="14" rx="2"/>
+              </svg>
+            </span>
+            <span class="stat-num" id="summary-relic-count">0</span>
+            <span class="stat-label">历史文物</span>
+          </div>
+        </div>
+        
+        <div class="collection-showcase">
+          <div class="showcase-section">
+            <h4>主题节点</h4>
+            <div class="showcase-list" id="summary-nodes"></div>
+          </div>
+          
+          <div class="showcase-section">
+            <h4>历史文物</h4>
+            <div class="showcase-list" id="summary-relics"></div>
+          </div>
+        </div>
+        
+        <div class="summary-actions">
+          <button class="btn-primary" onclick="restart()">重新探索</button>
+          <button onclick="exportProgress()">复制分享链接</button>
         </div>
       </div>
     </div>
-    <button class="nav-btn" onclick="nextPage()">下一页 →</button>
+    
   </div>
-</div>
-
-<!-- 第3页：西市 -->
-<div class="page" id="page-2">
-  <div class="chapter-layout">
-    <div class="chapter-header">
-      <span class="chapter-num">01</span>
-      <h3 class="chapter-title">大唐长安</h3>
-    </div>
-    <div class="dialogue-box">
-      <div class="dialogue-avatar"></div>
-      <div class="dialogue-content">
-        <span class="speaker">父亲</span>
-        <p>"西市是胡商的天下，你要学会和所有人打交道。"</p>
-      </div>
-    </div>
-    <div class="text-block">
-      <p>西市有两百多行，四万多家店铺。</p>
-      <div class="clickable-text" onclick="collectNode('西市', '旅', this)">
-        <span class="pulse-dot"></span>
-        <span>丝绸、香料、珠宝、药材……<strong>西市</strong>应有尽有。</span>
-      </div>
-    </div>
-    
-    <div class="mini-choice">
-      <p>唐代长安的东市主要卖什么？</p>
-      <div class="mini-options">
-        <button onclick="selectMiniChoice(this, '奢侈品', false)">奢侈品</button>
-        <button onclick="selectMiniChoice(this, '本地货物', true)">本地货物</button>
-        <button onclick="selectMiniChoice(this, '外国商品', false)">外国商品</button>
-      </div>
-      <div class="mini-result" id="mini-result-1"></div>
-    </div>
-    
-    <button class="nav-btn" id="btn-page2" onclick="nextPage()" disabled>下一页 →</button>
-  </div>
-</div>
-
-<!-- 第4页：胡商 -->
-<div class="page" id="page-3">
-  <div class="chapter-layout">
-    <div class="chapter-header">
-      <span class="chapter-num">01</span>
-      <h3 class="chapter-title">大唐长安</h3>
-    </div>
-    <div class="text-block">
-      <p>月珑二十岁那年，父亲病逝，她接手了香料铺。</p>
-      <p>作为<strong>胡商</strong>，她有自己的优势——懂得异域香料，会说多种语言。</p>
-    </div>
-    <div class="scene-wide">
-      <div class="scene-placeholder wide"><span>香料铺</span></div>
-    </div>
-    <div class="clickable-text" onclick="collectNode('胡商', '旅', this)">
-      <span class="pulse-dot"></span>
-      <span>但她也要面对歧视和猜忌，毕竟不是"自己人"。</span>
-    </div>
-    
-    <button class="nav-btn" onclick="nextPage()">下一页 →</button>
-  </div>
-</div>
-
-<!-- 第5页：丝路 -->
-<div class="page" id="page-4">
-  <div class="chapter-layout">
-    <div class="chapter-header">
-      <span class="chapter-num">02</span>
-      <h3 class="chapter-title">丝路漫漫</h3>
-    </div>
-    <div class="scene-with-text">
-      <div class="text-side">
-        <p>香料从波斯运来，要经过漫长的<strong>丝路</strong>。</p>
-        <p>骆驼队要走半年，穿越沙漠、翻越高山。</p>
-        <div class="clickable-text" onclick="collectNode('丝路', '旅', this)">
-          <span class="pulse-dot"></span>
-          <span>每一颗香料，都沾着风沙和汗水。</span>
-        </div>
-      </div>
-      <div class="scene-side">
-        <div class="scene-placeholder"><span>驼队</span></div>
-      </div>
-    </div>
-    
-    <button class="nav-btn" onclick="nextPage()">下一页 →</button>
-  </div>
-</div>
-
-<!-- 第6页：香料 -->
-<div class="page" id="page-5">
-  <div class="chapter-layout">
-    <div class="chapter-header">
-      <span class="chapter-num">02</span>
-      <h3 class="chapter-title">丝路漫漫</h3>
-    </div>
-    <div class="dialogue-box">
-      <div class="dialogue-avatar"></div>
-      <div class="dialogue-content">
-        <span class="speaker">顾客</span>
-        <p>"这龙涎香是真的吗？听说价比黄金。"</p>
-      </div>
-    </div>
-    <div class="text-block">
-      <div class="clickable-text" onclick="collectNode('香料', '旅', this); collectRelic('香料囊', this);">
-        <span class="pulse-dot"></span>
-        <span><strong>香料</strong>不只是调味品，还是药材、香水、祭祀用品。</span>
-      </div>
-      <p>月珑最骄傲的是，她能分辨上百种香料的真假。</p>
-    </div>
-    
-    <div class="interaction-area">
-      <p class="instruction">以下哪种不是唐代常见的进口香料？</p>
-      <div class="choice-cards">
-        <div class="choice-card" onclick="selectChoice(this, '胡椒', false)">
-          <div class="card-icon spice"></div>
-          <span>胡椒</span>
-        </div>
-        <div class="choice-card" onclick="selectChoice(this, '咖啡', true)">
-          <div class="card-icon bean"></div>
-          <span>咖啡</span>
-        </div>
-      </div>
-      <div class="feedback" id="choice-feedback"></div>
-    </div>
-    
-    <button class="nav-btn" id="btn-page5" onclick="nextPage()" disabled>下一页 →</button>
-  </div>
-</div>
-
-<!-- 第7页：货币 -->
-<div class="page" id="page-6">
-  <div class="chapter-layout">
-    <div class="chapter-header">
-      <span class="chapter-num">02</span>
-      <h3 class="chapter-title">丝路漫漫</h3>
-    </div>
-    <div class="reveal-card" onclick="revealText(this)">
-      <div class="reveal-front">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+  
+  <!-- 底部收集工具栏 -->
+  <div class="bottom-toolbar">
+    <div class="toolbar-content">
+      <span class="toolbar-label">探索收获</span>
+      <button class="toolbar-btn" onclick="toggleCollectionPanel()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
         </svg>
-        <span>交易的秘密</span>
-      </div>
-      <div class="reveal-back">
-        <p>胡商做生意，要用好几种货币。</p>
-        <div class="highlight-text" onclick="collectRelic('开元通宝', this)">
-          <span class="pulse-dot"></span>
-          <strong>开元通宝</strong>——大唐的铜钱，流通最广。
-        </div>
-        <div class="highlight-text" onclick="collectRelic('波斯银币', this)">
-          <span class="pulse-dot"></span>
-          <strong>波斯银币</strong>——来自遥远的萨珊王朝。
-        </div>
-        <p class="aside">月珑的钱匣里，装着整个丝绸之路。</p>
-      </div>
+        <span class="toolbar-badge" id="collection-badge">0</span>
+      </button>
     </div>
-    
-    <button class="nav-btn" onclick="nextPage()">下一页 →</button>
   </div>
-</div>
-
-<!-- 第8页：骆驼 -->
-<div class="page" id="page-7">
-  <div class="chapter-layout">
-    <div class="chapter-header">
-      <span class="chapter-num">03</span>
-      <h3 class="chapter-title">异域风情</h3>
+  
+  <!-- 收集品面板 -->
+  <div class="collection-panel" id="collectionPanel">
+    <div class="panel-header">
+      <h4>探索收获</h4>
+      <button onclick="toggleCollectionPanel()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
     </div>
-    
-    <div class="scene-with-text">
-      <div class="scene-side">
-        <div class="scene-placeholder"><span>骆驼俑</span></div>
-      </div>
-      <div class="text-side">
-        <p>月珑的铺子里，除了香料，还卖一些异域工艺品。</p>
-        <p>最受长安贵族欢迎的是<strong>骆驼俑</strong>——丝路商队的象征。</p>
-        <div class="clickable-text" onclick="collectRelic('骆驼俑', this)">
-          <span class="pulse-dot"></span>
-          <span>唐三彩的骆驼，载着乐伎和货物，是身份的象征。</span>
-        </div>
-      </div>
-    </div>
-    
-    <button class="nav-btn" onclick="nextPage()">下一页 →</button>
-  </div>
-</div>
-
-<!-- 第9页：结尾 -->
-<div class="page" id="page-8">
-  <div class="chapter-layout">
-    <div class="chapter-header">
-      <span class="chapter-num">03</span>
-      <h3 class="chapter-title">尾声</h3>
-    </div>
-    
-    <div class="ending-text">
-      <p>天宝年间，安史之乱爆发，长安陷入战火。</p>
-      <p>月珑带着积蓄和货物，跟随商队向西返回波斯。</p>
-      <div class="divider"></div>
-      <p class="final">她走了一辈子的丝路，</p>
-      <p class="final">终于踏上了回家的路，</p>
-      <p class="final">却不知道还能不能再回来。</p>
-    </div>
-    
-    <button class="nav-btn" onclick="showSummary()">探索完成 →</button>
-  </div>
-</div>
-
-<!-- 第10页：总结 -->
-<div class="page" id="page-9">
-  <div class="summary-layout">
-    <h2 class="summary-title">探索完成</h2>
-    
-    <div class="stats-row">
-      <div class="stat-box">
-        <span class="stat-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6m4.22-10.22l4.24-4.24M6.34 17.66l-4.24 4.24M23 12h-6m-6 0H1m20.24 4.24l-4.24-4.24M6.34 6.34L2.1 2.1"/>
-          </svg>
-        </span>
-        <span class="stat-num" id="summary-node-count">0</span>
-        <span class="stat-label">主题节点</span>
+    <div class="panel-body">
+      <div class="panel-section">
+        <h5>主题节点</h5>
+        <div class="panel-grid" id="panel-nodes"></div>
       </div>
       
-      <div class="stat-box">
-        <span class="stat-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><rect x="6" y="3" width="15" height="14" rx="2"/>
-          </svg>
-        </span>
-        <span class="stat-num" id="summary-relic-count">0</span>
-        <span class="stat-label">历史文物</span>
+      <div class="panel-section">
+        <h5>历史文物</h5>
+        <div class="panel-grid" id="panel-relics"></div>
       </div>
     </div>
-    
-    <div class="collection-showcase">
-      <div class="showcase-section">
-        <h4>主题节点</h4>
-        <div class="showcase-list" id="summary-nodes"></div>
-      </div>
-      
-      <div class="showcase-section">
-        <h4>历史文物</h4>
-        <div class="showcase-list" id="summary-relics"></div>
-      </div>
-    </div>
-    
-    <div class="summary-actions">
-      <button class="btn-primary" onclick="restart()">重新探索</button>
-      <button onclick="exportProgress()">复制分享链接</button>
-    </div>
+  </div>
+  
+  <!-- 页面指示器 -->
+  <div class="page-dots">
+    <span class="dot active" onclick="showPage(0)"></span>
+    <span class="dot" onclick="if(isPageUnlocked(1)) showPage(1)"></span>
+    <span class="dot" onclick="if(isPageUnlocked(2)) showPage(2)"></span>
+    <span class="dot" onclick="if(isPageUnlocked(3)) showPage(3)"></span>
+    <span class="dot" onclick="if(isPageUnlocked(4)) showPage(4)"></span>
+    <span class="dot" onclick="if(isPageUnlocked(5)) showPage(5)"></span>
+    <span class="dot" onclick="if(isPageUnlocked(6)) showPage(6)"></span>
+    <span class="dot" onclick="if(isPageUnlocked(7)) showPage(7)"></span>
+    <span class="dot" onclick="if(isPageUnlocked(8)) showPage(8)"></span>
+    <span class="dot final" onclick="if(isPageUnlocked(9)) showPage(9)"></span>
   </div>
 </div>
 
 <style>
-/* 页面特定样式 */
+/* 覆盖默认布局 */
+.container { 
+  background: transparent !important; 
+  box-shadow: none !important; 
+  padding: 0 !important; 
+  max-width: 100% !important; 
+  margin: 0 !important; 
+}
+
+header { background: #fdfcfa !important; }
+
+/* 暖沙色背景 */
+.story-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: auto;
+  background: #faf6ee;
+  margin-top: 40px;
+  padding: 40px 0 60px;
+}
+
+.pages-container {
+  width: 100%;
+  padding: 20px 60px 40px;
+  box-sizing: border-box;
+}
+
+.page {
+  width: 100%;
+  margin: 0;
+  padding: 15px 0 30px 60px;
+}
+
+/* 介绍页 */
 .intro-layout {
   display: flex;
   min-height: auto;
@@ -422,6 +495,11 @@ total_pages: 10
   font-family: "Songti SC", serif;
   font-size: 1.5rem;
   letter-spacing: 4px;
+}
+
+.scene-placeholder.small {
+  width: 120px;
+  height: 80px;
 }
 
 .scene-placeholder.wide {
@@ -898,8 +976,224 @@ total_pages: 10
   border: 1.5px solid var(--accent);
 }
 
+/* 底部工具栏 */
+.bottom-toolbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 120px;
+  height: 60px;
+  background: white;
+  border-top: 1px solid #e8e0d8;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 40px;
+}
+
+.toolbar-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.toolbar-label {
+  color: #888;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+.toolbar-btn {
+  width: 44px;
+  height: 44px;
+  background: var(--accent);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.toolbar-btn:hover {
+  background: #600020;
+  transform: scale(1.05);
+}
+
+.toolbar-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 20px;
+  height: 20px;
+  background: #d4a574;
+  color: white;
+  font-size: 0.7rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 收集面板 */
+.collection-panel {
+  position: fixed;
+  top: 50%;
+  right: 40px;
+  transform: translateY(-50%) translateX(120%);
+  width: 280px;
+  max-height: 70vh;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.15);
+  transition: transform 0.3s, opacity 0.3s;
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.collection-panel.active {
+  transform: translateY(-50%) translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #f0ede8;
+}
+
+.panel-header h4 {
+  margin: 0;
+  font-family: "Songti SC", serif;
+  color: var(--accent);
+}
+
+.panel-header button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #999;
+  padding: 4px;
+}
+
+.panel-body {
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.panel-section {
+  margin-bottom: 20px;
+}
+
+.panel-section h5 {
+  font-size: 0.8rem;
+  color: #999;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.panel-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.panel-item {
+  padding: 6px 12px;
+  background: rgba(128,0,32,0.05);
+  border: 1px solid rgba(128,0,32,0.1);
+  border-radius: 15px;
+  font-size: 0.8rem;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.panel-item:hover {
+  background: rgba(128,0,32,0.1);
+}
+
+.panel-item.collected {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+/* 页面指示器 */
+.page-dots {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 200;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(128,0,32,0.15);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.dot.active {
+  background: var(--accent);
+  transform: scale(1.3);
+}
+
+.dot.final {
+  background: rgba(128,0,32,0.3);
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(128,0,32,0.9);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  z-index: 1000;
+  animation: fadeInOut 2s forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  20% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  80% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+}
+
 /* 响应式调整 */
 @media (max-width: 900px) {
+  .bottom-toolbar {
+    right: 55px;
+    padding: 0 20px;
+  }
+  .collection-panel {
+    right: 20px;
+    width: calc(100vw - 40px);
+    max-width: 300px;
+  }
+  .pages-container { padding: 20px 30px 40px; }
+  .page { padding-left: 30px; }
   .intro-layout { flex-direction: column; }
   .intro-left { flex: none; width: 100%; }
   .scene-with-text { flex-direction: column; }
@@ -910,7 +1204,100 @@ total_pages: 10
 </style>
 
 <script>
-// 页面特定交互函数
+var currentPage = 0;
+var totalPages = 10;
+var collections = { nodes: {}, relics: {} };
+var unlockedPages = [0];
+
+function showPage(pageNum) {
+  for (var i = 0; i < totalPages; i++) {
+    var page = document.getElementById('page-' + i);
+    if (page) page.style.display = 'none';
+  }
+  var target = document.getElementById('page-' + pageNum);
+  if (target) target.style.display = 'block';
+  currentPage = pageNum;
+  
+  var dots = document.querySelectorAll('.dot');
+  for (var i = 0; i < dots.length; i++) {
+    dots[i].classList.toggle('active', i === pageNum);
+  }
+  
+  if (!unlockedPages.includes(pageNum)) {
+    unlockedPages.push(pageNum);
+  }
+  
+  window.scrollTo(0, 0);
+}
+
+function isPageUnlocked(pageNum) {
+  return unlockedPages.includes(pageNum);
+}
+
+function nextPage() {
+  if (currentPage < totalPages - 1) {
+    showPage(currentPage + 1);
+  }
+}
+
+function showSummary() {
+  showPage(9);
+  updateSummary();
+}
+
+function updateSummary() {
+  document.getElementById('summary-node-count').textContent = Object.keys(collections.nodes).length;
+  document.getElementById('summary-relic-count').textContent = Object.keys(collections.relics).length;
+  
+  var nodesList = document.getElementById('summary-nodes');
+  var allNodes = ['长安', '西市', '胡商', '香料', '丝路'];
+  nodesList.innerHTML = allNodes.map(function(n) {
+    var collected = collections.nodes[n] ? 'collected' : '';
+    return '<span class="item ' + collected + '" data-node="' + n + '" data-theme="' + (collections.nodes[n]?.theme || '旅') + '" onclick="collectFromSummary(this, \'' + n + '\')">' + n + '</span>';
+  }).join('');
+  
+  var relicsList = document.getElementById('summary-relics');
+  var allRelics = ['开元通宝', '波斯银币', '香料囊', '骆驼俑'];
+  relicsList.innerHTML = allRelics.map(function(r) {
+    var collected = collections.relics[r] ? 'collected' : '';
+    return '<span class="item ' + collected + '" data-relic="' + r + '" onclick="collectRelicFromSummary(this, \'' + r + '\')">' + r + '</span>';
+  }).join('');
+}
+
+function collectNode(nodeName, theme, el) {
+  if (!collections.nodes[nodeName]) {
+    collections.nodes[nodeName] = { theme: theme };
+    if (el) el.classList.add('collected');
+    showToast('已点亮节点：' + nodeName);
+    updateCollectionPanel();
+    updateBadge();
+  }
+}
+
+function collectRelic(relicName, el) {
+  if (!collections.relics[relicName]) {
+    collections.relics[relicName] = true;
+    if (el) el.classList.add('collected');
+    showToast('已收集文物：' + relicName);
+    updateCollectionPanel();
+    updateBadge();
+  }
+}
+
+function collectFromSummary(el, nodeName) {
+  if (!collections.nodes[nodeName]) {
+    collectNode(nodeName, '旅', el);
+    updateSummary();
+  }
+}
+
+function collectRelicFromSummary(el, relicName) {
+  if (!collections.relics[relicName]) {
+    collectRelic(relicName, el);
+    updateSummary();
+  }
+}
+
 function selectChoice(el, answer, isCorrect) {
   document.querySelectorAll('.choice-card').forEach(function(c) {
     c.classList.remove('correct', 'wrong');
@@ -949,4 +1336,73 @@ function selectMiniChoice(el, answer, isCorrect) {
 function revealText(el) {
   el.classList.add('revealed');
 }
+
+function toggleCollectionPanel() {
+  document.getElementById('collectionPanel').classList.toggle('active');
+}
+
+function updateCollectionPanel() {
+  var nodesGrid = document.getElementById('panel-nodes');
+  var allNodes = ['长安', '西市', '胡商', '香料', '丝路'];
+  nodesGrid.innerHTML = allNodes.map(function(n) {
+    var collected = collections.nodes[n] ? 'collected' : '';
+    return '<span class="panel-item ' + collected + '" onclick="collectNode(\'' + n + '\', \'旅\', this)">' + n + '</span>';
+  }).join('');
+  
+  var relicsGrid = document.getElementById('panel-relics');
+  var allRelics = ['开元通宝', '波斯银币', '香料囊', '骆驼俑'];
+  relicsGrid.innerHTML = allRelics.map(function(r) {
+    var collected = collections.relics[r] ? 'collected' : '';
+    return '<span class="panel-item ' + collected + '" onclick="collectRelic(\'' + r + '\', this)">' + r + '</span>';
+  }).join('');
+}
+
+function updateBadge() {
+  var count = Object.keys(collections.nodes).length + Object.keys(collections.relics).length;
+  document.getElementById('collection-badge').textContent = count;
+}
+
+function restart() {
+  currentPage = 0;
+  collections = { nodes: {}, relics: {} };
+  unlockedPages = [0];
+  document.querySelectorAll('.collected').forEach(function(el) {
+    el.classList.remove('collected');
+  });
+  document.querySelectorAll('.revealed').forEach(function(el) {
+    el.classList.remove('revealed');
+  });
+  document.querySelectorAll('.correct, .wrong').forEach(function(el) {
+    el.classList.remove('correct', 'wrong');
+  });
+  document.querySelectorAll('.mini-result').forEach(function(el) {
+    el.classList.remove('show');
+    el.textContent = '';
+  });
+  document.querySelectorAll('.nav-btn').forEach(function(el) {
+    if (el.id && el.id.startsWith('btn-page')) {
+      el.disabled = true;
+    }
+  });
+  updateBadge();
+  updateCollectionPanel();
+  showPage(0);
+}
+
+function exportProgress() {
+  alert('分享功能开发中');
+}
+
+function showToast(msg) {
+  var toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = msg;
+  document.body.appendChild(toast);
+  setTimeout(function() { toast.remove(); }, 2000);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  showPage(0);
+  updateCollectionPanel();
+});
 </script>

@@ -1,5 +1,5 @@
 ---
-layout: story
+layout: default
 title: 石兰
 ---
 
@@ -358,6 +358,854 @@ title: 石兰
     <span class="dot final" onclick="if(isPageUnlocked(9)) showPage(9)"></span>
   </div>
 </div>
+
+<style>
+/* 覆盖默认布局 */
+.container { 
+  background: transparent !important; 
+  box-shadow: none !important; 
+  padding: 0 !important; 
+  max-width: 100% !important; 
+  margin: 0 !important; 
+}
+
+header { background: #fdfcfa !important; }
+
+/* 暖沙色背景 */
+.story-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: auto;
+  background: #faf6ee;
+  margin-top: 40px;
+  padding: 40px 0 60px;
+}
+
+.pages-container {
+  width: 100%;
+  padding: 20px 60px 40px;
+  box-sizing: border-box;
+}
+
+.page {
+  width: 100%;
+  margin: 0;
+  padding: 15px 0 30px 60px;
+}
+
+/* 介绍页 */
+.intro-layout {
+  display: flex;
+  min-height: auto;
+  align-items: center;
+  gap: 40px;
+  padding: 20px 0;
+}
+
+.intro-left {
+  flex: 0 0 45%;
+  padding-left: 0;
+  text-align: left !important;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.intro-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.char-name {
+  font-family: "Songti SC", serif;
+  font-size: 2.2rem;
+  color: var(--accent);
+  margin: 0 0 6px 0;
+  letter-spacing: 2px;
+  text-align: left;
+}
+
+.char-era {
+  font-size: 1rem;
+  color: #888;
+  margin: 0 0 16px 0;
+  letter-spacing: 2px;
+}
+
+.char-bio {
+  background: #f5f3f0;
+  padding: 14px 18px;
+  border-radius: 8px;
+  border-left: 3px solid var(--accent);
+}
+
+.char-bio p {
+  line-height: 1.6;
+  color: #555;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.nav-btn {
+  margin-top: 40px;
+  padding: 10px 24px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: "Songti SC", serif;
+  letter-spacing: 2px;
+}
+
+.nav-btn:hover:not(:disabled) {
+  transform: translateX(3px);
+  box-shadow: 0 8px 20px rgba(128,0,32,0.25);
+}
+
+.nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 场景占位图 */
+.scene-placeholder {
+  width: 280px;
+  height: 200px;
+  background: linear-gradient(135deg, #e8e0d8 0%, #d8d0c8 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.scene-placeholder::before {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  border: 2px dashed rgba(128,0,32,0.15);
+  border-radius: 8px;
+}
+
+.scene-placeholder span {
+  color: rgba(128,0,32,0.3);
+  font-family: "Songti SC", serif;
+  font-size: 1.5rem;
+  letter-spacing: 4px;
+}
+
+.scene-placeholder.small {
+  width: 120px;
+  height: 80px;
+}
+
+.scene-placeholder.wide {
+  width: 100%;
+  max-width: 500px;
+}
+
+.scene-wide {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* 章节布局 */
+.chapter-layout {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.chapter-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.chapter-num {
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.chapter-title {
+  font-family: "Songti SC", serif;
+  font-size: 1.5rem;
+  color: var(--accent);
+  margin: 0;
+  letter-spacing: 3px;
+}
+
+/* 图文并排 */
+.scene-with-text {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+  align-items: flex-start;
+}
+
+.scene-side {
+  flex: 0 0 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.text-side {
+  flex: 1;
+}
+
+.text-side p {
+  line-height: 1.9;
+  color: #444;
+  margin-bottom: 1em;
+  font-size: 0.95rem;
+}
+
+.interact-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #999;
+  font-size: 0.75rem;
+}
+
+.interact-hint svg {
+  animation: pulse 2s infinite;
+}
+
+/* 可点击文本 */
+.clickable-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin: 10px 0;
+}
+
+.clickable-text:hover {
+  background: rgba(128,0,32,0.1);
+}
+
+.clickable-text.collected {
+  background: rgba(128,0,32,0.2);
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.3); opacity: 1; }
+}
+
+/* 对话框 */
+.dialogue-box {
+  display: flex;
+  gap: 15px;
+  background: #f5f3f0;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.dialogue-avatar {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #d0c8c0, #c0b8b0);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dialogue-content {
+  flex: 1;
+}
+
+.speaker {
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.dialogue-content p {
+  margin: 0;
+  line-height: 1.7;
+  color: #444;
+}
+
+/* 交互区 */
+.interaction-area {
+  background: #f8f6f3;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.instruction {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.choice-cards {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.choice-card {
+  width: 120px;
+  padding: 20px;
+  background: white;
+  border: 2px solid #e0d8d0;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.choice-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.choice-card.correct {
+  border-color: #5a8;
+  background: #f0f8f4;
+}
+
+.choice-card.wrong {
+  border-color: #a55;
+  background: #f8f0f0;
+}
+
+.card-icon {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 10px;
+  border-radius: 8px;
+}
+
+.card-icon.emperor {
+  background: linear-gradient(135deg, #e8e0d8, #d0c8c0);
+}
+
+.card-icon.king {
+  background: linear-gradient(135deg, #8a4a3a, #6d3d3d);
+}
+
+.feedback {
+  margin-top: 15px;
+  text-align: center;
+  color: var(--accent);
+  font-size: 0.9rem;
+  min-height: 1.5em;
+}
+
+/* 迷你选择 */
+.mini-choice {
+  background: #f5f3f0;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.mini-choice > p {
+  margin: 0 0 15px 0;
+  color: #555;
+}
+
+.mini-options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.mini-options button {
+  padding: 8px 20px;
+  background: white;
+  border: 1.5px solid #d0c8c0;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: "Songti SC", serif;
+  transition: all 0.3s;
+}
+
+.mini-options button:hover {
+  border-color: var(--accent);
+}
+
+.mini-options button.correct {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.mini-options button.wrong {
+  background: #ddd;
+  border-color: #ccc;
+  color: #888;
+}
+
+.mini-result {
+  margin-top: 15px;
+  padding: 10px;
+  color: #555;
+  display: none;
+}
+
+.mini-result.show {
+  display: block;
+}
+
+/* 文本块 */
+.text-block {
+  margin-bottom: 20px;
+}
+
+.text-block > p {
+  line-height: 1.9;
+  color: #444;
+  margin-bottom: 1em;
+}
+
+.aside {
+  color: #999;
+  font-size: 0.85rem;
+  font-style: italic;
+  margin-top: 15px;
+}
+
+/* 揭示卡片 */
+.reveal-card {
+  background: #f5f3f0;
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin: 20px 0;
+}
+
+.reveal-front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #888;
+}
+
+.reveal-front svg {
+  opacity: 0.5;
+}
+
+.reveal-back {
+  display: none;
+  text-align: left;
+}
+
+.reveal-card.revealed .reveal-front {
+  display: none;
+}
+
+.reveal-card.revealed .reveal-back {
+  display: block;
+}
+
+.highlight-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  background: rgba(128,0,32,0.1);
+  border-radius: 8px;
+  margin: 15px 0;
+  cursor: pointer;
+  color: var(--accent);
+}
+
+/* 结尾文字 */
+.ending-text {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.ending-text > p {
+  line-height: 2;
+  color: #444;
+  margin-bottom: 0.5em;
+  font-size: 1rem;
+}
+
+.ending-text .divider {
+  width: 60px;
+  height: 1px;
+  background: var(--accent);
+  margin: 30px auto;
+}
+
+.ending-text .final {
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+
+/* 总结页 */
+.summary-layout {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  padding-left: 0;
+}
+
+.summary-title {
+  font-family: "Songti SC", serif;
+  font-size: 1.8rem;
+  color: var(--accent);
+  margin-bottom: 30px;
+  letter-spacing: 5px;
+}
+
+.stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 30px;
+  background: #f5f3f0;
+  border-radius: 12px;
+  min-width: 100px;
+}
+
+.stat-icon {
+  color: var(--accent);
+}
+
+.stat-num {
+  font-size: 2rem;
+  color: var(--accent);
+  font-family: "Songti SC", serif;
+}
+
+.stat-label {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+.collection-showcase {
+  margin-bottom: 30px;
+}
+
+.showcase-section {
+  margin-bottom: 20px;
+}
+
+.showcase-section h4 {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  font-family: "Songti SC", serif;
+}
+
+.showcase-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.showcase-list .item {
+  padding: 6px 14px;
+  background: #f0ede8;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  color: #888;
+  border: 1px dashed #ccc;
+}
+
+.showcase-list .item.collected {
+  background: var(--accent);
+  color: white;
+  border-style: solid;
+}
+
+.summary-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.summary-actions button {
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: "Songti SC", serif;
+}
+
+.btn-primary {
+  background: var(--accent);
+  border: none;
+  color: white;
+}
+
+.summary-actions button:not(.btn-primary) {
+  background: transparent;
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
+}
+
+/* 底部工具栏 */
+.bottom-toolbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 120px;
+  height: 60px;
+  background: white;
+  border-top: 1px solid #e8e0d8;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 40px;
+}
+
+.toolbar-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.toolbar-label {
+  color: #888;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+.toolbar-btn {
+  width: 44px;
+  height: 44px;
+  background: var(--accent);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.toolbar-btn:hover {
+  background: #600020;
+  transform: scale(1.05);
+}
+
+.toolbar-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 20px;
+  height: 20px;
+  background: #d4a574;
+  color: white;
+  font-size: 0.7rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 收集面板 */
+.collection-panel {
+  position: fixed;
+  top: 50%;
+  right: 40px;
+  transform: translateY(-50%) translateX(120%);
+  width: 280px;
+  max-height: 70vh;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.15);
+  transition: transform 0.3s, opacity 0.3s;
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.collection-panel.active {
+  transform: translateY(-50%) translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #f0ede8;
+}
+
+.panel-header h4 {
+  margin: 0;
+  font-family: "Songti SC", serif;
+  color: var(--accent);
+}
+
+.panel-header button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #999;
+  padding: 4px;
+}
+
+.panel-body {
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.panel-section {
+  margin-bottom: 20px;
+}
+
+.panel-section h5 {
+  font-size: 0.8rem;
+  color: #999;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.panel-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.panel-item {
+  padding: 6px 12px;
+  background: rgba(128,0,32,0.05);
+  border: 1px solid rgba(128,0,32,0.1);
+  border-radius: 15px;
+  font-size: 0.8rem;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.panel-item:hover {
+  background: rgba(128,0,32,0.1);
+}
+
+.panel-item.collected {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+/* 页面指示器 */
+.page-dots {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 200;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(128,0,32,0.15);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.dot.active {
+  background: var(--accent);
+  transform: scale(1.3);
+}
+
+.dot.final {
+  background: rgba(128,0,32,0.3);
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(128,0,32,0.9);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  z-index: 1000;
+  animation: fadeInOut 2s forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  20% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  80% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+}
+
+/* 响应式调整 */
+@media (max-width: 900px) {
+  .bottom-toolbar {
+    right: 55px;
+    padding: 0 20px;
+  }
+  .collection-panel {
+    right: 20px;
+    width: calc(100vw - 40px);
+    max-width: 300px;
+  }
+  .pages-container { padding: 20px 30px 40px; }
+  .page { padding-left: 30px; }
+  .intro-layout { flex-direction: column; }
+  .intro-left { flex: none; width: 100%; }
+  .scene-with-text { flex-direction: column; }
+  .scene-side { flex: none; }
+  .choice-cards { flex-direction: column; align-items: center; }
+  .stats-row { flex-direction: column; gap: 15px; }
+}
+</style>
 
 <script>
 var currentPage = 0;
