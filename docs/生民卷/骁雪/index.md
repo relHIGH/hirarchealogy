@@ -282,17 +282,14 @@ title: 萧骐
     
   </div>
   
-  <!-- 底部收集工具栏 -->
-  <div class="bottom-toolbar">
-    <div class="toolbar-content">
-      <span class="toolbar-label">探索收获</span>
-      <button class="toolbar-btn" onclick="toggleCollectionPanel()">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-        </svg>
-        <span class="toolbar-badge" id="collection-badge">0</span>
-      </button>
-    </div>
+  <!-- 浮动工具栏 -->
+  <div class="floating-toolbar">
+    <button class="toolbar-btn" onclick="toggleCollectionPanel()" title="收集品">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+      </svg>
+      <span class="toolbar-badge" id="collection-badge">0</span>
+    </button>
   </div>
   
   <!-- 收集面板 -->
@@ -532,159 +529,23 @@ header { background: #fdfcfa !important; }
 .scene-placeholder.small { min-height: 100px; width: 100px; }
 .toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); color: white; padding: 12px 24px; border-radius: 30px; font-size: 0.9rem; z-index: 1000; animation: fadeIn 0.3s ease; }
 
-/* 底部工具栏 */
-.bottom-toolbar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 120px;
-  height: 60px;
-  background: white;
-  border-top: 1px solid #e8e0d8;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0 40px;
-}
-
-.toolbar-content {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.toolbar-label {
-  color: #888;
-  font-size: 0.85rem;
-  letter-spacing: 1px;
-}
-
-.toolbar-btn {
-  width: 44px;
-  height: 44px;
-  background: var(--accent);
-  border: none;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: white;
-  transition: all 0.3s;
-  position: relative;
-}
-
-.toolbar-btn:hover {
-  background: #600020;
-  transform: scale(1.05);
-}
-
-.toolbar-badge {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  width: 20px;
-  height: 20px;
-  background: #d4a574;
-  color: white;
-  font-size: 0.7rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* 收集面板 */
-.collection-panel {
-  position: fixed;
-  top: 50%;
-  right: 40px;
-  transform: translateY(-50%) translateX(120%);
-  width: 280px;
-  max-height: 70vh;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 5px 30px rgba(0,0,0,0.15);
-  transition: transform 0.3s, opacity 0.3s;
-  z-index: 200;
-  opacity: 0;
-  pointer-events: none;
-  display: flex;
-  flex-direction: column;
-}
-
-.collection-panel.active {
-  transform: translateY(-50%) translateX(0);
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.panel-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  border-bottom: 1px solid #f0ede8;
-}
-
-.panel-header h4 {
-  margin: 0;
-  font-family: "Songti SC", serif;
-  color: var(--accent);
-}
-
-.panel-header button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #999;
-  padding: 4px;
-}
-
-.panel-body {
-  padding: 20px;
-  overflow-y: auto;
-}
-
-.panel-section {
-  margin-bottom: 20px;
-}
-
-.panel-section h5 {
-  font-size: 0.8rem;
-  color: #999;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.panel-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.panel-item {
-  padding: 6px 12px;
-  background: rgba(128,0,32,0.05);
-  border: 1px solid rgba(128,0,32,0.1);
-  border-radius: 15px;
-  font-size: 0.8rem;
-  color: #666;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.panel-item:hover {
-  background: rgba(128,0,32,0.1);
-}
-
-.panel-item.collected {
-  background: var(--accent);
-  color: white;
-  border-color: var(--accent);
-}
+/* 浮动工具栏 */
+.floating-toolbar { position: fixed; bottom: 80px; right: 80px; display: flex; flex-direction: column; gap: 10px; z-index: 100; }
+.toolbar-btn { width: 44px; height: 44px; background: white; border: 1px solid rgba(128,0,32,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--accent); transition: all 0.3s; position: relative; }
+.toolbar-btn:hover { background: var(--accent); color: white; border-color: var(--accent); }
+.toolbar-badge { position: absolute; top: -2px; right: -2px; width: 18px; height: 18px; background: var(--accent); color: white; font-size: 0.7rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.collection-panel { position: fixed; top: 50%; right: 80px; transform: translateY(-50%) translateX(120%); width: 280px; max-height: 70vh; background: white; border-radius: 16px; box-shadow: 0 5px 30px rgba(0,0,0,0.15); transition: transform 0.3s, opacity 0.3s; z-index: 200; display: none; flex-direction: column; opacity: 0; pointer-events: none; }
+.collection-panel.active { display: flex; transform: translateY(-50%) translateX(0); opacity: 1; pointer-events: auto; }
+.panel-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-bottom: 1px solid #f0ede8; }
+.panel-header h4 { margin: 0; font-family: "Songti SC", serif; color: var(--accent); }
+.panel-header button { background: none; border: none; cursor: pointer; color: #999; padding: 4px; }
+.panel-body { padding: 20px; overflow-y: auto; }
+.panel-section { margin-bottom: 20px; }
+.panel-section h5 { font-size: 0.8rem; color: #999; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+.panel-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.panel-item { padding: 6px 12px; background: rgba(128,0,32,0.05); border: 1px solid rgba(128,0,32,0.1); border-radius: 15px; font-size: 0.8rem; color: #666; cursor: pointer; transition: all 0.3s; }
+.panel-item:hover { background: rgba(128,0,32,0.1); }
+.panel-item.collected { background: var(--accent); color: white; border-color: var(--accent); }
 
 @media (max-width: 900px) {
   .pages-container { padding: 20px 30px 40px; }
@@ -695,7 +556,7 @@ header { background: #fdfcfa !important; }
   .scene-side { flex: none; }
   .choice-cards { flex-direction: column; align-items: center; }
   .stats-row { flex-direction: column; gap: 15px; }
-  .bottom-toolbar { right: 55px; padding: 0 20px; }
+  .floating-toolbar { right: 20px; bottom: 20px; }
   .collection-panel { right: 20px; width: calc(100vw - 40px); max-width: 300px; }
 }
 </style>
