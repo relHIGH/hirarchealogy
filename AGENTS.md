@@ -1,10 +1,10 @@
-# AGENTS.md - 古戳戳 (Anti Chuo)
+# AGENTS.md - Anti Chuo
 
 ## 项目概述
 
-古戳戳（Anti Chuo）是一个基于 Jekyll 的静态网站，专注于中国古代文化与考古知识的知识库系统。
+Anti Chuo是一个基于 Jekyll 的静态网站，专注于中国古代文化与考古知识的知识库系统。
 
-- **项目名称**: 古戳戳 / Anti Chuo
+- **项目名称**: Anti Chuo
 - **副标题**: 戳一下，探古趣
 - **技术栈**: Jekyll + Liquid + Vanilla JavaScript + 自定义 CSS
 - **部署地址**: https://relhigh.github.io/antichuo
