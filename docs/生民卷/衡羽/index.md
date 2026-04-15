@@ -436,48 +436,49 @@ title: 衡羽
 }
 
 .char-era {
-  color: #888;
   font-size: 1rem;
-  margin-bottom: 30px;
+  color: #888;
+  margin: 0 0 16px 0;
   letter-spacing: 2px;
 }
 
 .char-bio {
-  line-height: 1.8;
-  color: #555;
-  margin-bottom: 40px;
+  background: #f5f3f0;
+  padding: 14px 18px;
+  border-radius: 8px;
+  border-left: 3px solid var(--accent);
+  line-height: 1.6;
 }
 
 .char-bio p {
-  margin-bottom: 15px;
+  line-height: 1.6;
+  color: #555;
+  margin: 0;
+  font-size: 0.95rem;
 }
 
 .nav-btn {
-  padding: 12px 32px;
+  margin-top: 40px;
+  padding: 10px 24px;
   background: var(--accent);
   color: white;
   border: none;
-  border-radius: 30px;
-  font-size: 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.3s;
-  font-family: inherit;
+  font-family: "Songti SC", serif;
+  letter-spacing: 2px;
 }
 
 .nav-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(128,0,32,0.3);
+  transform: translateX(3px);
+  box-shadow: 0 8px 20px rgba(128,0,32,0.25);
 }
 
 .nav-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-}
-
-.intro-right .scene-img {
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
 }
 
 /* 章节布局 */
