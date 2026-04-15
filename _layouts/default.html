@@ -130,7 +130,7 @@
 
   <div class="main-wrapper">
     <div id="right-sidebar-trigger" onclick="window.history.back()"><div class="back-text">回</div></div>
-    {% if page.url == "/dimensions.html" %}
+    {% if page.url == "/dimensions.html" or page.url == "/" or page.url == "/index.html" %}
     <aside id="sidebar-container">
       <a href="{{ site.baseurl }}/docs/古代旅行/" class="nav-item-wrapper">旅</a>
       <a href="{{ site.baseurl }}/docs/戏/" class="nav-item-wrapper">戏</a>

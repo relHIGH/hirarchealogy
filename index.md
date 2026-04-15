@@ -570,10 +570,8 @@ title: 首页
   .char-item img { width: 60px; height: 60px; }
 }
 
-/* 隐藏首页的轨迹线和侧边栏 */
-body:has(.museum-hero) #trajectory-line,
-body:has(.museum-hero) #sidebar-container,
-body:has(.museum-hero) #right-sidebar-trigger {
+/* 隐藏首页的轨迹线 */
+body:has(.museum-hero) #trajectory-line {
   display: none !important;
 }
 
