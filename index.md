@@ -301,10 +301,6 @@ title: 首页
   color: white;
 }
 
-.section-header.light .section-label {
-  color: rgba(255,255,255,0.9);
-}
-
 .section-header.light h2,
 .section-header.light p {
   color: white;
