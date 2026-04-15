@@ -376,38 +376,63 @@ title: 衡羽
 <style>
 /* 故事页样式 */
 .story-wrapper {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
+  position: relative;
+  width: 100%;
+  min-height: auto;
+  background: #faf6ee;
+  margin-top: 40px;
+  padding: 40px 0 60px;
 }
 
 .pages-container {
-  position: relative;
+  width: 100%;
+  padding: 20px 60px 40px;
+  box-sizing: border-box;
 }
 
 .page {
-  animation: fadeIn 0.5s ease;
+  width: 100%;
+  margin: 0;
+  padding: 15px 0 30px 60px;
+  display: none;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+.page:first-child, .page.active {
+  display: block;
 }
 
 /* 介绍页布局 */
 .intro-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  display: flex;
+  min-height: auto;
   align-items: center;
-  min-height: 60vh;
+  gap: 40px;
+  padding: 20px 0;
+}
+
+.intro-left {
+  flex: 0 0 45%;
+  padding-left: 0;
+  text-align: left !important;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.intro-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .char-name {
   font-family: "Songti SC", serif;
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   color: var(--accent);
-  margin-bottom: 10px;
+  margin: 0 0 6px 0;
+  letter-spacing: 2px;
+  text-align: left;
 }
 
 .char-era {
@@ -486,19 +511,25 @@ title: 衡羽
 
 /* 场景与文本 */
 .scene-with-text {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  margin-bottom: 40px;
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+  align-items: flex-start;
 }
 
 .scene-side {
-  position: relative;
+  flex: 0 0 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .scene-img {
-  width: 100%;
+  max-width: 100%;
+  max-height: 300px;
   border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  filter: sepia(20%) saturate(80%) hue-rotate(-10deg);
 }
 
 .interact-hint {
