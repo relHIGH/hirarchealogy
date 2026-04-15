@@ -98,38 +98,14 @@ title: 衡羽
               <span><strong>驰道</strong></span>
             </div>
             <p>宽五十步，路基夯得坚实，两旁种着青松。</p>
-            <p>驿舍就设在驰道旁，每隔三十里一座，像一串珠子连起帝国。</p>
+            <p>"车同轨"——天下马车的轮距都一样，可以在任何驰道上畅行。</p>
           </div>
           <div class="scene-side">
-            <div class="scene-placeholder"><span>驰道</span></div>
+            <img src="{{ site.baseurl }}/assets/images/scenes/衡羽.png" alt="驰道" class="scene-img"/>
           </div>
         </div>
         
-        <div class="interaction-area">
-          <p class="instruction">驿站每隔多少里设置一座？</p>
-          <div class="choice-cards">
-            <div class="choice-card" onclick="selectAnswer(this, '十里', false)">
-              <span>十里</span>
-            </div>
-            <div class="choice-card" onclick="selectAnswer(this, '三十里', true)">
-              <span>三十里</span>
-            </div>
-            <div class="choice-card" onclick="selectAnswer(this, '五十里', false)">
-              <span>五十里</span>
-            </div>
-          </div>
-          <div class="feedback" id="answer-feedback"></div>
-        </div>
-        
-        <div class="item-row">
-          <div class="clickable-item" onclick="collectRelic('驿站印信', this)">
-            <span class="pulse-dot"></span>
-            <span><strong>驿站印信</strong></span>
-          </div>
-          <span>——验证公文真伪的凭证</span>
-        </div>
-        
-        <button class="nav-btn" id="btn-page3" onclick="nextPage()" disabled>下一页 →</button>
+        <button class="nav-btn" onclick="nextPage()">下一页 →</button>
       </div>
     </div>
     
@@ -137,34 +113,24 @@ title: 衡羽
     <div class="page" id="page-4" style="display:none">
       <div class="chapter-layout">
         <div class="chapter-header">
-          <span class="chapter-num">03</span>
-          <h3 class="chapter-title">文书往来</h3>
+          <span class="chapter-num">02</span>
+          <h3 class="chapter-title">咸阳驿站</h3>
         </div>
-        
         <div class="text-block">
           <p>驿站最重要的任务，是传递</p>
           <div class="clickable-text inline" onclick="collectNode('文书', '旅', this)">
             <span class="pulse-dot"></span>
             <span><strong>文书</strong></span>
           </div>
-          <p>军情急报、皇帝诏书、地方奏章……都在驿路上飞驰。</p>
-          <p>"最急的时候，一天要换八匹马。"衡羽说，"信使跑到驿站，从马背上跳下来，嘴里还喊着'八百里加急'，人就晕过去了。"</p>
+          <p>军情紧急时，驿卒一天要换几次马，日夜兼程。</p>
+          <p>衡羽见过加急的文书：封泥上盖着御史大夫的印，一站接一站，从边关直送咸阳。</p>
         </div>
         
-        <div class="reveal-card" onclick="revealText(this)">
-          <div class="reveal-front">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="3" y="3" width="18" height="18" rx="2"/>
-              <path d="M8 12h8M12 8v8"/>
-            </svg>
-            <span>查看秦简</span>
-          </div>
-          <div class="reveal-back">
-            <div class="highlight-text" onclick="collectRelic('秦简', this)">
-              <span class="pulse-dot"></span>
-              <strong>秦简文书</strong>
-            </div>
-            <p>竹简上记录着驿站的日常：某月某日，收信几封，发信几封，用马几匹，食粟几石。</p>
+        <div class="dialogue-box">
+          <div class="dialogue-avatar official"></div>
+          <div class="dialogue-content">
+            <span class="speaker">驿卒</span>
+            <p>"这是北边的军报，要在日落前送到章台宫。"</p>
           </div>
         </div>
         
@@ -172,48 +138,48 @@ title: 衡羽
       </div>
     </div>
     
-    <!-- 第6页：商贾 -->
+    <!-- 第6页：行商 -->
     <div class="page" id="page-5" style="display:none">
       <div class="chapter-layout">
         <div class="chapter-header">
-          <span class="chapter-num">04</span>
-          <h3 class="chapter-title">商贾云集</h3>
+          <span class="chapter-num">03</span>
+          <h3 class="chapter-title">商旅往来</h3>
         </div>
-        
-        <div class="dialogue-box">
-          <div class="dialogue-avatar merchant"></div>
-          <div class="dialogue-content">
-            <span class="speaker">商人</span>
-            <div class="clickable-text inline" onclick="collectNode('行商', '旅', this)">
-              <span class="pulse-dot"></span>
-              <strong>"从临淄来，贩丝绸。这驰道修得好，生意好做多了。"</strong>
-            </div>
-          </div>
-        </div>
-        
         <div class="scene-with-text">
           <div class="scene-side">
-            <div class="scene-placeholder"><span>商队</span></div>
+            <img src="{{ site.baseurl }}/assets/images/scenes/衡羽.png" alt="行商" class="scene-img"/>
           </div>
           <div class="text-side">
-            <p>除了官差，最多的就是商人。</p>
-            <p>齐地的盐、楚地的漆、赵地的铁、燕地的鱼……都在驿路上流转。</p>
-            <p>衡羽见多了，一听口音就知道是哪里人。</p>
+            <p>除了官府的驿卒，</p>
+            <div class="clickable-text" onclick="collectNode('行商', '旅', this)">
+              <span class="pulse-dot"></span>
+              <span><strong>行商</strong></span>
+            </div>
+            <p>也是驿站的常客。</p>
+            <p>他们不能换马，但可以买食、借宿。衡羽喜欢和商人聊天，听他们讲各地的风土人情。</p>
           </div>
         </div>
         
-        <div class="artifact-showcase" onclick="collectRelic('铜车马构件', this)">
-          <div class="artifact-visual">
-            <div class="scene-placeholder small"><span>车马</span></div>
+        <div class="interaction-area">
+          <p class="instruction">驿站每隔多少里一座？</p>
+          <div class="choice-cards">
+            <div class="choice-card" onclick="selectAnswer(this, '十里', false)">
+              <div class="card-icon"></div>
+              <span>十里</span>
+            </div>
+            <div class="choice-card" onclick="selectAnswer(this, '三十里', true)">
+              <div class="card-icon"></div>
+              <span>三十里</span>
+            </div>
+            <div class="choice-card" onclick="selectAnswer(this, '五十里', false)">
+              <div class="card-icon"></div>
+              <span>五十里</span>
+            </div>
           </div>
-          <div class="artifact-info">
-            <span class="pulse-dot"></span>
-            <p>驿站出土的<strong>铜车马构件</strong></p>
-            <p class="sub">帝国交通的见证</p>
-          </div>
+          <div class="feedback" id="answer-feedback"></div>
         </div>
         
-        <button class="nav-btn" onclick="nextPage()">下一页 →</button>
+        <button class="nav-btn" id="btn-page5" onclick="nextPage()" disabled>下一页 →</button>
       </div>
     </div>
     
@@ -221,64 +187,97 @@ title: 衡羽
     <div class="page" id="page-6" style="display:none">
       <div class="chapter-layout">
         <div class="chapter-header">
-          <span class="chapter-num">04</span>
-          <h3 class="chapter-title">商贾云集</h3>
+          <span class="chapter-num">03</span>
+          <h3 class="chapter-title">统一度量衡</h3>
         </div>
-        
         <div class="text-block">
-          <p>秦始皇统一了度量衡，衡羽的驿站里挂着标准的尺、斗、秤。</p>
-          <p>"以前六国各有各的规矩，做生意麻烦。现在好了，一尺就是一尺，一升就是一升。"</p>
+          <p>衡羽的日常工作之一，是检查货物的</p>
+          <div class="clickable-text inline" onclick="collectRelic('度量衡器', this)">
+            <span class="pulse-dot"></span>
+            <span><strong>度量衡</strong></span>
+          </div>
+          <p>——这是秦始皇统一的标准。</p>
+          <p>以前各国度量不同，商人常常扯皮。现在有了统一的升斗、权衡，买卖顺畅多了。</p>
         </div>
         
         <div class="mini-choice">
-          <p>秦始皇统一的度量衡中，"衡"指的是什么？</p>
+          <p>"衡""量""度"分别指什么？</p>
           <div class="mini-options">
             <button onclick="selectMiniChoice(this, '长度', false)">长度</button>
-            <button onclick="selectMiniChoice(this, '容量', false)">容量</button>
             <button onclick="selectMiniChoice(this, '重量', true)">重量</button>
+            <button onclick="selectMiniChoice(this, '容量', false)">容量</button>
           </div>
           <div class="mini-result" id="mini-result-1"></div>
-        </div>
-        
-        <div class="item-row">
-          <div class="clickable-item" onclick="collectRelic('度量衡器', this)">
-            <span class="pulse-dot"></span>
-            <span><strong>秦权度量衡器</strong></span>
-          </div>
         </div>
         
         <button class="nav-btn" id="btn-page6" onclick="nextPage()" disabled>下一页 →</button>
       </div>
     </div>
     
-    <!-- 第8页：帝国余晖 -->
+    <!-- 第8页：秦简 -->
     <div class="page" id="page-7" style="display:none">
       <div class="chapter-layout">
         <div class="chapter-header">
-          <span class="chapter-num">05</span>
-          <h3 class="chapter-title">帝国余晖</h3>
+          <span class="chapter-num">04</span>
+          <h3 class="chapter-title">驿站印信</h3>
+        </div>
+        <div class="scene-with-text">
+          <div class="text-side">
+            <p>驿站有一枚铜印，是身份的凭证。文书封泥上要盖印，过往官员要验</p>
+            <div class="clickable-text inline" onclick="collectRelic('驿站印信', this)">
+              <span class="pulse-dot"></span>
+              <span><strong>印信</strong></span>
+            </div>
+            <p>衡羽把它锁在匣子里，每天清点。</p>
+          </div>
+          <div class="scene-side">
+            <img src="{{ site.baseurl }}/assets/images/scenes/衡羽.png" alt="印信" class="scene-img"/>
+          </div>
         </div>
         
-        <div class="text-block">
-          <p>公元前210年，秦始皇驾崩。消息传到驿站时，衡羽正在登记一匹马。</p>
-          <p>"那天之后，驿路上的信使越来越少。"</p>
-          <p>陈胜吴广起义，天下大乱。驰道上不再跑的是信使，而是逃难的人群。</p>
+        <div class="artifact-showcase" onclick="collectRelic('秦简', this); this.classList.add('collected')">
+          <div class="artifact-visual scene-placeholder small"><span>秦简</span></div>
+          <div class="artifact-info">
+            <p><strong>睡虎地秦简</strong></p>
+            <p class="sub">云梦睡虎地出土的秦代竹简，记录了秦律和行政文书</p>
+          </div>
         </div>
         
-        <div class="ending-text">
-          <div class="divider"></div>
-          <p class="final">我在驿站待了十五年。</p>
-          <p class="final">见过帝国的繁华，也见过它的崩塌。</p>
-          <p class="final">那些来来往往的人，那些飞驰而过的马，</p>
-          <p class="final">都成了历史里的尘埃。</p>
-        </div>
-        
-        <button class="nav-btn" onclick="showSummary()">探索完成 →</button>
+        <button class="nav-btn" onclick="nextPage()">下一页 →</button>
       </div>
     </div>
     
-    <!-- 第9页：总结 -->
+    <!-- 第9页：铜车马 -->
     <div class="page" id="page-8" style="display:none">
+      <div class="chapter-layout">
+        <div class="chapter-header">
+          <span class="chapter-num">04</span>
+          <h3 class="chapter-title">驿站器物</h3>
+        </div>
+        <div class="text-block">
+          <p>驿站里最值钱的东西，除了印信，就是那辆</p>
+          <div class="clickable-text inline" onclick="collectRelic('铜车马构件', this)">
+            <span class="pulse-dot"></span>
+            <span><strong>铜车马</strong></span>
+          </div>
+          <p>——上级配发的公务用车。</p>
+          <p>衡羽每天擦拭，检查轮轴。这辆车不知送过多少紧急文书，车轮滚滚，连接着帝国的神经。</p>
+        </div>
+        
+        <div class="dialogue-box">
+          <div class="dialogue-avatar elder"></div>
+          <div class="dialogue-content">
+            <span class="speaker">老驿卒</span>
+            <p>"始皇帝在时，文书从边关到咸阳，只要七天。"</p>
+          </div>
+        </div>
+        
+        <button class="nav-btn" onclick="showSummary()">查看探索成果 →</button>
+      </div>
+    </div>
+    
+    <!-- 第10页：总结 -->
+    <div class="page" id="page-8-summary" style="display:none">
       <div class="summary-layout">
         <h2 class="summary-title">探索完成</h2>
         
@@ -286,7 +285,7 @@ title: 衡羽
           <div class="stat-box">
             <span class="stat-icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6m4.22-10.22l4.24-4.24M6.34 17.66l-4.24 4.24M23 12h-6m-6 0H1m20.24 4.24l-4.24-4.24M6.34 6.34L2.1 2.1"/>
+                <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
               </svg>
             </span>
             <span class="stat-num" id="summary-node-count">0</span>
@@ -374,7 +373,7 @@ title: 衡羽
 </div>
 
 <style>
-/* 故事页样式 */
+/* 暖沙色背景 */
 .story-wrapper {
   position: relative;
   width: 100%;
@@ -394,14 +393,9 @@ title: 衡羽
   width: 100%;
   margin: 0;
   padding: 15px 0 30px 60px;
-  display: none;
 }
 
-.page:first-child, .page.active {
-  display: block;
-}
-
-/* 介绍页布局 */
+/* 介绍页 */
 .intro-layout {
   display: flex;
   min-height: auto;
@@ -447,7 +441,6 @@ title: 衡羽
   padding: 14px 18px;
   border-radius: 8px;
   border-left: 3px solid var(--accent);
-  line-height: 1.6;
 }
 
 .char-bio p {
@@ -481,6 +474,35 @@ title: 衡羽
   cursor: not-allowed;
 }
 
+/* 场景图 */
+.scene-img {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  filter: sepia(20%) saturate(80%) hue-rotate(-10deg);
+}
+
+.scene-placeholder {
+  width: 280px;
+  height: 200px;
+  background: linear-gradient(135deg, #e8e0d8 0%, #d8d0c8 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scene-placeholder.small {
+  width: 120px;
+  height: 80px;
+}
+
+.scene-placeholder span {
+  color: rgba(128,0,32,0.3);
+  font-family: "Songti SC", serif;
+}
+
 /* 章节布局 */
 .chapter-layout {
   max-width: 700px;
@@ -490,17 +512,14 @@ title: 衡羽
 .chapter-header {
   display: flex;
   align-items: baseline;
-  gap: 15px;
-  margin-bottom: 40px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(128,0,32,0.1);
+  gap: 12px;
+  margin-bottom: 30px;
 }
 
 .chapter-num {
-  font-family: "Songti SC", serif;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: var(--accent);
-  opacity: 0.6;
+  font-weight: bold;
 }
 
 .chapter-title {
@@ -508,9 +527,10 @@ title: 衡羽
   font-size: 1.5rem;
   color: var(--accent);
   margin: 0;
+  letter-spacing: 3px;
 }
 
-/* 场景与文本 */
+/* 图文并排 */
 .scene-with-text {
   display: flex;
   gap: 30px;
@@ -525,318 +545,23 @@ title: 衡羽
   gap: 10px;
 }
 
-.scene-img {
-  max-width: 100%;
-  max-height: 300px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  filter: sepia(20%) saturate(80%) hue-rotate(-10deg);
+.text-side {
+  flex: 1;
+}
+
+.text-side p {
+  line-height: 1.9;
+  color: #444;
+  margin-bottom: 1em;
+  font-size: 0.95rem;
 }
 
 .interact-hint {
-  position: absolute;
-  bottom: 15px;
-  left: 15px;
-  background: rgba(255,255,255,0.95);
-  padding: 8px 12px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  color: var(--accent);
   display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.text-side p, .text-block p {
-  line-height: 1.8;
-  color: #444;
-  margin-bottom: 15px;
-}
-
-/* 可点击文本 */
-.clickable-text, .clickable-item {
-  display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 16px;
-  background: rgba(128,0,32,0.05);
-  border: 1px solid rgba(128,0,32,0.2);
-  border-radius: 20px;
-  cursor: pointer;
-  transition: all 0.3s;
-  margin: 10px 0;
-}
-
-.clickable-text:hover, .clickable-item:hover {
-  background: rgba(128,0,32,0.1);
-}
-
-.clickable-text.collected, .clickable-item.collected {
-  background: var(--accent);
-  color: white;
-  border-color: var(--accent);
-}
-
-.clickable-text.inline {
-  display: inline-flex;
-  margin: 0 5px;
-}
-
-.pulse-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--accent);
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.2); }
-}
-
-/* 对话 */
-.dialogue-box {
-  display: flex;
-  gap: 20px;
-  background: #f5f3f0;
-  padding: 25px;
-  border-radius: 12px;
-  margin: 30px 0;
-}
-
-.dialogue-avatar {
-  width: 50px;
-  height: 50px;
-  background: linear-gradient(135deg, #d0c8c0, #c0b8b0);
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.dialogue-content {
-  flex: 1;
-}
-
-.speaker {
-  font-size: 0.85rem;
-  color: var(--accent);
-  font-weight: 600;
-  margin-bottom: 8px;
-  display: block;
-}
-
-.dialogue-content p {
-  color: #555;
-  line-height: 1.6;
-  margin: 0;
-}
-
-/* 交互区 */
-.interaction-area {
-  background: #f5f3f0;
-  padding: 30px;
-  border-radius: 12px;
-  margin: 30px 0;
-  text-align: center;
-}
-
-.instruction {
-  color: #666;
-  margin-bottom: 20px;
-}
-
-.choice-cards {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.choice-card {
-  padding: 20px 30px;
-  background: white;
-  border: 2px solid rgba(128,0,32,0.1);
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s;
-  min-width: 100px;
-}
-
-.choice-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-2px);
-}
-
-.choice-card.correct {
-  background: #d4edda;
-  border-color: #28a745;
-}
-
-.choice-card.wrong {
-  background: #f8d7da;
-  border-color: #dc3545;
-}
-
-.feedback {
-  margin-top: 15px;
-  color: var(--accent);
-  min-height: 24px;
-}
-
-/* 揭示卡片 */
-.reveal-card {
-  background: #f5f3f0;
-  border-radius: 12px;
-  padding: 30px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s;
-  margin: 20px 0;
-}
-
-.reveal-card:hover {
-  background: rgba(128,0,32,0.08);
-}
-
-.reveal-card.revealed {
-  border-style: solid;
-}
-
-.reveal-front {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  color: var(--accent);
-}
-
-.reveal-back {
-  display: none;
-  text-align: left;
-}
-
-.reveal-card.revealed .reveal-front {
-  display: none;
-}
-
-.reveal-card.revealed .reveal-back {
-  display: block;
-}
-
-.highlight-text {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  background: rgba(128,0,32,0.1);
-  border-radius: 20px;
-  margin: 15px 0;
-  cursor: pointer;
-}
-
-.highlight-text:hover {
-  background: rgba(128,0,32,0.15);
-}
-
-.aside {
-  color: #888;
-  font-style: italic;
-  font-size: 0.9rem;
-  margin-top: 15px;
-}
-
-/* 小型选择 */
-.mini-choice {
-  margin: 30px 0;
-  padding: 20px;
-  background: #f5f3f0;
-  border-radius: 12px;
-}
-
-.mini-choice p {
-  margin-bottom: 15px;
-  color: #555;
-}
-
-.mini-options {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.mini-options button {
-  padding: 8px 20px;
-  background: white;
-  border: 1px solid #d0c8c0;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.mini-options button:hover {
-  background: rgba(128,0,32,0.05);
-}
-
-.mini-options button.correct {
-  background: #d4edda;
-  border-color: #28a745;
-}
-
-.mini-options button.wrong {
-  background: #f8d7da;
-  border-color: #dc3545;
-}
-
-.mini-result {
-  margin-top: 15px;
-  color: #555;
-  min-height: 24px;
-}
-.mini-result.show {
-  color: var(--accent);
-}
-
-/* 文物展示 */
-.artifact-showcase {
-  display: flex;
-  gap: 20px;
-  background: #f5f3f0;
-  border-radius: 12px;
-  padding: 20px;
-  margin: 20px 0;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.artifact-showcase:hover {
-  background: #f0ece8;
-}
-
-.artifact-visual {
-  flex-shrink: 0;
-}
-
-.artifact-info {
-  flex: 1;
-}
-
-.artifact-info p {
-  margin: 0 0 5px;
-  color: #555;
-}
-
-.artifact-info .sub {
-  font-size: 0.85rem;
-  color: #888;
-}
-
-/* 项目行 */
-.item-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 20px 0;
-  flex-wrap: wrap;
+  color: #999;
+  font-size: 0.75rem;
 }
 
 /* 可点击文本 */
@@ -865,57 +590,265 @@ title: 衡羽
   margin: 0;
 }
 
-/* 文本块 */
-.text-block {
-  line-height: 1.8;
-  margin-bottom: 30px;
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
 }
 
-/* 结尾文本 */
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+/* 对话框 */
+.dialogue-box {
+  display: flex;
+  gap: 15px;
+  background: #f5f3f0;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.dialogue-avatar {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #d0c8c0, #c0b8b0);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dialogue-content {
+  flex: 1;
+}
+
+.speaker {
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.dialogue-content p {
+  margin: 0;
+  line-height: 1.7;
+  color: #444;
+}
+
+/* 交互区 */
+.interaction-area {
+  background: #f8f6f3;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.instruction {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.choice-cards {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.choice-card {
+  width: 120px;
+  padding: 20px;
+  background: white;
+  border: 2px solid #e0d8d0;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.choice-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.choice-card.correct {
+  border-color: #5a8;
+  background: #f0f8f4;
+}
+
+.choice-card.wrong {
+  border-color: #a55;
+  background: #f8f0f0;
+}
+
+.feedback {
+  margin-top: 15px;
+  text-align: center;
+  color: var(--accent);
+  font-size: 0.9rem;
+  min-height: 1.5em;
+}
+
+/* 迷你选择 */
+.mini-choice {
+  background: #f5f3f0;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.mini-choice > p {
+  margin: 0 0 15px 0;
+  color: #555;
+}
+
+.mini-options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.mini-options button {
+  padding: 8px 20px;
+  background: white;
+  border: 1.5px solid #d0c8d0;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: "Songti SC", serif;
+  transition: all 0.3s;
+}
+
+.mini-options button:hover {
+  border-color: var(--accent);
+}
+
+.mini-options button.correct {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.mini-options button.wrong {
+  background: #ddd;
+  border-color: #ccc;
+  color: #888;
+}
+
+.mini-result {
+  margin-top: 15px;
+  padding: 10px;
+  background: rgba(128,0,32,0.05);
+  border-radius: 8px;
+  color: #555;
+  display: none;
+}
+
+.mini-result.show {
+  display: block;
+}
+
+/* 文本块 */
+.text-block {
+  margin-bottom: 20px;
+}
+
+.text-block > p {
+  line-height: 1.9;
+  color: #444;
+  margin-bottom: 1em;
+}
+
+/* 文物展示 */
+.artifact-showcase {
+  display: flex;
+  gap: 20px;
+  background: #f5f3f0;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.artifact-showcase:hover {
+  background: #f0ece8;
+}
+
+.artifact-info {
+  flex: 1;
+}
+
+.artifact-info > p {
+  margin: 0 0 5px 0;
+  color: #444;
+}
+
+.artifact-info .sub {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+/* 结尾文字 */
 .ending-text {
   text-align: center;
   padding: 40px 20px;
 }
 
-.ending-text .final {
-  font-size: 1.1rem;
+.ending-text > p {
+  line-height: 2;
   color: #444;
-  margin-bottom: 15px;
-  line-height: 1.8;
+  margin-bottom: 0.5em;
+  font-size: 1rem;
 }
 
-.divider {
+.ending-text .divider {
   width: 60px;
   height: 1px;
-  background: rgba(128,0,32,0.2);
+  background: var(--accent);
   margin: 30px auto;
+}
+
+.ending-text .final {
+  color: var(--accent);
+  font-size: 1.1rem;
 }
 
 /* 总结页 */
 .summary-layout {
+  max-width: 600px;
+  margin: 0 auto;
   text-align: center;
-  padding: 40px 20px;
+  padding-left: 0;
 }
 
 .summary-title {
   font-family: "Songti SC", serif;
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: var(--accent);
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+  letter-spacing: 5px;
 }
 
 .stats-row {
   display: flex;
   justify-content: center;
   gap: 40px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .stat-box {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  padding: 20px 30px;
+  background: #f5f3f0;
+  border-radius: 12px;
+  min-width: 100px;
 }
 
 .stat-icon {
@@ -923,44 +856,36 @@ title: 衡羽
 }
 
 .stat-num {
-  font-size: 2.5rem;
-  font-weight: 600;
+  font-size: 2rem;
   color: var(--accent);
+  font-family: "Songti SC", serif;
 }
 
 .stat-label {
   color: #888;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .collection-showcase {
-  background: #f5f3f0;
-  border-radius: 12px;
-  padding: 30px;
-  margin-bottom: 40px;
-  text-align: left;
+  margin-bottom: 30px;
 }
 
 .showcase-section {
-  margin-bottom: 25px;
-}
-
-.showcase-section:last-child {
-  margin-bottom: 0;
+  margin-bottom: 20px;
 }
 
 .showcase-section h4 {
-  color: #888;
-  font-size: 0.85rem;
-  margin-bottom: 15px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  font-family: "Songti SC", serif;
 }
 
 .showcase-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
+  justify-content: center;
 }
 
 .showcase-list .item {
@@ -975,44 +900,34 @@ title: 衡羽
 .showcase-list .item.collected {
   background: var(--accent);
   color: white;
-  border-color: var(--accent);
+  border-style: solid;
 }
 
 .summary-actions {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 12px;
+}
+
+.summary-actions button {
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: "Songti SC", serif;
 }
 
 .btn-primary {
-  padding: 12px 30px;
   background: var(--accent);
-  color: white;
   border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  font-size: 0.95rem;
-  transition: all 0.3s;
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(128,0,32,0.3);
+  color: white;
 }
 
 .summary-actions button:not(.btn-primary) {
-  padding: 12px 30px;
   background: transparent;
-  border: 1px solid rgba(128,0,32,0.3);
-  border-radius: 30px;
-  cursor: pointer;
-  color: #666;
-  font-size: 0.95rem;
-  transition: all 0.3s;
-}
-
-.summary-actions button:not(.btn-primary):hover {
-  background: rgba(128,0,32,0.05);
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
 }
 
 /* 页面指示器 */
@@ -1022,44 +937,22 @@ title: 衡羽
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 8px;
-  z-index: 100;
+  gap: 6px;
+  z-index: 200;
 }
 
 .dot {
-  width: 8px;
-  height: 8px;
-  background: rgba(128,0,32,0.2);
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
+  background: rgba(128,0,32,0.15);
   cursor: pointer;
   transition: all 0.3s;
 }
 
 .dot.active {
   background: var(--accent);
-  transform: scale(1.2);
-}
-
-/* 场景占位 */
-.scene-placeholder {
-  background: rgba(128,0,32,0.05);
-  border: 2px dashed rgba(128,0,32,0.2);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #888;
-  font-size: 0.9rem;
-  min-height: 200px;
-}
-
-.scene-placeholder.small {
-  min-height: 100px;
-  width: 100px;
-}
-
-.scene-placeholder.wide {
-  min-height: 150px;
+  transform: scale(1.3);
 }
 
 /* 浮动工具栏 */
@@ -1197,53 +1090,46 @@ title: 衡羽
   border-color: var(--accent);
 }
 
-/* Toast提示 */
+/* Toast */
 .toast {
   position: fixed;
   bottom: 100px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0,0,0,0.8);
+  background: rgba(128,0,32,0.9);
   color: white;
-  padding: 12px 24px;
-  border-radius: 30px;
-  font-size: 0.9rem;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 0.85rem;
   z-index: 1000;
-  animation: fadeIn 0.3s ease;
+  animation: fadeInOut 2s forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  20% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  80% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
 }
 
 /* 响应式 */
-@media (max-width: 768px) {
-  .intro-layout,
-  .scene-with-text {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-  
-  .char-name {
-    font-size: 2rem;
-  }
-  
-  .dialogue-box {
-    flex-direction: column;
-  }
-  
-  .stats-row {
-    gap: 20px;
-  }
-  
-  .stat-num {
-    font-size: 2rem;
-  }
+@media (max-width: 900px) {
+  .pages-container { padding: 20px 30px 40px; }
+  .page { padding-left: 30px; }
+  .intro-layout { flex-direction: column; }
+  .intro-left { flex: none; width: 100%; }
+  .scene-with-text { flex-direction: column; }
+  .scene-side { flex: none; }
+  .choice-cards { flex-direction: column; align-items: center; }
+  .stats-row { flex-direction: column; gap: 15px; }
 }
 </style>
 
 <script>
-// 页面管理
 var currentPage = 0;
 var totalPages = 9;
-var unlockedPages = [0];
 var collections = { nodes: {}, relics: {} };
+var unlockedPages = [0];
 
 function showPage(n) {
   if (!unlockedPages.includes(n)) return;
@@ -1271,7 +1157,6 @@ function isPageUnlocked(n) {
   return unlockedPages.includes(n);
 }
 
-// 收集功能
 function collectNode(nodeName, theme, el) {
   if (!collections.nodes[nodeName]) {
     collections.nodes[nodeName] = { theme: theme };
@@ -1317,7 +1202,6 @@ function updateCollectionPanel() {
   }).join('');
 }
 
-// 选择功能
 function selectAnswer(el, answer, isCorrect) {
   var parent = el.parentElement;
   parent.querySelectorAll('.choice-card').forEach(function(card) {
@@ -1329,7 +1213,7 @@ function selectAnswer(el, answer, isCorrect) {
   if (isCorrect) {
     el.classList.add('correct');
     feedback.textContent = '正确！驿站每隔三十里一座。';
-    document.getElementById('btn-page3').disabled = false;
+    document.getElementById('btn-page5').disabled = false;
   } else {
     el.classList.add('wrong');
     feedback.textContent = '不对，再想想。';
@@ -1354,10 +1238,6 @@ function selectMiniChoice(el, answer, isCorrect) {
     result.textContent = '再想想看。';
     result.classList.add('show');
   }
-}
-
-function revealText(el) {
-  el.classList.add('revealed');
 }
 
 function showSummary() {
@@ -1391,9 +1271,6 @@ function restart() {
   unlockedPages = [0];
   document.querySelectorAll('.collected').forEach(function(el) {
     el.classList.remove('collected');
-  });
-  document.querySelectorAll('.revealed').forEach(function(el) {
-    el.classList.remove('revealed');
   });
   document.querySelectorAll('.correct, .wrong').forEach(function(el) {
     el.classList.remove('correct', 'wrong');
