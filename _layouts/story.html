@@ -11,167 +11,66 @@
       --accent: #800020; --bg-main: #f0ede4; --card-bg: #ffffff;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: "Georgia", "Times New Roman", "Songti SC", serif; background: var(--bg-main); color: #333; height: 100vh; overflow: hidden; }
-
-    /* Header */
-    header { height: 60px; background: rgba(255,255,255,0.9); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(128,0,32,0.1); display: flex; align-items: center; padding: 0 30px; z-index: 2000; justify-content: space-between; position: relative; }
-    .header-logo { font-weight: 600; color: var(--accent); font-size: 0.9rem; letter-spacing: 2px; text-decoration: none; font-family: "Georgia", serif; }
-    .header-nav { display: flex; gap: 40px; align-items: center; }
-    .header-nav-link { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--accent); font-size: 14px; font-family: "Songti SC", serif; letter-spacing: 2px; transition: all 0.3s ease; padding: 6px 10px; border-radius: 4px; opacity: 0.7; }
-    .header-nav-link:hover { opacity: 1; background: rgba(128,0,32,0.08); }
-    .header-nav-link svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
-
-    /* Main layout */
-    .main-wrapper { display: flex; height: calc(100vh - 60px); position: relative; overflow: hidden; }
-    
-    /* Right sidebar trigger */
-    #right-sidebar-trigger {
-      position: absolute; top: 0; right: 0; height: 100%; z-index: 1500; width: 120px;
-      transform: translateX(calc(120px - 55px)); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-      background: rgba(128, 0, 32, 0.08); 
-      mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M100,0 L75,0 C65,5 95,10 90,20 C80,35 25,35 25,45 C25,55 65,55 60,65 C40,80 0,80 0,85 C0,95 50,100 70,100 L100,100 Z" fill="black"/></svg>');
-      -webkit-mask-size: 100% 100%;
-      cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 100px;
+    body { 
+      font-family: "Georgia", "Times New Roman", "Songti SC", serif; 
+      background: var(--bg-main); 
+      color: #333; 
+      height: 100vh; 
+      overflow: hidden; 
     }
-    #right-sidebar-trigger:hover { transform: translateX(0); background: rgba(128, 0, 32, 0.85); }
-    .back-text { opacity: 0; transition: 0.8s; font-size: 28px; color: white; font-family: "Songti SC", serif; margin-bottom: 20px; }
-    #right-sidebar-trigger:hover .back-text { opacity: 1; }
-
-    /* Content wrapper */
-    #content-wrapper { flex-grow: 1; overflow-y: auto; background: var(--bg-main); position: relative; }
-    
-    /* Story specific styles */
-    .story-wrapper { position: relative; width: 100%; min-height: 100%; padding: 40px 60px 80px; box-sizing: border-box; }
-    
-    .pages-container { width: 100%; max-width: 900px; margin: 0 auto; }
-    
-    .page { width: 100%; padding: 15px 0 30px; display: none; }
-    .page:first-child, .page.active { display: block; }
-    
-    /* Typography */
-    .char-name { font-family: "Songti SC", serif; font-size: 2.2rem; color: var(--accent); margin: 0 0 6px 0; letter-spacing: 2px; }
-    .char-era { font-size: 1rem; color: #888; margin: 0 0 16px 0; letter-spacing: 2px; }
-    .char-bio { background: #f5f3f0; padding: 14px 18px; border-radius: 8px; border-left: 3px solid var(--accent); }
-    .char-bio p { line-height: 1.6; color: #555; margin: 0; font-size: 0.95rem; }
-    
-    /* Navigation */
-    .nav-btn { margin-top: 40px; padding: 10px 24px; background: var(--accent); color: white; border: none; border-radius: 20px; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; font-family: "Songti SC", serif; letter-spacing: 2px; }
-    .nav-btn:hover:not(:disabled) { transform: translateX(3px); box-shadow: 0 8px 20px rgba(128,0,32,0.25); }
-    
-    /* Chapter */
-    .chapter-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 30px; }
-    .chapter-num { font-size: 0.8rem; color: var(--accent); font-weight: bold; }
-    .chapter-title { font-family: "Songti SC", serif; font-size: 1.5rem; color: var(--accent); margin: 0; letter-spacing: 3px; }
-    
-    /* Clickable elements */
-    .clickable-text { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; background: rgba(128,0,32,0.05); border-radius: 8px; cursor: pointer; transition: all 0.3s; margin: 10px 0; }
-    .clickable-text:hover { background: rgba(128,0,32,0.1); }
-    .clickable-text.collected { background: rgba(128,0,32,0.2); }
-    .pulse-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.3); opacity: 1; } }
-    
-    /* Bottom toolbar */
-    .bottom-toolbar { position: fixed; bottom: 0; left: 0; right: 120px; height: 60px; background: white; border-top: 1px solid #e8e0d8; z-index: 100; display: flex; align-items: center; justify-content: flex-end; padding: 0 40px; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); }
-    .toolbar-content { display: flex; align-items: center; gap: 12px; }
-    .toolbar-label { color: #888; font-size: 0.85rem; letter-spacing: 1px; }
-    .toolbar-btn { width: 44px; height: 44px; background: var(--accent); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; color: white; transition: all 0.3s; position: relative; }
-    .toolbar-btn:hover { background: #600020; transform: scale(1.05); }
-    .toolbar-badge { position: absolute; top: -4px; right: -4px; width: 20px; height: 20px; background: #d4a574; color: white; font-size: 0.7rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-    
-    /* Collection panel */
-    .collection-panel { position: fixed; top: 50%; right: 40px; transform: translateY(-50%) translateX(120%); width: 280px; max-height: 70vh; background: white; border-radius: 16px; box-shadow: 0 5px 30px rgba(0,0,0,0.15); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s; z-index: 200; opacity: 0; pointer-events: none; display: flex; flex-direction: column; }
-    .collection-panel.active { transform: translateY(-50%) translateX(0); opacity: 1; pointer-events: auto; }
-    .panel-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-bottom: 1px solid #f0ede8; }
-    .panel-header h4 { margin: 0; font-family: "Songti SC", serif; color: var(--accent); font-size: 1rem; }
-    .panel-header button { background: none; border: none; cursor: pointer; color: #999; padding: 4px; display: flex; align-items: center; justify-content: center; }
-    .panel-header button:hover { color: var(--accent); }
-    .panel-body { padding: 20px; overflow-y: auto; }
-    .panel-section { margin-bottom: 20px; }
-    .panel-section h5 { font-size: 0.75rem; color: #999; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: normal; }
-    .panel-grid { display: flex; flex-wrap: wrap; gap: 8px; }
-    .panel-item { padding: 6px 12px; background: rgba(128,0,32,0.05); border: 1px solid rgba(128,0,32,0.1); border-radius: 15px; font-size: 0.8rem; color: #666; cursor: pointer; transition: all 0.3s; }
-    .panel-item:hover { background: rgba(128,0,32,0.1); }
-    .panel-item.collected { background: var(--accent); color: white; border-color: var(--accent); }
-    
-    /* Page dots */
-    .page-dots { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 90; padding: 10px 20px; background: rgba(255,255,255,0.8); border-radius: 20px; backdrop-filter: blur(4px); }
-    .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(128,0,32,0.15); cursor: pointer; transition: all 0.3s; }
-    .dot:hover { background: rgba(128,0,32,0.3); }
-    .dot.active { background: var(--accent); transform: scale(1.2); }
   </style>
 </head>
 <body data-path="{{ page.path }}">
 
-<header>
-  <a href="{{ site.baseurl }}/" class="header-logo">ANTICHUO</a>
-  <nav class="header-nav">
-    <a href="{{ site.baseurl }}/dimensions.html" class="header-nav-link">
-      <svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5" fill="currentColor"/><circle cx="18" cy="6" r="2.5" fill="currentColor"/><circle cx="6" cy="18" r="2.5" fill="currentColor"/><circle cx="18" cy="18" r="2.5" fill="currentColor"/><path d="M6 8.5v7M18 8.5v7M8.5 6h7M8.5 18h7" stroke="currentColor" stroke-width="1.2"/></svg>
-      <span>维度</span>
-    </a>
-    <a href="{{ site.baseurl }}/graph.html" class="header-nav-link">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.5" fill="currentColor"/><circle cx="5" cy="12" r="2.5" fill="currentColor"/><circle cx="19" cy="12" r="2.5" fill="currentColor"/><circle cx="12" cy="19" r="2.5" fill="currentColor"/><path d="M11 6.5L6 11M13 6.5L18 11M6 13L11 17.5M18 13L13 17.5" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
-      <span>星图</span>
-    </a>
-    <a href="{{ site.baseurl }}/docs/生民卷/" class="header-nav-link">
-      <svg viewBox="0 0 24 24"><path d="M6 4h12v16H6z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 7h8M8 10.5h8M8 14h5" stroke="currentColor" stroke-width="1.2"/><circle cx="15" cy="16" r="2.5" fill="currentColor" opacity="0.7"/></svg>
-      <span>生民卷</span>
-    </a>
-  </nav>
-</header>
+{% assign char_id = page.name | remove: ".md" %}
 
-<div class="main-wrapper">
-  <div id="right-sidebar-trigger" onclick="window.history.back()"><div class="back-text">回</div></div>
+<div class="story-wrapper" id="storyWrapper">
+  <div class="pages-container" id="pagesContainer">
+    {{ content }}
+  </div>
   
-  <div id="content-wrapper">
-    <div class="story-wrapper" id="storyWrapper">
-      <div class="pages-container" id="pagesContainer">
-        {{ content }}
-      </div>
-      
-      <!-- 底部收集工具栏 -->
-      <div class="bottom-toolbar">
-        <div class="toolbar-content">
-          <span class="toolbar-label">探索收获</span>
-          <button class="toolbar-btn" onclick="toggleCollectionPanel()" aria-label="打开收集面板">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-            </svg>
-            <span class="toolbar-badge" id="collection-badge">0</span>
-          </button>
-        </div>
-      </div>
-      
-      <!-- 收集品面板 -->
-      <div class="collection-panel" id="collectionPanel">
-        <div class="panel-header">
-          <h4>探索收获</h4>
-          <button onclick="toggleCollectionPanel()" aria-label="关闭">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-            </svg>
-          </button>
-        </div>
-        <div class="panel-body">
-          <div class="panel-section">
-            <h5>主题节点</h5>
-            <div class="panel-grid" id="panel-nodes"></div>
-          </div>
-          <div class="panel-section">
-            <h5>历史文物</h5>
-            <div class="panel-grid" id="panel-relics"></div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- 页面指示器 -->
-      <div class="page-dots" id="pageDots"></div>
+  <!-- 底部收集工具栏 -->
+  <div class="bottom-toolbar">
+    <div class="toolbar-content">
+      <span class="toolbar-label">探索收获</span>
+      <button class="toolbar-btn" onclick="toggleCollectionPanel()" aria-label="打开收集面板">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+        </svg>
+        <span class="toolbar-badge" id="collection-badge">0</span>
+      </button>
     </div>
   </div>
+  
+  <!-- 收集品面板 -->
+  <div class="collection-panel" id="collectionPanel">
+    <div class="panel-header">
+      <h4>探索收获</h4>
+      <button onclick="toggleCollectionPanel()" aria-label="关闭">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="panel-body">
+      <div class="panel-section">
+        <h5>主题节点</h5>
+        <div class="panel-grid" id="panel-nodes"></div>
+      </div>
+      <div class="panel-section">
+        <h5>历史文物</h5>
+        <div class="panel-grid" id="panel-relics"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 页面指示器 -->
+  <div class="page-dots" id="pageDots"></div>
 </div>
 
 <script src="{{ site.baseurl }}/assets/js/story.js"></script>
 <script>
+// 页面特定的节点和文物配置
 var STORY_CONFIG = {
   nodes: {{ page.nodes | jsonify | default: '[]' }},
   relics: {{ page.relics | jsonify | default: '[]' }},
