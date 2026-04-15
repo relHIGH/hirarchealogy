@@ -1,335 +1,757 @@
-/* 生民卷样式 */
+/* 生民卷故事页通用样式 - 2024重构版 */
 
-/* 人物选择页 */
-.shengmin-page {
-  padding: 40px 20px;
-  max-width: 1100px;
+/* ========== 基础布局覆盖 ========== */
+body:has(.story-wrapper) .container {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+
+body:has(.story-wrapper) header {
+  background: #fdfcfa !important;
+}
+
+/* ========== 故事容器 ========== */
+.story-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 60px);
+  background: #faf6ee;
+  padding: 40px 0 80px;
+  box-sizing: border-box;
+}
+
+.pages-container {
+  width: 100%;
+  padding: 20px 60px 40px;
+  box-sizing: border-box;
+}
+
+.page {
+  width: 100%;
+  max-width: 900px;
   margin: 0 auto;
+  padding: 15px 0 30px;
+  display: none;
 }
 
-.shengmin-header {
-  text-align: center;
-  margin-bottom: 40px;
+.page:first-child,
+.page.active {
+  display: block;
 }
 
-.shengmin-header h1 {
-  font-family: "Songti SC", serif;
-  font-size: 2rem;
-  color: var(--accent);
-  letter-spacing: 8px;
-  margin-bottom: 10px;
-}
-
-.shengmin-header p {
-  color: #888;
-  font-size: 0.85rem;
-  letter-spacing: 2px;
-}
-
-.character-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 15px;
-}
-
-.character-card {
+/* ========== 介绍页布局 ========== */
+.intro-layout {
   display: flex;
-  flex-direction: column;
+  min-height: auto;
   align-items: center;
-  text-decoration: none;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  padding: 15px 10px;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.5);
+  gap: 40px;
+  padding: 20px 0;
 }
 
-.character-card:hover {
-  transform: translateY(-5px);
-  background: white;
-  box-shadow: 0 15px 40px rgba(128,0,32,0.12);
-}
-
-.char-portrait {
-  width: 100px;
-  height: 143px;
-  background-image: url('/Antichuo/assets/characters.png');
-  background-size: 500% 200%;
-  border-radius: 6px;
-  margin-bottom: 12px;
-  border: 2px solid rgba(128,0,32,0.1);
-  transition: all 0.4s;
-}
-
-.character-card:hover .char-portrait {
-  transform: scale(1.03);
-  border-color: rgba(128,0,32,0.3);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-}
-
-.char-info {
-  text-align: center;
+.intro-left {
+  flex: 0 0 45%;
+  padding-left: 0;
+  text-align: left;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  align-items: flex-start;
 }
 
-.char-dynasty {
-  font-size: 0.75rem;
-  color: #999;
-  letter-spacing: 2px;
+.intro-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .char-name {
-  font-size: 1.4rem;
   font-family: "Songti SC", serif;
-  color: var(--accent);
-  font-weight: 600;
+  font-size: 2.2rem;
+  color: var(--accent, #800020);
+  margin: 0 0 6px 0;
+  letter-spacing: 2px;
+  text-align: left;
 }
 
-.char-role {
-  font-size: 0.8rem;
-  color: #666;
-}
-
-/* 故事页 */
-.story-page {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 40px;
-}
-
-.story-header {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  margin-bottom: 50px;
-  padding-bottom: 30px;
-  border-bottom: 1px solid rgba(128,0,32,0.1);
-}
-
-.char-avatar {
-  width: 100px;
-  height: 143px;
-  background-image: url('/Antichuo/assets/characters.png');
-  background-size: 500% 200%;
-  border-radius: 8px;
-  border: 2px solid rgba(128,0,32,0.2);
-}
-
-.char-title h1 {
-  font-family: "Songti SC", serif;
-  color: var(--accent);
-  font-size: 1.8rem;
-  margin-bottom: 8px;
-}
-
-.char-title p {
+.char-era {
+  font-size: 1rem;
   color: #888;
-  font-size: 0.9rem;
+  margin: 0 0 16px 0;
+  letter-spacing: 2px;
 }
 
-.story-timeline {
-  margin-bottom: 60px;
+.char-bio {
+  background: #f5f3f0;
+  padding: 14px 18px;
+  border-radius: 8px;
+  border-left: 3px solid var(--accent, #800020);
 }
 
-.story-chapter {
-  margin-bottom: 40px;
-  padding-left: 30px;
-  border-left: 2px solid rgba(128,0,32,0.1);
+.char-bio p {
+  line-height: 1.6;
+  color: #555;
+  margin: 0;
+  font-size: 0.95rem;
 }
 
-.story-chapter h3 {
-  color: var(--accent);
-  font-family: "Songti SC", serif;
-  margin-bottom: 15px;
-  font-size: 1.2rem;
+/* ========== 章节布局 ========== */
+.chapter-layout {
+  max-width: 700px;
+  margin: 0 auto;
 }
 
-.story-chapter p {
-  line-height: 1.9;
-  color: #444;
-  margin-bottom: 12px;
-}
-
-/* 故事中的节点标记 */
-.story-chapter a[href^="./"],
-.story-chapter a[href^="../"] {
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px dashed rgba(128,0,32,0.3);
-  cursor: pointer;
-}
-
-.story-chapter a[href^="./"]:hover,
-.story-chapter a[href^="../"]:hover {
-  background: rgba(128,0,32,0.05);
-  border-bottom-style: solid;
-}
-
-/* 文物标记 - 不同样式 */
-.story-chapter a.relic-tag {
-  color: #8B4513;
-  border-bottom-color: rgba(139,69,19,0.3);
-}
-
-/* 收藏区域 */
-.story-collection {
-  background: rgba(128,0,32,0.03);
-  padding: 40px;
-  border-radius: 12px;
-  margin-top: 60px;
-}
-
-.story-collection h2 {
-  text-align: center;
-  font-family: "Songti SC", serif;
-  color: var(--accent);
+.chapter-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
   margin-bottom: 30px;
 }
 
-.collection-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.chapter-num {
+  font-size: 0.8rem;
+  color: var(--accent, #800020);
+  font-weight: bold;
+}
+
+.chapter-title {
+  font-family: "Songti SC", serif;
+  font-size: 1.5rem;
+  color: var(--accent, #800020);
+  margin: 0;
+  letter-spacing: 3px;
+}
+
+/* ========== 图文并排 ========== */
+.scene-with-text {
+  display: flex;
   gap: 30px;
   margin-bottom: 30px;
+  align-items: flex-start;
 }
 
-.collection-group h4 {
-  color: #666;
-  font-size: 0.9rem;
-  margin-bottom: 15px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.collected-nodes,
-.collected-relics {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.collected-item {
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 16px;
-  background: white;
-  border: 1px solid rgba(128,0,32,0.2);
-  border-radius: 20px;
-  font-size: 0.85rem;
-  color: var(--accent);
-}
-
-.collected-item.lit {
-  background: var(--accent);
-  color: white;
-  border-color: var(--accent);
-}
-
-.collected-item.relic {
-  border-color: rgba(139,69,19,0.3);
-  color: #8B4513;
-}
-
-.collected-item.relic.lit {
-  background: #8B4513;
-  color: white;
-  border-color: #8B4513;
-}
-
-.export-actions {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding-top: 30px;
-  border-top: 1px solid rgba(128,0,32,0.1);
-}
-
-.export-actions button {
-  padding: 12px 30px;
-  background: var(--accent);
-  color: white;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  letter-spacing: 2px;
-  transition: all 0.3s;
-}
-
-.export-actions button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(128,0,32,0.3);
-}
-
-/* 浮动工具栏 */
-.floating-toolbar {
-  position: fixed;
-  bottom: 80px;
-  right: 80px;
+.scene-side {
+  flex: 0 0 280px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.text-side {
+  flex: 1;
+}
+
+.text-side p,
+.text-block p {
+  line-height: 1.9;
+  color: #444;
+  margin-bottom: 1em;
+  font-size: 0.95rem;
+}
+
+/* ========== 场景图片 ========== */
+.scene-img {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  filter: sepia(20%) saturate(80%) hue-rotate(-10deg);
+}
+
+.interact-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #999;
+  font-size: 0.75rem;
+}
+
+.interact-hint svg {
+  animation: pulse 2s infinite;
+}
+
+/* ========== 可点击元素 ========== */
+.clickable-text,
+.clickable-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: rgba(128,0,32,0.05);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin: 10px 0;
+}
+
+.clickable-text:hover,
+.clickable-item:hover {
+  background: rgba(128,0,32,0.1);
+}
+
+.clickable-text.collected,
+.clickable-item.collected {
+  background: rgba(128,0,32,0.2);
+}
+
+.clickable-text.inline {
+  display: inline-flex;
+  margin: 0;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent, #800020);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.3); opacity: 1; }
+}
+
+/* ========== 导航按钮 ========== */
+.nav-btn {
+  margin-top: 40px;
+  padding: 10px 24px;
+  background: var(--accent, #800020);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: "Songti SC", serif;
+  letter-spacing: 2px;
+}
+
+.nav-btn:hover:not(:disabled) {
+  transform: translateX(3px);
+  box-shadow: 0 8px 20px rgba(128,0,32,0.25);
+}
+
+.nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ========== 对话框 ========== */
+.dialogue-box {
+  display: flex;
+  gap: 15px;
+  background: #f5f3f0;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.dialogue-avatar {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #d0c8c0, #c0b8b0);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dialogue-content {
+  flex: 1;
+}
+
+.speaker {
+  color: var(--accent, #800020);
+  font-size: 0.85rem;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.dialogue-content p {
+  margin: 0;
+  line-height: 1.7;
+  color: #444;
+}
+
+/* ========== 迷你选择 ========== */
+.mini-choice {
+  background: #f5f3f0;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.mini-choice > p {
+  margin: 0 0 15px 0;
+  color: #555;
+}
+
+.mini-options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.mini-options button {
+  padding: 8px 20px;
+  background: white;
+  border: 1.5px solid #d0c8c0;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: "Songti SC", serif;
+  transition: all 0.3s;
+}
+
+.mini-options button:hover {
+  border-color: var(--accent, #800020);
+}
+
+.mini-options button.correct {
+  background: var(--accent, #800020);
+  border-color: var(--accent, #800020);
+  color: white;
+}
+
+.mini-options button.wrong {
+  background: #ddd;
+  border-color: #ccc;
+  color: #888;
+}
+
+.mini-result {
+  margin-top: 15px;
+  padding: 10px;
+  background: rgba(128,0,32,0.05);
+  border-radius: 8px;
+  color: #555;
+  display: none;
+}
+
+.mini-result.show {
+  display: block;
+}
+
+/* ========== 交互区域 ========== */
+.interaction-area {
+  background: #f8f6f3;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.instruction {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.choice-cards {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.choice-card {
+  width: 120px;
+  padding: 20px;
+  background: white;
+  border: 2px solid #e0d8d0;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.choice-card:hover {
+  border-color: var(--accent, #800020);
+  transform: translateY(-2px);
+}
+
+.choice-card.correct {
+  border-color: #5a8;
+  background: #f0f8f4;
+}
+
+.choice-card.wrong {
+  border-color: #a55;
+  background: #f8f0f0;
+}
+
+.card-icon {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 10px;
+  border-radius: 8px;
+}
+
+.feedback {
+  margin-top: 15px;
+  text-align: center;
+  color: var(--accent, #800020);
+  font-size: 0.9rem;
+  min-height: 1.5em;
+}
+
+/* ========== 揭示卡片 ========== */
+.reveal-card {
+  background: #f5f3f0;
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin: 20px 0;
+}
+
+.reveal-card:hover {
+  background: rgba(128,0,32,0.08);
+}
+
+.reveal-front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #888;
+}
+
+.reveal-front svg {
+  opacity: 0.5;
+}
+
+.reveal-back {
+  display: none;
+  text-align: left;
+}
+
+.reveal-card.revealed .reveal-front {
+  display: none;
+}
+
+.reveal-card.revealed .reveal-back {
+  display: block;
+}
+
+.highlight-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  background: rgba(128,0,32,0.1);
+  border-radius: 8px;
+  margin: 15px 0;
+  cursor: pointer;
+  color: var(--accent, #800020);
+}
+
+/* ========== 文物展示 ========== */
+.artifact-showcase {
+  display: flex;
+  gap: 20px;
+  background: #f5f3f0;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.artifact-showcase:hover {
+  background: #f0ece8;
+}
+
+.artifact-visual {
+  flex-shrink: 0;
+}
+
+.artifact-info {
+  flex: 1;
+}
+
+.artifact-info > p {
+  margin: 0 0 5px 0;
+  color: #444;
+}
+
+.artifact-info .sub {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+/* ========== 场景占位图 ========== */
+.scene-placeholder {
+  width: 280px;
+  height: 200px;
+  background: linear-gradient(135deg, #e8e0d8 0%, #d8d0c8 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.scene-placeholder::before {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  border: 2px dashed rgba(128,0,32,0.15);
+  border-radius: 8px;
+}
+
+.scene-placeholder span {
+  color: rgba(128,0,32,0.3);
+  font-family: "Songti SC", serif;
+  font-size: 1.5rem;
+  letter-spacing: 4px;
+}
+
+.scene-placeholder.small {
+  width: 120px;
+  height: 80px;
+}
+
+.scene-placeholder.wide {
+  width: 100%;
+  max-width: 600px;
+}
+
+/* ========== 结尾文字 ========== */
+.ending-text {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.ending-text > p {
+  line-height: 2;
+  color: #444;
+  margin-bottom: 0.5em;
+  font-size: 1rem;
+}
+
+.ending-text .divider {
+  width: 60px;
+  height: 1px;
+  background: var(--accent, #800020);
+  margin: 30px auto;
+}
+
+.ending-text .final {
+  color: var(--accent, #800020);
+  font-size: 1.1rem;
+}
+
+/* ========== 总结页 ========== */
+.summary-layout {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.summary-title {
+  font-family: "Songti SC", serif;
+  font-size: 1.8rem;
+  color: var(--accent, #800020);
+  margin-bottom: 30px;
+  letter-spacing: 5px;
+}
+
+.stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 30px;
+  background: #f5f3f0;
+  border-radius: 12px;
+  min-width: 100px;
+}
+
+.stat-icon {
+  color: var(--accent, #800020);
+}
+
+.stat-num {
+  font-size: 2rem;
+  color: var(--accent, #800020);
+  font-family: "Songti SC", serif;
+}
+
+.stat-label {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+.collection-showcase {
+  margin-bottom: 30px;
+}
+
+.showcase-section {
+  margin-bottom: 20px;
+}
+
+.showcase-section h4 {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  font-family: "Songti SC", serif;
+}
+
+.showcase-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.showcase-list .item {
+  padding: 6px 14px;
+  background: #f0ede8;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  color: #888;
+  border: 1px dashed #ccc;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.showcase-list .item:hover {
+  border-color: var(--accent, #800020);
+}
+
+.showcase-list .item.collected {
+  background: var(--accent, #800020);
+  color: white;
+  border-style: solid;
+}
+
+.summary-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.summary-actions button {
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: "Songti SC", serif;
+}
+
+.btn-primary {
+  background: var(--accent, #800020);
+  border: none;
+  color: white;
+}
+
+.summary-actions button:not(.btn-primary) {
+  background: transparent;
+  color: var(--accent, #800020);
+  border: 1.5px solid var(--accent, #800020);
+}
+
+/* ========== 底部工具栏（重构核心）========== */
+.bottom-toolbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 120px;
+  height: 60px;
+  background: white;
+  border-top: 1px solid #e8e0d8;
   z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 40px;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+}
+
+.toolbar-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.toolbar-label {
+  color: #888;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
 }
 
 .toolbar-btn {
   width: 44px;
   height: 44px;
-  background: white;
-  border: 1px solid rgba(128,0,32,0.2);
+  background: var(--accent, #800020);
+  border: none;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: var(--accent);
+  color: white;
   transition: all 0.3s;
   position: relative;
 }
 
 .toolbar-btn:hover {
-  background: var(--accent);
-  color: white;
-  border-color: var(--accent);
+  background: #600020;
+  transform: scale(1.05);
 }
 
 .toolbar-badge {
   position: absolute;
-  top: -2px;
-  right: -2px;
-  width: 18px;
-  height: 18px;
-  background: var(--accent);
+  top: -4px;
+  right: -4px;
+  width: 20px;
+  height: 20px;
+  background: #d4a574;
   color: white;
   font-size: 0.7rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: bold;
 }
 
-/* 收集面板 */
+/* ========== 收集面板 ========== */
 .collection-panel {
   position: fixed;
   top: 50%;
-  right: 80px;
+  right: 40px;
   transform: translateY(-50%) translateX(120%);
   width: 280px;
   max-height: 70vh;
   background: white;
   border-radius: 16px;
   box-shadow: 0 5px 30px rgba(0,0,0,0.15);
-  transition: transform 0.3s, opacity 0.3s;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
   z-index: 200;
-  display: none;
-  flex-direction: column;
   opacity: 0;
   pointer-events: none;
+  display: flex;
+  flex-direction: column;
 }
 
 .collection-panel.active {
-  display: flex;
   transform: translateY(-50%) translateX(0);
   opacity: 1;
   pointer-events: auto;
@@ -346,7 +768,8 @@
 .panel-header h4 {
   margin: 0;
   font-family: "Songti SC", serif;
-  color: var(--accent);
+  color: var(--accent, #800020);
+  font-size: 1rem;
 }
 
 .panel-header button {
@@ -355,10 +778,14 @@
   cursor: pointer;
   color: #999;
   padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s;
 }
 
 .panel-header button:hover {
-  color: var(--accent);
+  color: var(--accent, #800020);
 }
 
 .panel-body {
@@ -371,11 +798,12 @@
 }
 
 .panel-section h5 {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: #999;
   margin-bottom: 10px;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
+  font-weight: normal;
 }
 
 .panel-grid {
@@ -397,35 +825,184 @@
 
 .panel-item:hover {
   background: rgba(128,0,32,0.1);
+  border-color: rgba(128,0,32,0.2);
 }
 
 .panel-item.collected {
-  background: var(--accent);
+  background: var(--accent, #800020);
   color: white;
-  border-color: var(--accent);
+  border-color: var(--accent, #800020);
 }
 
-/* 响应式 */
-@media (max-width: 900px) {
-  .character-grid {
-    grid-template-columns: repeat(3, 1fr);
+/* ========== 页面指示器 ========== */
+.page-dots {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 90;
+  padding: 10px 20px;
+  background: rgba(255,255,255,0.8);
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(128,0,32,0.15);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.dot:hover {
+  background: rgba(128,0,32,0.3);
+}
+
+.dot.active {
+  background: var(--accent, #800020);
+  transform: scale(1.2);
+}
+
+.dot.final {
+  background: rgba(128,0,32,0.25);
+}
+
+.dot.final.active {
+  background: var(--accent, #800020);
+}
+
+/* ========== Toast提示 ========== */
+.toast {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(128,0,32,0.9);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 24px;
+  font-size: 0.9rem;
+  z-index: 1000;
+  animation: fadeInOut 2.5s forwards;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+}
+
+/* ========== 响应式 ========== */
+@media (max-width: 1024px) {
+  .pages-container {
+    padding: 20px 40px 40px;
   }
-  .collection-grid {
-    grid-template-columns: 1fr;
+  
+  .intro-layout {
+    flex-direction: column;
+    gap: 30px;
   }
-  .floating-toolbar {
-    right: 20px;
-    bottom: 20px;
+  
+  .intro-left {
+    flex: none;
+    width: 100%;
   }
+  
+  .scene-with-text {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .scene-side {
+    flex: none;
+    width: 100%;
+  }
+  
+  .scene-placeholder {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .pages-container {
+    padding: 15px 20px 80px;
+  }
+  
+  .page {
+    padding: 10px 0 20px;
+  }
+  
+  .char-name {
+    font-size: 1.8rem;
+  }
+  
+  .bottom-toolbar {
+    right: 55px;
+    padding: 0 20px;
+    height: 55px;
+  }
+  
   .collection-panel {
-    right: 20px;
-    width: calc(100vw - 40px);
-    max-width: 300px;
+    right: 10px;
+    width: calc(100vw - 20px);
+    max-width: 360px;
+  }
+  
+  .page-dots {
+    bottom: 70px;
+    padding: 8px 15px;
+    gap: 6px;
+  }
+  
+  .dot {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .stats-row {
+    gap: 20px;
+  }
+  
+  .stat-box {
+    padding: 15px 20px;
+    min-width: 80px;
+  }
+  
+  .stat-num {
+    font-size: 1.6rem;
   }
 }
 
-@media (max-width: 600px) {
-  .character-grid {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 480px) {
+  .mini-options {
+    flex-direction: column;
+  }
+  
+  .mini-options button {
+    width: 100%;
+  }
+  
+  .choice-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .summary-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .summary-actions button {
+    width: 100%;
+    max-width: 200px;
   }
 }

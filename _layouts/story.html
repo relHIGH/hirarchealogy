@@ -1,0 +1,56 @@
+<!-- 生民卷故事页通用结构 -->
+{% assign char_id = page.name | remove: ".md" %}
+
+<div class="story-wrapper" id="storyWrapper">
+  <div class="pages-container" id="pagesContainer">
+    {{ content }}
+  </div>
+  
+  <!-- 底部收集工具栏 -->
+  <div class="bottom-toolbar">
+    <div class="toolbar-content">
+      <span class="toolbar-label">探索收获</span>
+      <button class="toolbar-btn" onclick="toggleCollectionPanel()" aria-label="打开收集面板">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+        </svg>
+        <span class="toolbar-badge" id="collection-badge">0</span>
+      </button>
+    </div>
+  </div>
+  
+  <!-- 收集品面板 -->
+  <div class="collection-panel" id="collectionPanel">
+    <div class="panel-header">
+      <h4>探索收获</h4>
+      <button onclick="toggleCollectionPanel()" aria-label="关闭">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="panel-body">
+      <div class="panel-section">
+        <h5>主题节点</h5>
+        <div class="panel-grid" id="panel-nodes"></div>
+      </div>
+      <div class="panel-section">
+        <h5>历史文物</h5>
+        <div class="panel-grid" id="panel-relics"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 页面指示器 -->
+  <div class="page-dots" id="pageDots"></div>
+</div>
+
+<script src="{{ site.baseurl }}/assets/js/story.js"></script>
+<script>
+// 页面特定的节点和文物配置
+var STORY_CONFIG = {
+  nodes: {{ page.nodes | jsonify | default: '[]' }},
+  relics: {{ page.relics | jsonify | default: '[]' }},
+  totalPages: {{ page.total_pages | default: 1 }}
+};
+</script>
